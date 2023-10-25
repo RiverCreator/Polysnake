@@ -1,0 +1,5 @@
+# ninja log v5
+0	4859	1690525984372394159	/data0/zjw/PolySnake/ops_dcnv3/build/temp.linux-x86_64-cpython-37/data0/zjw/PolySnake/ops_dcnv3/src/cpu/dcnv3_cpu.o	96f17f733f82f434
+1	25973	1690526005468809603	/data0/zjw/PolySnake/ops_dcnv3/build/temp.linux-x86_64-cpython-37/data0/zjw/PolySnake/ops_dcnv3/src/vision.o	bbe43be99a164f3c
+1	4021	1690527165256075104	/data0/zjw/PolySnake/lib/csrc/ops_dcnv3/build/temp.linux-x86_64-cpython-37/data0/zjw/PolySnake/lib/csrc/ops_dcnv3/src/cpu/dcnv3_cpu.o	2524f240da7d1dbf
+1	21988	1690527183208165407	/data0/zjw/PolySnake/lib/csrc/ops_dcnv3/build/temp.linux-x86_64-cpython-37/data0/zjw/PolySnake/lib/csrc/ops_dcnv3/src/vision.o	3f6ba8b2c2fd54d5

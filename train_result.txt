@@ -1,0 +1,19 @@
+Random Seed: 123
+loading annotations into memory...
+Done (t=2.70s)
+creating index...
+index created!
+load model: data/model/snake/kins_snake/144.pth
+Traceback (most recent call last):
+  File "train_net.py", line 86, in <module>
+    main()
+  File "train_net.py", line 77, in main
+    train(cfg, network)
+  File "train_net.py", line 41, in train
+    begin_epoch = load_model(network, optimizer, scheduler, recorder, cfg.model_dir, resume=cfg.resume,best_val=best_val)
+  File "/data0/zjw/PolySnake/lib/utils/net_utils.py", line 319, in load_model
+    net.load_state_dict(pretrained_model['net'])
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1224, in load_state_dict
+    self.__class__.__name__, "\n\t".join(error_msgs)))
+RuntimeError: Error(s) in loading state_dict for Network:
+	Missing key(s) in state_dict: "raft.mcr.head.conv.fc.weight", "raft.mcr.head.conv.fc.bias", "raft.mcr.head.norm.weight", "raft.mcr.head.norm.bias", "raft.mcr.head.norm.running_mean", "raft.mcr.head.norm.running_var", "raft.mcr.res0.conv.fc.weight", "raft.mcr.res0.conv.fc.bias", "raft.mcr.res0.norm.weight", "raft.mcr.res0.norm.bias", "raft.mcr.res0.norm.running_mean", "raft.mcr.res0.norm.running_var", "raft.mcr.res1.conv.fc.weight", "raft.mcr.res1.conv.fc.bias", "raft.mcr.res1.norm.weight", "raft.mcr.res1.norm.bias", "raft.mcr.res1.norm.running_mean", "raft.mcr.res1.norm.running_var", "raft.mcr.res2.conv.fc.weight", "raft.mcr.res2.conv.fc.bias", "raft.mcr.res2.norm.weight", "raft.mcr.res2.norm.bias", "raft.mcr.res2.norm.running_mean", "raft.mcr.res2.norm.running_var", "raft.mcr.res3.conv.fc.weight", "raft.mcr.res3.conv.fc.bias", "raft.mcr.res3.norm.weight", "raft.mcr.res3.norm.bias", "raft.mcr.res3.norm.running_mean", "raft.mcr.res3.norm.running_var", "raft.mcr.res4.conv.fc.weight", "raft.mcr.res4.conv.fc.bias", "raft.mcr.res4.norm.weight", "raft.mcr.res4.norm.bias", "raft.mcr.res4.norm.running_mean", "raft.mcr.res4.norm.running_var", "raft.mcr.res5.conv.fc.weight", "raft.mcr.res5.conv.fc.bias", "raft.mcr.res5.norm.weight", "raft.mcr.res5.norm.bias", "raft.mcr.res5.norm.running_mean", "raft.mcr.res5.norm.running_var", "raft.mcr.res6.conv.fc.weight", "raft.mcr.res6.conv.fc.bias", "raft.mcr.res6.norm.weight", "raft.mcr.res6.norm.bias", "raft.mcr.res6.norm.running_mean", "raft.mcr.res6.norm.running_var", "raft.mcr.fusion.weight", "raft.mcr.fusion.bias", "raft.mcr.prediction.0.weight", "raft.mcr.prediction.0.bias", "raft.mcr.prediction.2.weight", "raft.mcr.prediction.2.bias", "raft.mcr.prediction.4.weight", "raft.mcr.prediction.4.bias". 

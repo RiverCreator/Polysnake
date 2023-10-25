@@ -1,0 +1,58 @@
+Random Seed: 123
+train: Epoch: 0	
+loading annotations into memory...
+Done (t=0.97s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.81s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=1.10s)
+creating index...
+index created!
+train: Epoch: 1	
+eta: 0:00:01  epoch: 0  step: 71  mask_loss: 1.2037  ct_loss: 231.8350  wh_loss: 3.9720  py_loss: 24.2597  shape_loss: 1.6135  loss: 262.8838  data: 0.0572  batch: 0.8490  lr: 0.000033  max_mem: 6264
+train: Epoch: 2	
+eta: 0:00:01  epoch: 1  step: 143  mask_loss: 1.2044  ct_loss: 34.5325  wh_loss: 3.4405  py_loss: 19.9577  shape_loss: 2.1915  loss: 61.3267  data: 0.0635  batch: 0.8761  lr: 0.000047  max_mem: 6264
+train: Epoch: 3	
+eta: 0:00:00  epoch: 2  step: 215  mask_loss: 1.1536  ct_loss: 10.3720  wh_loss: 2.7196  py_loss: 15.6365  shape_loss: 1.6908  loss: 31.5725  data: 0.0601  batch: 0.8741  lr: 0.000060  max_mem: 6264
+train: Epoch: 4	
+eta: 0:00:00  epoch: 3  step: 287  mask_loss: 1.1183  ct_loss: 6.4782  wh_loss: 2.4432  py_loss: 13.0884  shape_loss: 1.2408  loss: 24.3688  data: 0.0583  batch: 0.8504  lr: 0.000073  max_mem: 6264
+
+  0%|          | 0/569 [00:00<?, ?it/s]eta: 0:00:00  epoch: 4  step: 359  mask_loss: 1.0556  ct_loss: 5.1239  wh_loss: 2.1695  py_loss: 11.0743  shape_loss: 0.9859  loss: 20.4094  data: 0.0591  batch: 0.8642  lr: 0.000087  max_mem: 6282
+Traceback (most recent call last):
+  File "train_net.py", line 86, in <module>
+    main()
+  File "train_net.py", line 77, in main
+    train(cfg, network)
+  File "train_net.py", line 58, in train
+    val_state=trainer.val(epoch, val_loader, evaluator, recorder)
+  File "/data0/zjw/PolySnake/lib/train/trainers/trainer.py", line 76, in val
+    for batch in tqdm.tqdm(data_loader):
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/tqdm/_tqdm.py", line 979, in __iter__
+    for obj in iterable:
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1199, in _next_data
+    return self._process_data(data)
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1225, in _process_data
+    data.reraise()
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/_utils.py", line 429, in reraise
+    raise self.exc_type(msg)
+RuntimeError: Caught RuntimeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 202, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 47, in fetch
+    return self.collate_fn(data)
+  File "/data0/zjw/PolySnake/lib/datasets/collate_batch.py", line 7, in snake_collator
+    ret = {'inp': default_collate([b['inp'] for b in batch])} ## 数据类型转换为tensor
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/_utils/collate.py", line 63, in default_collate
+    return default_collate([torch.as_tensor(b) for b in batch])
+  File "/home/zjw/miniconda3/envs/snake/lib/python3.7/site-packages/torch/utils/data/_utils/collate.py", line 55, in default_collate
+    return torch.stack(batch, 0, out=out)
+RuntimeError: stack expects each tensor to be equal size, but got [3, 512, 672] at entry 0 and [3, 480, 672] at entry 2
+
+1
