@@ -55,22 +55,20 @@ class RAFT(nn.Module):
             ct_offset = wh_pred[ct_img_idx, :, ct_y, ct_x].view(ct_x.size(0), -1, 2)  ## 这里直接取gt点位置的偏移量
 
         ct_x, ct_y = ct_x[:, None].float(), ct_y[:, None].float()
-        ct = torch.cat([ct_x, ct_y], dim=1)  ## 这里直接把ct坐标转换为（ct_num，2）shape大小的
-        # ct[:,0]=ct[:,0]/inp_w[0]
-        # ct[:,1]=ct[:,1]/inp_h[0]
+        ct = torch.cat([ct_x/inp_w[0], ct_y/inp_h[0]], dim=1)  ## 这里直接把ct坐标转换为（ct_num，2）shape大小的,并对ct进行归一化
         #### ct_offset这里假定输出的为归一化后的偏移量，因此需要乘上w和h
         # ct_offset[:,:,0]*w ct_offset[:,:,1]*=h
         # ct_offset[:,:,0]=ct_offset[:,:,0]*inp_h[0]
         # ct_offset[:,:,1]=ct_offset[:,:,1]*inp_w[1]
         init_polys = ct_offset + ct.unsqueeze(1).expand(ct_offset.size(0), ct_offset.size(1), ct_offset.size(2)) #将offset加到对应的ct坐标上
         
-        output.update({'poly_init': init_polys * snake_config.ro})  ## 对应到原图尺寸大小的初始点
+        output.update({'poly_init': init_polys})  ## 对应到原图尺寸大小的初始点
         return init_polys
 
     def clip_to_image(self, poly, h, w):
         poly[..., :2] = torch.clamp(poly[..., :2], min=0)
-        poly[..., 0] = torch.clamp(poly[..., 0], max=w - 1)
-        poly[..., 1] = torch.clamp(poly[..., 1], max=h - 1)
+        poly[..., 0] = torch.clamp(poly[..., 0], max=1)
+        poly[..., 1] = torch.clamp(poly[..., 1], max=1)
         return poly
 
     def decode_detection(self, output, h, w):
@@ -96,7 +94,7 @@ class RAFT(nn.Module):
             
             poly_init = self.use_gt_detection(output, batch) #训练的时候，这里直接使用的gt center来对点进行初始化 ，获得dla模块中推理得到的偏移量
             poly_init = poly_init.detach()
-            py_pred = poly_init * snake_config.ro  #乘了个4，对应到原图的尺寸，而他这里使用的feature map是经过4倍降采样的
+            py_pred = poly_init  #init为归一化的
             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])  # n*64*128
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
@@ -106,14 +104,14 @@ class RAFT(nn.Module):
                 net, offset = self.update_block(net, i_poly_fea) # gru模块，输出net(论文中的hk)和偏移量  net送入下一轮迭代中 
                 #### offset
                 # offset[:,:,0]*inp_w offset[:,:,1]*=inp_h
-                py_pred = py_pred + snake_config.ro * offset
+                py_pred = py_pred + offset
                 py_preds.append(py_pred)
 
-                py_pred_sm = py_pred / snake_config.ro
+                py_pred_sm = py_pred
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 i_poly_fea = F.leaky_relu(i_poly_fea)
-            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro})
+            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py']})
 
         if not self.training:
             with torch.no_grad():
@@ -123,7 +121,7 @@ class RAFT(nn.Module):
                 # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
                 ind = torch.zeros((poly_init.size(0)))
 
-                py_pred = poly_init * snake_config.ro
+                py_pred = poly_init  ## init进行了归一化因此不需要进行尺度变换
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init)
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
                                               ind)
@@ -133,9 +131,9 @@ class RAFT(nn.Module):
                     i_poly_fea = F.leaky_relu(i_poly_fea)
                     for i in range(self.iter):
                         net, offset = self.update_block(net, i_poly_fea)
-                        py_pred = py_pred + snake_config.ro * offset
+                        py_pred = py_pred + offset
                         #py_preds.append(py_pred)
-                        py_pred_sm = py_pred / snake_config.ro
+                        py_pred_sm = py_pred
 
                         if i != (self.iter - 1):                     
                             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)

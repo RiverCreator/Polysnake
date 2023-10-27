@@ -39,7 +39,7 @@ class Evaluator:
         detection = output['detection']
         score = detection[:, 2].detach().cpu().numpy()
         label = detection[:, 3].detach().cpu().numpy().astype(int)
-        py = output['py'][-1].detach().cpu().numpy() #* snake_config.down_ratio
+        py = output['py'][-1].detach().cpu().numpy()
         
         if len(py) == 0:
             return
@@ -49,8 +49,8 @@ class Evaluator:
         scale = batch['meta']['scale'][0].detach().cpu().numpy()
 
         h, w = batch['inp'].size(2), batch['inp'].size(3)
-        # py[:,:,0]=py[:,:,0]*w
-        # py[:,:,1]=py[:,:,1]*h
+        py[:,:,0]=py[:,:,0]*w
+        py[:,:,1]=py[:,:,1]*h
         trans_output_inv = data_utils.get_affine_transform(center, scale, 0, [w, h], inv=1)
         img = self.coco.loadImgs(img_id)[0]
         ori_h, ori_w = img['height'], img['width']

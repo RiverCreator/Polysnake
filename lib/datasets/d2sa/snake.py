@@ -255,8 +255,9 @@ class Dataset(data.Dataset):
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         # init = {'i_it_4py': i_it_4pys, 'c_it_4py': c_it_4pys, 'i_gt_4py': i_gt_4pys, 'c_gt_4py': c_gt_4pys}
         # evolution = {'i_it_py': i_it_pys, 'c_it_py': c_it_pys, 'i_gt_py': i_gt_pys, 'c_gt_py': c_gt_pys}
-        # i_gt_pys[:,0]=i_gt_pys[:,0]/output_w
-        # i_gt_pys[:,1]=i_gt_pys[:,1]/output_h
+        for i in range(len(i_gt_pys)):
+            i_gt_pys[i][:,0]=i_gt_pys[i][:,0]/output_w
+            i_gt_pys[i][:,1]=i_gt_pys[i][:,1]/output_h
         evolution = {'i_gt_py': i_gt_pys}
         ret.update(detection)
         # ret.update(init)

@@ -70,7 +70,7 @@ def decode_ct_hm(ct_hm, wh, reg=None, K=100):
 
     clses = clses.view(batch, K, 1).float()
     scores = scores.view(batch, K, 1)
-    ct = torch.cat([xs, ys], dim=2)
+    ct = torch.cat([xs/width, ys/height], dim=2)  ## 中心点也要进行归一化
     poly = ct.unsqueeze(2).expand(batch, K, wh.size(2), 2) + wh  # * stride
     # bboxes = torch.cat([xs - wh[..., 0:1] / 2,
                         # ys - wh[..., 1:2] / 2,
