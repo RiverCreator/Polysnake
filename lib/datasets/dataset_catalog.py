@@ -137,7 +137,7 @@ class DatasetCatalog(object):
             'id': 'd2sa',
             'data_root': 'data/d2sa/images',
             'ann_file': 'data/d2sa/annotations/D2S_amodal_validation.json',
-            'split': 'mini' 
+            'split': 'val' 
         }
     }
 
@@ -145,4 +145,3 @@ class DatasetCatalog(object):
     def get(name):
         attrs = DatasetCatalog.dataset_attrs[name]
         return attrs.copy()
-

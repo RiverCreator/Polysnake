@@ -252,7 +252,7 @@ def polygon_to_cmask(poly, h, w):
         if len(i):
             polyn.append(np.round(i[0]).astype(int))
     cv2.drawContours(cmask, polyn, -1, 1, 1)
-
+    cv2.imwrite("test.jpg",cmask)
     return cmask
 
 

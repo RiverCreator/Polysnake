@@ -8,11 +8,10 @@ from .ICD import RAFT
 class Network(nn.Module):
     def __init__(self, num_layers, heads, head_conv=256, down_ratio=4, det_dir=''):
         super(Network, self).__init__()
-
         self.dla = DLASeg('dla{}'.format(num_layers), heads,
                           pretrained=True,
                           down_ratio=down_ratio,
-                          final_kernel=1,
+                          final_kernel=1, 
                           last_level=5,
                           head_conv=head_conv)
         self.raft = RAFT() ##Recurrent all-pairs Field transforms 也就是论文中进行迭代回归的模块

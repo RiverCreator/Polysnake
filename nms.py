@@ -47,6 +47,6 @@ def post_process(output):
     keep, idx = fast_nms(boxes, score)
     detection = detection[idx][keep]
     ret_p = last_py[idx][keep]
-    output.update({"detection": detection})
+    output.update({"detection": detection,"nms_keep": keep,"idx": idx})
     output['py'].append(ret_p)
     return 0

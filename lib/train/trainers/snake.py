@@ -11,6 +11,7 @@ class NetworkWrapper(nn.Module):
         self.isTrain=isTrain
         self.m_crit = net_utils.FocalLoss() ## mask loss
         self.ct_crit = net_utils.FocalLoss() ## center loss
+        self.cls_crit = net_utils.ClsCrossEntropyLoss()
         self.py_crit = torch.nn.functional.smooth_l1_loss  ## poly loss
     
     def shape_loss(self, pred, targ_shape):
@@ -22,6 +23,7 @@ class NetworkWrapper(nn.Module):
 
     def forward(self, batch):
         output = self.net(batch['inp'], batch)
+        ct_01=batch['ct_01'].byte()
         scalar_stats = {}
         loss = 0
         ## 下面使用的net_utils.sigmoid，经过sigmoid后，将最小值设定为了1e-4,最大值设定为了1-1e-4
@@ -41,20 +43,25 @@ class NetworkWrapper(nn.Module):
         n_predictions = len(output['py_pred'])  ## 将每次迭代的预测点都计算一次loss
         py_loss = 0.0
         shape_loss = 0.0
+        #cls_loss = 0.0
         py_dis = torch.cat((output['i_gt_py'][:,1:], output['i_gt_py'][:,0].unsqueeze(1)), dim=1)  ## 将i_gt_py整体循环左移方便后面求距离
         tar_shape = py_dis - output['i_gt_py']  ##得出gt点的相对的偏移量
         for i in range(n_predictions):
             i_weight = 0.8**(n_predictions - i - 1)  ### 这个权重越靠近后预测的权重越大,越靠后的应该权重越大，预测错误的话惩罚应该给的更大
             py_loss += i_weight * self.py_crit(output['py_pred'][i], output['i_gt_py'])
             shape_loss += i_weight * self.shape_loss(output['py_pred'][i], tar_shape)
-            
+            #cls_loss += self.cls_crit(output['cls_scores'][i], batch['ct_cls'][ct_01])
+
         py_loss = py_loss / n_predictions  ## loss均分，与cascade中一样，防止过度训练，而且因为后续迭代的loss也会影响到之前的参数训练
         shape_loss = shape_loss / n_predictions
+        #cls_loss = cls_loss / n_predictions
         scalar_stats.update({'py_loss': py_loss})
         scalar_stats.update({'shape_loss': shape_loss})
+        #scalar_stats.update({'cls_loss': cls_loss})
         loss += py_loss
         loss += shape_loss
-        
+        #loss += cls_loss
+
         scalar_stats.update({'loss': loss})
         image_stats = {}
 

@@ -17,19 +17,20 @@ class Dataset(data.Dataset):
 
         self.data_root = data_root
         self.split = split
-        if istrain:
-            self.coco = COCO(ann_file[0])
-        else:
-            self.coco = COCO(ann_file)
-        self.anns = sorted(self.coco.getImgIds())
-        if istrain:
-            self.coco_aug=COCO(ann_file[1])
-            self.anns=sorted(self.anns+self.coco_aug.getImgIds())
-        self.istrain=istrain
-        if istrain:
+        self.istrain = istrain
+        if self.istrain :
+            self.coco_aug = COCO(ann_file[0])
+            self.coco = COCO(ann_file[1])
+            self.anns = sorted(self.coco.getImgIds()+self.coco_aug.getImgIds())
             self.anns = np.array([ann for ann in self.anns if len(self.coco.getAnnIds(imgIds=ann, iscrowd=0)) or len(self.coco_aug.getAnnIds(imgIds=ann, iscrowd=0))])
+        else:
+            self.coco=COCO(ann_file)
+            self.anns=sorted(self.coco.getImgIds())
+            self.anns = np.array([ann for ann in self.anns if len(self.coco.getAnnIds(imgIds=ann, iscrowd=0))])
+
         self.anns = self.anns[:500] if split == 'mini' else self.anns
         self.json_category_id_to_contiguous_id = {v: i for i, v in enumerate(self.coco.getCatIds())}
+        self.num_classes = cfg.num_classes
 
     def process_info(self, img_id):
         if(len(self.coco.getAnnIds(imgIds=img_id, iscrowd=0))):
@@ -112,7 +113,9 @@ class Dataset(data.Dataset):
     def prepare_detection(self, box, poly, ct_hm, cls_id, ct_cls, ct_ind):
         ct_hm = ct_hm[cls_id]
         ct_cls.append(cls_id)
-
+        # ct_cls_1h = np.zeros(self.num_classes)
+        # ct_cls_1h[cls_id]=1
+        # one_hot_ct_cls.append(ct_cls_1h)
         x_min, y_min, x_max, y_max = box
         ct = np.array([(x_min + x_max) / 2, (y_min + y_max) / 2], dtype=np.float32)
         # ct_float = ct.copy()
@@ -213,7 +216,7 @@ class Dataset(data.Dataset):
         # reg = []
         ct_cls = []
         ct_ind = []
-
+        #one_hot_ct_cls = []
         # # init
         # i_it_4pys = []
         # c_it_4pys = []

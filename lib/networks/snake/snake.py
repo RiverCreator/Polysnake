@@ -94,3 +94,20 @@ class Snake(nn.Module):
         state = torch.cat([global_state, state], dim=1)  ### 将一个全局信息和所有信息进行concat 得到(n,1024+256,128)
         x = self.prediction(state)  # 这里得到的并不是预测，而是mid feature，得到（n,64,128），论文中将这个feature送到gru中进行迭代
         return x
+
+class BEB(nn.Module):
+    #boundary envolve block
+    def __init__(self, state_dim, feature_dim, conv_type= 'dgrid'):
+        super(BEB, self).__init__()
+        self.head = BasicBlock(feature_dim, state_dim, conv_type)
+        self.prediction = nn.Sequential(
+            nn.Conv1d(state_dim , 64, 1),
+            nn.LeakyReLU(inplace=True),
+            nn.Conv1d(64, 1, 1),
+            nn.LeakyReLU(inplace=True)
+        )
+
+    def forward(self,x):
+        x = self.head(x)
+        x = self.prediction(x)
+        return x

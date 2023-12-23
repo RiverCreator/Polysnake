@@ -12,6 +12,7 @@ from lib.datasets.dataset_catalog import DatasetCatalog
 from lib.utils import data_utils
 import torch
 from PIL import Image,ImageDraw
+import shutil
 
 class Evaluator:
     def __init__(self, result_dir, logg):
@@ -19,7 +20,7 @@ class Evaluator:
         self.results = []
         self.img_ids = []
         self.aps = []
-
+        self.i=0
         self.result_dir = result_dir
         os.system('mkdir -p {}'.format(self.result_dir))
 
@@ -39,8 +40,9 @@ class Evaluator:
         detection = output['detection']
         score = detection[:, 2].detach().cpu().numpy()
         label = detection[:, 3].detach().cpu().numpy().astype(int)
-        py = output['py'][-1].detach().cpu().numpy() #* snake_config.down_ratio
-        
+        py = output['py'][-1].detach().cpu().numpy() * snake_config.down_ratio
+        #py_init=output['poly_init_infer'][output['idx']][output['nms_keep']].cpu().numpy()
+        #py=py_init
         if len(py) == 0:
             return
 
@@ -56,11 +58,29 @@ class Evaluator:
         ori_h, ori_w = img['height'], img['width']
         py = [data_utils.affine_transform(py_, trans_output_inv) for py_ in py]
         rles = snake_eval_utils.coco_poly_to_rle(py, ori_h, ori_w)
-        # image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
-        # draw = ImageDraw.Draw(image)
+        #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
+        
+        # dir="visual_pic/{}".format(self.i)
+        # #visualize_contour(dir,output,batch)
+
+        # image=Image.open(batch['meta']['path'][0])
+        # dir="visual_pic/{}".format(self.i)
+        # if os.path.exists(dir):
+        #     shutil.rmtree(dir)
+        # os.mkdir(dir)
+        # shutil.copy(batch['meta']['path'][0],dir)
         # for i in range(len(py)):
-        #     draw.polygon(py[i],fill=None,outline='red')
-        #     image.save("poly_test{}.jpg".format(i))
+        #     draw = ImageDraw.Draw(image)
+        #     tmp=[]
+        #     for j in range(len(py[i])):
+        #         tmp.append((py[i][j][0],py[i][j][1]))
+        #     draw.polygon(tmp,fill=None,outline='red')
+        #     try:
+        #         image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
+        #     except:
+        #         print('wrong')
+        # self.i+=1
+
         coco_dets = []
         for i in range(len(rles)):
             detection = {
@@ -136,8 +156,8 @@ class DetectionEvaluator:
         img = self.coco.loadImgs(img_id)[0]
         ori_h, ori_w = img['height'], img['width']
         image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy())
-        draw = ImageDraw.Draw(image)
         for i in range(len(py)):
+            draw = ImageDraw.Draw(image)
             draw.polygon(py[i],fill=None,outline='red')
             image.save("poly_test{}".format(i))
 

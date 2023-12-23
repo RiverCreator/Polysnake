@@ -41,7 +41,7 @@ def augment(img, split, _data_rng, _eig_val, _eig_vec, mean, std, polys):
         scale = np.array([input_w, input_h])
         # input_w, input_h = (width + x - 1) // x * x, (height + x - 1) // x * x
         # input_w, input_h = int((width / 0.5 + x - 1) // x * x), int((height / 0.5 + x - 1) // x * x)
-        # input_w, input_h = 512, 512
+        input_w, input_h = 512, 512
         #print(input_w,input_h)
     trans_input = data_utils.get_affine_transform(center, scale, 0, [input_w, input_h])
     inp = cv2.warpAffine(img, trans_input, (input_w, input_h), flags=cv2.INTER_LINEAR)

@@ -2,8 +2,10 @@ model: 'd2sa_snake'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [2,3]
-
+gpus: [0,1]
+iter_num: 7
+score_thresh: 0.05
+num_classes: 60
 train:
     optim: 'adam'
     lr: 1e-4

@@ -1,0 +1,24 @@
+model: 'd2sa_snake'
+network: 'rcnn_34'
+task: 'rcnn_snake'
+resume: true
+gpus: [0]
+det_model: 'long_rcnn_det'
+classnums: 60
+train:
+    optim: 'adam'
+    lr: 1e-4
+    milestones: (80, 120)
+    gamma: 0.25
+    batch_size: 16
+    dataset: 'D2saTrain'
+    num_workers: 8
+    epoch: 120
+    scheduler: 'manual'
+    gammas: [0.5, 0.1]
+test:
+    dataset: 'D2saVal'
+    batch_size: 1
+
+heads: {'ct_hm': 60, 'wh': 256, 'mask': 1}
+segm_or_bbox: 'segm'

@@ -1,7 +1,7 @@
 from torch.utils.data.dataloader import default_collate
 import torch
 import numpy as np
-
+from lib.config import cfg
 
 def snake_collator(batch):
     ret = {'inp': default_collate([b['inp'] for b in batch])} ## 数据类型转换为tensor
@@ -23,6 +23,8 @@ def snake_collator(batch):
     ct_cls = torch.zeros([batch_size, ct_num], dtype=torch.int64)
     ct_ind = torch.zeros([batch_size, ct_num], dtype=torch.int64)
     ct_01 = torch.zeros([batch_size, ct_num], dtype=torch.uint8)  ## 
+    #one_hot_ct_cls = torch.zeros([batch_size, ct_num, cfg.num_classes], dtype=torch.int64)
+
     ct_img_idx = torch.zeros([batch_size, ct_num], dtype=torch.int64)  ## 这里每个batch行弄成同样长度是为了方便构成tensor矩阵进行计算
     for i in range(batch_size):
         ct_01[i, :meta['ct_num'][i]] = 1   #对应batch行，从0到对应的ct_num都为1，感觉类似于mask
@@ -33,6 +35,7 @@ def snake_collator(batch):
         # reg[ct_01] = torch.Tensor(sum([b['reg'] for b in batch], []))
         ct_cls[ct_01] = torch.LongTensor(sum([b['ct_cls'] for b in batch], [])) #直接指明每个batch中ct对应的类别 这里的操作相当于是将bacth中每个ct_cls拼接转换为一个一维tensor来存储
         ct_ind[ct_01] = torch.LongTensor(sum([b['ct_ind'] for b in batch], [])) #指明bacth中每个ct对应的ind，可以直接计算其位置
+        #one_hot_ct_cls[ct_01] = torch.FloatTensor(sum([b['one_hot_ct_cls'] for b in batch], []))
 
     detection = {'ct_hm': ct_hm, 'cmask': cmask, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
     # detection = {'ct_hm': ct_hm, 'wh': wh, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}

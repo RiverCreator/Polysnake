@@ -25,6 +25,9 @@ def sigmoid(x):
     y = torch.clamp(x.sigmoid(), min=1e-4, max=1 - 1e-4)
     return y
 
+def softmax(x):
+    y = torch.softmax(x, 0)
+    return y
 
 def _neg_loss(pred, gt):
     ''' Modified focal loss. Exactly the same as CornerNet.
@@ -259,8 +262,16 @@ class IndL1Loss1d(nn.Module):
         loss = self.loss(output * weight, target * weight, reduction='sum')
         loss = loss / (weight.sum() * output.size(2) + 1e-4)
         return loss
+class ClsCrossEntropyLoss(nn.Module):
+    def __init__(self):
+        super(ClsCrossEntropyLoss, self).__init__()
+        self.ce_loss=nn.CrossEntropyLoss()
 
-
+    def forward(self, output, target):
+        y = torch.softmax(output, 1)
+        loss = self.ce_loss(y, target)
+        return loss
+    
 class GeoCrossEntropyLoss(nn.Module):
     def __init__(self):
         super(GeoCrossEntropyLoss, self).__init__()
