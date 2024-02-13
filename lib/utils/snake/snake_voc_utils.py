@@ -238,7 +238,17 @@ def polygon_to_mask(poly, h, w):
     cv2.fillPoly(mask, [np.round(poly).astype(int)], 1)
     return mask
 
-
+def per_polygon_to_mask(polys,h,w):
+    per_ins_cmask = []
+    for poly in polys:
+        if(len(poly)):
+            cmask = np.zeros((h, w), dtype=np.uint8)
+            polyn = np.round(poly).astype(int)
+            polyn= [polyn]
+            cv2.drawContours(cmask, polyn, -1, 1, 1)
+            per_ins_cmask.append(cmask[np.newaxis,:,:])
+    return np.concatenate(per_ins_cmask,axis=0)
+        
 def polygon_to_cmask(poly, h, w):
     cmask = np.zeros((h, w), dtype=np.uint8)
     # try:

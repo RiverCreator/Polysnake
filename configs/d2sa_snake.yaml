@@ -11,7 +11,7 @@ train:
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 16
+    batch_size: 2
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300
@@ -20,6 +20,20 @@ train:
 test:
     dataset: 'D2saVal'
     batch_size: 1
-
+MODEL:
+    CONDINST:
+        MASK_BRANCH:
+            IN_FEATURES: 64
+            OUT_CHANNELS: 8
+            NUM_CONVS: 4
+            CHANNELS: 128
+        MASK_HEAD:
+            CONV_NUMS: 3
+            CHANNELS: 8
+            DISABLE_REL_COORDS: false
+        MASK_OUT_STRIDE: 4
+        
 heads: {'ct_hm': 60, 'wh': 256, 'mask': 1}
 segm_or_bbox: 'segm'
+eval_ep: 10
+save_ep: 5

@@ -227,8 +227,8 @@ class Dataset(data.Dataset):
         # i_it_pys = []
         # c_it_pys = []
         i_gt_pys = []
-        
-        cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]
+        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
+        cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:] #获得全图的boundary mask
         # c_gt_pys = []
 
         for i in range(len(anno)):
@@ -253,7 +253,7 @@ class Dataset(data.Dataset):
                 # self.prepare_evolution(bbox, poly, extreme_point, i_it_pys, c_it_pys, i_gt_pys, c_gt_pys, inp_out_hw)
                 self.prepare_evolution(poly, i_gt_pys)
 
-        ret = {'inp': inp, 'cmask': cmask}
+        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask}
         # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         # init = {'i_it_4py': i_it_4pys, 'c_it_4py': c_it_4pys, 'i_gt_4py': i_gt_4pys, 'c_gt_4py': c_gt_4pys}

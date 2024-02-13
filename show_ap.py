@@ -10,13 +10,13 @@
 # print(colored('model ap is {}'.format(ap)))
 
 ##### convert dataset
-from pycocotools.coco import COCO
-import os
-def test():
-    ann_file='data/d2sa/annotations/D2S_amodal_validation.json'
-    coco=COCO(ann_file)
-    print(coco)
-test()
+# from pycocotools.coco import COCO
+# import os
+# def test():
+#     ann_file='data/d2sa/annotations/D2S_amodal_validation.json'
+#     coco=COCO(ann_file)
+#     print(coco)
+# test()
 # def process_info(coco,img_id):
 #     ann_ids = coco.getAnnIds(imgIds=img_id)
 #     anno = coco.loadAnns(ann_ids)
@@ -77,3 +77,17 @@ test()
 # # from PIL import Image
 # # img=Image.fromarray(arr)
 # # img.save("origin_img")
+# from PIL import Image,ImageDraw
+# import cv2
+# img=Image.open('test.jpg')
+# Draw=ImageDraw.Draw(img)
+# xmin=20
+# ymin=90
+# xmax=50
+# ymax=140
+
+# for proposals in results['gt_bboxes_2d']:
+#     xmin=int((proposals[0]+crop[0])/resize)
+#     ymin=int((proposals[2]+crop[1])/resize)
+#     xmax=int((proposals[1]+crop[0])/resize)
+#     ymax=int((proposals[3]+crop[1])/resize)

@@ -10,6 +10,10 @@ def collect_training(poly, ct_01): #poly即i_gt_pys,
     poly = torch.cat([poly[i][ct_01[i]] for i in range(batch_size)], dim=0) ## 这里只提取到前ct_num（也就是对应的预测的所有的ct）个ct的poly
     return poly
 
+def collect_ins_training(per_ins_mask, ct_01):
+    batch_size = ct_01.size(0)
+    per_ins_mask = torch.cat([per_ins_mask[i][ct_01[i]] for i in range(batch_size)], dim=0)
+    return per_ins_mask
 
 def prepare_training_init(ret, batch):
     ct_01 = batch['ct_01'].byte()
@@ -114,7 +118,7 @@ def prepare_training(ret, batch): ## gt存放到init中，并且标记每个ct�
     init = {}
 
     init.update({'i_gt_py': collect_training(batch['i_gt_py'], ct_01)})  ## 每个ct对应的gt点
-
+    init.update({'per_ins_cmask': collect_ins_training(batch['per_ins_cmask'], ct_01)})
     ct_num = batch['meta']['ct_num']
     init.update({'py_ind': torch.cat([torch.full([ct_num[i]], i) for i in range(ct_01.size(0))], dim=0)})  ## py_ind用来表示ct对应的是batch中哪一张图片
 

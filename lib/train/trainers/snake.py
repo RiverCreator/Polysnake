@@ -61,7 +61,13 @@ class NetworkWrapper(nn.Module):
         loss += py_loss
         loss += shape_loss
         #loss += cls_loss
-
+        # condinst loss
+        #per_ins_cmask = torch.cat([batch['per_ins_cmask'][i][ct_01[i]] for i in range(ct_01.size(0))], dim=0)
+        # cond_mask_loss = self.m_crit(net_utils.sigmoid(output['cond_predict'][0]), per_ins_cmask)
+        cond_mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(output['cond_predict']), output['per_ins_cmask'])
+        cond_mask_loss = cond_mask_loss.mean()
+        scalar_stats.update({'cond_mask_loss': cond_mask_loss})
+        loss += cond_mask_loss
         scalar_stats.update({'loss': loss})
         image_stats = {}
 
