@@ -268,7 +268,7 @@ class Dataset(data.Dataset):
         # visualize_utils.visualize_snake_evolution(orig_img, ret)
 
         ct_num = len(ct_ind)
-        meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num, 'aug_img': orig_img, 'path': path, 'inp_out_hw':inp_out_hw}
+        meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num, 'orig_img': orig_img, 'path': path, 'inp_out_hw':inp_out_hw}
 
         ret.update({'meta': meta})
 

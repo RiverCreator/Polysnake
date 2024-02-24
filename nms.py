@@ -39,6 +39,7 @@ def post_process(output):
     score = detection[:, 2].detach()
     label = detection[:, 3].detach()
     last_py = output['py'][-1].detach()
+    cond_predict = output['cond_predict_val'].detach()
     if len(last_py) == 0:
         return 0
     off_max = torch.max(last_py)
@@ -47,6 +48,7 @@ def post_process(output):
     keep, idx = fast_nms(boxes, score)
     detection = detection[idx][keep]
     ret_p = last_py[idx][keep]
+    output['cond_predict_val'] = output['cond_predict_val'][idx][keep]
     output.update({"detection": detection,"nms_keep": keep,"idx": idx})
     output['py'].append(ret_p)
     return 0

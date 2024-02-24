@@ -6665,3 +6665,5 @@ train: Epoch:87
 train: Epoch:88	
 train: Epoch:89	
 Random Seed: 123
+Random Seed: 123
+train: Epoch: 0	

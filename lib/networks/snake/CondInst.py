@@ -147,7 +147,7 @@ class CondInst(nn.Module):
         #self.input_shape= ['fea1','fea2'] ## need modify
         self.mask_head = DynamicMaskHead(cfg)
         self.mask_branch = MaskBranch(cfg)
-        self.in_channels = 128 # 为送入CenterNet的特征图的channel
+        self.in_channels = 64 # 为送入CenterNet的特征图的channel
         self.controller=nn.Conv2d( ## 使用3×3卷积，假设输入为(B,C,H,W),输出为(B,C1,H,W) 其中C1为要预测的参数数量，这样每个center都有一组参数。
             self.in_channels, self.mask_head.num_gen_params,
             kernel_size=3, stride=1, padding=1

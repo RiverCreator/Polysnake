@@ -65,3 +65,10 @@ def rcnn_coco_poly_to_rle(poly, ind_group, h, w):
         rle_.append(rle)
     return rle_
 
+def binary_mask_to_rle(binary_masks):
+    rle_ = []
+    for binary_mask in binary_masks:
+        rle = mask_utils.encode(np.asfortranarray(binary_mask.astype(np.uint8)))
+        rle['counts'] = rle['counts'].decode('utf-8')
+        rle_.append(rle)
+    return rle_
