@@ -72,6 +72,9 @@ cfg.ct_score = 0.05
 cfg.demo_path = ''
 
 
+# box branch]\
+cfg.roi_h = 28
+cfg.roi_w = 28
 def parse_cfg(cfg, args):
     if len(cfg.task) == 0:
         raise ValueError('task must be specified')

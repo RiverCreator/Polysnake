@@ -14,6 +14,33 @@ class _NewEmptyTensorOp(torch.autograd.Function):
         shape = ctx.shape
         return _NewEmptyTensorOp.apply(grad, shape), None
 
+class ConvTranspose2d(torch.nn.ConvTranspose2d):
+    """
+    A wrapper around :class:`torch.nn.ConvTranspose2d` to support zero-size tensor.
+    """
+
+    def forward(self, x):
+        if x.numel() > 0:
+            return super(ConvTranspose2d, self).forward(x)
+        # get output shape
+
+        output_shape = [
+            (i - 1) * d - 2 * p + (di * (k - 1) + 1) + op
+            for i, p, di, k, d, op in zip(
+                x.shape[-2:],
+                self.padding,
+                self.dilation,
+                self.kernel_size,
+                self.stride,
+                self.output_padding,
+            )
+        ]
+        output_shape = [x.shape[0], self.out_channels] + output_shape
+        # This is to make DDP happy.
+        # DDP expects all workers to have gradient w.r.t the same set of parameters.
+        _dummy = sum(x.view(-1)[0] for x in self.parameters()) * 0.0
+        return _NewEmptyTensorOp.apply(x, output_shape) + _dummy
+    
 class Conv2d(torch.nn.Conv2d):
     """
     A wrapper around :class:`torch.nn.Conv2d` to support zero-size tensor and more features.

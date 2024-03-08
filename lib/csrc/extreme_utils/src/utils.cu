@@ -1,6 +1,6 @@
 #include <ATen/ATen.h>
 #include <ATen/cuda/CUDAContext.h>
-#include <THC/THC.h>
+// #include <THC/THC.h>
 #include <THC/THCAtomics.cuh>
 #include <THC/THCDeviceUtils.cuh>
 #include "cuda_common.h"
@@ -206,7 +206,7 @@ at::Tensor collect_extreme_point(
         h,
         w
     );
-    THCudaCheck(cudaGetLastError());
+    C10_CUDA_CHECK(cudaGetLastError());
 
     return extreme_point;
 }
@@ -296,7 +296,7 @@ void calculate_edge_num(
         orig_p_num,
         int64_t(p_num)
     );
-    THCudaCheck(cudaGetLastError());
+    C10_CUDA_CHECK(cudaGetLastError());
 }
 
 
@@ -368,7 +368,7 @@ std::tuple<at::Tensor, at::Tensor> calculate_wnp(
         orig_p_num,
         p_num
     );
-    THCudaCheck(cudaGetLastError());
+    C10_CUDA_CHECK(cudaGetLastError());
 
     return std::make_tuple(weight, ind);
 }
@@ -434,7 +434,7 @@ at::Tensor roll_array(
         n,
         d
     );
-    THCudaCheck(cudaGetLastError());
+    C10_CUDA_CHECK(cudaGetLastError());
 
     return new_array;
 }

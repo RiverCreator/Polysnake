@@ -11,7 +11,7 @@ train:
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 2
+    batch_size: 4
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300

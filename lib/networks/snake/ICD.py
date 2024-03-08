@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from lib.config import cfg
-from .CondInst import CondInst
+from .ABranch import AmodalBranch
 
 class RAFT(nn.Module):
     def __init__(self):
@@ -18,17 +18,15 @@ class RAFT(nn.Module):
         #这里的state_dim表示128个点的特征向量
         self.evolve_gcn = Snake(state_dim=128, feature_dim=64 + 2, conv_type='dgrid', need_fea=True) #即文章中用来进行特征聚合，然后输出g_{k-1}的模块
         self.update_block = BasicUpdateBlock() ## 即文章中使用gru的模块
+        self.box_mask_head = AmodalBranch(cfg.num_classes)
         #self.classify_block= ClassifyBlock(1024, cfg.num_classes)
         #self.mcr=Snake(state_dim=128, feature_dim=64 + 2, conv_type='dgrid', need_fea=False)
-        self.occlusionatte = OcclusionAtte()
-        self.condinst=CondInst(cfg)
-        self.boundary_coefficient = BEB(state_dim=128, feature_dim=1+2, conv_type='dgrid')
         for m in self.modules():
             if isinstance(m, nn.Conv1d) or isinstance(m, nn.Conv2d):
                 m.weight.data.normal_(0.0, 0.01)
                 if m.bias is not None:
                     nn.init.constant_(m.bias, 0)
-
+        
     def prepare_training(self, output, batch):
         init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
         output.update({'i_gt_py': init['i_gt_py'], 'per_ins_cmask': init['per_ins_cmask']}) # 将gt加到output中保存
@@ -101,39 +99,31 @@ class RAFT(nn.Module):
         output.update({'poly_init_infer': init_polys * snake_config.ro, 'detection': detection})
         return poly_init, detection
     
-    # def compute_locations(self, h, w, stride, device):
-    #     #compute 
-    #     shifts_x = torch.arange(
-    #         0, w * stride, step=stride,
-    #         dtype=torch.float32, device=device
-    #     )
-    #     shifts_y = torch.arange(
-    #         0, h * stride, step=stride,
-    #         dtype=torch.float32, device=device
-    #     )
-    #     shift_y, shift_x = torch.meshgrid(shifts_y, shifts_x)
-    #     shift_x = shift_x.reshape(-1)
-    #     shift_y = shift_y.reshape(-1)
-    #     #torch.stack在一起后，构成(h*w,2)大小的tensor，每个位置x*w+y就表示当前坐标（x,y)离左上角坐标原点的偏移量，加上stride//2是，是想让该位置映射回原图对应stride*stride区域的中心点位置
-    #     locations = torch.stack((shift_x, shift_y), dim=1) + stride // 2 
-    #     return locations
-
+    def amodal_box_mask_head(self, feature, py, output):
+        #TODO 通过调用AmodalBranch将py转换为box，然后通过roiAlign，得到feature map然后再经过mask head预测mask，将mask结果和box结果存储到output中，供后面计算loss
+        pass
+    
     def forward(self, output, cnn_feature, batch):
         #boundary_score=output['mask'].sigmoid()
         #attention_feature = self.occlusionatte(1-boundary_score)
+        box_mask_preds = [] 
         ret = output
         #inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
         if batch is not None and 'test' not in batch['meta']:
             with torch.no_grad():
                 init = self.prepare_training(output, batch)  # init中为gt和py_ind(标记ct属于batch中的第几张图片)，output中也加入了gt的信息
-            #### modify: poly init为是对应于四倍降采样特征图上的坐标的，这里全部预测的坐标和偏移量都假定归一化了，因此都需要乘上对应的w和h
-            cond_predict = self.condinst(output, cnn_feature, batch)
+            #### modify: poly init为是对应于四倍降采样特征图上
+            # 
+            # 的坐标的，这里全部预测的坐标和偏移量都假定归一化了，因此都需要乘上对应的w和h
             poly_init = self.use_gt_detection(output, batch) #训练的时候，这里直接使用的gt center来对点进行初始化 ，获得dla模块中推理得到的偏移量
             poly_init = poly_init.detach()
+            
+            #init_mask_pred = self.box_mask_head(cnn_feature, poly_init, batch['ct_01'].byte())
+            box_mask_preds.append(self.box_mask_head(cnn_feature, poly_init, batch['ct_01'].byte()))
+            
             py_pred = poly_init * snake_config.ro  #乘了个4，对应到原图的尺寸，而他这里使用的feature map是经过4倍降采样的
             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])  # n*64*128
-            #attn_score = self.get_attn_score(self.boundary_coefficient,attention_feature, poly_init, c_py_pred, init['py_ind'])
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
             i_poly_fea = F.leaky_relu(i_poly_fea)
             py_preds = []
@@ -146,18 +136,20 @@ class RAFT(nn.Module):
                 # offset[:,:,0]*inp_w offset[:,:,1]*=inp_h
                 py_pred = py_pred + snake_config.ro * offset# * attn_score
                 py_preds.append(py_pred)
-            
+
                 py_pred_sm = py_pred / snake_config.ro
+                box_mask_preds.append(self.box_mask_head(cnn_feature, py_pred_sm, batch['ct_01'].byte()))
+                
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 i_poly_fea = F.leaky_relu(i_poly_fea)
-            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores,'cond_predict': cond_predict})
+            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores, 'mask_preds': box_mask_preds})
 
         if not self.training:
             with torch.no_grad():
+                box_mask_pred = []
                 poly_init, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3),self.score_thresh)
-                cond_predict_val =self.condinst(output, cnn_feature, batch, detection)
                 # poly_init_loss = self.use_gt_detection(output, batch)
                 # init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
                 # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
@@ -166,8 +158,7 @@ class RAFT(nn.Module):
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init)
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
                                               ind)
-                #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, poly_init,c_py_pred, ind)
-
+                
                 #py_preds=[]
                 if len(py_pred) != 0:
                     net = torch.tanh(i_poly_fea)
@@ -175,7 +166,7 @@ class RAFT(nn.Module):
                     for i in range(self.iter):
                         net, offset = self.update_block(net, i_poly_fea)
                         #cls_score= self.classify_block(net)
-                        py_pred = py_pred + snake_config.ro * offset# * attn_score
+                        py_pred = py_pred + snake_config.ro * offset
                         #py_preds.append(py_pred)
                         py_pred_sm = py_pred / snake_config.ro
                         if i != (self.iter - 1):                     
@@ -186,6 +177,6 @@ class RAFT(nn.Module):
                     final_py_preds = [py_pred_sm]
                 else:
                     final_py_preds = [i_poly_fea]
-                ret.update({'py': final_py_preds,'cond_predict_val': cond_predict_val})
+                ret.update({'py': final_py_preds})
         return output
 

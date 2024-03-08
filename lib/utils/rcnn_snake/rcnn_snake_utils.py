@@ -6,11 +6,11 @@ from lib.csrc.extreme_utils import _ext as extreme_utils
 
 
 def box_to_roi(box, box_01):
-    """ box: [b, n, 4] """
+    """ box: [b, n, 4] box_01 : [batch, max_ct_num] 这里max_ct_num和n是一样大的"""
     box = box[box_01]
     ind = torch.cat([torch.full([box_01[i].sum()], i) for i in range(len(box_01))], dim=0)
     ind = ind.to(box.device).float()
-    roi = torch.cat([ind[:, None], box], dim=1)
+    roi = torch.cat([ind[:, None], box], dim=1) #ind表示的是当前box属于第几个batch
     return roi
 
 

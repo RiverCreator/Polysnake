@@ -1,7 +1,7 @@
 import torch.nn as nn
 from lib.utils import net_utils
 import torch
-
+from torch.nn import functional as F
 
 class NetworkWrapper(nn.Module):
     def __init__(self, net,isTrain=True):
@@ -21,6 +21,12 @@ class NetworkWrapper(nn.Module):
         loss = self.py_crit(pred_shape, targ_shape)
         return loss
 
+    def postprocess(self, pred_masks, output_height, output_width):
+        for i in range(len(pred_masks)):
+            # pred_masks[i] = pred_masks[i].expand(1,-1,-1,-1)
+            pred_masks[i] = F.interpolate(pred_masks[i],size=(output_height, output_width),mode="bilinear", align_corners=False)
+        return pred_masks
+    
     def forward(self, batch):
         output = self.net(batch['inp'], batch)
         ct_01=batch['ct_01'].byte()
@@ -61,13 +67,15 @@ class NetworkWrapper(nn.Module):
         loss += py_loss
         loss += shape_loss
         #loss += cls_loss
-        # condinst loss
-        #per_ins_cmask = torch.cat([batch['per_ins_cmask'][i][ct_01[i]] for i in range(ct_01.size(0))], dim=0)
-        # cond_mask_loss = self.m_crit(net_utils.sigmoid(output['cond_predict'][0]), per_ins_cmask)
-        cond_mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(output['cond_predict']), output['per_ins_cmask'])
-        cond_mask_loss = cond_mask_loss.mean()
-        scalar_stats.update({'cond_mask_loss': cond_mask_loss})
-        loss += cond_mask_loss
+        mask_losses = 0
+        pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
+        for i in range(len(pred_masks)):
+            pred_masks[i] = pred_masks[i][torch.arange(pred_masks[i].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks[i]), output['per_ins_cmask'])
+            mask_losses +=mask_loss.mean()
+        mask_losses = mask_losses / len(pred_masks)
+        scalar_stats.update({'box_mask_loss': mask_losses})
+        loss += mask_losses
         scalar_stats.update({'loss': loss})
         image_stats = {}
 
