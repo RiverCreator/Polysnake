@@ -1,3 +1,4 @@
+from turtle import forward
 import torch.nn as nn
 import torch
 
@@ -111,3 +112,15 @@ class BEB(nn.Module):
         x = self.head(x)
         x = self.prediction(x)
         return x
+
+class Poly_Fusion(nn.Module):
+    def __init__(self, feature_dim, conv_type= 'dgrid') -> None:
+        super(Poly_Fusion, self).__init__()
+        #feature dim为输入的dim，state dim为输出的dim
+        self.headx = BasicBlock(feature_dim, feature_dim, conv_type)
+        self.heady = BasicBlock(feature_dim, feature_dim, conv_type)
+    
+    def forward(self, x, y):
+        x = self.headx(x)
+        y = self.heady(y)
+        return x + y

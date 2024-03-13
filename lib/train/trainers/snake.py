@@ -2,6 +2,9 @@ import torch.nn as nn
 from lib.utils import net_utils
 import torch
 from torch.nn import functional as F
+from lib.utils.snake.snake_gcn_utils import paste_masks_in_image
+from lib.csrc.roi_align_layer.roi_align import ROIAlign
+from lib.config import cfg
 
 class NetworkWrapper(nn.Module):
     def __init__(self, net,isTrain=True):
@@ -13,7 +16,8 @@ class NetworkWrapper(nn.Module):
         self.ct_crit = net_utils.FocalLoss() ## center loss
         self.cls_crit = net_utils.ClsCrossEntropyLoss()
         self.py_crit = torch.nn.functional.smooth_l1_loss  ## poly loss
-    
+        self.gt_pooler = ROIAlign((cfg.roi_h, cfg.roi_w)) # => (28,28)
+        
     def shape_loss(self, pred, targ_shape):
         pre_dis = torch.cat((pred[:,1:], pred[:,0].unsqueeze(1)), dim=1)
         pred_shape = pre_dis-pred
@@ -27,6 +31,14 @@ class NetworkWrapper(nn.Module):
             pred_masks[i] = F.interpolate(pred_masks[i],size=(output_height, output_width),mode="bilinear", align_corners=False)
         return pred_masks
     
+    def crop_and_resize(self, gt_masks, rois):
+        device = gt_masks.device
+        batch_inds = torch.arange(len(rois), device=device).to(dtype=rois.dtype)[:, None]
+        rois = torch.cat([batch_inds, rois[:,1:]], dim=1)  # Nx5
+        output = self.gt_pooler(gt_masks[:,None,:,:], rois).squeeze(1)
+        output = output >= 0.5
+        return output
+
     def forward(self, batch):
         output = self.net(batch['inp'], batch)
         ct_01=batch['ct_01'].byte()
@@ -68,12 +80,16 @@ class NetworkWrapper(nn.Module):
         loss += shape_loss
         #loss += cls_loss
         mask_losses = 0
-        pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
-        for i in range(len(pred_masks)):
-            pred_masks[i] = pred_masks[i][torch.arange(pred_masks[i].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks[i]), output['per_ins_cmask'])
+        # if not self.training:
+        #     print('debug')
+        #pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
+        for i in range(len(output['mask_preds'])):
+            pred_masks = output['mask_preds'][i]
+            pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+            gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i])
+            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
             mask_losses +=mask_loss.mean()
-        mask_losses = mask_losses / len(pred_masks)
+        mask_losses = mask_losses / len(output['mask_preds'])
         scalar_stats.update({'box_mask_loss': mask_losses})
         loss += mask_losses
         scalar_stats.update({'loss': loss})

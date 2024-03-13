@@ -63,10 +63,10 @@ class AmodalBranch(nn.Module):
         ) #TODO 设计maks head 输入feature map为（B，64, 168，128）可以设计为两种，类相关和类不相关的
 
     def get_box(self, py, ct_01):
-        xmax, xmaxi = torch.max(py[:,:,0], dim = 1)
-        xmin, xmini = torch.min(py[:,:,0], dim = 1)
-        ymax, ymaxi = torch.max(py[:,:,1], dim = 1)
-        ymin, ymini = torch.min(py[:,:,1], dim = 1)
+        xmax, _ = torch.max(py[:,:,0], dim = 1)
+        xmin, _ = torch.min(py[:,:,0], dim = 1)
+        ymax, _ = torch.max(py[:,:,1], dim = 1)
+        ymin, _ = torch.min(py[:,:,1], dim = 1)
         box_roi = torch.cat([xmin[:, None], ymin[:, None], xmax[:, None], ymax[:, None]],dim = 1) 
         ind = torch.cat([torch.full([ct_01[i].sum()], i) for i in range(len(ct_01))], dim=0)
         ind = ind.to(box_roi.device).float()
@@ -78,4 +78,4 @@ class AmodalBranch(nn.Module):
         rois = self.get_box(py, ct_01)
         roi_feature = self.pooler(feature, rois)
         mask_logits = self.mask_head(roi_feature)
-        return mask_logits
+        return mask_logits, rois

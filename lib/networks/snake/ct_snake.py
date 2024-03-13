@@ -14,6 +14,13 @@ class Network(nn.Module):
                           final_kernel=1, 
                           last_level=5,
                           head_conv=head_conv)
+        self.dla2 = DLASeg('dla{}'.format(num_layers), heads,
+                          pretrained=True,
+                          down_ratio=down_ratio/2,
+                          final_kernel=1, 
+                          last_level=5,
+                          head_conv=head_conv)
+
         self.raft = RAFT() ##Recurrent all-pairs Field transforms 也就是论文中进行迭代回归的模块
 
     def forward(self, x, batch=None):
@@ -22,6 +29,9 @@ class Network(nn.Module):
         # i_gt_py指的采样的128个gt点，cmask为polygon转换来的mask， ct_ind为center所在的编号（像素点位置，从左到右从上到下） meta中的数据为标注中的数据
         # ct_01和ct_img_idx为用来检测中的，具体的ct_01表示中每一行，从0到ct_num下标都为1，ct_img_idx每一行表示 从0到ct_num下标为对应的batch中的idx。
         output, cnn_feature = self.dla(x) # dla输出的output为ct_heatmap,point wh offset,boundry mask,这里输出的cnn_feature为x经过4倍降采样的(而且是经过多个尺度特征增强的，)
+        #output2, cnn_feature2 = self.dla2(x)
+        #output = [output1, output2]
+        #cnn_feature = [cnn_feature1, cnn_feature2]
         output = self.raft(output, cnn_feature, batch) #这里的batch
         return output
 
