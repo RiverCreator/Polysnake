@@ -7,9 +7,10 @@ from torch.nn import DataParallel
 
 class Trainer(object):
     def __init__(self, network):
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         network = network.cuda()
         network = DataParallel(network)
-        self.network = network
+        self.network = network.to(device)
 
     def reduce_loss_stats(self, loss_stats):
         reduced_losses = {k: torch.mean(v) for k, v in loss_stats.items()}

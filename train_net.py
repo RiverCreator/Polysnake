@@ -48,19 +48,22 @@ def train(cfg, network):
         logger.info('train: Epoch:{:2}\t'.format(epoch))
         
         recorder.epoch = epoch
-        trainer.train(epoch, train_loader, optimizer, recorder)
-        scheduler.step()
+        # trainer.train(epoch, train_loader, optimizer, recorder)
+        # scheduler.step()
 
         if (epoch + 1) % cfg.save_ep == 0:
             save_model(network, optimizer, scheduler, recorder, epoch, cfg.model_dir)
         
         if (epoch + 1) % cfg.eval_ep == 0:
+        #if (epoch + 1) % 171 == 0:
             val_state=trainer.val(epoch, val_loader, evaluator, recorder)
             print(val_state)
             if(best_val<val_state['ap']):
                 best_val=val_state['ap']
                 logger.info('save best ap:{}'.format(best_val))
                 save_model(network, optimizer, scheduler, recorder, epoch, cfg.model_dir,model_name="best",ap=best_val)
+        trainer.train(epoch, train_loader, optimizer, recorder)
+        scheduler.step()
     return network
 
 

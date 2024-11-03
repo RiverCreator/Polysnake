@@ -64,46 +64,30 @@ class Evaluator:
         py = [data_utils.affine_transform(py_, trans_output_inv) for py_ in py]
         rles = snake_eval_utils.coco_poly_to_rle(py, ori_h, ori_w)
         
-        # cond_pred = []
-        # for m in cond_ins_mask_t:
-        #     t = cv2.resize(m, (ori_w, ori_h), interpolation=cv2.INTER_LINEAR)
-        #     #t = (t > self.threshold).astype(np.uint8)
-        #     cond_pred.append(t)
+        # image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
         
-        # #rles_cond = snake_eval_utils.binary_mask_to_rle(cond_pred)
-        image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
-        
-        dir="visual_pic/{}".format(self.i)
-        #visualize_contour(dir,output,batch)
+        # dir="visual_pic/{}".format(self.i)
+        # #visualize_contour(dir,output,batch)
 
-        image=Image.open(batch['meta']['path'][0])
-        dir="visual_pic/{}".format(self.i)
-        if os.path.exists(dir):
-            shutil.rmtree(dir)
-        os.mkdir(dir)
-        shutil.copy(batch['meta']['path'][0],dir)
-        for i in range(len(py)):
-            draw = ImageDraw.Draw(image)
-            tmp=[]
-            for j in range(len(py[i])):
-                tmp.append((py[i][j][0],py[i][j][1]))
+        # image=Image.open(batch['meta']['path'][0])
+        # dir="visual_pic/{}".format(self.i)
+        # if os.path.exists(dir):
+        #     shutil.rmtree(dir)
+        # os.mkdir(dir)
+        # shutil.copy(batch['meta']['path'][0],dir)
+        # for i in range(len(py)):
+        #     draw = ImageDraw.Draw(image)
+        #     tmp=[]
+        #     for j in range(len(py[i])):
+        #         tmp.append((py[i][j][0],py[i][j][1]))
             
-            polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-            draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
-            try:
-                image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
-            except:
-                print('wrong')
-        # for i in range(len(cond_pred)):
-        #     #image=Image.open(batch['meta']['path'][0])
-        #     src = cv2.imread(batch['meta']['path'][0])
-        #     cond_pred[i] = np.uint8(cond_pred[i] * 255)
-        #     mask_image = cv2.applyColorMap(cond_pred[i], cv2.COLORMAP_JET)
-        #     #mask_image = Image.fromarray(cond_pred[i] * 255)
-        #     #image.paste(mask_image, (0, 0),mask_image)
-        #     superimposed_img = mask_image * 0.5 + src
-        #     cv2.imwrite((dir+"/cond_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory'])),superimposed_img)
-        #     #image.save(dir+"/cond_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
+        #     polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        #     draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
+        #     try:
+        #         image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
+        #     except:
+        #         print('wrong')
+        
         self.i+=1
 
         coco_dets = []

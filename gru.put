@@ -1,0 +1,87 @@
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 123
+train: Epoch:20	
+loading annotations into memory...
+Done (t=0.50s)
+creating index...
+index created!
+load model: data/model/snake/d2sa_snake/19.pth
+loading annotations into memory...
+Done (t=7.41s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.89s)
+creating index...
+index created!
+train: Epoch:21	
+eta: 0:03:25  epoch: 20  step: 9100  mask_loss: 0.3054  ct_loss: 1.0185  wh_loss: 0.5302  vis_wh_loss: 0.5324  py_loss: 3.5794  shape_loss: 0.4323  dct_x_loss: 2.8379  dct_bfg_loss: 0.8039  dct_patch_vector_loss: 1.7699  box_mask_loss: 5.5966  loss: 11.9948  data: 0.0408  batch: 1.2015  lr: 0.000100  max_mem: 10287
+eta: 0:01:03  epoch: 20  step: 9200  mask_loss: 0.3024  ct_loss: 0.9785  wh_loss: 0.5479  vis_wh_loss: 0.5509  py_loss: 4.0112  shape_loss: 0.4800  dct_x_loss: 2.7997  dct_bfg_loss: 0.7981  dct_patch_vector_loss: 1.7809  box_mask_loss: 5.5588  loss: 12.4297  data: 0.0397  batch: 1.1783  lr: 0.000100  max_mem: 10287
+eta: 0:00:01  epoch: 20  step: 9249  mask_loss: 0.3147  ct_loss: 1.0009  wh_loss: 0.4870  vis_wh_loss: 0.4886  py_loss: 3.3266  shape_loss: 0.4069  dct_x_loss: 2.8284  dct_bfg_loss: 0.8104  dct_patch_vector_loss: 1.8023  box_mask_loss: 5.6250  loss: 11.6497  data: 0.0390  batch: 1.0892  lr: 0.000100  max_mem: 10287
+train: Epoch:22	
+eta: 0:03:10  epoch: 21  step: 9350  mask_loss: 0.3057  ct_loss: 0.9573  wh_loss: 0.4990  vis_wh_loss: 0.5008  py_loss: 3.3705  shape_loss: 0.4122  dct_x_loss: 2.8089  dct_bfg_loss: 0.7825  dct_patch_vector_loss: 1.7784  box_mask_loss: 5.5552  loss: 11.6006  data: 0.0429  batch: 1.2368  lr: 0.000100  max_mem: 10287
+eta: 0:01:02  epoch: 21  step: 9450  mask_loss: 0.2950  ct_loss: 0.8625  wh_loss: 0.5030  vis_wh_loss: 0.5106  py_loss: 3.3331  shape_loss: 0.4339  dct_x_loss: 2.7403  dct_bfg_loss: 0.7091  dct_patch_vector_loss: 1.6958  box_mask_loss: 5.3251  loss: 11.2632  data: 0.0419  batch: 1.2024  lr: 0.000100  max_mem: 10287
+eta: 0:00:01  epoch: 21  step: 9499  mask_loss: 0.3013  ct_loss: 0.9029  wh_loss: 0.4648  vis_wh_loss: 0.4676  py_loss: 3.1482  shape_loss: 0.3610  dct_x_loss: 2.7821  dct_bfg_loss: 0.7717  dct_patch_vector_loss: 1.7666  box_mask_loss: 5.4995  loss: 11.1455  data: 0.0364  batch: 1.1179  lr: 0.000100  max_mem: 10287
+train: Epoch:23	
+eta: 0:03:08  epoch: 22  step: 9600  mask_loss: 0.2909  ct_loss: 0.8493  wh_loss: 0.5190  vis_wh_loss: 0.5258  py_loss: 3.7577  shape_loss: 0.4702  dct_x_loss: 2.7696  dct_bfg_loss: 0.7498  dct_patch_vector_loss: 1.7301  box_mask_loss: 5.4300  loss: 11.8430  data: 0.0376  batch: 1.2169  lr: 0.000100  max_mem: 10287
+eta: 0:01:02  epoch: 22  step: 9700  mask_loss: 0.2935  ct_loss: 0.8322  wh_loss: 0.4751  vis_wh_loss: 0.4789  py_loss: 3.1065  shape_loss: 0.3869  dct_x_loss: 2.7484  dct_bfg_loss: 0.7102  dct_patch_vector_loss: 1.7170  box_mask_loss: 5.3572  loss: 10.9304  data: 0.0387  batch: 1.1901  lr: 0.000100  max_mem: 10287
+eta: 0:00:01  epoch: 22  step: 9749  mask_loss: 0.3029  ct_loss: 0.8620  wh_loss: 0.4860  vis_wh_loss: 0.4884  py_loss: 3.3528  shape_loss: 0.4120  dct_x_loss: 2.7547  dct_bfg_loss: 0.7441  dct_patch_vector_loss: 1.7773  box_mask_loss: 5.4544  loss: 11.3586  data: 0.0389  batch: 1.1228  lr: 0.000100  max_mem: 10287
+train: Epoch:24	
+eta: 0:03:08  epoch: 23  step: 9850  mask_loss: 0.3011  ct_loss: 0.9062  wh_loss: 0.4991  vis_wh_loss: 0.5053  py_loss: 3.4684  shape_loss: 0.4278  dct_x_loss: 2.8300  dct_bfg_loss: 0.8070  dct_patch_vector_loss: 1.8022  box_mask_loss: 5.6171  loss: 11.7251  data: 0.0399  batch: 1.2309  lr: 0.000100  max_mem: 10287
+eta: 0:01:02  epoch: 23  step: 9950  mask_loss: 0.3045  ct_loss: 0.9145  wh_loss: 0.4859  vis_wh_loss: 0.4873  py_loss: 3.2290  shape_loss: 0.3921  dct_x_loss: 2.8129  dct_bfg_loss: 0.7949  dct_patch_vector_loss: 1.7787  box_mask_loss: 5.5718  loss: 11.3851  data: 0.0433  batch: 1.2697  lr: 0.000100  max_mem: 10287
+eta: 0:00:01  epoch: 23  step: 9999  mask_loss: 0.3067  ct_loss: 0.9061  wh_loss: 0.5099  vis_wh_loss: 0.5145  py_loss: 3.6545  shape_loss: 0.4405  dct_x_loss: 2.7575  dct_bfg_loss: 0.7881  dct_patch_vector_loss: 1.7609  box_mask_loss: 5.4914  loss: 11.8237  data: 0.0396  batch: 1.2116  lr: 0.000100  max_mem: 10287
+train: Epoch:25	
+eta: 0:03:09  epoch: 24  step: 10100  mask_loss: 0.3139  ct_loss: 0.9115  wh_loss: 0.5424  vis_wh_loss: 0.5439  py_loss: 4.1759  shape_loss: 0.4895  dct_x_loss: 2.7993  dct_bfg_loss: 0.8477  dct_patch_vector_loss: 1.8196  box_mask_loss: 5.6506  loss: 12.6276  data: 0.0411  batch: 1.2266  lr: 0.000100  max_mem: 10287
+eta: 0:01:02  epoch: 24  step: 10200  mask_loss: 0.2918  ct_loss: 0.8015  wh_loss: 0.4905  vis_wh_loss: 0.4931  py_loss: 3.3412  shape_loss: 0.3996  dct_x_loss: 2.7489  dct_bfg_loss: 0.7711  dct_patch_vector_loss: 1.7337  box_mask_loss: 5.4336  loss: 11.2514  data: 0.0422  batch: 1.2020  lr: 0.000100  max_mem: 10287
+eta: 0:00:01  epoch: 24  step: 10249  mask_loss: 0.3076  ct_loss: 0.8750  wh_loss: 0.5590  vis_wh_loss: 0.5611  py_loss: 4.1234  shape_loss: 0.4863  dct_x_loss: 2.8228  dct_bfg_loss: 0.8191  dct_patch_vector_loss: 1.7990  box_mask_loss: 5.6299  loss: 12.5423  data: 0.0373  batch: 1.1657  lr: 0.000100  max_mem: 10287
+train: Epoch:26	
+eta: 0:03:08  epoch: 25  step: 10350  mask_loss: 0.2876  ct_loss: 0.7015  wh_loss: 0.4555  vis_wh_loss: 0.4623  py_loss: 2.9467  shape_loss: 0.3539  dct_x_loss: 2.6836  dct_bfg_loss: 0.7010  dct_patch_vector_loss: 1.6921  box_mask_loss: 5.2537  loss: 10.4611  data: 0.0365  batch: 1.2281  lr: 0.000100  max_mem: 10287
+eta: 0:01:02  epoch: 25  step: 10450  mask_loss: 0.2920  ct_loss: 0.8751  wh_loss: 0.5201  vis_wh_loss: 0.5220  py_loss: 3.7710  shape_loss: 0.4442  dct_x_loss: 2.7589  dct_bfg_loss: 0.7610  dct_patch_vector_loss: 1.7362  box_mask_loss: 5.4399  loss: 11.8643  data: 0.0407  batch: 1.2406  lr: 0.000100  max_mem: 10311
+eta: 0:00:01  epoch: 25  step: 10499  mask_loss: 0.3039  ct_loss: 0.7894  wh_loss: 0.4871  vis_wh_loss: 0.4896  py_loss: 3.2871  shape_loss: 0.3892  dct_x_loss: 2.7290  dct_bfg_loss: 0.7823  dct_patch_vector_loss: 1.7459  box_mask_loss: 5.4374  loss: 11.1837  data: 0.0377  batch: 1.0866  lr: 0.000100  max_mem: 10311
+train: Epoch:27	
+eta: 0:03:09  epoch: 26  step: 10600  mask_loss: 0.3095  ct_loss: 0.8157  wh_loss: 0.4951  vis_wh_loss: 0.4962  py_loss: 3.4389  shape_loss: 0.4193  dct_x_loss: 2.8062  dct_bfg_loss: 0.7951  dct_patch_vector_loss: 1.7901  box_mask_loss: 5.5813  loss: 11.5561  data: 0.0406  batch: 1.2802  lr: 0.000100  max_mem: 10313
+eta: 0:01:02  epoch: 26  step: 10700  mask_loss: 0.2844  ct_loss: 0.7156  wh_loss: 0.4871  vis_wh_loss: 0.4900  py_loss: 3.3866  shape_loss: 0.4145  dct_x_loss: 2.6942  dct_bfg_loss: 0.7313  dct_patch_vector_loss: 1.6889  box_mask_loss: 5.2938  loss: 11.0721  data: 0.0393  batch: 1.1764  lr: 0.000100  max_mem: 10313
+eta: 0:00:01  epoch: 26  step: 10749  mask_loss: 0.3008  ct_loss: 0.8390  wh_loss: 0.4727  vis_wh_loss: 0.4747  py_loss: 3.1383  shape_loss: 0.3709  dct_x_loss: 2.7458  dct_bfg_loss: 0.7749  dct_patch_vector_loss: 1.7533  box_mask_loss: 5.4560  loss: 11.0523  data: 0.0362  batch: 1.0982  lr: 0.000100  max_mem: 10313
+train: Epoch:28	
+eta: 0:03:08  epoch: 27  step: 10850  mask_loss: 0.2856  ct_loss: 0.7058  wh_loss: 0.4159  vis_wh_loss: 0.4184  py_loss: 2.5436  shape_loss: 0.3258  dct_x_loss: 2.6548  dct_bfg_loss: 0.6878  dct_patch_vector_loss: 1.6759  box_mask_loss: 5.1901  loss: 9.8852  data: 0.0391  batch: 1.1746  lr: 0.000100  max_mem: 10313
+eta: 0:01:02  epoch: 27  step: 10950  mask_loss: 0.2870  ct_loss: 0.7229  wh_loss: 0.4372  vis_wh_loss: 0.4382  py_loss: 3.0722  shape_loss: 0.3632  dct_x_loss: 2.6842  dct_bfg_loss: 0.7288  dct_patch_vector_loss: 1.7330  box_mask_loss: 5.3249  loss: 10.6456  data: 0.0390  batch: 1.1811  lr: 0.000100  max_mem: 10313
+eta: 0:00:01  epoch: 27  step: 10999  mask_loss: 0.3095  ct_loss: 0.7901  wh_loss: 0.5353  vis_wh_loss: 0.5369  py_loss: 3.9056  shape_loss: 0.4800  dct_x_loss: 2.7110  dct_bfg_loss: 0.7615  dct_patch_vector_loss: 1.7316  box_mask_loss: 5.3847  loss: 11.9422  data: 0.0372  batch: 1.1055  lr: 0.000100  max_mem: 10313
+train: Epoch:29	
+eta: 0:03:07  epoch: 28  step: 11100  mask_loss: 0.2854  ct_loss: 0.6742  wh_loss: 0.4790  vis_wh_loss: 0.4824  py_loss: 3.1986  shape_loss: 0.4090  dct_x_loss: 2.6267  dct_bfg_loss: 0.6733  dct_patch_vector_loss: 1.6517  box_mask_loss: 5.1279  loss: 10.6564  data: 0.0420  batch: 1.1462  lr: 0.000100  max_mem: 10313
+eta: 0:01:02  epoch: 28  step: 11200  mask_loss: 0.3026  ct_loss: 0.7959  wh_loss: 0.4828  vis_wh_loss: 0.4922  py_loss: 3.4057  shape_loss: 0.3936  dct_x_loss: 2.6438  dct_bfg_loss: 0.7296  dct_patch_vector_loss: 1.6806  box_mask_loss: 5.2388  loss: 11.1116  data: 0.0377  batch: 1.1841  lr: 0.000100  max_mem: 10313
+eta: 0:00:01  epoch: 28  step: 11249  mask_loss: 0.3012  ct_loss: 0.7387  wh_loss: 0.4545  vis_wh_loss: 0.4566  py_loss: 3.0756  shape_loss: 0.3658  dct_x_loss: 2.7461  dct_bfg_loss: 0.7616  dct_patch_vector_loss: 1.7705  box_mask_loss: 5.4599  loss: 10.8524  data: 0.0392  batch: 1.1288  lr: 0.000100  max_mem: 10313
+  0%|          | 0/3600 [00:00<?, ?it/s]  0%|          | 1/3600 [00:03<3:40:22,  3.67s/it]  0%|          | 2/3600 [00:04<1:45:53,  1.77s/it]  0%|          | 3/3600 [00:04<1:06:31,  1.11s/it]  0%|          | 4/3600 [00:04<47:37,  1.26it/s]    0%|          | 5/3600 [00:05<37:58,  1.58it/s]  0%|          | 6/3600 [00:05<32:18,  1.85it/s]  0%|          | 7/3600 [00:05<28:42,  2.09it/s]  0%|          | 8/3600 [00:06<26:12,  2.28it/s]  0%|          | 9/3600 [00:06<23:51,  2.51it/s]  0%|          | 10/3600 [00:06<23:01,  2.60it/s]  0%|          | 11/3600 [00:07<22:14,  2.69it/s]  0%|          | 12/3600 [00:07<21:31,  2.78it/s]  0%|          | 13/3600 [00:07<20:47,  2.88it/s]  0%|          | 14/3600 [00:08<20:11,  2.96it/s]  0%|          | 15/3600 [00:08<19:48,  3.02it/s]  0%|          | 16/3600 [00:08<20:28,  2.92it/s]  0%|          | 17/3600 [00:09<20:23,  2.93it/s]  0%|          | 18/3600 [00:09<20:22,  2.93it/s]  1%|          | 19/3600 [00:09<20:37,  2.89it/s]  1%|          | 20/3600 [00:10<20:40,  2.89it/s]  1%|          | 21/3600 [00:10<20:29,  2.91it/s]  1%|          | 22/3600 [00:10<20:00,  2.98it/s]  1%|          | 23/3600 [00:11<19:52,  3.00it/s]  1%|          | 24/3600 [00:11<21:26,  2.78it/s]  1%|          | 25/3600 [00:11<21:35,  2.76it/s]  1%|          | 26/3600 [00:12<21:08,  2.82it/s]  1%|          | 27/3600 [00:12<20:45,  2.87it/s]  1%|          | 28/3600 [00:12<20:37,  2.89it/s]  1%|          | 29/3600 [00:13<20:43,  2.87it/s]  1%|          | 30/3600 [00:13<20:26,  2.91it/s]  1%|          | 31/3600 [00:14<20:24,  2.91it/s]  1%|          | 32/3600 [00:14<20:30,  2.90it/s]  1%|          | 33/3600 [00:14<20:50,  2.85it/s]  1%|          | 34/3600 [00:15<21:27,  2.77it/s]  1%|          | 35/3600 [00:15<21:38,  2.74it/s]  1%|          | 36/3600 [00:15<22:03,  2.69it/s]  1%|          | 37/3600 [00:16<22:11,  2.68it/s]  1%|          | 38/3600 [00:16<22:08,  2.68it/s]  1%|          | 39/3600 [00:16<21:47,  2.72it/s]  1%|          | 40/3600 [00:17<21:40,  2.74it/s]  1%|          | 41/3600 [00:17<21:31,  2.76it/s]  1%|          | 42/3600 [00:18<21:27,  2.76it/s]  1%|          | 43/3600 [00:18<21:44,  2.73it/s]  1%|          | 44/3600 [00:18<21:24,  2.77it/s]  1%|▏         | 45/3600 [00:19<21:15,  2.79it/s]  1%|▏         | 46/3600 [00:19<21:11,  2.80it/s]  1%|▏         | 47/3600 [00:19<21:23,  2.77it/s]  1%|▏         | 48/3600 [00:20<21:11,  2.79it/s]  1%|▏         | 49/3600 [00:20<21:08,  2.80it/s]  1%|▏         | 50/3600 [00:20<21:03,  2.81it/s]  1%|▏         | 51/3600 [00:21<21:45,  2.72it/s]  1%|▏         | 52/3600 [00:21<22:06,  2.68it/s]  1%|▏         | 53/3600 [00:22<21:46,  2.71it/s]  2%|▏         | 54/3600 [00:22<21:28,  2.75it/s]  2%|▏         | 55/3600 [00:22<21:12,  2.79it/s]  2%|▏         | 56/3600 [00:23<21:15,  2.78it/s]  2%|▏         | 57/3600 [00:23<21:32,  2.74it/s]  2%|▏         | 58/3600 [00:23<21:43,  2.72it/s]  2%|▏         | 59/3600 [00:25<38:49,  1.52it/s]  2%|▏         | 60/3600 [00:25<33:26,  1.76it/s]  2%|▏         | 61/3600 [00:25<29:52,  1.97it/s]  2%|▏         | 62/3600 [00:26<27:08,  2.17it/s]  2%|▏         | 63/3600 [00:26<25:18,  2.33it/s]  2%|▏         | 64/3600 [00:26<24:04,  2.45it/s]  2%|▏         | 65/3600 [00:27<22:58,  2.56it/s]  2%|▏         | 66/3600 [00:27<22:19,  2.64it/s]  2%|▏         | 67/3600 [00:28<22:14,  2.65it/s]  2%|▏         | 68/3600 [00:28<21:35,  2.73it/s]  2%|▏         | 69/3600 [00:28<20:53,  2.82it/s]  2%|▏         | 70/3600 [00:29<20:51,  2.82it/s]  2%|▏         | 71/3600 [00:29<21:01,  2.80it/s]  2%|▏         | 72/3600 [00:29<21:09,  2.78it/s]  2%|▏         | 73/3600 [00:30<21:07,  2.78it/s]  2%|▏         | 74/3600 [00:30<21:18,  2.76it/s]  2%|▏         | 75/3600 [00:30<21:19,  2.75it/s]  2%|▏         | 76/3600 [00:31<20:58,  2.80it/s]  2%|▏         | 77/3600 [00:31<20:49,  2.82it/s]  2%|▏         | 78/3600 [00:31<20:41,  2.84it/s]  2%|▏         | 79/3600 [00:32<20:43,  2.83it/s]  2%|▏         | 80/3600 [00:32<20:56,  2.80it/s]  2%|▏         | 81/3600 [00:33<21:16,  2.76it/s]  2%|▏         | 82/3600 [00:33<21:05,  2.78it/s]  2%|▏         | 83/3600 [00:33<21:17,  2.75it/s]  2%|▏         | 84/3600 [00:34<21:28,  2.73it/s]  2%|▏         | 85/3600 [00:34<21:18,  2.75it/s]  2%|▏         | 86/3600 [00:34<20:50,  2.81it/s]  2%|▏         | 87/3600 [00:35<20:29,  2.86it/s]  2%|▏         | 88/3600 [00:35<20:47,  2.82it/s]  2%|▏         | 89/3600 [00:35<20:42,  2.83it/s]  2%|▎         | 90/3600 [00:36<20:45,  2.82it/s]  3%|▎         | 91/3600 [00:36<20:59,  2.78it/s]  3%|▎         | 92/3600 [00:36<20:39,  2.83it/s]  3%|▎         | 93/3600 [00:37<20:20,  2.87it/s]  3%|▎         | 94/3600 [00:37<20:10,  2.90it/s]  3%|▎         | 95/3600 [00:37<20:22,  2.87it/s]  3%|▎         | 96/3600 [00:38<20:10,  2.89it/s]  3%|▎         | 97/3600 [00:38<20:10,  2.89it/s]  3%|▎         | 98/3600 [00:39<19:57,  2.93it/s]  3%|▎         | 99/3600 [00:39<19:53,  2.93it/s]  3%|▎         | 100/3600 [00:39<20:03,  2.91it/s]  3%|▎         | 101/3600 [00:40<20:26,  2.85it/s]  3%|▎         | 102/3600 [00:40<20:23,  2.86it/s]  3%|▎         | 103/3600 [00:40<20:16,  2.88it/s]  3%|▎         | 104/3600 [00:41<19:58,  2.92it/s]  3%|▎         | 105/3600 [00:41<19:46,  2.94it/s]  3%|▎         | 106/3600 [00:41<19:30,  2.99it/s]  3%|▎         | 107/3600 [00:42<19:36,  2.97it/s]  3%|▎         | 108/3600 [00:42<19:38,  2.96it/s]  3%|▎         | 109/3600 [00:42<19:45,  2.94it/s]  3%|▎         | 110/3600 [00:43<19:53,  2.92it/s]  3%|▎         | 111/3600 [00:43<19:51,  2.93it/s]  3%|▎         | 112/3600 [00:43<19:56,  2.91it/s]  3%|▎         | 113/3600 [00:44<19:56,  2.91it/s]  3%|▎         | 114/3600 [00:44<19:37,  2.96it/s]  3%|▎         | 115/3600 [00:44<20:02,  2.90it/s]  3%|▎         | 116/3600 [00:45<19:53,  2.92it/s]  3%|▎         | 117/3600 [00:45<20:15,  2.87it/s]  3%|▎         | 118/3600 [00:45<20:05,  2.89it/s]  3%|▎         | 119/3600 [00:46<20:07,  2.88it/s]  3%|▎         | 120/3600 [00:46<20:39,  2.81it/s]  3%|▎         | 120/3600 [00:46<22:31,  2.58it/s]
+Traceback (most recent call last):
+  File "train_net.py", line 89, in <module>
+    main()
+  File "train_net.py", line 80, in main
+    train(cfg, network)
+  File "train_net.py", line 59, in train
+    val_state=trainer.val(epoch, val_loader, evaluator, recorder)
+  File "/data0/river/Polysnake/lib/train/trainers/trainer.py", line 77, in val
+    for batch in tqdm.tqdm(data_loader):
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/tqdm/std.py", line 1178, in __iter__
+    for obj in iterable:
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1203, in _next_data
+    return self._process_data(data)
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1229, in _process_data
+    data.reraise()
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/_utils.py", line 434, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 287, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    return self.collate_fn(data)
+  File "/data0/river/Polysnake/lib/datasets/collate_batch.py", line 93, in snake_collator
+    i_gt_vis_pys[ct_01] = torch.Tensor(sum([b['i_gt_vis_py'] for b in batch], []))
+RuntimeError: shape mismatch: value tensor of shape [4, 128, 2] cannot be broadcast to indexing result of shape [3, 128, 2]
+

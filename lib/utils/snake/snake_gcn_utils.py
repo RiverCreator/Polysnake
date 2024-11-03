@@ -118,7 +118,9 @@ def prepare_training(ret, batch): ## gt存放到init中，并且标记每个ct�
     init = {}
 
     init.update({'i_gt_py': collect_training(batch['i_gt_py'], ct_01)})  ## 每个ct对应的gt点
+    init.update({'i_gt_vis_py': collect_training(batch['i_gt_vis_py'], ct_01)})
     init.update({'per_ins_cmask': collect_ins_training(batch['per_ins_cmask'], ct_01)})
+    init.update({'per_vis_cmask': collect_ins_training(batch['per_vis_cmask'], ct_01)})
     ct_num = batch['meta']['ct_num']
     init.update({'py_ind': torch.cat([torch.full([ct_num[i]], i) for i in range(ct_01.size(0))], dim=0)})  ## py_ind用来表示ct对应的是batch中哪一张图片
 

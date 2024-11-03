@@ -97,6 +97,7 @@ class Conv2d(torch.nn.Conv2d):
             x = self.activation(x)
         return x
 
+
 class ConvGRU(nn.Module):
     def __init__(self, hidden_dim=64, input_dim=64):
         super(ConvGRU, self).__init__()
@@ -114,28 +115,70 @@ class ConvGRU(nn.Module):
         
         return h
 
+class BidirectionalConv1DGRU(nn.Module):
+    def __init__(self, hidden_dim, input_dim):
+        super(BidirectionalConv1DGRU, self).__init__()
+        self.forward_gru = ConvGRU(hidden_dim = hidden_dim, input_dim=input_dim)#Conv1DGRUCell(input_channels, hidden_channels, kernel_size)
+        self.backward_gru = ConvGRU(hidden_dim = hidden_dim, input_dim=input_dim)#Conv1DGRUCell(input_channels, hidden_channels, kernel_size)
+        
+        # self.prediction = nn.Sequential(   ## FFN
+        #     nn.Conv1d(64, 128, 1),
+        #     nn.LeakyReLU(inplace=True),
+        #     nn.Conv1d(128, 2, 1)
+        # )
+        
+    def forward(self, h_fwd, h_bwd, x, vis_x):
+        #b, t, c, w = x.size()  # Batch, Time, Channel, Width
+        # h_fwd = torch.zeros(b, self.forward_gru.conv_z.out_channels, w, device=x.device)
+        # h_bwd = torch.zeros(b, self.backward_gru.conv_z.out_channels, w, device=x.device)
+        
+        # Forward pass
+        #output_fwd = []
+        # for i in range(t):
+        #     h_fwd = self.forward_gru(x[:, i, :, :], h_fwd)
+        #     output_fwd.append(h_fwd)
+        h_fwd = self.forward_gru(x, h_fwd)
+        # Backward pass
+        #output_bwd = []
+        # for i in range(t - 1, -1, -1):
+        #     h_bwd = self.backward_gru(vis_x[:, i, :, :], h_bwd)
+        #     output_bwd.insert(0, h_bwd)  # Insert at the beginning to reverse the list
+        h_bwd = self.backward_gru(vis_x, h_bwd)
+        # Concatenate forward and backward outputs
+        # output_fwd = torch.stack(output_fwd, dim=1)  # Stack along time axis
+        # output_bwd = torch.stack(output_bwd, dim=1)
+        return h_fwd, h_bwd
+        output = torch.cat([output_fwd, output_bwd], dim=2)  # Concatenate along channel axis
+        
+        #offset = self.prediction(output).permute(0, 2, 1)
+        
+        return output#, offset
 
 class BasicUpdateBlock(nn.Module):
     def __init__(self):
         super(BasicUpdateBlock, self).__init__()
-        self.gru = ConvGRU(hidden_dim=64, input_dim=64)
-
+        #self.gru = ConvGRU(hidden_dim=64, input_dim=64)
+        self.gru = BidirectionalConv1DGRU(hidden_dim=64, input_dim=64)
         self.prediction = nn.Sequential(   ## FFN
+            nn.Conv1d(128, 128, 1),
+            nn.LeakyReLU(inplace=True),
+            nn.Conv1d(128, 2, 1)
+            )
+
+        self.vis_prediction = nn.Sequential(   ## FFN
             nn.Conv1d(64, 128, 1),
             nn.LeakyReLU(inplace=True),
             nn.Conv1d(128, 2, 1)
             )
 
-    def forward(self, net, i_poly_fea):
-        net = self.gru(net, i_poly_fea)
-        offset = self.prediction(net).permute(0, 2, 1)
+    def forward(self, h_fwd, h_bwd, i_poly_fea, vis_i_poly_fea):
+        fwd, bwd = self.gru(h_fwd, h_bwd, i_poly_fea, vis_i_poly_fea)
+        vis_offset = self.vis_prediction(bwd).permute(0, 2, 1)
+        output = torch.cat([fwd, bwd], dim=1)  # Concatenate along channel axis
+        offset = self.prediction(output).permute(0, 2, 1)
 
-        return net, offset
-class LinearBlock(nn.Module):
-    def __init__(self):
-        super().__init__()
-    def forward(x):
-        pass
+        return fwd, bwd, offset, vis_offset
+
 
 class ClassifyBlock(nn.Module):
     def __init__(self, mid_channel = 1024, num_classes = 60):

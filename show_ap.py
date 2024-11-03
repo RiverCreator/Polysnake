@@ -91,3 +91,12 @@
 #     ymin=int((proposals[2]+crop[1])/resize)
 #     xmax=int((proposals[1]+crop[0])/resize)
 #     ymax=int((proposals[3]+crop[1])/resize)
+import cv2
+import numpy as np
+
+img=cv2.imread('origin.png',0)# 读取图像变为灰度图像
+img1=img.astype('float32')#将unit8类型转换为float类型
+print(img.shape)
+#进行离散余弦变换
+img_dct=cv2.dct(img1)
+print(img_dct.shape)

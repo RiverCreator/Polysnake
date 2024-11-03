@@ -377,12 +377,14 @@ class IDAUp(nn.Module):
             setattr(self, 'node_' + str(i), node)
 
     def forward(self, layers, startp, endp):
+        #features=[]
         for i in range(startp + 1, endp):
             upsample = getattr(self, 'up_' + str(i - startp))
             project = getattr(self, 'proj_' + str(i - startp))
             layers[i] = upsample(project(layers[i]))
             node = getattr(self, 'node_' + str(i - startp))
             layers[i] = node(layers[i] + layers[i - 1])
+            #features.append(layers[i])
 
 
 class DLAUp(nn.Module):
@@ -477,4 +479,5 @@ class DLASeg(nn.Module):
         z = {}
         for head in self.heads:
             z[head] = self.__getattr__(head)(y[-1])
-        return z, y[-1]
+        # y有三个 分别是最大尺度 b c 168 128 ，168 128和84 64的融合，168 128，84 64， 42 32的融合
+        return z, y[-1], y[0]

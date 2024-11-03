@@ -1,4 +1,5 @@
 from turtle import forward
+from shapely import Point
 import torch.nn as nn
 import torch
 
@@ -40,8 +41,10 @@ _conv_factory = {
 class BasicBlock(nn.Module):
     def __init__(self, state_dim, out_state_dim, conv_type, n_adj=4, dilation=1):
         super(BasicBlock, self).__init__()
-
-        self.conv = _conv_factory[conv_type](state_dim, out_state_dim, n_adj, dilation)
+        if conv_type=='grid':
+            self.conv = _conv_factory[conv_type](state_dim, out_state_dim, n_adj)
+        elif conv_type == 'dgrid':
+            self.conv = _conv_factory[conv_type](state_dim, out_state_dim, n_adj, dilation)
         self.relu = nn.LeakyReLU(inplace=True)
         self.norm = nn.BatchNorm1d(out_state_dim)
 
@@ -118,9 +121,26 @@ class Poly_Fusion(nn.Module):
         super(Poly_Fusion, self).__init__()
         #feature dim为输入的dim，state dim为输出的dim
         self.headx = BasicBlock(feature_dim, feature_dim, conv_type)
-        self.heady = BasicBlock(feature_dim, feature_dim, conv_type)
+        self.heady = BasicBlock(feature_dim//2, feature_dim, conv_type)
     
     def forward(self, x, y):
+        #x:[n,64,128] y:[n,32,128]
         x = self.headx(x)
         y = self.heady(y)
         return x + y
+    
+class Point_Classify(nn.Module):
+    def __init__(self, inp_feature_dim, mid_feature_dim, conv_type= 'grid') -> None:
+        super(Point_Classify, self).__init__()
+        self.conv1 = BasicBlock(inp_feature_dim, mid_feature_dim, conv_type)
+        self.conv2 = BasicBlock(mid_feature_dim, 64, conv_type) #二分类，判断是否在visible上
+        self.conv3 = BasicBlock(64, 1, conv_type) #二分类，判断是否在visible上
+        # self.conv1 = nn.Conv1d(64, 128, kernel_size=1)  # 输入64通道，输出128通道
+        # self.conv2 = nn.Conv1d(128, 64, kernel_size=1)  # 输出64通道
+        # self.conv3 = nn.Conv1d(64, 3, kernel_size=1)  # 输出3通道（背景、遮挡物、被遮挡物
+    
+    def forward(self,inp_feature):
+        x = self.conv1(inp_feature)
+        y = self.conv2(x)
+        z = self.conv3(y)
+        return z

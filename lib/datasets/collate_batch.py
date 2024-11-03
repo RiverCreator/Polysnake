@@ -23,6 +23,20 @@ def snake_collator(batch):
     per_ins_cmask = torch.zeros([batch_size, ct_num, h, w],dtype=torch.float)
     for i in range(batch_size):
         per_ins_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['per_ins_cmask'])
+        
+    per_vis_cmask = torch.zeros([batch_size, ct_num, h, w],dtype=torch.float)
+    try:
+        for i in range(batch_size):
+            actual_size = len(batch[i]['visible_mask'])
+            target_size = meta['ct_num'][i]
+
+            if actual_size > target_size:
+                per_vis_cmask[i, :target_size] = default_collate(batch[i]['visible_mask'][:target_size])
+            else:
+                per_vis_cmask[i, :actual_size] = default_collate(batch[i]['visible_mask'])
+            #per_vis_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['visible_mask'])
+    except:
+        print("debug point")
     # wh = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     # reg = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     ct_cls = torch.zeros([batch_size, ct_num], dtype=torch.int64)
@@ -42,7 +56,7 @@ def snake_collator(batch):
         ct_ind[ct_01] = torch.LongTensor(sum([b['ct_ind'] for b in batch], [])) #指明bacth中每个ct对应的ind，可以直接计算其位置
         #one_hot_ct_cls[ct_01] = torch.FloatTensor(sum([b['one_hot_ct_cls'] for b in batch], []))
 
-    detection = {'ct_hm': ct_hm, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
+    detection = {'ct_hm': ct_hm, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'per_vis_cmask':per_vis_cmask ,'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
     # detection = {'ct_hm': ct_hm, 'wh': wh, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
     # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float()}
     ret.update(detection)
@@ -73,7 +87,22 @@ def snake_collator(batch):
         i_gt_pys[ct_01] = torch.Tensor(sum([b['i_gt_py'] for b in batch], []))
         # c_gt_pys[ct_01] = torch.Tensor(sum([b['c_gt_py'] for b in batch], []))
     # evolution = {'i_it_py': i_it_pys, 'c_it_py': c_it_pys, 'i_gt_py': i_gt_pys, 'c_gt_py': c_gt_pys}
-    evolution = {'i_gt_py': i_gt_pys}
+    #### 添加vis polys
+    i_gt_vis_pys = torch.zeros([batch_size, ct_num, snake_config.gt_poly_num, 2], dtype=torch.float)
+    if ct_num != 0:
+        #i_gt_vis_pys[ct_01] = torch.Tensor(sum([b['i_gt_vis_py'] for b in batch], []))
+        try:
+            i_gt_vis_pys[ct_01] = torch.Tensor(sum([b['i_gt_vis_py'] for b in batch], []))
+        except:
+            new_values = torch.Tensor(sum([b['i_gt_vis_py'] for b in batch], []))
+            actual_size = new_values.size(0)
+            target_size = i_gt_vis_pys[ct_01].size(0)
+            if actual_size > target_size:
+                i_gt_vis_pys[ct_01] = new_values[:target_size]
+            else:
+                i_gt_vis_pys[ct_01][:actual_size]=new_values
+            print("debug point")
+    evolution = {'i_gt_py': i_gt_pys,'i_gt_vis_py':i_gt_vis_pys}
     ret.update(evolution)
 
     return ret

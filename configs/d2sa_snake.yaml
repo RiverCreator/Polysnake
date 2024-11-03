@@ -2,8 +2,8 @@ model: 'd2sa_snake'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [0,1]
-iter_num: 7
+gpus: [0]
+iter_num: 5
 score_thresh: 0.05
 num_classes: 60
 train:
@@ -11,7 +11,7 @@ train:
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 4
+    batch_size: 8
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300
@@ -33,7 +33,7 @@ MODEL:
             DISABLE_REL_COORDS: false
         MASK_OUT_STRIDE: 4
         
-heads: {'ct_hm': 60, 'wh': 256, 'mask': 1}
+heads: {'ct_hm': 60, 'wh': 256, 'wh_vis': 256, 'mask': 1}
 segm_or_bbox: 'segm'
 eval_ep: 10
 save_ep: 5

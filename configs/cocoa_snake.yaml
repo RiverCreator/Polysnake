@@ -2,10 +2,11 @@ model: 'cocoa'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [0,1]
+gpus: [0]
 iter_num: 3
 score_thresh: 0.01
 eval_ep : 100
+num_classes: 80
 train:
     optim: 'adam'
     warmup: true

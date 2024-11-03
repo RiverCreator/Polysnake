@@ -3,5 +3,8 @@
     "python.languageServer": "Pylance",
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "off",
-    "workbench.colorTheme": "Default Light+"
+    "workbench.colorTheme": "Default Light+",
+    "python.analysis.extraPaths": [
+        "./lib/networks"
+    ]
 }

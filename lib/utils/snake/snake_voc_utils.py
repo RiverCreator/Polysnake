@@ -243,7 +243,13 @@ def per_polygon_to_mask(polys,h,w):
     for poly in polys:
         if(len(poly)):
             cmask = np.zeros((h, w), dtype=np.uint8)
-            cv2.fillPoly(cmask, [np.round(poly).astype(int)], 1)
+            try:
+                if(len(poly)>1):
+                    cv2.fillPoly(cmask, [np.round(p).astype(int) for p in poly], 1)
+                else:
+                    cv2.fillPoly(cmask, [np.round(poly).astype(int)], 1)
+            except:
+                print("debug point")
             # polyn = np.round(poly).astype(int)
             # polyn= [polyn]
             # cv2.drawContours(cmask, polyn, -1, 1, 1)
