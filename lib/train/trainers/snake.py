@@ -136,14 +136,15 @@ class NetworkWrapper(nn.Module):
         loss += ct_loss
         #loss += ct_loss2
         wh_loss = self.py_crit(output['poly_init'], output['i_gt_py'])  ## 初始点的点坐标loss使用smooth-l1 loss，与目标检测一样
-        vis_wh_loss = self.py_crit(output['vis_poly_init'], output['vis_i_gt_py']) ## visible wh loss
+        #vis_wh_loss = self.py_crit(output['vis_poly_init'], output['vis_i_gt_py']) ## visible wh loss
         #wh_loss2 = self.py_crit(mutli_feat_output['poly_init2'], output['i_gt_py'])
-        scalar_stats.update({'wh_loss': 0.1 * wh_loss,'vis_wh_loss': 0.1 * vis_wh_loss})  ## 降低了这部分loss的梯度
+        scalar_stats.update({'wh_loss': 0.1 * wh_loss})  ## 降低了这部分loss的梯度
         loss += 0.1 * wh_loss
-        loss += 0.1 * vis_wh_loss
         n_predictions = len(output['py_pred'])  ## 将每次迭代的预测点都计算一次loss
         py_loss = 0.0
+        vis_py_loss = 0.0
         shape_loss = 0.0
+        vis_shape_loss = 0.0
         #poly_classify_losses = 0
         #visible_mask = output['per_vis_cmask'][:,None,:,:]
         #gt_poly_classify = get_gcn_feature(visible_mask, output['poly_init']/snake_config.ro ,output['ind'], visible_mask.size(2), visible_mask.size(3))
@@ -154,14 +155,14 @@ class NetworkWrapper(nn.Module):
         py_dis = torch.cat((output['i_gt_py'][:,1:], output['i_gt_py'][:,0].unsqueeze(1)), dim=1)  ## 将i_gt_py整体循环左移方便后面求距离
         tar_shape = py_dis - output['i_gt_py']  ##得出gt点的相对的偏移量
         
-        vis_py_dis = torch.cat((output['vis_i_gt_py'][:,1:], output['vis_i_gt_py'][:,0].unsqueeze(1)), dim=1)
-        vis_tar_shape = vis_py_dis - output['vis_i_gt_py']
+        # vis_py_dis = torch.cat((output['vis_i_gt_py'][:,1:], output['vis_i_gt_py'][:,0].unsqueeze(1)), dim=1)
+        # vis_tar_shape = vis_py_dis - output['vis_i_gt_py']
         for i in range(n_predictions):
             i_weight = 0.8**(n_predictions - i - 1)  ### 这个权重越靠近后预测的权重越大,越靠后的应该权重越大，预测错误的话惩罚应该给的更大
             py_loss += i_weight * self.py_crit(output['py_pred'][i], output['i_gt_py'])
-            py_loss += i_weight * self.py_crit(output['vis_py_pred'][i], output['vis_i_gt_py'])
+            #vis_py_loss += i_weight * self.py_crit(output['vis_py_pred'][i], output['vis_i_gt_py'])
             shape_loss += i_weight * self.shape_loss(output['py_pred'][i], tar_shape)
-            shape_loss += i_weight * self.shape_loss(output['vis_py_pred'][i], vis_tar_shape)
+            #vis_shape_loss += i_weight * self.shape_loss(output['vis_py_pred'][i], vis_tar_shape)
             #cls_loss += self.cls_crit(output['cls_scores'][i], batch['ct_cls'][ct_01])
             #gt_poly_classify = get_gcn_feature(visible_mask, output['py_pred'][i]/snake_config.ro ,output['ind'], visible_mask.size(2), visible_mask.size(3))
             #poly_classify_loss = net_utils.dice_coefficient(net_utils.sigmoid(output['poly_pred'][i+1]), gt_poly_classify)
@@ -169,55 +170,86 @@ class NetworkWrapper(nn.Module):
             #poly_classify_losses += poly_classify_loss         .mean()
             
         py_loss = py_loss / n_predictions  ## loss均分，与cascade中一样，防止过度训练，而且因为后续迭代的loss也会影响到之前的参数训练
+        vis_py_loss = vis_py_loss / n_predictions
         shape_loss = shape_loss / n_predictions
+        vis_shape_loss = vis_shape_loss /n_predictions
         #cls_loss = cls_loss / n_predictions
         scalar_stats.update({'py_loss': py_loss})
         scalar_stats.update({'shape_loss': shape_loss})
         #scalar_stats.update({'cls_loss': cls_loss})
         loss += py_loss
-        loss += shape_loss
+        loss += shape_loss 
         #loss += cls_loss
         mask_losses = 0
+        vis_mask_losses = 0
         # if not self.training:
         #     print('debug')
         #pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
-        gt_masks_coarse_loss = 0
-        bfg_loss = 0
-        patch_vector_loss = 0
+        # gt_masks_coarse_loss = 0
+        # bfg_loss = 0
+        # patch_vector_loss = 0
         
-        for i in range(len(output['mask_preds'])):
-            pred_masks = output['mask_preds'][i]
-            pred_masks=pred_masks.squeeze(1)
-            #pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
-            dct_gt_masks,gt_masks_coarse,gt_bfg =self.get_gt_mask(output['per_ins_cmask'], output['rois'][i])
-            gt_masks_coarse_loss += self.dct_stage_loss_para[i]*F.l1_loss(output['dct_x'][i],gt_masks_coarse)
-            bfg_loss += self.dct_stage_loss_para[i]*F.cross_entropy(output['dct_bfg'][i], gt_bfg)
+        # for i in range(len(output['mask_preds'])):
+        #     pred_masks = output['mask_preds'][i]
+        #     pred_masks=pred_masks.squeeze(1)
+        #     #pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+        #     dct_gt_masks,gt_masks_coarse,gt_bfg =self.get_gt_mask(output['per_ins_cmask'], output['rois'][i])
+        #     gt_masks_coarse_loss += self.dct_stage_loss_para[i]*F.l1_loss(output['dct_x'][i],gt_masks_coarse)
+        #     bfg_loss += self.dct_stage_loss_para[i]*F.cross_entropy(output['dct_bfg'][i], gt_bfg)
             
            
-            # gt_poly_classify = get_gcn_feature(visible_mask, output['py_pred'][i],output['ind'], visible_mask.size(2), visible_mask.size(3))
-            # poly_classify_loss = net_utils.dice_coefficient(net_utils.sigmoid(output['poly_pred'][i]), gt_poly_classify)
-            # poly_classify_losses += poly_classify_loss.mean()
+        #     # gt_poly_classify = get_gcn_feature(visible_mask, output['py_pred'][i],output['ind'], visible_mask.size(2), visible_mask.size(3))
+        #     # poly_classify_loss = net_utils.dice_coefficient(net_utils.sigmoid(output['poly_pred'][i]), gt_poly_classify)
+        #     # poly_classify_losses += poly_classify_loss.mean()
             
-            patch_vectors = output['dct_patch_vector'][i][gt_bfg == 1, :]
-            patch_vector_loss += self.dct_stage_loss_para[i]*F.l1_loss(patch_vectors,dct_gt_masks)
+        #     patch_vectors = output['dct_patch_vector'][i][gt_bfg == 1, :]
+        #     patch_vector_loss += self.dct_stage_loss_para[i]*F.l1_loss(patch_vectors,dct_gt_masks)
             
-            gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i]) 
+        #     gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i]) 
+        #     mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
+        #     mask_losses +=mask_loss.mean()
+            
+        for i in range(len(output['mask_preds'])):
+            pred_masks = output['mask_preds'][i]
+            pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+            gt_masks = self.vis_crop_and_resize(output['per_ins_cmask'], output['rois'][i])
             mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
             mask_losses +=mask_loss.mean()
-        
+            
         for i in range(len(output['vis_mask_preds'])):
             pred_masks = output['vis_mask_preds'][i]
             pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
-            gt_masks = self.vis_crop_and_resize(output['per_vis_cmask'], output['vis_rois'][i])
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
-            mask_losses +=mask_loss.mean()
+            gt_masks = self.vis_crop_and_resize(output['per_vis_cmask'], output['rois'][i])
+            vis_mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
+            vis_mask_losses +=vis_mask_loss.mean()
+        #from PIL import Image
+        #### 可视化 ----------------------------------------------
+        # import numpy as np
+        # pred_masks=output['mask_preds'][i][torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+        # image = Image.fromarray((pred_masks[i].sigmoid().detach().cpu().numpy()*255).astype(np.uint8))
+        # vis_pred_masks = output['vis_mask_preds'][i][torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+        # from matplotlib import cm
+        # array = vis_pred_masks[i].sigmoid().detach().cpu().numpy()*255.0
+        # cmap = cm.get_cmap('viridis')  # 选择颜色映射 'viridis'
+        # colored_array = cmap(array / 255.0)  # 归一化并应用颜色映射
+        # colored_array = (colored_array[:, :, :3] * 255).astype(np.uint8)  # 去除 alpha 通道
+        # image2 = Image.fromarray(colored_array)
+        # vis_gt_masks = self.vis_crop_and_resize(output['per_vis_cmask'], output['rois'][i])
+        # image3 = Image.fromarray((vis_gt_masks[i].detach().cpu().numpy()*255).astype(np.uint8))
+        # amodal_gt_masks = self.vis_crop_and_resize(output['per_ins_cmask'], output['rois'][i])
+        # image4 = Image.fromarray((amodal_gt_masks[i].detach().cpu().numpy()*255).astype(np.uint8))
+        # image.save("binary_amodal_image.jpg")
+        ### -------------------------------------------------------
         
         #poly_classify_losses/len(output['mask_preds'])
-        scalar_stats.update({'dct_x_loss': gt_masks_coarse_loss,'dct_bfg_loss':bfg_loss,'dct_patch_vector_loss':patch_vector_loss})
+        #scalar_stats.update({'dct_x_loss': gt_masks_coarse_loss,'dct_bfg_loss':bfg_loss,'dct_patch_vector_loss':patch_vector_loss})
         mask_losses = mask_losses / len(output['mask_preds'])
-        mask_losses = mask_losses + gt_masks_coarse_loss + bfg_loss + patch_vector_loss
+        #vis_mask_losses = vis_mask_losses / len(output['vis_mask_preds'])
+        #mask_losses = mask_losses + gt_masks_coarse_loss + bfg_loss + patch_vector_loss
+        #scalar_stats.update({'box_mask_loss': mask_losses,'vis_mask_loss':vis_mask_losses})
         scalar_stats.update({'box_mask_loss': mask_losses})
         loss += mask_losses
+        loss += vis_mask_losses
         #loss += poly_classify_losses
         scalar_stats.update({'loss': loss})
         image_stats = {}

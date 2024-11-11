@@ -52,7 +52,7 @@ def topk(scores, K=40):
 
 # modify
 #def decode_ct_hm(ct_hm, wh ,reg=None, K=100):
-def decode_ct_hm(ct_hm, wh, wh_vis,reg=None, K=100):
+def decode_ct_hm(ct_hm, wh, reg=None, K=100):
     batch, cat, height, width = ct_hm.size()
     ct_hm = nms(ct_hm)
 
@@ -60,8 +60,8 @@ def decode_ct_hm(ct_hm, wh, wh_vis,reg=None, K=100):
     wh = transpose_and_gather_feat(wh, inds)
     wh = wh.view(batch, K, -1, 2)
 
-    wh_vis = transpose_and_gather_feat(wh_vis, inds)
-    wh_vis = wh_vis.view(batch, K, -1, 2)
+    # wh_vis = transpose_and_gather_feat(wh_vis, inds)
+    # wh_vis = wh_vis.view(batch, K, -1, 2)
     
     if reg is not None:
         reg = transpose_and_gather_feat(reg, inds)
@@ -76,14 +76,14 @@ def decode_ct_hm(ct_hm, wh, wh_vis,reg=None, K=100):
     scores = scores.view(batch, K, 1)
     ct = torch.cat([xs, ys], dim=2)
     poly = ct.unsqueeze(2).expand(batch, K, wh.size(2), 2) + wh  # * stride
-    vis_poly = ct.unsqueeze(2).expand(batch, K, wh.size(2), 2) + wh_vis
+    # vis_poly = ct.unsqueeze(2).expand(batch, K, wh.size(2), 2) + wh_vis
     # bboxes = torch.cat([xs - wh[..., 0:1] / 2,
                         # ys - wh[..., 1:2] / 2,
                         # xs + wh[..., 0:1] / 2,
                         # ys + wh[..., 1:2] / 2], dim=2)
     detection = torch.cat([ct, scores, clses], dim=2)
 
-    return poly, vis_poly, detection
+    return poly, detection
 
 
 def gaussian_radius(height, width, min_overlap=0.7):

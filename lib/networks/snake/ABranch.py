@@ -156,7 +156,66 @@ class BasicAmodalBranch(nn.Module):
             self.deconv,
             self.predicator
         ) #TODO 设计maks head 输入feature map为（B，64, 168，128）可以设计为两种，类相关和类不相关的
-
+        self.vis_conv1 = Conv2d(
+                64,
+                256,
+                kernel_size=3,
+                stride=1,
+                padding=1,
+                bias=False,
+                norm=nn.BatchNorm2d(256),
+                activation=F.relu,
+        )
+        self.vis_conv2 = Conv2d(
+                256,
+                256,
+                kernel_size=3,
+                stride=1,
+                padding=1,
+                bias=False,
+                norm=nn.BatchNorm2d(256),
+                activation=F.relu,
+        )
+        self.vis_downsample = Conv2d(
+                256,
+                256,
+                kernel_size=3,
+                stride=2,
+                padding=1,
+                bias=False,
+                norm=nn.BatchNorm2d(256),
+                activation=F.relu,
+        )
+        self.vis_deconv = ConvTranspose2d(
+            256,
+            256,
+            kernel_size=2,
+            stride=2,
+            padding=0,
+        )
+        self.vis_predicator =  Conv2d(
+            256,
+            num_classes,
+            kernel_size=1,
+            stride=1,
+            padding=0,
+        )
+        self.vis_mask_head = nn.Sequential(
+            self.vis_conv1,
+            self.vis_conv2,
+            self.vis_downsample,
+            self.vis_deconv,
+            self.vis_predicator
+        ) #TODO 设计maks head 输入feature map为（B，64, 168，128）可以设计为两种，类相关和类不相关的
+        self.trans_conv = Conv2d(
+            64,
+            64,
+            kernel_size=3,
+            stride=1,
+            padding=1,
+        )
+        
+        
     def get_box(self, py, ct_01):
         xmax, _ = torch.max(py[:,:,0], dim = 1)
         xmin, _ = torch.min(py[:,:,0], dim = 1)
@@ -177,4 +236,8 @@ class BasicAmodalBranch(nn.Module):
             rois = self.get_box(py, ct_01.byte())
         roi_feature = self.pooler(feature, rois)
         mask_logits = self.mask_head(roi_feature)
+        # vis_roi_feature = self.trans_conv(roi_feature)
+        # vis_mask_logits = self.vis_mask_head(vis_roi_feature)
+        #return mask_logits, vis_mask_logits, rois
         return mask_logits, rois
+     

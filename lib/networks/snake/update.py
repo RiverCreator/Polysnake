@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import fvcore.nn.weight_init as weight_init
 from torch.nn import functional as F
-
+#from torch_geometric.nn import GCNConv
 class _NewEmptyTensorOp(torch.autograd.Function):
     @staticmethod
     def forward(ctx, x, new_shape):
@@ -153,31 +153,64 @@ class BidirectionalConv1DGRU(nn.Module):
         #offset = self.prediction(output).permute(0, 2, 1)
         
         return output#, offset
-
-class BasicUpdateBlock(nn.Module):
-    def __init__(self):
-        super(BasicUpdateBlock, self).__init__()
-        #self.gru = ConvGRU(hidden_dim=64, input_dim=64)
-        self.gru = BidirectionalConv1DGRU(hidden_dim=64, input_dim=64)
-        self.prediction = nn.Sequential(   ## FFN
-            nn.Conv1d(128, 128, 1),
+    
+class FeatureSelectionGate(nn.Module):
+    def __init__(self, feature_dim):
+        super(FeatureSelectionGate, self).__init__()
+        # 用于计算门控权重的全连接层
+        self.fc_gate = nn.Sequential(   ## FFN
+                nn.Conv1d(feature_dim*2, feature_dim, 1),
+                nn.LeakyReLU(inplace=True),
+                nn.Conv1d(feature_dim, feature_dim, 1)
+            )
+        # 用于预测 visible 边缘偏移量的 FFN
+        self.amodal_prediction = nn.Sequential(   ## FFN
+            nn.Conv1d(feature_dim, 128, 1),
             nn.LeakyReLU(inplace=True),
             nn.Conv1d(128, 2, 1)
             )
 
         self.vis_prediction = nn.Sequential(   ## FFN
+            nn.Conv1d(feature_dim, 128, 1),
+            nn.LeakyReLU(inplace=True),
+            nn.Conv1d(128, 2, 1)
+            )
+
+    def forward(self, h1, h2):
+        # 拼接两个 GRU 的输出特征向量
+        g = 0.1
+        #h2 = sigma*h1 + h2
+        #h_combined = torch.cat((h1, h2), dim=1)
+        # 计算门控权重
+        #g = torch.sigmoid(self.fc_gate(h_combined))
+        #g = g.permute(0, 2, 1)
+        
+        # 根据门控权重组合特征向量
+        h_selected = g * h1 + (1 - g) * h2
+        
+        # 预测 visible 和 amodal 边缘点的偏移量
+        visible_offset = self.vis_prediction(h1).permute(0, 2, 1)  # 使用 h1 特征预测 visible 边缘偏移
+        amodal_offset = self.amodal_prediction(h_selected).permute(0, 2, 1)  # 使用选择后的特征预测 amodal 边缘偏移
+
+        return visible_offset, amodal_offset
+
+class BasicUpdateBlock(nn.Module):
+    def __init__(self):
+        super(BasicUpdateBlock, self).__init__()
+        self.gru = ConvGRU(hidden_dim=64, input_dim=64)
+        #self.gru = BidirectionalConv1DGRU(hidden_dim=64, input_dim=64)
+        self.feature_gate = FeatureSelectionGate(feature_dim=64)
+        self.prediction = nn.Sequential(   ## FFN
             nn.Conv1d(64, 128, 1),
             nn.LeakyReLU(inplace=True),
             nn.Conv1d(128, 2, 1)
             )
 
-    def forward(self, h_fwd, h_bwd, i_poly_fea, vis_i_poly_fea):
-        fwd, bwd = self.gru(h_fwd, h_bwd, i_poly_fea, vis_i_poly_fea)
-        vis_offset = self.vis_prediction(bwd).permute(0, 2, 1)
-        output = torch.cat([fwd, bwd], dim=1)  # Concatenate along channel axis
-        offset = self.prediction(output).permute(0, 2, 1)
 
-        return fwd, bwd, offset, vis_offset
+    def forward(self, h, i_poly_fea):
+        net = self.gru(h, i_poly_fea)
+        offset = self.prediction(net).permute(0, 2, 1)
+        return net, offset
 
 
 class ClassifyBlock(nn.Module):

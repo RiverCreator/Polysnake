@@ -62,7 +62,6 @@ def run_evaluate():
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
     logger.addHandler(console)
-    print("ok")
     network = make_network(cfg).cuda()
     load_network(network, cfg.model_dir)
     network.eval()

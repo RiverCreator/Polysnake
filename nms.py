@@ -38,7 +38,10 @@ def post_process(output):
     detection = output['detection'] # n*4
     score = detection[:, 2].detach()
     label = detection[:, 3].detach()
-    last_py = output['py'][-1].detach()
+    try:
+        last_py = output['py'][-1].detach()
+    except:
+        print("debug point")
     #cond_predict = output['cond_predict_val'].detach()
     if len(last_py) == 0:
         return 0

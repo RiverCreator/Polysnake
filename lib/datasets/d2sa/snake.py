@@ -1,4 +1,5 @@
 import os
+from external.cityscapesscripts.evaluation import instance
 from lib.utils.snake import snake_voc_utils, snake_coco_utils,snake_cityscapes_coco_utils,snake_config, visualize_utils
 import cv2
 import numpy as np
@@ -66,48 +67,31 @@ class Dataset(data.Dataset):
         # print(path)
         assert os.path.exists(path)
         img = cv2.imread(path)
+        # if(path=='data/d2sa/images/D2S_88000919.jpg'):
+        #     print('wait')
         #if(type(anno[0]['segmentation'])==dict):
         for obj in anno:
-            if(type(obj['segmentation'])!=dict):
-                continue
-            seg_contour=[]
-            t=mask_util.decode(obj['segmentation'])      
-            poly=data_utils.polygonFromMask(t)
+            if(type(obj['segmentation'])==dict):
+                seg_contour=[]
+                t=mask_util.decode(obj['segmentation'])
+                poly=data_utils.polygonFromMask(t)
+                if(len(poly)==0):
+                    print("errno")
+                for p in poly:
+                    seg_contour.append(p)
+                obj['segmentation']=seg_contour
+            
+            if(type(obj['visible_mask'])==dict):
+                seg_contour=[]
+                t=mask_util.decode(obj['visible_mask'])      
+                vis_poly=data_utils.polygonFromMask(t)
 
-            if(len(poly)==0):
-                print("errno")
-            for p in poly:
-                seg_contour.append(p)
-            obj['segmentation']=seg_contour
-        #visible 
-        for obj in anno:
-            if(type(obj['visible_mask'])!=dict):
-                continue
-            seg_contour=[]
-            t=mask_util.decode(obj['visible_mask'])      
-            poly=data_utils.polygonFromMask(t)
-
-            if(len(poly)==0):
-                print("errno")
-            for p in poly:
-                seg_contour.append(p)
-            obj['visible_mask']=seg_contour
-
-        # for obj in anno:
-        #     if(obj.__contains__("invisible_mask") == False):
-        #         continue
-        #     self.counter += 1
-        #     if(type(obj['invisible_mask'])!=dict):
-        #         continue
-        #     seg_contour=[]
-        #     t=mask_util.decode(obj['invisible_mask'])      
-        #     poly=data_utils.polygonFromMask(t)
-
-        #     if(len(poly)==0):
-        #         print("errno")
-        #     for p in poly:
-        #         seg_contour.append(p)
-        #     obj['invisible_mask']=seg_contour
+                if(len(vis_poly)==0):
+                    vis_poly = poly
+                    #print("errno") 全遮挡数据，这里vis_poly直接就当是amodal poly，作为数据增强部分
+                for p in vis_poly:
+                    seg_contour.append(p)
+                obj['visible_mask']=seg_contour
         try:
             if not self.istrain:  ## 这里使用的数据集为原装coco_amodal_val2014.json 但这里的segmentation
                 #instance_polys = [[[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']]for obj in pic['regions']] for pic in anno]
@@ -273,8 +257,12 @@ class Dataset(data.Dataset):
         instance_polys = self.get_valid_polys(instance_polys, inp_out_hw)
         vis_polys = self.transform_original_data(vis_polys, flipped, width, trans_output, inp_out_hw)
         vis_polys = self.get_valid_polys(vis_polys, inp_out_hw)
+        # for i in range(len(vis_polys)):
+        #     if len(vis_polys[i])==0:
+        #         vis_polys[i]=instance_polys[i]
         # extreme_points = self.get_extreme_points(instance_polys)
-
+        if (len(instance_polys)!=len(vis_polys)):
+            print("debug point")
         # detection
         output_h, output_w = inp_out_hw[2:]
         # print(cfg.heads.ct_hm)
@@ -294,18 +282,25 @@ class Dataset(data.Dataset):
         # i_it_pys = []
         # c_it_pys = []
         i_gt_pys = []
-        i_gt_vis_pys = []
-        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
-        visible_mask = snake_voc_utils.per_polygon_to_mask(vis_polys, output_h, output_w) #获得每个instance的visible mask
+        # if(path == 'data/d2sa/images/D2S_88001379.jpg'):
+        #     print('debug point')
+        per_ins_cmask, mask1 = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
+        visible_mask, mask2= snake_voc_utils.per_polygon_to_mask(vis_polys, output_h, output_w) #获得每个instance的visible mask
+        if visible_mask.shape[0]!=per_ins_cmask.shape[0]:
+            print("debug point")
+        if(np.all(mask1) == False):
+            per_ins_cmask = per_ins_cmask[mask1]
+            visible_mask = visible_mask[mask1]
         cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:] #获得全图的boundary mask
         # c_gt_pys = []
-
+        # i=1
+        # image = Image.fromarray((per_ins_cmask[i]*255).astype(np.uint8))
+        # image2 = Image.fromarray((visible_mask[i]*255).astype(np.uint8))
+        # image.save("binary_image.jpg")
+        # image2.save("binary_vis_image.jpg")
         for i in range(len(anno)):
             cls_id = cls_ids[i]
             instance_poly = instance_polys[i]
-            vis_poly = vis_polys[i]
-            # instance_points = extreme_points[i]
-
             for j in range(len(instance_poly)):
                 poly = instance_poly[j]
                 # extreme_point = instance_points[j]
@@ -323,9 +318,6 @@ class Dataset(data.Dataset):
                 # self.prepare_evolution(bbox, poly, extreme_point, i_it_pys, c_it_pys, i_gt_pys, c_gt_pys, inp_out_hw)
                 self.prepare_evolution(poly, i_gt_pys)
 
-            for j in range(len(vis_poly)):
-                poly = vis_poly[j]
-                self.prepare_evolution(poly, i_gt_vis_pys)
         ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'visible_mask': visible_mask}
         # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
@@ -333,7 +325,7 @@ class Dataset(data.Dataset):
         # evolution = {'i_it_py': i_it_pys, 'c_it_py': c_it_pys, 'i_gt_py': i_gt_pys, 'c_gt_py': c_gt_pys}
         # i_gt_pys[:,0]=i_gt_pys[:,0]/output_w
         # i_gt_pys[:,1]=i_gt_pys[:,1]/output_h
-        evolution = {'i_gt_py': i_gt_pys,'i_gt_vis_py': i_gt_vis_pys}
+        evolution = {'i_gt_py': i_gt_pys}
         ret.update(detection)
         # ret.update(init)
         ret.update(evolution)
