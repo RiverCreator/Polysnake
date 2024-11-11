@@ -1,12 +1,11 @@
 ninja_required_version = 1.3
 cxx = c++
-nvcc = /usr/local/cuda-11.7/bin/nvcc
+nvcc = /usr/local/cuda/bin/nvcc
 
-cflags = -pthread -B /home/river/anaconda3/envs/e2ec/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DWITH_CUDA -I/home/river/workplace/Polysnake/lib/csrc/roi_align_layer -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/TH -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda-11.7/include -I/home/river/anaconda3/envs/e2ec/include/python3.7m -c
+cflags = -pthread -B /home/river/anaconda3/envs/e2ec/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DWITH_CUDA -I/data0/river/Polysnake/lib/csrc/roi_align_layer -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/TH -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/river/anaconda3/envs/e2ec/include/python3.7m -c
 post_cflags = -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_roi_align -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
-cuda_cflags = -DWITH_CUDA -I/home/river/workplace/Polysnake/lib/csrc/roi_align_layer -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/TH -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda-11.7/include -I/home/river/anaconda3/envs/e2ec/include/python3.7m -c
+cuda_cflags = -DWITH_CUDA -I/data0/river/Polysnake/lib/csrc/roi_align_layer -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/TH -I/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/river/anaconda3/envs/e2ec/include/python3.7m -c
 cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_roi_align -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -std=c++14
-cuda_dlink_post_cflags = 
 ldflags = 
 
 rule compile
@@ -21,13 +20,9 @@ rule cuda_compile
 
 
 
-
-
-build /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/home/river/workplace/Polysnake/lib/csrc/roi_align_layer/cpu/ROIAlign_cpu.o: compile /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/cpu/ROIAlign_cpu.cpp
-build /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/home/river/workplace/Polysnake/lib/csrc/roi_align_layer/cuda/ROIAlign_cuda.o: cuda_compile /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/cuda/ROIAlign_cuda.cu
-build /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/home/river/workplace/Polysnake/lib/csrc/roi_align_layer/vision.o: compile /home/river/workplace/Polysnake/lib/csrc/roi_align_layer/vision.cpp
-
-
+build /data0/river/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/data0/river/Polysnake/lib/csrc/roi_align_layer/cpu/ROIAlign_cpu.o: compile /data0/river/Polysnake/lib/csrc/roi_align_layer/cpu/ROIAlign_cpu.cpp
+build /data0/river/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/data0/river/Polysnake/lib/csrc/roi_align_layer/cuda/ROIAlign_cuda.o: cuda_compile /data0/river/Polysnake/lib/csrc/roi_align_layer/cuda/ROIAlign_cuda.cu
+build /data0/river/Polysnake/lib/csrc/roi_align_layer/build/temp.linux-x86_64-cpython-37/data0/river/Polysnake/lib/csrc/roi_align_layer/vision.o: compile /data0/river/Polysnake/lib/csrc/roi_align_layer/vision.cpp
 
 
 

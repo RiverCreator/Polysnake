@@ -1,0 +1,81 @@
+unknown option --listen
+usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 123
+train: Epoch: 0	
+loading annotations into memory...
+Done (t=0.52s)
+creating index...
+index created!
+WARNING: NO MODEL LOADED !!!
+loading annotations into memory...
+Done (t=7.38s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.87s)
+creating index...
+index created!
+NaN or Inf found in input tensor.
+NaN or Inf found in input tensor.
+NaN or Inf found in input tensor.
+train: Epoch: 1	
+eta: 0:00:37  epoch: 0  step: 100  mask_loss: 1.0179  ct_loss: 41.0647  wh_loss: 3.2628  py_loss: 17.7418  shape_loss: 1.2652  dct_x_loss: 1.5568  dct_bfg_loss: 0.1743  dct_patch_vector_loss: nan  box_mask_loss: nan  loss: nan  data: 0.0702  batch: 1.3812  lr: 0.000033  max_mem: 18585
+eta: 0:00:01  epoch: 0  step: 124  mask_loss: 0.9964  ct_loss: 25.0241  wh_loss: 2.9916  py_loss: 15.8238  shape_loss: 1.4352  dct_x_loss: 1.7353  dct_bfg_loss: 0.3208  dct_patch_vector_loss: 5.0659  box_mask_loss: 7.1852  loss: 53.4563  data: 0.0681  batch: 1.3043  lr: 0.000033  max_mem: 18585
+train: Epoch: 2	
+eta: 0:00:37  epoch: 1  step: 225  mask_loss: 0.8588  ct_loss: 6.7838  wh_loss: 1.9460  py_loss: 9.6884  shape_loss: 1.5241  dct_x_loss: 3.7187  dct_bfg_loss: 1.8802  dct_patch_vector_loss: 4.2288  box_mask_loss: 9.9477  loss: 30.7490  data: 0.0683  batch: 1.3713  lr: 0.000047  max_mem: 19095
+eta: 0:00:01  epoch: 1  step: 249  mask_loss: 0.8187  ct_loss: 5.8777  wh_loss: 1.7687  py_loss: 8.7184  shape_loss: 1.4061  dct_x_loss: 4.0138  dct_bfg_loss: 2.1194  dct_patch_vector_loss: 4.1139  box_mask_loss: 10.3817  loss: 28.9713  data: 0.0616  batch: 1.2927  lr: 0.000047  max_mem: 19095
+train: Epoch: 3	
+eta: 0:00:36  epoch: 2  step: 350  mask_loss: 0.6397  ct_loss: 4.4146  wh_loss: 1.1931  py_loss: 5.8631  shape_loss: 0.6675  dct_x_loss: 3.7361  dct_bfg_loss: 2.4257  dct_patch_vector_loss: 3.5616  box_mask_loss: 9.8691  loss: 22.6470  data: 0.0697  batch: 1.3668  lr: 0.000060  max_mem: 19095
+eta: 0:00:01  epoch: 2  step: 374  mask_loss: 0.6161  ct_loss: 4.2540  wh_loss: 1.2087  py_loss: 5.9716  shape_loss: 0.6063  dct_x_loss: 3.7466  dct_bfg_loss: 2.2836  dct_patch_vector_loss: 3.5393  box_mask_loss: 9.7165  loss: 22.3731  data: 0.0620  batch: 1.3347  lr: 0.000060  max_mem: 19095
+train: Epoch: 4	
+eta: 0:00:36  epoch: 3  step: 475  mask_loss: 0.5219  ct_loss: 3.7595  wh_loss: 1.0937  py_loss: 5.2292  shape_loss: 0.4344  dct_x_loss: 3.7791  dct_bfg_loss: 1.9511  dct_patch_vector_loss: 3.2900  box_mask_loss: 9.1623  loss: 20.2009  data: 0.0651  batch: 1.4387  lr: 0.000073  max_mem: 19095
+eta: 0:00:01  epoch: 3  step: 499  mask_loss: 0.5204  ct_loss: 3.6644  wh_loss: 1.0489  py_loss: 4.9787  shape_loss: 0.4165  dct_x_loss: 3.7894  dct_bfg_loss: 1.9470  dct_patch_vector_loss: 3.2690  box_mask_loss: 9.1438  loss: 19.7727  data: 0.0669  batch: 1.3093  lr: 0.000073  max_mem: 19095
+train: Epoch: 5	
+eta: 0:00:36  epoch: 4  step: 600  mask_loss: 0.4707  ct_loss: 3.4644  wh_loss: 1.0352  py_loss: 4.8514  shape_loss: 0.4110  dct_x_loss: 3.8113  dct_bfg_loss: 1.7632  dct_patch_vector_loss: 3.0640  box_mask_loss: 8.7744  loss: 19.0071  data: 0.0710  batch: 1.3885  lr: 0.000087  max_mem: 19095
+eta: 0:00:01  epoch: 4  step: 624  mask_loss: 0.4770  ct_loss: 3.4358  wh_loss: 1.0537  py_loss: 4.9735  shape_loss: 0.4287  dct_x_loss: 3.7812  dct_bfg_loss: 1.7318  dct_patch_vector_loss: 3.0477  box_mask_loss: 8.6941  loss: 19.0629  data: 0.0673  batch: 1.3081  lr: 0.000087  max_mem: 19095
+train: Epoch: 6	
+eta: 0:00:36  epoch: 5  step: 725  mask_loss: 0.4432  ct_loss: 3.2674  wh_loss: 1.0061  py_loss: 4.7419  shape_loss: 0.4063  dct_x_loss: 3.8189  dct_bfg_loss: 1.6810  dct_patch_vector_loss: 2.9465  box_mask_loss: 8.5801  loss: 18.4449  data: 0.0711  batch: 1.3811  lr: 0.000100  max_mem: 19095
+eta: 0:00:01  epoch: 5  step: 749  mask_loss: 0.4379  ct_loss: 3.2165  wh_loss: 0.9917  py_loss: 4.5729  shape_loss: 0.3997  dct_x_loss: 3.7641  dct_bfg_loss: 1.6381  dct_patch_vector_loss: 2.8871  box_mask_loss: 8.4194  loss: 18.0382  data: 0.0650  batch: 1.3035  lr: 0.000100  max_mem: 19095
+train: Epoch: 7	
+eta: 0:00:36  epoch: 6  step: 850  mask_loss: 0.4197  ct_loss: 3.1499  wh_loss: 1.0389  py_loss: 4.7297  shape_loss: 0.4140  dct_x_loss: 3.7049  dct_bfg_loss: 1.6024  dct_patch_vector_loss: 2.8373  box_mask_loss: 8.2762  loss: 18.0284  data: 0.0661  batch: 1.3576  lr: 0.000100  max_mem: 19095
+eta: 0:00:01  epoch: 6  step: 874  mask_loss: 0.4230  ct_loss: 3.1134  wh_loss: 0.9686  py_loss: 4.4301  shape_loss: 0.3971  dct_x_loss: 3.6565  dct_bfg_loss: 1.5581  dct_patch_vector_loss: 2.7997  box_mask_loss: 8.1422  loss: 17.4744  data: 0.0705  batch: 1.3671  lr: 0.000100  max_mem: 19095
+train: Epoch: 8	
+eta: 0:00:36  epoch: 7  step: 975  mask_loss: 0.4022  ct_loss: 2.9677  wh_loss: 0.9253  py_loss: 4.1078  shape_loss: 0.3612  dct_x_loss: 3.5616  dct_bfg_loss: 1.3719  dct_patch_vector_loss: 2.6354  box_mask_loss: 7.6939  loss: 16.4581  data: 0.0716  batch: 1.4002  lr: 0.000100  max_mem: 19095
+eta: 0:00:01  epoch: 7  step: 999  mask_loss: 0.3934  ct_loss: 2.9905  wh_loss: 0.9822  py_loss: 4.3933  shape_loss: 0.3963  dct_x_loss: 3.5904  dct_bfg_loss: 1.4299  dct_patch_vector_loss: 2.6183  box_mask_loss: 7.7649  loss: 16.9207  data: 0.0619  batch: 1.2705  lr: 0.000100  max_mem: 19095
+train: Epoch: 9	
+eta: 0:00:36  epoch: 8  step: 1100  mask_loss: 0.3938  ct_loss: 2.8966  wh_loss: 0.9985  py_loss: 4.4294  shape_loss: 0.3986  dct_x_loss: 3.4920  dct_bfg_loss: 1.3086  dct_patch_vector_loss: 2.5556  box_mask_loss: 7.4792  loss: 16.5961  data: 0.0663  batch: 1.3594  lr: 0.000100  max_mem: 19260
+eta: 0:00:01  epoch: 8  step: 1124  mask_loss: 0.3899  ct_loss: 2.8866  wh_loss: 0.9609  py_loss: 4.2740  shape_loss: 0.3828  dct_x_loss: 3.5308  dct_bfg_loss: 1.3717  dct_patch_vector_loss: 2.6062  box_mask_loss: 7.6371  loss: 16.5314  data: 0.0659  batch: 1.3314  lr: 0.000100  max_mem: 19433
+  0%|          | 0/3600 [00:00<?, ?it/s]  0%|          | 0/3600 [00:02<?, ?it/s]
+Traceback (most recent call last):
+  File "train_net.py", line 89, in <module>
+    main()
+  File "train_net.py", line 80, in main
+    train(cfg, network)
+  File "train_net.py", line 59, in train
+    val_state=trainer.val(epoch, val_loader, evaluator, recorder)
+  File "/data0/river/Polysnake/lib/train/trainers/trainer.py", line 83, in val
+    output, loss, loss_stats, image_stats = self.network(batch)
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/nn/parallel/data_parallel.py", line 166, in forward
+    return self.module(*inputs[0], **kwargs[0])
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "lib/train/trainers/snake.py", line 116, in forward
+    output = self.net(batch['inp'], batch)
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "lib/networks/snake/ct_snake.py", line 35, in forward
+    output = self.raft(output, cnn_feature, fine_feature, batch) #这里的batch
+  File "/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "lib/networks/snake/ICD.py", line 268, in forward
+    i_poly_fea , predication= self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1]) #init['ind'])
+ValueError: too many values to unpack (expected 2)
