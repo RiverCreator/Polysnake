@@ -2,8 +2,8 @@ model: 'd2sa_snake'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [1]
-iter_num: 5
+gpus: [2]
+iter_num: 7
 score_thresh: 0.05
 num_classes: 60
 train:
@@ -11,7 +11,7 @@ train:
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 16
+    batch_size: 12
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300

@@ -86,8 +86,8 @@ class Dataset(data.Dataset):
                 t=mask_util.decode(obj['visible_mask'])      
                 vis_poly=data_utils.polygonFromMask(t)
 
-                if(len(vis_poly)==0):
-                    vis_poly = poly
+                # if(len(vis_poly)==0):
+                #     vis_poly = poly
                     #print("errno") 全遮挡数据，这里vis_poly直接就当是amodal poly，作为数据增强部分
                 for p in vis_poly:
                     seg_contour.append(p)
