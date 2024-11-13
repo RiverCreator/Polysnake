@@ -130,7 +130,7 @@ class DatasetCatalog(object):
         'D2saTrain':{
             'id': 'd2sa',
             'data_root': 'data/d2sa/images',
-            'ann_file': ['data/d2sa/annotations/D2S_amodal_augmented_amodal.json','data/d2sa/annotations/D2S_amodal_training_rot0.json'],
+            'ann_file': ['data/d2sa/annotations/D2S_amodal_augmented.json','data/d2sa/annotations/D2S_amodal_training_rot0.json'],
             'split': 'train' 
         },
         'D2saVal':{

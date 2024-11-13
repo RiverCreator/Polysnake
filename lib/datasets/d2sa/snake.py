@@ -227,7 +227,9 @@ class Dataset(data.Dataset):
         # i_it_pys = []
         # c_it_pys = []
         i_gt_pys = []
-        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask, ind_mask = snake_voc_utils.per_polygon_to_mask2(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask=per_ins_cmask[ind_mask]
+        
         cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:] #获得全图的boundary mask
         # c_gt_pys = []
 

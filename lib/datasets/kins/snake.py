@@ -226,8 +226,9 @@ class Dataset(data.Dataset):
         # c_it_pys = []
         i_gt_pys = []
         # c_gt_pys = []
-
-        cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]  ## 将polygon转换为mask
+        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
+        #per_ins_cmask=per_ins_cmask[ind_mask]
+        cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]  ## 将polygon转换为mask        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask 
         for i in range(len(anno)):
             cls_id = cls_ids[i]
             instance_poly = instance_polys[i]
@@ -259,7 +260,7 @@ class Dataset(data.Dataset):
         # meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num}
         # ret.update({'meta': meta})
         
-        ret = {'inp': inp, 'cmask': cmask}
+        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         evolution = {'i_gt_py': i_gt_pys}
         ret.update(detection)

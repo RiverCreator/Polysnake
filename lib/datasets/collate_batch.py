@@ -22,7 +22,13 @@ def snake_collator(batch):
     ct_num = torch.max(meta['ct_num'])
     per_ins_cmask = torch.zeros([batch_size, ct_num, h, w],dtype=torch.float)
     for i in range(batch_size):
-        per_ins_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['per_ins_cmask'])
+        try:
+            if(meta['ct_num'][i]>0):
+                per_ins_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['per_ins_cmask'])
+            else:
+                continue
+        except:
+            print("debug point")
     # wh = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     # reg = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     ct_cls = torch.zeros([batch_size, ct_num], dtype=torch.int64)

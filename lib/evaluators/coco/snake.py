@@ -71,29 +71,29 @@ class Evaluator:
         #     cond_pred.append(t)
         
         # #rles_cond = snake_eval_utils.binary_mask_to_rle(cond_pred)
-        image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
+        # image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
         
-        dir="visual_pic/{}".format(self.i)
-        #visualize_contour(dir,output,batch)
+        # dir="visual_pic/{}".format(self.i)
+        # #visualize_contour(dir,output,batch)
 
-        image=Image.open(batch['meta']['path'][0])
-        dir="visual_pic/{}".format(self.i)
-        if os.path.exists(dir):
-            shutil.rmtree(dir)
-        os.mkdir(dir)
-        shutil.copy(batch['meta']['path'][0],dir)
-        for i in range(len(py)):
-            draw = ImageDraw.Draw(image)
-            tmp=[]
-            for j in range(len(py[i])):
-                tmp.append((py[i][j][0],py[i][j][1]))
+        # image=Image.open(batch['meta']['path'][0])
+        # dir="visual_pic/{}".format(self.i)
+        # if os.path.exists(dir):
+        #     shutil.rmtree(dir)
+        # os.mkdir(dir)
+        # shutil.copy(batch['meta']['path'][0],dir)
+        # for i in range(len(py)):
+        #     draw = ImageDraw.Draw(image)
+        #     tmp=[]
+        #     for j in range(len(py[i])):
+        #         tmp.append((py[i][j][0],py[i][j][1]))
             
-            polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-            draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
-            try:
-                image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
-            except:
-                print('wrong')
+        #     polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        #     draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
+        #     try:
+        #         image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
+        #     except:
+        #         print('wrong')
         # for i in range(len(cond_pred)):
         #     #image=Image.open(batch['meta']['path'][0])
         #     src = cv2.imread(batch['meta']['path'][0])

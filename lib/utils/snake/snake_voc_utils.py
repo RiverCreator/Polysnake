@@ -248,8 +248,42 @@ def per_polygon_to_mask(polys,h,w):
             # polyn= [polyn]
             # cv2.drawContours(cmask, polyn, -1, 1, 1)
             per_ins_cmask.append(cmask[np.newaxis,:,:])
-    return np.concatenate(per_ins_cmask,axis=0)
-        
+        # else:
+        #     cmask = np.zeros((h, w), dtype=np.uint8)
+        #     per_ins_cmask.append(cmask[np.newaxis,:,:])
+    try:
+        if(len(per_ins_cmask)>0):
+            return np.concatenate(per_ins_cmask,axis=0)
+        else:
+            return np.array([], dtype=np.uint8)
+    except:
+        print("debug point")
+
+def per_polygon_to_mask2(polys,h,w):
+    per_ins_cmask = []
+    mask = np.ones(len(polys), dtype=bool)
+    for i in range(len(polys)):
+        poly = polys[i]
+        if(len(poly)):
+            cmask = np.zeros((h, w), dtype=np.uint8)
+            try:
+                if(len(poly)>1):
+                    cv2.fillPoly(cmask, [np.round(p).astype(int) for p in poly], 1)
+                else:
+                    cv2.fillPoly(cmask, [np.round(poly).astype(int)], 1)
+            except:
+                print("debug point")
+            # polyn = np.round(poly).astype(int)
+            # polyn= [polyn]
+            # cv2.drawContours(cmask, polyn, -1, 1, 1)
+            per_ins_cmask.append(cmask[np.newaxis,:,:])
+        else:
+            mask[i]=False
+            cmask = np.zeros((h, w), dtype=np.uint8)
+            per_ins_cmask.append(cmask[np.newaxis,:,:])
+    return np.concatenate(per_ins_cmask,axis=0), mask
+
+
 def polygon_to_cmask(poly, h, w):
     cmask = np.zeros((h, w), dtype=np.uint8)
     # try:
