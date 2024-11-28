@@ -29,6 +29,12 @@ def snake_collator(batch):
                 continue
         except:
             print("debug point")
+    per_vis_cmask = torch.zeros([batch_size, ct_num, h, w],dtype=torch.float)
+    for i in range(batch_size):
+        try:
+            per_vis_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['visible_mask'])
+        except:
+            print("debug point")
     # wh = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     # reg = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)
     ct_cls = torch.zeros([batch_size, ct_num], dtype=torch.int64)
@@ -48,7 +54,7 @@ def snake_collator(batch):
         ct_ind[ct_01] = torch.LongTensor(sum([b['ct_ind'] for b in batch], [])) #指明bacth中每个ct对应的ind，可以直接计算其位置
         #one_hot_ct_cls[ct_01] = torch.FloatTensor(sum([b['one_hot_ct_cls'] for b in batch], []))
 
-    detection = {'ct_hm': ct_hm, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
+    detection = {'ct_hm': ct_hm, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'per_vis_cmask':per_vis_cmask, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
     # detection = {'ct_hm': ct_hm, 'wh': wh, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float(), 'ct_img_idx': ct_img_idx}
     # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind, 'ct_01': ct_01.float()}
     ret.update(detection)

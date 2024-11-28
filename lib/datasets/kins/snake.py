@@ -28,25 +28,46 @@ class Dataset(data.Dataset):
         anno = self.coco.loadAnns(ann_ids)
         path = os.path.join(self.data_root, self.coco.loadImgs(int(img_id))[0]['file_name'])
         return anno, path, img_id
-
+    
     def read_original_data(self, anno, path):
+        # print(path)
+        assert os.path.exists(path)
         img = cv2.imread(path)
-        if(type(anno[0]['segmentation'])==dict):
-            for obj in anno:
+        #if(type(anno[0]['segmentation'])==dict):
+        for obj in anno:
+            if(type(obj['segmentation'])==dict):
                 seg_contour=[]
-                t=mask_util.decode(obj['segmentation'])       
+                t=mask_util.decode(obj['segmentation'])      
                 poly=data_utils.polygonFromMask(t)
                 if(len(poly)==0):
                     print("errno")
                 for p in poly:
                     seg_contour.append(p)
                 obj['segmentation']=seg_contour
-        # if not self.istrain:
-        #     print("debug point")
-        instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno   ## [[[]]] instance_polys[0][0][0]为array([690,182])
-                          if not isinstance(obj['segmentation'], dict)]
+                
+            if(type(obj['inmodal_seg'])==dict):
+                vis_seg_contour=[]
+                t=mask_util.decode(obj['inmodal_seg'])      
+                vis_poly=data_utils.polygonFromMask(t)
+
+                # if(len(vis_poly)==0):
+                #     vis_poly = poly
+                    #print("errno") 全遮挡数据，这里vis_poly直接就当是amodal poly，作为数据增强部分
+                for p in vis_poly:
+                    vis_seg_contour.append(p)
+                obj['visible_mask']=vis_seg_contour
+        try:
+            if not self.istrain:  ## 这里使用的数据集为原装coco_amodal_val2014.json 但这里的segmentation
+                #instance_polys = [[[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']]for obj in pic['regions']] for pic in anno]
+                instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['visible_mask']] for obj in anno]
+            else:
+                instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['visible_mask']] for obj in anno]
+        except:
+            print("debug point")
         cls_ids = [self.json_category_id_to_contiguous_id[obj['category_id']] for obj in anno]
-        return img, instance_polys, cls_ids
+        return img, instance_polys, cls_ids, vis_polys
 
     def transform_original_data(self, instance_polys, flipped, width, trans_output, inp_out_hw):
         output_h, output_w = inp_out_hw[2:]
@@ -65,17 +86,32 @@ class Dataset(data.Dataset):
             instance_polys_.append(polys)
         return instance_polys_
 
-    def get_valid_polys(self, instance_polys):
+    # def get_valid_polys(self, instance_polys):
+    #     instance_polys_ = []
+    #     for instance in instance_polys:
+    #         instance = [poly for poly in instance if len(poly) >= 4]
+    #         polys = snake_kins_utils.filter_tiny_polys(instance)
+    #         polys = snake_kins_utils.get_cw_polys(polys)
+    #         polys = [poly[np.sort(np.unique(poly, axis=0, return_index=True)[1])] for poly in polys]
+    #         polys = [poly for poly in polys if len(poly) >= 4]
+    #         instance_polys_.append(polys)
+    #     return instance_polys_
+    
+    def get_valid_polys(self, instance_polys, inp_out_hw):
+        output_h, output_w = inp_out_hw[2:]
         instance_polys_ = []
         for instance in instance_polys:
             instance = [poly for poly in instance if len(poly) >= 4]
+            for poly in instance:
+                poly[:, 0] = np.clip(poly[:, 0], 0, output_w - 1)
+                poly[:, 1] = np.clip(poly[:, 1], 0, output_h - 1)
             polys = snake_kins_utils.filter_tiny_polys(instance)
             polys = snake_kins_utils.get_cw_polys(polys)
             polys = [poly[np.sort(np.unique(poly, axis=0, return_index=True)[1])] for poly in polys]
             polys = [poly for poly in polys if len(poly) >= 4]
             instance_polys_.append(polys)
+            
         return instance_polys_
-
     def get_extreme_points(self, instance_polys):
         extreme_points = []
         for instance in instance_polys:
@@ -195,7 +231,7 @@ class Dataset(data.Dataset):
 
         anno, path, img_id = self.process_info(ann)  ### anno[0]['segmentation']=[[]]
         ## img为对应原图数据，instance_polys为标注中的segmentation，数量不统一，cls_ids为对应分割实例的类别
-        img, instance_polys, cls_ids = self.read_original_data(anno, path)
+        img, instance_polys, cls_ids, vis_polys = self.read_original_data(anno, path)
 
         height, width = img.shape[0], img.shape[1]
         orig_img, inp, trans_input, trans_output, flipped, center, scale, inp_out_hw = \
@@ -205,7 +241,9 @@ class Dataset(data.Dataset):
                 snake_config.mean, snake_config.std, instance_polys
             )
         instance_polys = self.transform_original_data(instance_polys, flipped, width, trans_output, inp_out_hw)  #经过数据增强后还需要对poly points及逆行仿射变换
-        instance_polys = self.get_valid_polys(instance_polys)
+        instance_polys = self.get_valid_polys(instance_polys, inp_out_hw)
+        vis_polys = self.transform_original_data(vis_polys, flipped, width, trans_output, inp_out_hw)
+        vis_polys = self.get_valid_polys(vis_polys, inp_out_hw)
         # extreme_points = self.get_extreme_points(instance_polys)
 
         # detection
@@ -226,7 +264,10 @@ class Dataset(data.Dataset):
         # c_it_pys = []
         i_gt_pys = []
         # c_gt_pys = []
-        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask, ind_mask = snake_voc_utils.per_polygon_to_mask2(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask = per_ins_cmask[ind_mask]
+        visible_mask, _= snake_voc_utils.per_polygon_to_mask2(vis_polys, output_h, output_w) #获得每个instance的visible mask
+        visible_mask = visible_mask[ind_mask] 
         #per_ins_cmask=per_ins_cmask[ind_mask]
         cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]  ## 将polygon转换为mask        per_ins_cmask = snake_voc_utils.per_polygon_to_mask(instance_polys, output_h, output_w) #获得每个instance完整mask 
         for i in range(len(anno)):
@@ -260,7 +301,7 @@ class Dataset(data.Dataset):
         # meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num}
         # ret.update({'meta': meta})
         
-        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask}
+        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask,'visible_mask': visible_mask}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         evolution = {'i_gt_py': i_gt_pys}
         ret.update(detection)

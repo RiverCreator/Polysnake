@@ -13,7 +13,7 @@ train:
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 4
+    batch_size: 2
     dataset: 'KinsTrain'
     num_workers: 12
     epoch: 300

@@ -7854,3 +7854,2764 @@ train: Epoch:175
 train: Epoch:66	
 train: Epoch:176	
 train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:69	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch:70	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch:71	
+train: Epoch: 2	
+train: Epoch:72	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch:73	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch:74	
+train: Epoch: 7	
+train: Epoch:75	
+train: Epoch: 8	
+train: Epoch: 9	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+save best ap:0.35662832948953516
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:79	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+save best ap:0.30934263954775343
+train: Epoch:80	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:81	
+train: Epoch:19	
+train: Epoch:82	
+train: Epoch:83	
+save best ap:0.619356977848247
+train: Epoch:20	
+train: Epoch:84	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:85	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:86	
+train: Epoch:25	
+train: Epoch:87	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:88	
+train: Epoch:28	
+train: Epoch:89	
+train: Epoch:29	
+save best ap:0.6644969355376732
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+save best ap:0.3428841776321688
+train: Epoch:90	
+train: Epoch:33	
+train: Epoch:91	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:92	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:93	
+train: Epoch:38	
+train: Epoch:94	
+train: Epoch:39	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:97	
+train: Epoch:42	
+train: Epoch:98	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:99	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:50	
+train: Epoch:102	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:103	
+train: Epoch:53	
+train: Epoch:104	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:105	
+train: Epoch:56	
+train: Epoch:106	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:107	
+train: Epoch:59	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.6822309113098236
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:110	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:111	
+train: Epoch:67	
+train: Epoch:112	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:70	
+train: Epoch:115	
+train: Epoch:71	
+train: Epoch:116	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:117	
+train: Epoch:74	
+train: Epoch:118	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:119	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.3445007549685439
+train: Epoch:120	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:121	
+train: Epoch:82	
+train: Epoch:122	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:123	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:124	
+train: Epoch:87	
+train: Epoch:125	
+train: Epoch:88	
+train: Epoch:89	
+train: Epoch:126	
+train: Epoch:127	
+save best ap:0.7195796024693564
+train: Epoch:90	
+train: Epoch:128	
+train: Epoch:91	
+train: Epoch:129	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+save best ap:0.34665713250724495
+train: Epoch:130	
+train: Epoch:98	
+train: Epoch:131	
+train: Epoch:99	
+train: Epoch:132	
+train: Epoch:133	
+save best ap:0.7260251343602334
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:134	
+train: Epoch:102	
+train: Epoch:135	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:136	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:137	
+train: Epoch:107	
+train: Epoch:138	
+train: Epoch:108	
+train: Epoch:109	
+train: Epoch:139	
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+save best ap:0.35162538446624697
+train: Epoch:140	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:141	
+train: Epoch:115	
+train: Epoch:142	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:143	
+train: Epoch:118	
+train: Epoch:144	
+train: Epoch:119	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:147	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:148	
+train: Epoch:124	
+train: Epoch:149	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+save best ap:0.3528610283585094
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:152	
+train: Epoch:132	
+train: Epoch:153	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:154	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:155	
+train: Epoch:137	
+train: Epoch:156	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:140	
+train: Epoch:159	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:160	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:161	
+train: Epoch:148	
+train: Epoch:162	
+train: Epoch:149	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:165	
+train: Epoch:152	
+train: Epoch:166	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:167	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:168	
+train: Epoch:157	
+train: Epoch:169	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:170	
+train: Epoch:162	
+train: Epoch:171	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:172	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:173	
+train: Epoch:167	
+train: Epoch:174	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:170	
+train: Epoch:177	
+train: Epoch:171	
+train: Epoch:178	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:179	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:180	
+train: Epoch:179	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:183	
+train: Epoch:182	
+train: Epoch:184	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:190	
+train: Epoch:195	
+train: Epoch:191	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:192	
+train: Epoch:198	
+train: Epoch:193	
+train: Epoch:199	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:196	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:197	
+train: Epoch:204	
+train: Epoch:198	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:199	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:200	
+train: Epoch:211	
+train: Epoch:201	
+train: Epoch:212	
+train: Epoch:213	
+train: Epoch:202	
+train: Epoch:214	
+train: Epoch:215	
+train: Epoch:203	
+train: Epoch:216	
+train: Epoch:204	
+train: Epoch:217	
+train: Epoch:218	
+train: Epoch:205	
+train: Epoch:219	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:220	
+train: Epoch:221	
+train: Epoch:208	
+train: Epoch:222	
+train: Epoch:209	
+train: Epoch:223	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 2	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 8	
+train: Epoch: 0	
+train: Epoch: 9	
+train: Epoch: 1	
+save best ap:0.1876468662739027
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch: 2	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch: 3	
+train: Epoch:18	
+train: Epoch:19	
+train: Epoch: 4	
+save best ap:0.4780365539376331
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch: 5	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch: 6	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+train: Epoch: 7	
+save best ap:0.4858088847740727
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch: 8	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch: 9	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.489875423122014
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+save best ap:0.09832534326262347
+train: Epoch:10	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+train: Epoch:11	
+save best ap:0.5253364333796544
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:12	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:13	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+train: Epoch:14	
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:15	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:16	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:17	
+Random Seed: 123
+Random Seed: 123
+train: Epoch:15	
+train: Epoch:65	
+Random Seed: 123
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:16	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:17	
+save best ap:0.5712267089940792
+train: Epoch:70	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.21160425479901374
+train: Epoch:20	
+Random Seed: 123
+train: Epoch:70	
+Random Seed: 123
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.2183607689174317
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.03630068325531383
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.07405924616471454
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+train: Epoch:30	
+train: Epoch:31	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.253766733929988
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.639325784246204
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6713123153699427
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6763081739343757
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6926439041955639
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.7152209187421459
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.7314617282591048
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7323333231884678
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+save best ap:0.7346682072741123
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+save best ap:0.7367958724831987
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+save best ap:0.7393584792535639
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:198	
+train: Epoch:199	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:204	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:211	
+train: Epoch:212	
+train: Epoch:213	
+train: Epoch:214	
+train: Epoch:215	
+train: Epoch:216	
+train: Epoch:217	
+train: Epoch:218	
+train: Epoch:219	
+train: Epoch:220	
+train: Epoch:221	
+train: Epoch:222	
+train: Epoch:223	
+train: Epoch:224	
+train: Epoch:225	
+train: Epoch:226	
+train: Epoch:227	
+train: Epoch:228	
+train: Epoch:229	
+train: Epoch:230	
+train: Epoch:231	
+train: Epoch:232	
+train: Epoch:233	
+train: Epoch:234	
+train: Epoch:235	
+train: Epoch:236	
+train: Epoch:237	
+train: Epoch:238	
+train: Epoch:239	
+train: Epoch:240	
+train: Epoch:241	
+train: Epoch:242	
+train: Epoch:243	
+train: Epoch:244	
+train: Epoch:245	
+train: Epoch:246	
+train: Epoch:247	
+train: Epoch:248	
+train: Epoch:249	
+train: Epoch:250	
+train: Epoch:251	
+train: Epoch:252	
+train: Epoch:253	
+train: Epoch:254	
+train: Epoch:255	
+train: Epoch:256	
+train: Epoch:257	
+train: Epoch:258	
+train: Epoch:259	
+train: Epoch:260	
+train: Epoch:261	
+train: Epoch:262	
+train: Epoch:263	
+train: Epoch:264	
+train: Epoch:265	
+train: Epoch:266	
+train: Epoch:267	
+train: Epoch:268	
+train: Epoch:269	
+train: Epoch:270	
+train: Epoch:271	
+train: Epoch:272	
+train: Epoch:273	
+train: Epoch:274	
+train: Epoch:275	
+train: Epoch:276	
+train: Epoch:277	
+train: Epoch:278	
+train: Epoch:279	
+train: Epoch:280	
+train: Epoch:281	
+train: Epoch:282	
+train: Epoch:283	
+train: Epoch:284	
+train: Epoch:285	
+train: Epoch:286	
+train: Epoch:287	
+train: Epoch:288	
+train: Epoch:289	
+train: Epoch:290	
+train: Epoch:291	
+train: Epoch:292	
+train: Epoch:293	
+train: Epoch:294	
+train: Epoch:295	
+train: Epoch:296	
+train: Epoch:297	
+train: Epoch:298	
+train: Epoch:299	
+save best ap:0.7393623863545216
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.2572742605321104
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.6362936355651766
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6428377795289398
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6703959548222828
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6994892150502089
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.711640200887438
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+save best ap:0.721416044191844
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+save best ap:0.7223200878222601
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.2537911373043948
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.6032630228098556
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6494471588373935
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6586178531813838
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6999251663778726
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.702785855714231
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.7209566749460781
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7263239994095012
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+save best ap:0.7276520362987735
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:198	
+train: Epoch:199	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:204	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:211	
+train: Epoch:212	
+train: Epoch:213	
+train: Epoch:214	
+train: Epoch:215	
+train: Epoch:216	
+train: Epoch:217	
+train: Epoch:218	
+train: Epoch:219	
+train: Epoch:220	
+train: Epoch:221	
+train: Epoch:222	
+train: Epoch:223	
+train: Epoch:224	
+train: Epoch:225	
+train: Epoch:226	
+train: Epoch:227	
+train: Epoch:228	
+train: Epoch:229	
+train: Epoch:230	
+train: Epoch:231	
+train: Epoch:232	
+train: Epoch:233	
+train: Epoch:234	
+train: Epoch:235	
+train: Epoch:236	
+train: Epoch:237	
+train: Epoch:238	
+train: Epoch:239	
+train: Epoch:240	
+train: Epoch:241	
+train: Epoch:242	
+train: Epoch:243	
+train: Epoch:244	
+train: Epoch:245	
+train: Epoch:246	
+train: Epoch:247	
+train: Epoch:248	
+train: Epoch:249	
+train: Epoch:250	
+train: Epoch:251	
+train: Epoch:252	
+train: Epoch:253	
+train: Epoch:254	
+train: Epoch:255	
+train: Epoch:256	
+train: Epoch:257	
+train: Epoch:258	
+train: Epoch:259	
+Random Seed: 123
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.31066516600946714
+train: Epoch:10	
+Random Seed: 123
+train: Epoch:10	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.030369449007443802
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.2542639841917705
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.5238447475400145
+train: Epoch:20	
+Random Seed: 123
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.5470253628745007
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6103674891814882
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.6325555532251205
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.6453535049520419
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.6534401177891398
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.6901506930426703
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+save best ap:0.6903142724890418
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+save best ap:0.6920385780918771
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:198	
+train: Epoch:199	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:204	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:211	
+train: Epoch:212	
+train: Epoch:213	
+train: Epoch:214	
+train: Epoch:215	
+train: Epoch:216	
+train: Epoch:217	
+train: Epoch:218	
+train: Epoch:219	
+train: Epoch:220	
+train: Epoch:221	
+train: Epoch:222	
+train: Epoch:223	
+train: Epoch:224	
+train: Epoch:225	
+train: Epoch:226	
+train: Epoch:227	
+train: Epoch:228	
+train: Epoch:229	
+train: Epoch:230	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.280006651443645
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.5579951559169374
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6188427049655254
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6508372629026313
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6726278376079197
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.6915676691328086
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.7062477075519564
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.715858108002922
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:198	
+train: Epoch:199	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:204	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:211	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.291154893561766
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.5390435611458281
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.5930661721500061
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6343423253579598
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.648381556803839
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.6515938479187602
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.6608933144846532
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.6711779055938545
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.692196280322197
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7013630823183503
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+save best ap:0.7023703486849735
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.46047731438129447
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.6006464159124469
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6342211972747624
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6624366025055374
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6706914600876213
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.6769545664635785
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.6844552922896561
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.7035124537213469
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+save best ap:0.7048572757900349
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7140280413455397
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.43674622031949717
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.648478411802849
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+Random Seed: 123
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6566430742290146
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6725450227078038
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6888692012701876
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.7011761896742965
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.7024191263820627
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.7076434829441771
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.720041448191698
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+save best ap:0.7321966885492416
+train: Epoch:100	
+train: Epoch:101	
+Random Seed: 123
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7321381952544254
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+save best ap:0.7418233439227119
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
+save best ap:0.7438623399991161
+train: Epoch:150	
+train: Epoch:151	
+train: Epoch:152	
+train: Epoch:153	
+train: Epoch:154	
+train: Epoch:155	
+train: Epoch:156	
+train: Epoch:157	
+train: Epoch:158	
+train: Epoch:159	
+train: Epoch:160	
+train: Epoch:161	
+train: Epoch:162	
+train: Epoch:163	
+train: Epoch:164	
+train: Epoch:165	
+train: Epoch:166	
+train: Epoch:167	
+train: Epoch:168	
+train: Epoch:169	
+train: Epoch:170	
+train: Epoch:171	
+train: Epoch:172	
+train: Epoch:173	
+train: Epoch:174	
+train: Epoch:175	
+train: Epoch:176	
+train: Epoch:177	
+train: Epoch:178	
+train: Epoch:179	
+train: Epoch:180	
+train: Epoch:181	
+train: Epoch:182	
+train: Epoch:183	
+train: Epoch:184	
+train: Epoch:185	
+train: Epoch:186	
+train: Epoch:187	
+train: Epoch:188	
+train: Epoch:189	
+train: Epoch:190	
+train: Epoch:191	
+train: Epoch:192	
+train: Epoch:193	
+train: Epoch:194	
+train: Epoch:195	
+train: Epoch:196	
+train: Epoch:197	
+train: Epoch:198	
+train: Epoch:199	
+train: Epoch:200	
+train: Epoch:201	
+train: Epoch:202	
+train: Epoch:203	
+train: Epoch:204	
+train: Epoch:205	
+train: Epoch:206	
+train: Epoch:207	
+train: Epoch:208	
+train: Epoch:209	
+train: Epoch:210	
+train: Epoch:211	
+train: Epoch:212	
+train: Epoch:213	
+train: Epoch:214	
+train: Epoch:215	
+train: Epoch:216	
+train: Epoch:217	
+train: Epoch:218	
+train: Epoch:219	
+train: Epoch:220	
+train: Epoch:221	
+train: Epoch:222	
+train: Epoch:223	
+train: Epoch:224	
+train: Epoch:225	
+train: Epoch:226	
+train: Epoch:227	
+train: Epoch:228	
+train: Epoch:229	
+train: Epoch:230	
+train: Epoch:231	
+train: Epoch:232	
+train: Epoch:233	
+train: Epoch:234	
+train: Epoch:235	
+train: Epoch:236	
+train: Epoch:237	
+train: Epoch:238	
+train: Epoch:239	
+train: Epoch:240	
+train: Epoch:241	
+train: Epoch:242	
+train: Epoch:243	
+train: Epoch:244	
+train: Epoch:245	
+train: Epoch:246	
+train: Epoch:247	
+train: Epoch:248	
+train: Epoch:249	
+train: Epoch:250	
+train: Epoch:251	
+train: Epoch:252	
+train: Epoch:253	
+train: Epoch:254	
+train: Epoch:255	
+train: Epoch:256	
+train: Epoch:257	
+train: Epoch:258	
+train: Epoch:259	
+train: Epoch:260	
+train: Epoch:261	
+train: Epoch:262	
+train: Epoch:263	
+train: Epoch:264	
+train: Epoch:265	
+train: Epoch:266	
+train: Epoch:267	
+train: Epoch:268	
+train: Epoch:269	
+train: Epoch:270	
+train: Epoch:271	
+train: Epoch:272	
+train: Epoch:273	
+train: Epoch:274	
+train: Epoch:275	
+train: Epoch:276	
+train: Epoch:277	
+train: Epoch:278	
+train: Epoch:279	
+train: Epoch:280	
+train: Epoch:281	
+train: Epoch:282	
+train: Epoch:283	
+train: Epoch:284	
+train: Epoch:285	
+train: Epoch:286	
+train: Epoch:287	
+train: Epoch:288	
+train: Epoch:289	
+train: Epoch:290	
+train: Epoch:291	
+train: Epoch:292	
+train: Epoch:293	
+train: Epoch:294	
+train: Epoch:295	
+train: Epoch:296	
+train: Epoch:297	
+train: Epoch:298	
+train: Epoch:299	
+Random Seed: 123
+train: Epoch: 0	
+train: Epoch: 1	
+train: Epoch: 2	
+train: Epoch: 3	
+train: Epoch: 4	
+train: Epoch: 5	
+train: Epoch: 6	
+train: Epoch: 7	
+train: Epoch: 8	
+train: Epoch: 9	
+save best ap:0.3718397608336841
+train: Epoch:10	
+train: Epoch:11	
+train: Epoch:12	
+train: Epoch:13	
+train: Epoch:14	
+train: Epoch:15	
+train: Epoch:16	
+train: Epoch:17	
+train: Epoch:18	
+train: Epoch:19	
+save best ap:0.5986444121328739
+train: Epoch:20	
+train: Epoch:21	
+train: Epoch:22	
+train: Epoch:23	
+train: Epoch:24	
+train: Epoch:25	
+train: Epoch:26	
+train: Epoch:27	
+train: Epoch:28	
+train: Epoch:29	
+save best ap:0.6254748811559169
+train: Epoch:30	
+train: Epoch:31	
+train: Epoch:32	
+train: Epoch:33	
+train: Epoch:34	
+train: Epoch:35	
+train: Epoch:36	
+train: Epoch:37	
+train: Epoch:38	
+train: Epoch:39	
+save best ap:0.6631486742555603
+train: Epoch:40	
+train: Epoch:41	
+train: Epoch:42	
+train: Epoch:43	
+train: Epoch:44	
+train: Epoch:45	
+train: Epoch:46	
+train: Epoch:47	
+train: Epoch:48	
+train: Epoch:49	
+save best ap:0.6813650320006147
+train: Epoch:50	
+train: Epoch:51	
+train: Epoch:52	
+train: Epoch:53	
+train: Epoch:54	
+train: Epoch:55	
+train: Epoch:56	
+train: Epoch:57	
+train: Epoch:58	
+train: Epoch:59	
+save best ap:0.6839321673735705
+train: Epoch:60	
+train: Epoch:61	
+train: Epoch:62	
+train: Epoch:63	
+train: Epoch:64	
+train: Epoch:65	
+train: Epoch:66	
+train: Epoch:67	
+train: Epoch:68	
+train: Epoch:69	
+save best ap:0.6911681692265552
+train: Epoch:70	
+train: Epoch:71	
+train: Epoch:72	
+train: Epoch:73	
+train: Epoch:74	
+train: Epoch:75	
+train: Epoch:76	
+train: Epoch:77	
+train: Epoch:78	
+train: Epoch:79	
+save best ap:0.7005167391225381
+train: Epoch:80	
+train: Epoch:81	
+train: Epoch:82	
+train: Epoch:83	
+train: Epoch:84	
+train: Epoch:85	
+train: Epoch:86	
+train: Epoch:87	
+train: Epoch:88	
+train: Epoch:89	
+save best ap:0.7147034982029383
+train: Epoch:90	
+train: Epoch:91	
+train: Epoch:92	
+train: Epoch:93	
+train: Epoch:94	
+train: Epoch:95	
+train: Epoch:96	
+train: Epoch:97	
+train: Epoch:98	
+train: Epoch:99	
+save best ap:0.7189600901990778
+train: Epoch:100	
+train: Epoch:101	
+train: Epoch:102	
+train: Epoch:103	
+train: Epoch:104	
+train: Epoch:105	
+train: Epoch:106	
+train: Epoch:107	
+train: Epoch:108	
+train: Epoch:109	
+save best ap:0.7213026471742716
+train: Epoch:110	
+train: Epoch:111	
+train: Epoch:112	
+train: Epoch:113	
+train: Epoch:114	
+train: Epoch:115	
+train: Epoch:116	
+train: Epoch:117	
+train: Epoch:118	
+train: Epoch:119	
+train: Epoch:120	
+train: Epoch:121	
+train: Epoch:122	
+train: Epoch:123	
+train: Epoch:124	
+train: Epoch:125	
+train: Epoch:126	
+train: Epoch:127	
+train: Epoch:128	
+train: Epoch:129	
+save best ap:0.7238314219121474
+train: Epoch:130	
+train: Epoch:131	
+train: Epoch:132	
+train: Epoch:133	
+train: Epoch:134	
+train: Epoch:135	
+train: Epoch:136	
+train: Epoch:137	
+train: Epoch:138	
+train: Epoch:139	
+train: Epoch:140	
+train: Epoch:141	
+train: Epoch:142	
+train: Epoch:143	
+train: Epoch:144	
+train: Epoch:145	
+train: Epoch:146	
+train: Epoch:147	
+train: Epoch:148	
+train: Epoch:149	
