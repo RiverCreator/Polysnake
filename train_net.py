@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 import random
 import numpy as np
 import torch
-
+eval_ep = [150,160,170]
 def train(cfg, network):
     filename = './log.txt'
     logger_name = "mylog"
@@ -46,7 +46,14 @@ def train(cfg, network):
     val_loader = make_data_loader(cfg, is_train=False)
     for epoch in range(begin_epoch, cfg.train.epoch):
         logger.info('train: Epoch:{:2}\t'.format(epoch))
-        
+        # if (epoch) % cfg.eval_ep == 0:
+        # #if (epoch + 1) in eval_ep == 0:
+        #     val_state=trainer.val(epoch, val_loader, evaluator, recorder)
+        #     print(val_state)
+        #     if(best_val<val_state['ap']):
+        #         best_val=val_state['ap']
+        #         logger.info('save best ap:{}'.format(best_val))
+        #         save_model(network, optimizer, scheduler, recorder, epoch, cfg.model_dir,model_name="best",ap=best_val)
         recorder.epoch = epoch
         trainer.train(epoch, train_loader, optimizer, recorder)
         scheduler.step()
@@ -54,7 +61,8 @@ def train(cfg, network):
         if (epoch + 1) % cfg.save_ep == 0:
             save_model(network, optimizer, scheduler, recorder, epoch, cfg.model_dir)
         
-        if (epoch + 1) % cfg.eval_ep == 0:
+        if (cfg.eval_ep!=-1) and (epoch + 1) % cfg.eval_ep == 0:
+        #if (epoch + 1) in eval_ep == 0:
             val_state=trainer.val(epoch, val_loader, evaluator, recorder)
             print(val_state)
             if(best_val<val_state['ap']):

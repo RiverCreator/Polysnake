@@ -32,7 +32,10 @@ def snake_collator(batch):
     per_vis_cmask = torch.zeros([batch_size, ct_num, h, w],dtype=torch.float)
     for i in range(batch_size):
         try:
-            per_vis_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['visible_mask'])
+            if(meta['ct_num'][i]>0):
+                per_vis_cmask[i, :meta['ct_num'][i]] = default_collate(batch[i]['visible_mask'])
+            else:
+                continue
         except:
             print("debug point")
     # wh = torch.zeros([batch_size, ct_num, 2], dtype=torch.float)

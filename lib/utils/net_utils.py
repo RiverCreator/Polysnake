@@ -327,8 +327,11 @@ def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1,
             
     print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(model_name))))
     pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(model_name)))
-    net.load_state_dict(pretrained_model['net'])
-    optim.load_state_dict(pretrained_model['optim'])
+    net.load_state_dict(pretrained_model['net'],strict=False)
+    try:
+        optim.load_state_dict(pretrained_model['optim'])
+    except:
+        print("optim not match")
     scheduler.load_state_dict(pretrained_model['scheduler'])
     recorder.load_state_dict(pretrained_model['recorder'])
     if from_best:
@@ -376,7 +379,7 @@ def load_network(net, model_dir, resume=True, epoch=-1, strict=True):
     # else:
     #     pth = epoch
     #print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(pth))))
-    pretrained_model=torch.load(os.path.join(model_dir,'best73.4_box.pth'))
+    pretrained_model=torch.load(os.path.join(model_dir,'214.pth'))
     #pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(pth)))
     net.load_state_dict(pretrained_model['net'], strict=strict)
     return pretrained_model['epoch'] + 1

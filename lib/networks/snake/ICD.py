@@ -37,6 +37,7 @@ class RAFT(nn.Module):
 
     def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred, vis_pred):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
         if len(i_it_poly) == 0:
+            #return torch.zeros(0, snake.out_features, i_it_poly.size(1)).to(cnn_feature.device)
             return torch.zeros_like(i_it_poly)
         h, w = cnn_feature.size(2), cnn_feature.size(3)  ## cnn_featuer为b c h w  i_it_poly为(n,128,2),n为center个数
         init_feature = snake_gcn_utils.get_gcn_feature(cnn_feature, i_it_poly, ind, h, w)  ### 将坐标对应的feature进行采样，每个点对应的feature即为长度为c的向量，故init_feature大小为n c 128，n为center个数，c为cnn_feature的channel
@@ -68,6 +69,7 @@ class RAFT(nn.Module):
     def use_gt_detection(self, output, batch):
         bacthsize, _, height, width = output['ct_hm'].size()
         wh_pred = output['wh'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
+        point_num = wh_pred.size(1)
         # inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
         # inp_h=inp_h/snake_config.ro
         # inp_w=inp_w/snake_config.ro
@@ -78,7 +80,7 @@ class RAFT(nn.Module):
         ct_img_idx = ct_img_idx % bacthsize   ## 这里是为了处理多个batch concat在一起的情况
 
         if ct_x.size(0) == 0:
-            ct_offset = wh_pred[ct_img_idx, :, ct_y, ct_x].view(ct_x.size(0), 1,  2)  
+            ct_offset = wh_pred[ct_img_idx, :, ct_y, ct_x].view(ct_x.size(0), point_num//2,  2)  
         else:
             ct_offset = wh_pred[ct_img_idx, :, ct_y, ct_x].view(ct_x.size(0), -1, 2)  ## 这里直接取gt点位置的偏移量
 
@@ -91,7 +93,8 @@ class RAFT(nn.Module):
         # ct_offset[:,:,0]=ct_offset[:,:,0]*inp_h[0]
         # ct_offset[:,:,1]=ct_offset[:,:,1]*inp_w[1]
         init_polys = ct_offset + ct.unsqueeze(1).expand(ct_offset.size(0), ct_offset.size(1), ct_offset.size(2)) #将offset加到对应的ct坐标上
-        
+        # if(init_polys.numel()==0):
+        #     print("debug point")
         output.update({'poly_init': init_polys * snake_config.ro})  ## 对应到原图尺寸大小的初始点
         return init_polys
 
@@ -149,33 +152,36 @@ class RAFT(nn.Module):
             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
             i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
-            net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
-            i_poly_fea = F.leaky_relu(i_poly_fea)
             py_preds = []
-            cls_scores= []
-            for i in range(self.iter):  ## 因为初始点需要单独通过中心点来获得，因此先进行处理后，再进行迭代 ####不过他这里代码执行还是总共只执行了self.iter次迭代，因为他这里是在循环开头用gru计算偏移量的
-                net, offset = self.update_block(net, i_poly_fea) # gru模块，输出net(论文中的hk)和偏移量  net送入下一轮迭代中
-                #cls_score= self.classify_block(net)
-                #cls_scores.append(cls_score)
-                #### offset
-                # offset[:,:,0]*inp_w offset[:,:,1]*=inp_h
-                py_pred = py_pred + snake_config.ro * offset# * attn_score
-                py_preds.append(py_pred)
-
-                py_pred_sm = py_pred / snake_config.ro
-                box_mask_pred, roi = self.box_mask_head(cnn_feature, py_pred_sm, batch['ct_01'].byte())
-                vis_mask_pred, _ = self.vis_mask_head(cnn_feature, py_pred_sm, batch['ct_01'].byte())
-                box_mask_preds.append(box_mask_pred)
-                vis_mask_preds.append(vis_mask_pred)
-                rois.append(roi)
-                
-                c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
-                
-                #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])
-                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
-                #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
+            if len(py_pred) != 0:
+                net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
                 i_poly_fea = F.leaky_relu(i_poly_fea)
-            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores, 'mask_preds': box_mask_preds,'vis_mask_preds': vis_mask_preds,'rois': rois})
+                if(i_poly_fea.numel()==0):
+                    print("debug point")
+                #cls_scores= []
+                for i in range(self.iter):  ## 因为初始点需要单独通过中心点来获得，因此先进行处理后，再进行迭代 ####不过他这里代码执行还是总共只执行了self.iter次迭代，因为他这里是在循环开头用gru计算偏移量的
+                    net, offset = self.update_block(net, i_poly_fea) # gru模块，输出net(论文中的hk)和偏移量  net送入下一轮迭代中
+                    #cls_score= self.classify_block(net)
+                    #cls_scores.append(cls_score)
+                    #### offset
+                    # offset[:,:,0]*inp_w offset[:,:,1]*=inp_h
+                    py_pred = py_pred + snake_config.ro * offset# * attn_score
+                    py_preds.append(py_pred)
+
+                    py_pred_sm = py_pred / snake_config.ro
+                    box_mask_pred, roi = self.box_mask_head(cnn_feature, py_pred_sm, batch['ct_01'].byte())
+                    vis_mask_pred, _ = self.vis_mask_head(cnn_feature, py_pred_sm, batch['ct_01'].byte())
+                    box_mask_preds.append(box_mask_pred)
+                    vis_mask_preds.append(vis_mask_pred)
+                    rois.append(roi)
+                    
+                    c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
+                    
+                    #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
+                    #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
+                    i_poly_fea = F.leaky_relu(i_poly_fea)
+            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'mask_preds': box_mask_preds,'vis_mask_preds': vis_mask_preds,'rois': rois})
 
         if not self.training:
             with torch.no_grad():
@@ -201,6 +207,8 @@ class RAFT(nn.Module):
                     net = torch.tanh(i_poly_fea)
                     i_poly_fea = F.leaky_relu(i_poly_fea)
                     for i in range(self.iter):
+                        if(i_poly_fea.numel()==0):
+                            print("debug point")
                         net, offset = self.update_block(net, i_poly_fea)
                         #cls_score= self.classify_block(net)
                         py_pred = py_pred + snake_config.ro * offset

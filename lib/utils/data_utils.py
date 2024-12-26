@@ -15,6 +15,8 @@ def polygonFromMask(maskedArr): # https://github.com/hazirbas/coco-json-converte
     # ground_truth_area = mask_util.area(encoded_ground_truth)
     # ground_truth_bounding_box = mask_util.toBbox(encoded_ground_truth)
     #contours = measure.find_contours(maskedArr, 0.5)
+    kernel = np.ones((2, 2), np.uint8)  # 可以根据需要调整核的大小
+    maskedArr = cv2.dilate(maskedArr, kernel, iterations=1)
     img,contours,_ = cv2.findContours(maskedArr.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     segmentation = []
     for contour in contours:

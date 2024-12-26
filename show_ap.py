@@ -56,18 +56,18 @@
 
 # #### debug show pic
 
-# from PIL import Image,ImageDraw
-# image=Image.open(path)
-# #newsize=(int(image.width/4),int(image.height/4))
-# #image=image.resize(newsize)
-# draw = ImageDraw.Draw(image)
-# tmp=[]
-# # for point in i_gt_pys[0]:
-# #     tmp.append((point[0],point[1]))
-# for idx in range(0,len(obj),2):
-#     tmp.append((obj[idx],obj[idx+1]))
-# draw.polygon(tmp,fill="red",outline="red")
-# image.save("poly_test.png")
+from PIL import Image,ImageDraw
+image=Image.open(path)
+#newsize=(int(image.width/4),int(image.height/4))
+#image=image.resize(newsize)
+draw = ImageDraw.Draw(image)
+tmp=[]
+# for point in i_gt_pys[0]:
+#     tmp.append((point[0],point[1]))
+for idx in range(0,len(obj),2):
+    tmp.append((obj[idx],obj[idx+1]))
+draw.polygon(tmp,fill="red",outline="red")
+image.save("poly_test.png")
 
 # # from PIL import Image,ImageDraw
 # # image=Image.open(path)

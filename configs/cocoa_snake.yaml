@@ -2,10 +2,12 @@ model: 'cocoa'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [0,1]
-iter_num: 3
-score_thresh: 0.01
-eval_ep : 100
+gpus: [0]
+iter_num: 7
+score_thresh: 0.05
+eval_ep: 10
+save_ep: 5
+num_classes: 80
 train:
     optim: 'adam'
     warmup: true
@@ -16,7 +18,7 @@ train:
     batch_size: 16
     dataset: 'CocoaTrain'
     num_workers: 8
-    epoch: 300
+    epoch: 400
 test:
     dataset: 'CocoaVal'
     batch_size: 1

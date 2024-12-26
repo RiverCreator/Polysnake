@@ -82,8 +82,10 @@ class Trainer(object):
                 output, loss, loss_stats, image_stats = self.network(batch)
                 if evaluator is not None:
                     evaluator.evaluate(output, batch)
-
-            loss_stats = self.reduce_loss_stats(loss_stats)
+            try:
+                loss_stats = self.reduce_loss_stats(loss_stats)
+            except:
+                print("debug point")
             for k, v in loss_stats.items():
                 val_loss_stats.setdefault(k, 0)
                 val_loss_stats[k] += v

@@ -22,7 +22,7 @@ class Dataset(data.Dataset):
         self.anns = sorted(self.coco.getImgIds())
         self.istrain=istrain
         if istrain:
-            self.anns = np.array([ann for ann in self.anns if len(self.coco.getAnnIds(imgIds=ann, iscrowd=0))])
+            self.anns = np.array([ann for ann in self.anns if len(self.coco.getAnnIds(imgIds=ann))])
         self.anns = self.anns[:500] if split == 'mini' else self.anns
         self.json_category_id_to_contiguous_id = {v: i for i, v in enumerate(self.coco.getCatIds())}
 
@@ -31,31 +31,78 @@ class Dataset(data.Dataset):
         anno = self.coco.loadAnns(ann_ids)
         path = os.path.join(self.data_root, self.coco.loadImgs(int(img_id))[0]['file_name'])
         return anno, path, img_id
+    
+    def show_poly(self,path,py):
+        from PIL import Image,ImageDraw
+        image=Image.open(path)
+        #newsize=(int(image.width/4),int(image.height/4))
+        #image=image.resize(newsize)
+        draw = ImageDraw.Draw(image)
+        tmp=[]
+        for i in range(len(py)):
+            for j in range(len(py[i])):
+                tmp.append((py[i][j][0],py[i][j][1]))
+        
+        polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
+        image.save("poly_test.png")
 
+    
     def read_original_data(self, anno, path):
         # print(path)
         assert os.path.exists(path)
         img = cv2.imread(path)
-        if(type(anno[0]['segmentation'])==dict):
-            for obj in anno:
-                seg_contour=[]
-                t=mask_util.decode(obj['segmentation'])
+        # if(type(anno[0]['segmentation'])==dict):
+        #     for obj in anno:
+        #         seg_contour=[]
+        #         t=mask_util.decode(obj['segmentation'])
+        #         poly=data_utils.polygonFromMask(t)
+        #         if(len(poly)==0):
+        #             print("errno")
+        #         for p in poly:
+        #             seg_contour.append(p)
+        #         obj['segmentation']=seg_contour
+        for obj in anno:
+            if(type(obj['segmentation'])==dict):
+                seg_contours=[]
+                t=mask_util.decode(obj['segmentation'])      
                 poly=data_utils.polygonFromMask(t)
                 if(len(poly)==0):
                     print("errno")
+                seg_contour=[]
                 for p in poly:
-                    seg_contour.append(p)
-                obj['segmentation']=seg_contour
+                    #seg_contour.append(p)
+                    seg_contour.extend(p)
+                seg_contours.append(seg_contour)
+                if(len(seg_contours)>1):
+                    print("debug point")
+                obj['segmentation']=seg_contours
+                
+            if(type(obj['visible_mask'])==dict):
+                vis_seg_contour=[]
+                t=mask_util.decode(obj['visible_mask'])      
+                vis_poly=data_utils.polygonFromMask(t)
+
+                # if(len(vis_poly)==0):
+                #     vis_poly = poly
+                    #print("errno") 全遮挡数据，这里vis_poly直接就当是amodal poly，作为数据增强部分
+                for p in vis_poly:
+                    vis_seg_contour.append(p)
+                obj['visible_mask']=vis_seg_contour
         try:
             if not self.istrain:  ## 这里使用的数据集为原装coco_amodal_val2014.json 但这里的segmentation
                 #instance_polys = [[[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']]for obj in pic['regions']] for pic in anno]
                 instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(vis_poly).reshape(-1, 2) for vis_poly in obj['visible_mask']] for obj in anno]
             else:
                 instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(vis_poly).reshape(-1, 2) for vis_poly in obj['visible_mask']] for obj in anno]
         except:
             print("debug point cocoa/snake.py read_original_data")
+        # if(path=='data/cocoa/train2014/COCO_train2014_000000047294.jpg' or path=='data/cocoa/train2014/COCO_train2014_000000533051.jpg'):
+        #     print("debug")
         cls_ids = [self.json_category_id_to_contiguous_id[obj['category_id']] for obj in anno]
-        return img, instance_polys, cls_ids
+        return img, instance_polys, cls_ids, vis_polys
 
     def transform_original_data(self, instance_polys, flipped, width, trans_output, inp_out_hw):
         output_h, output_w = inp_out_hw[2:]
@@ -184,7 +231,7 @@ class Dataset(data.Dataset):
         ann = self.anns[index]
 
         anno, path, img_id = self.process_info(ann)
-        img, instance_polys, cls_ids = self.read_original_data(anno, path)
+        img, instance_polys, cls_ids, vis_polys = self.read_original_data(anno, path)
 
         height, width = img.shape[0], img.shape[1]
         orig_img, inp, trans_input, trans_output, flipped, center, scale, inp_out_hw = \
@@ -193,8 +240,12 @@ class Dataset(data.Dataset):
                 snake_config.data_rng, snake_config.eig_val, snake_config.eig_vec,
                 snake_config.mean, snake_config.std, instance_polys
             )
+        # if(path=='data/cocoa/train2014/COCO_train2014_000000047294.jpg'):
+        #     print('debug point')
         instance_polys = self.transform_original_data(instance_polys, flipped, width, trans_output, inp_out_hw)
         instance_polys = self.get_valid_polys(instance_polys, inp_out_hw)
+        vis_polys = self.transform_original_data(vis_polys, flipped, width, trans_output, inp_out_hw)
+        vis_polys = self.get_valid_polys(vis_polys, inp_out_hw)
         # extreme_points = self.get_extreme_points(instance_polys)
 
         # detection
@@ -216,7 +267,10 @@ class Dataset(data.Dataset):
         # i_it_pys = []
         # c_it_pys = []
         i_gt_pys = []
-        
+        per_ins_cmask, ind_mask = snake_voc_utils.per_polygon_to_mask2(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask = per_ins_cmask[ind_mask]
+        visible_mask, mask2= snake_voc_utils.per_polygon_to_mask2(vis_polys, output_h, output_w) #获得每个instance的visible mask
+        visible_mask = visible_mask[ind_mask] 
         cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]
         # c_gt_pys = []
 
@@ -242,7 +296,7 @@ class Dataset(data.Dataset):
                 # self.prepare_evolution(bbox, poly, extreme_point, i_it_pys, c_it_pys, i_gt_pys, c_gt_pys, inp_out_hw)
                 self.prepare_evolution(poly, i_gt_pys,inp_out_hw)
 
-        ret = {'inp': inp, 'cmask': cmask}
+        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'visible_mask': visible_mask}
         # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         # init = {'i_it_4py': i_it_4pys, 'c_it_4py': c_it_4pys, 'i_gt_4py': i_gt_4pys, 'c_gt_4py': c_gt_4pys}
@@ -255,7 +309,7 @@ class Dataset(data.Dataset):
         # visualize_utils.visualize_snake_evolution(orig_img, ret)
 
         ct_num = len(ct_ind)
-        meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num, 'inpu_out_hw': inp_out_hw, 'orig_img': orig_img}
+        meta = {'center': center, 'scale': scale, 'img_id': img_id, 'ann': ann, 'ct_num': ct_num, 'inp_out_hw': inp_out_hw, 'orig_img': orig_img, 'path': path}
 
         ret.update({'meta': meta})
 

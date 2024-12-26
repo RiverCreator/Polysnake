@@ -106,6 +106,9 @@ class ConvGRU(nn.Module):
 
     def forward(self, h, x):
         hx = torch.cat([h, x], dim=1)
+        if(hx.numel() == 0):
+            #hx=torch.zeros_like(i_it_poly)
+            print("debug point")
         z = torch.sigmoid(self.convz(hx))
         r = torch.sigmoid(self.convr(hx))
         q = torch.tanh(self.convq(torch.cat([r*h, x], dim=1))) 

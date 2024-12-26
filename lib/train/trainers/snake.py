@@ -17,6 +17,7 @@ class NetworkWrapper(nn.Module):
         self.cls_crit = net_utils.ClsCrossEntropyLoss()
         self.py_crit = torch.nn.functional.smooth_l1_loss  ## poly loss
         self.gt_pooler = ROIAlign((cfg.roi_h, cfg.roi_w)) # => (28,28)
+        self.n_predictions = cfg.iter_num
         
     def shape_loss(self, pred, targ_shape):
         pre_dis = torch.cat((pred[:,1:], pred[:,0].unsqueeze(1)), dim=1)
@@ -59,8 +60,8 @@ class NetworkWrapper(nn.Module):
         loss += 0.1 * wh_loss
 
         n_predictions = len(output['py_pred'])  ## 将每次迭代的预测点都计算一次loss
-        py_loss = 0.0
-        shape_loss = 0.0
+        py_loss = torch.tensor(0,dtype=torch.float32).to(loss.device)
+        shape_loss = torch.tensor(0,dtype=torch.float32).to(loss.device)
         #cls_loss = 0.0
         py_dis = torch.cat((output['i_gt_py'][:,1:], output['i_gt_py'][:,0].unsqueeze(1)), dim=1)  ## 将i_gt_py整体循环左移方便后面求距离
         tar_shape = py_dis - output['i_gt_py']  ##得出gt点的相对的偏移量
@@ -70,8 +71,8 @@ class NetworkWrapper(nn.Module):
             shape_loss += i_weight * self.shape_loss(output['py_pred'][i], tar_shape)
             #cls_loss += self.cls_crit(output['cls_scores'][i], batch['ct_cls'][ct_01])
 
-        py_loss = py_loss / n_predictions  ## loss均分，与cascade中一样，防止过度训练，而且因为后续迭代的loss也会影响到之前的参数训练
-        shape_loss = shape_loss / n_predictions
+        py_loss = py_loss / self.n_predictions  ## loss均分，与cascade中一样，防止过度训练，而且因为后续迭代的loss也会影响到之前的参数训练
+        shape_loss = shape_loss / self.n_predictions
         #cls_loss = cls_loss / n_predictions
         scalar_stats.update({'py_loss': py_loss})
         scalar_stats.update({'shape_loss': shape_loss})
@@ -88,18 +89,23 @@ class NetworkWrapper(nn.Module):
             pred_masks = output['mask_preds'][i]
             pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
             gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i])
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
+            mask_loss = torch.tensor(0,dtype=torch.float32).to(loss.device)
+            if(pred_masks.numel()!=0):
+                mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
             mask_losses +=mask_loss.mean()
         
         for i in range(len(output['vis_mask_preds'])):
             vis_pred_masks = output['vis_mask_preds'][i]
             vis_pred_masks = vis_pred_masks[torch.arange(vis_pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
             vis_gt_masks = self.crop_and_resize(output['per_vis_cmask'], output['rois'][i])
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(vis_pred_masks), vis_gt_masks)
+            mask_loss = torch.tensor(0,dtype=torch.float32).to(loss.device)
+            if(pred_masks.numel()!=0):
+                mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(vis_pred_masks), vis_gt_masks)
             vis_mask_losses +=mask_loss.mean()
-            
-        mask_losses = mask_losses / len(output['mask_preds'])
-        vis_mask_losses = vis_mask_losses / len(output['vis_mask_preds'])
+        if(len(output['mask_preds'])!=0):
+            mask_losses = mask_losses / len(output['mask_preds'])
+        if(len(output['vis_mask_preds'])!=0):
+            vis_mask_losses = vis_mask_losses / len(output['vis_mask_preds'])
         scalar_stats.update({'box_mask_loss': mask_losses})
         scalar_stats.update({'vis_mask_loss': vis_mask_losses})
         loss += mask_losses

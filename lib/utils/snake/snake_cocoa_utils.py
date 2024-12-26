@@ -1,6 +1,6 @@
 from lib.utils.snake.snake_cityscapes_utils import *
 
-input_scale = np.array([512, 512])
+input_scale = np.array([512, 672])
 
 
 def augment(img, split, _data_rng, _eig_val, _eig_vec, mean, std, polys):
