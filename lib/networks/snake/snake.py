@@ -113,28 +113,6 @@ def create_expanded_adj_matrix(num_points, k):
     
     return adj
 
-# class GATLayer(nn.Module):
-#     def __init__(self, in_features, out_features):
-#         super(GATLayer, self).__init__()
-#         self.W = nn.Parameter(torch.randn(in_features, out_features))
-#         self.a = nn.Parameter(torch.randn(2 * out_features, 1))
-#         self.leakyrelu = nn.LeakyReLU(0.2)
-        
-#     def forward(self, x, adj):
-#         # 特征变换
-#         h = torch.matmul(x, self.W)
-#         N = h.size(0)
-        
-#         # 注意力机制
-#         a_input = torch.cat([h.repeat(1, N).view(N * N, -1), h.repeat(N, 1)], dim=1).view(N, N, -1)
-#         e = self.leakyrelu(torch.matmul(a_input, self.a).squeeze(2))
-        
-#         # 掩码，限制到邻接矩阵的范围
-#         attention = F.softmax(e.masked_fill(adj == 0, float('-inf')), dim=1)
-        
-#         # 特征聚合
-#         h_prime = torch.matmul(attention, h)
-#         return F.elu(h_prime)
     
 class GraphAttentionLayer(nn.Module):
     def __init__(self, in_features: int, out_features: int,
@@ -232,34 +210,34 @@ class GAT(nn.Module):
         self.adj_mat = create_expanded_adj_matrix(128, 7)
         # Define the Graph Attention layers
         self.conv_head = Snake(state_dim=128, feature_dim=in_features, conv_type='dgrid', need_fea=True)
-        self.gat1 = GraphAttentionLayer(
-            in_features=64, out_features=n_hidden, n_heads=n_heads,
-            concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-            )
+        # self.gat1 = GraphAttentionLayer(
+        #     in_features=64, out_features=n_hidden, n_heads=n_heads,
+        #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+        #     )
         
         # self.gat2 = GraphAttentionLayer(
         #     in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
         #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
         #     )
 
-        self.gat3 =  GraphAttentionLayer(
-            in_features=n_hidden, out_features=out_features, n_heads=1,
-            concat=False, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-            )  
+        # self.gat3 =  GraphAttentionLayer(
+        #     in_features=n_hidden, out_features=out_features, n_heads=1,
+        #     concat=False, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+        #     )  
     def forward(self, input_tensor: torch.Tensor):
         self.adj_mat = self.adj_mat.to(input_tensor.device)
         # Apply the first Graph Attention layer
         x = self.conv_head(input_tensor)
-        x = self.gat1(x, self.adj_mat).permute(0 ,2 ,1)
+        # x = self.gat1(x, self.adj_mat).permute(0 ,2 ,1)
         x = F.elu(x) # Apply ELU activation function to the output of the first layer
 
         # Apply the second Graph Attention layer
         # x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
         # x = F.elu(x)
         
-        x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
+        # x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
         #x = x.squeeze(1).permute(0, 2, 1)
-        return F.elu(x) # Apply softmax activation function
+        return x # Apply softmax activation function
     
 class BEB(nn.Module):
     #boundary envolve block
