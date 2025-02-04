@@ -7,7 +7,7 @@ cfg = CN()
 # model
 cfg.model = 'hello'
 cfg.model_dir = 'data/model'
-
+cfg.pretrained_model_name = ''
 # network
 cfg.network = 'dla_34'
 

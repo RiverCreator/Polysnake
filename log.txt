@@ -10334,3 +10334,7 @@ Random Seed: 123
 train: Epoch:100	
 Random Seed: 123
 train: Epoch:100	
+Random Seed: 123
+Random Seed: 123
+Random Seed: 123
+train: Epoch:172	

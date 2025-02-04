@@ -20,7 +20,7 @@ class RAFT(nn.Module):
         self.iter = cfg.iter_num  # iteration number
         self.score_thresh=cfg.score_thresh
         #这里的state_dim表示128个点的特征向量
-        self.evolve_gcn = Snake(state_dim=128, feature_dim=64 + 2 + 1, conv_type='dgrid', need_fea=True) #即文章中用来进行特征聚合，然后输出g_{k-1}的模块
+        self.evolve_gcn2 = Snake(state_dim=128, feature_dim=64 + 2 + 1, conv_type='dgrid', need_fea=True) #即文章中用来进行特征聚合，然后输出g_{k-1}的模块
         #self.fusion = Poly_Fusion(feature_dim=64)
         self.update_block = BasicUpdateBlock() ## 即文章中使用gru的模块
         self.box_mask_head = BasicAmodalBranch(cfg.num_classes)
@@ -239,8 +239,8 @@ class RAFT(nn.Module):
             # vis_py_pred = vis_poly_init * snake_config.ro #visible的点
             # c_py_vis_pred = snake_gcn_utils.img_poly_to_can_poly(vis_poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             
-            #i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:], vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
-            i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+            #i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:], vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+            i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
             i_poly_fea = F.leaky_relu(i_poly_fea)
             
@@ -282,8 +282,8 @@ class RAFT(nn.Module):
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                 #c_py_vis_pred = snake_gcn_utils.img_poly_to_can_poly(vis_py_pred_sm)
                 
-                #i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:], vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
-                i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+                #i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:], vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+                i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
                 #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 i_poly_fea = F.leaky_relu(i_poly_fea)
                 #vis_i_poly_fea = F.leaky_relu(vis_i_poly_fea)
@@ -315,9 +315,9 @@ class RAFT(nn.Module):
                 # vis_mask_pred, vis_roi = self.vis_mask_head(cnn_feature, detection=detection) #vis box mask pred
                 # test_vis_box_mask_preds.append(vis_mask_pred)
                 
-                # i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                # i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred,
                 #                               ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:], test_vis_box_mask_preds[-1][torch.arange(test_vis_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
-                i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred,
                                               ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
                 #py_preds=[]
                 if len(py_pred) != 0:
@@ -343,9 +343,9 @@ class RAFT(nn.Module):
                             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                             #c_py_vis_pred = snake_gcn_utils.img_poly_to_can_poly(vis_py_pred_sm)
                             
-                            # i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                            # i_poly_fea = self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred,
                             #                   ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:], test_vis_box_mask_preds[-1][torch.arange(test_vis_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
-                            i_poly_fea= self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                            i_poly_fea= self.evolve_poly(self.evolve_gcn2, cnn_feature, poly_init, c_py_pred,
                                               ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
                             i_poly_fea = F.leaky_relu(i_poly_fea)
                             #vis_i_poly_fea = F.leaky_relu(vis_i_poly_fea)
