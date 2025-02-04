@@ -292,14 +292,16 @@ class DLA(nn.Module):
             y.append(x)
         return y
 
-    def load_pretrained_model(self, data='imagenet', name='dla34', hash='ba72cf86'):
+    def load_pretrained_model(self, data='./', name='coco_dla.pth', hash='ba72cf86'):
         # fc = self.fc
         if name.endswith('.pth'):
-            model_weights = torch.load(data + name)
+            # model_weights = torch.load(data + name)['state_dict']
+            model_weights = torch.load(data + name)['model_state']
         else:
             model_url = get_model_url(data, name, hash)
             model_weights = model_zoo.load_url(model_url)
         num_classes = len(model_weights[list(model_weights.keys())[-1]])
+
         self.fc = nn.Conv2d(
             self.channels[-1], num_classes,
             kernel_size=1, stride=1, padding=0, bias=True)
@@ -313,6 +315,8 @@ def dla34(pretrained=True, **kwargs):  # DLA-34
                 block=BasicBlock, **kwargs)
     if pretrained:
         model.load_pretrained_model(data='imagenet', name='dla34', hash='ba72cf86')
+        # model.load_pretrained_model(data='./', name='mono_kitti.pth', hash='ba72cf86')
+        # model.load_pretrained_model(data='./', name='coco.pth', hash='ba72cf86')
     return model
 
 
@@ -430,6 +434,8 @@ class DLASeg(nn.Module):
         self.first_level = int(np.log2(down_ratio))
         self.last_level = last_level
         self.base = globals()[base_name](pretrained=pretrained)
+        # model_weights = torch.load('./ddd_kitti.pth')
+        # self.load_state_dict(model_weights,strict=False)
         channels = self.base.channels
         scales = [2 ** i for i in range(len(channels[self.first_level:]))]
         self.dla_up = DLAUp(self.first_level, channels[self.first_level:], scales) ##特征提取主干网络
@@ -439,7 +445,7 @@ class DLASeg(nn.Module):
 
         self.ida_up = IDAUp(out_channel, channels[self.first_level:self.last_level],
                             [2 ** i for i in range(self.last_level - self.first_level)]) ## 解码恢复空间分辨率的上采样网络
-
+        
         self.heads = heads ## kins heads=[ct_hm(center heatmap，指定类别数为7),wh(预测宽高，这里设置类别数为256，表示的是首先预测的128个点，每个点坐标值为两个),mask则是用来预测boundary的，最后只用输出一个单通道图像即可]
         for head in self.heads:
             classes = self.heads[head]
@@ -464,6 +470,8 @@ class DLASeg(nn.Module):
                 else:
                     fill_fc_weights(fc)
             self.__setattr__(head, fc)
+        # model_weights = torch.load('./ddd_kitti.pth')
+        # self.load_state_dict(model_weights,strict=False)
 
     def forward(self, x):
         x = self.base(x)

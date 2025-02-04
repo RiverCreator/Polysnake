@@ -25,7 +25,7 @@ def train(cfg, network):
     console.setLevel(logging.INFO)
     logger.addHandler(console)
 
-    manualSeed = 123
+    manualSeed = 114514
     logger.info("Random Seed: {}".format(manualSeed))
     random.seed(manualSeed)
     np.random.seed(manualSeed)
@@ -38,7 +38,7 @@ def train(cfg, network):
     recorder = make_recorder(cfg)
     evaluator = make_evaluator(cfg, logger)
     best_val=[0]
-    begin_epoch = load_model(network, optimizer, scheduler, recorder, cfg.model_dir, resume=cfg.resume,best_val=best_val)
+    begin_epoch = load_model(network, optimizer, scheduler, recorder, cfg.model_dir, resume=cfg.resume,from_best=False,from_pretrained=True,best_val=best_val)
     best_val=best_val[0]
     # set_lr_scheduler(cfg, scheduler)
     # begin_epoch = 0

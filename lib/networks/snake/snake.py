@@ -229,7 +229,7 @@ class GAT(nn.Module):
         # Apply the first Graph Attention layer
         x = self.conv_head(input_tensor)
         # x = self.gat1(x, self.adj_mat).permute(0 ,2 ,1)
-        x = F.elu(x) # Apply ELU activation function to the output of the first layer
+        # x = F.elu(x) # Apply ELU activation function to the output of the first layer
 
         # Apply the second Graph Attention layer
         # x = self.gat2(x, self.adj_mat).permute(0, 2, 1)

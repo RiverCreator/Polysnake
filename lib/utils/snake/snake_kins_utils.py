@@ -1,7 +1,7 @@
 from lib.utils.snake.snake_cityscapes_utils import *
 
-crop_scale = np.array([896, 384])
-input_scale = np.array([896, 384])
+crop_scale = np.array([1280, 384])
+input_scale = np.array([1280, 384])
 scale_range = np.arange(0.4, 1.0, 0.1)
 
 

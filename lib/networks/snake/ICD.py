@@ -67,7 +67,7 @@ class RAFT(nn.Module):
     
     def use_gt_detection(self, output, batch):
         bacthsize, _, height, width = output['ct_hm'].size()
-        wh_pred = output['wh'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
+        wh_pred = output['wh_'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
         # inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
         # inp_h=inp_h/snake_config.ro
         # inp_w=inp_w/snake_config.ro
@@ -103,7 +103,7 @@ class RAFT(nn.Module):
 
     def decode_detection(self, output, h, w, score_thresh = 0.03):
         ct_hm = output['ct_hm']
-        wh = output['wh']
+        wh = output['wh_']
         #detection = torch.cat([ct, scores, clses], dim=2) ct 占(1,1000,2)表示中心点位置（像素位置），其余两个占(1,1000,1)
         poly_init, detection = snake_decode.decode_ct_hm(torch.sigmoid(ct_hm), wh, K=1000)
 
