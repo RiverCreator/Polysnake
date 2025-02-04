@@ -57,6 +57,46 @@ class Dataset(data.Dataset):
         cls_ids = [self.json_category_id_to_contiguous_id[obj['category_id']] for obj in anno]
         return img, instance_polys, cls_ids
 
+    def read_original_data2(self, anno, path):
+        # print(path)
+        assert os.path.exists(path)
+        img = cv2.imread(path)
+        #if(type(anno[0]['segmentation'])==dict):
+        for obj in anno:
+            if(type(obj['segmentation'])==dict):
+                seg_contour=[]
+                t=mask_util.decode(obj['segmentation'])      
+                poly=data_utils.polygonFromMask(t)
+                if(len(poly)==0):
+                    print("errno")
+                for p in poly:
+                    seg_contour.append(p)
+                obj['segmentation']=seg_contour
+                
+            if(type(obj['i_segmentation'])==dict):
+                vis_seg_contour=[]
+                t=mask_util.decode(obj['i_setgmentation'])      
+                vis_poly=data_utils.polygonFromMask(t)
+
+                # if(len(vis_poly)==0):
+                #     vis_poly = poly
+                    #print("errno") 全遮挡数据，这里vis_poly直接就当是amodal poly，作为数据增强部分
+                for p in vis_poly:
+                    vis_seg_contour.append(p)
+                obj['visible_mask']=vis_seg_contour
+        try:
+            if not self.istrain:  ## 这里使用的数据集为原装coco_amodal_val2014.json 但这里的segmentation
+                #instance_polys = [[[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']]for obj in pic['regions']] for pic in anno]
+                instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['visible_mask']] for obj in anno]
+            else:
+                instance_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['segmentation']] for obj in anno]
+                vis_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['visible_mask']] for obj in anno]
+        except:
+            print("debug point")
+        cls_ids = [self.json_category_id_to_contiguous_id[obj['category_id']] for obj in anno]
+        return img, instance_polys, cls_ids, vis_polys
+    
     def transform_original_data(self, instance_polys, flipped, width, trans_output, inp_out_hw):
         output_h, output_w = inp_out_hw[2:]
         instance_polys_ = []
@@ -184,7 +224,7 @@ class Dataset(data.Dataset):
         ann = self.anns[index]
 
         anno, path, img_id = self.process_info(ann)
-        img, instance_polys, cls_ids = self.read_original_data(anno, path)
+        img, instance_polys, cls_ids, vis_polys = self.read_original_data2(anno, path)
 
         height, width = img.shape[0], img.shape[1]
         orig_img, inp, trans_input, trans_output, flipped, center, scale, inp_out_hw = \
@@ -195,6 +235,8 @@ class Dataset(data.Dataset):
             )
         instance_polys = self.transform_original_data(instance_polys, flipped, width, trans_output, inp_out_hw)
         instance_polys = self.get_valid_polys(instance_polys, inp_out_hw)
+        vis_polys = self.transform_original_data(vis_polys, flipped, width, trans_output, inp_out_hw)
+        vis_polys = self.get_valid_polys(vis_polys, inp_out_hw)
         # extreme_points = self.get_extreme_points(instance_polys)
 
         # detection
@@ -217,6 +259,10 @@ class Dataset(data.Dataset):
         # c_it_pys = []
         i_gt_pys = []
         
+        per_ins_cmask, ind_mask = snake_voc_utils.per_polygon_to_mask2(instance_polys, output_h, output_w) #获得每个instance完整mask
+        per_ins_cmask = per_ins_cmask[ind_mask]
+        visible_mask, _= snake_voc_utils.per_polygon_to_mask2(vis_polys, output_h, output_w) #获得每个instance的visible mask
+        visible_mask = visible_mask[ind_mask] 
         cmask = snake_voc_utils.polygon_to_cmask(instance_polys, output_h, output_w)[np.newaxis,:,:]
         # c_gt_pys = []
 
@@ -242,7 +288,7 @@ class Dataset(data.Dataset):
                 # self.prepare_evolution(bbox, poly, extreme_point, i_it_pys, c_it_pys, i_gt_pys, c_gt_pys, inp_out_hw)
                 self.prepare_evolution(poly, i_gt_pys,inp_out_hw)
 
-        ret = {'inp': inp, 'cmask': cmask}
+        ret = {'inp': inp, 'cmask': cmask, 'per_ins_cmask' : per_ins_cmask, 'visible_mask': visible_mask}
         # detection = {'ct_hm': ct_hm, 'wh': wh, 'reg': reg, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         detection = {'ct_hm': ct_hm, 'ct_cls': ct_cls, 'ct_ind': ct_ind}
         # init = {'i_it_4py': i_it_4pys, 'c_it_4py': c_it_4pys, 'i_gt_4py': i_gt_4pys, 'c_gt_4py': c_gt_4pys}
