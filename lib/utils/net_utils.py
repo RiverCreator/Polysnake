@@ -288,7 +288,7 @@ class GeoCrossEntropyLoss(nn.Module):
         return loss
 
 
-def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1,from_best=False,from_pretrained=True,best_val=None):
+def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1, pretrained_model_name='' ,best_val=None):
     if not resume:
         #os.system('rm -rf {}'.format(model_dir))
         del_file(model_dir)
@@ -307,13 +307,13 @@ def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1,
     # else:
     #     pth = epoch
     model_name=""
-    if from_best:
+    pretrained = False
+    if len(pretrained_model_name) !=0 :
         if(os.path.exists(os.path.join(model_dir,"best_pretrained.pth"))):
-           model_name="best"
+           model_name="best_pretrained"
+           pretrained = True
         else:
             print(colored('Warning: No BEST MODEL LOADED!!!' , 'red'))
-    elif from_pretrained:
-        model_name="best_pretrained"
     else:
         pths=[]
         for name in os.listdir(model_dir):
@@ -330,11 +330,11 @@ def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1,
     print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(model_name))))
     pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(model_name)))
     net.load_state_dict(pretrained_model['net'],strict = False)
-    # optim.load_state_dict(pretrained_model['optim'])
-    # scheduler.load_state_dict(pretrained_model['scheduler'])
-    # recorder.load_state_dict(pretrained_model['recorder'])
-    if from_best:
-        best_val[0]=pretrained_model['ap']
+    if not pretrained:
+        optim.load_state_dict(pretrained_model['optim'])
+        scheduler.load_state_dict(pretrained_model['scheduler'])
+        recorder.load_state_dict(pretrained_model['recorder'])
+    #best_val[0]=pretrained_model['ap']
     return pretrained_model['epoch'] + 1
 
 

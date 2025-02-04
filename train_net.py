@@ -38,7 +38,7 @@ def train(cfg, network):
     recorder = make_recorder(cfg)
     evaluator = make_evaluator(cfg, logger)
     best_val=[0]
-    begin_epoch = load_model(network, optimizer, scheduler, recorder, cfg.model_dir, resume=cfg.resume,from_best=False,from_pretrained=True,best_val=best_val)
+    begin_epoch = load_model(network, optimizer, scheduler, recorder, cfg.model_dir, resume=cfg.resume, pretrained_model_name = cfg.pretrained_model_name, best_val=best_val)
     best_val=best_val[0]
     # set_lr_scheduler(cfg, scheduler)
     # begin_epoch = 0
