@@ -25,5 +25,5 @@ test:
     batch_size: 1
 eval_ep: 300
 save_ep: 1
-heads: {'ct_hm': 7, 'wh_': 256, 'mask': 1}
+heads: {'ct_hm': 7, 'wh': 256, 'mask': 1}
 segm_or_bbox: 'segm'

@@ -106,7 +106,7 @@ class DatasetCatalog(object):
         'CocoaTrain': {
             'id': 'cocoa',
             'data_root': 'data/cocoa/train2014',
-            'ann_file': 'data/cocoa/amodal_cls_annotations/COCO_amodal_train2014_with_classes_amodal.json',
+            'ann_file': 'data/cocoa/amodal_cls_annotations/COCO_amodal_train2014_with_classes.json',
             'split': 'train'
         },
         'CocoaVal': {

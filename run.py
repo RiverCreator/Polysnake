@@ -64,7 +64,7 @@ def run_evaluate():
     logger.addHandler(console)
     print("ok")
     network = make_network(cfg).cuda()
-    load_network(network, cfg.model_dir)
+    load_network(network, 'data/model/snake/cocoa_snake/')
     network.eval()
     
     data_loader = make_data_loader(cfg, is_train=False)

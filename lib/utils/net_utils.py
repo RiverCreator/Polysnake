@@ -332,8 +332,8 @@ def load_model(net, optim, scheduler, recorder, model_dir,resume=True, epoch=-1,
     net.load_state_dict(pretrained_model['net'],strict = False)
     if not pretrained:
         optim.load_state_dict(pretrained_model['optim'])
-        scheduler.load_state_dict(pretrained_model['scheduler'])
-        recorder.load_state_dict(pretrained_model['recorder'])
+    scheduler.load_state_dict(pretrained_model['scheduler'])
+    recorder.load_state_dict(pretrained_model['recorder'])
     #best_val[0]=pretrained_model['ap']
     return pretrained_model['epoch'] + 1
 
@@ -378,7 +378,7 @@ def load_network(net, model_dir, resume=True, epoch=-1, strict=True):
     # else:
     #     pth = epoch
     #print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(pth))))
-    pretrained_model=torch.load(os.path.join(model_dir,'best.pth'))
+    pretrained_model=torch.load(os.path.join(model_dir,'188.pth'))
     #pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(pth)))
     net.load_state_dict(pretrained_model['net'], strict=strict)
     return pretrained_model['epoch'] + 1

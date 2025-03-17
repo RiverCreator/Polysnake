@@ -173,7 +173,7 @@ class CondInst(nn.Module):
     
     def use_gt_centers(self, output, batch):
         bacthsize, _, height, width = output['ct_hm'].size()
-        wh_pred = output['wh_'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
+        wh_pred = output['wh'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
         # inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
         # inp_h=inp_h/snake_config.ro
         # inp_w=inp_w/snake_config.ro

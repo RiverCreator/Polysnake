@@ -204,39 +204,43 @@ class GAT(nn.Module):
         n_heads,
         concat=False,
         dropout=0.0,
-        leaky_relu_slope=0.2):
+        leaky_relu_slope=0.2,
+        use_gat=False):
 
         super(GAT, self).__init__()
         self.adj_mat = create_expanded_adj_matrix(128, 7)
+        self.use_gat = use_gat
         # Define the Graph Attention layers
         self.conv_head = Snake(state_dim=128, feature_dim=in_features, conv_type='dgrid', need_fea=True)
-        # self.gat1 = GraphAttentionLayer(
-        #     in_features=64, out_features=n_hidden, n_heads=n_heads,
-        #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-        #     )
-        
-        # self.gat2 = GraphAttentionLayer(
-        #     in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
-        #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-        #     )
+        if use_gat:
+            self.gat1 = GraphAttentionLayer(
+                in_features=64, out_features=n_hidden, n_heads=n_heads,
+                concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+                )
+            
+            self.gat2 = GraphAttentionLayer(
+                in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
+                concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+                )
 
-        # self.gat3 =  GraphAttentionLayer(
-        #     in_features=n_hidden, out_features=out_features, n_heads=1,
-        #     concat=False, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-        #     )  
+            self.gat3 =  GraphAttentionLayer(
+                in_features=n_hidden, out_features=out_features, n_heads=1,
+                concat=False, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+                )  
     def forward(self, input_tensor: torch.Tensor):
-        self.adj_mat = self.adj_mat.to(input_tensor.device)
         # Apply the first Graph Attention layer
         x = self.conv_head(input_tensor)
-        # x = self.gat1(x, self.adj_mat).permute(0 ,2 ,1)
-        # x = F.elu(x) # Apply ELU activation function to the output of the first layer
+        if self.use_gat:
+            self.adj_mat = self.adj_mat.to(input_tensor.device)
+            x = self.gat1(x, self.adj_mat).permute(0 ,2 ,1)
+            x = F.elu(x) # Apply ELU activation function to the output of the first layer
 
-        # Apply the second Graph Attention layer
-        # x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
-        # x = F.elu(x)
-        
-        # x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
-        #x = x.squeeze(1).permute(0, 2, 1)
+            #Apply the second Graph Attention layer
+            x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
+            x = F.elu(x)
+            
+            x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
+            x = x.squeeze(1).permute(0, 2, 1)
         return x # Apply softmax activation function
     
 class BEB(nn.Module):

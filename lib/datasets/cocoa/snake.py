@@ -73,9 +73,9 @@ class Dataset(data.Dataset):
                     seg_contour.append(p)
                 obj['segmentation']=seg_contour
                 
-            if(type(obj['i_segmentation'])==dict):
+            if(type(obj['visible_mask'])==dict):
                 vis_seg_contour=[]
-                t=mask_util.decode(obj['i_setgmentation'])      
+                t=mask_util.decode(obj['visible_mask'])      
                 vis_poly=data_utils.polygonFromMask(t)
 
                 # if(len(vis_poly)==0):
@@ -119,16 +119,16 @@ class Dataset(data.Dataset):
         instance_polys_ = []
         for instance in instance_polys:
             instance = [poly for poly in instance if len(poly) >= 4]
-            # for poly in instance:
-            #     poly[:, 0] = np.clip(poly[:, 0], 0, output_w - 1)
-            #     poly[:, 1] = np.clip(poly[:, 1], 0, output_h - 1)
+            for poly in instance:
+                poly[:, 0] = np.clip(poly[:, 0], 0, output_w - 1)
+                poly[:, 1] = np.clip(poly[:, 1], 0, output_h - 1)
             polys = snake_cocoa_utils.filter_tiny_polys(instance)
             polys = snake_cocoa_utils.get_cw_polys(polys)
             polys = [poly[np.sort(np.unique(poly, axis=0, return_index=True)[1])] for poly in polys]
             polys = [poly for poly in polys if len(poly) >= 4]
             instance_polys_.append(polys)
         return instance_polys_
-
+    
     def get_extreme_points(self, instance_polys):
         extreme_points = []
         for instance in instance_polys:
@@ -258,7 +258,8 @@ class Dataset(data.Dataset):
         # i_it_pys = []
         # c_it_pys = []
         i_gt_pys = []
-        
+        # if '270333' in path:
+        #     print("debug point")
         per_ins_cmask, ind_mask = snake_voc_utils.per_polygon_to_mask2(instance_polys, output_h, output_w) #获得每个instance完整mask
         per_ins_cmask = per_ins_cmask[ind_mask]
         visible_mask, _= snake_voc_utils.per_polygon_to_mask2(vis_polys, output_h, output_w) #获得每个instance的visible mask
@@ -268,9 +269,13 @@ class Dataset(data.Dataset):
 
         for i in range(len(anno)):
             cls_id = cls_ids[i]
-            instance_poly = instance_polys[i]
+            instance_poly_ = instance_polys[i]
             # instance_points = extreme_points[i]
-
+            instance_poly = []
+            if(len(instance_poly_) > 1):
+                instance_poly.append(np.concatenate(instance_poly_, axis=0))
+            else:
+                instance_poly = instance_poly_
             for j in range(len(instance_poly)):
                 poly = instance_poly[j]
                 # extreme_point = instance_points[j]

@@ -8,6 +8,7 @@ score_thresh: 0.01
 eval_ep : 100
 num_classes: 80
 pretrained_model_name: 'best_pretrained'
+# model_dir: 'data/model/snake/cocoa_snake'
 train:
     optim: 'adam'
     warmup: true
@@ -18,10 +19,11 @@ train:
     batch_size: 16
     dataset: 'CocoaTrain'
     num_workers: 8
-    epoch: 300
+    epoch: 500
 test:
     dataset: 'CocoaVal'
     batch_size: 1
-
-heads: {'ct_hm': 80, 'wh_': 256, 'mask': 1}
+eval_ep: 400
+save_ep: 1
+heads: {'ct_hm': 80, 'wh': 256, 'mask': 1}
 segm_or_bbox: 'segm'

@@ -37,6 +37,7 @@ class RAFT(nn.Module):
 
     def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred, vis_pred):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
         if len(i_it_poly) == 0:
+            return torch.empty(0, 128, 2)
             return torch.zeros_like(i_it_poly)
         h, w = cnn_feature.size(2), cnn_feature.size(3)  ## cnn_featuer为b c h w  i_it_poly为(n,128,2),n为center个数
         init_feature = snake_gcn_utils.get_gcn_feature(cnn_feature, i_it_poly, ind, h, w)  ### 将坐标对应的feature进行采样，每个点对应的feature即为长度为c的向量，故init_feature大小为n c 128，n为center个数，c为cnn_feature的channel
@@ -67,7 +68,7 @@ class RAFT(nn.Module):
     
     def use_gt_detection(self, output, batch):
         bacthsize, _, height, width = output['ct_hm'].size()
-        wh_pred = output['wh_'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
+        wh_pred = output['wh'] ## 预测的每个点的偏移量 shape为 b 128*2 h w
         # inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
         # inp_h=inp_h/snake_config.ro
         # inp_w=inp_w/snake_config.ro
@@ -103,7 +104,7 @@ class RAFT(nn.Module):
 
     def decode_detection(self, output, h, w, score_thresh = 0.03):
         ct_hm = output['ct_hm']
-        wh = output['wh_']
+        wh = output['wh']
         #detection = torch.cat([ct, scores, clses], dim=2) ct 占(1,1000,2)表示中心点位置（像素位置），其余两个占(1,1000,1)
         poly_init, detection = snake_decode.decode_ct_hm(torch.sigmoid(ct_hm), wh, K=1000)
 
