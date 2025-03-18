@@ -84,26 +84,26 @@ class NetworkWrapper(nn.Module):
         # if not self.training:
         #     print('debug')
         #pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
-        for i in range(len(output['mask_preds'])):
-            pred_masks = output['mask_preds'][i]
-            pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
-            gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i])
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
-            mask_losses +=mask_loss.mean()
-        
-        for i in range(len(output['vis_mask_preds'])):
-            vis_pred_masks = output['vis_mask_preds'][i]
-            vis_pred_masks = vis_pred_masks[torch.arange(vis_pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
-            vis_gt_masks = self.crop_and_resize(output['per_vis_cmask'], output['rois'][i])
-            mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(vis_pred_masks), vis_gt_masks)
-            vis_mask_losses +=mask_loss.mean()
+        if cfg.use_box:
+            for i in range(len(output['mask_preds'])):
+                pred_masks = output['mask_preds'][i]
+                pred_masks = pred_masks[torch.arange(pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+                gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i])
+                mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
+                mask_losses +=mask_loss.mean()
             
-        mask_losses = mask_losses / len(output['mask_preds'])
-        vis_mask_losses = vis_mask_losses / len(output['vis_mask_preds'])
-        scalar_stats.update({'box_mask_loss': mask_losses})
-        scalar_stats.update({'vis_mask_loss': vis_mask_losses})
-        loss += mask_losses
-        loss += vis_mask_losses
+            for i in range(len(output['vis_mask_preds'])):
+                vis_pred_masks = output['vis_mask_preds'][i]
+                vis_pred_masks = vis_pred_masks[torch.arange(vis_pred_masks.shape[0]),batch['ct_cls'][batch['ct_01'].byte()]]
+                vis_gt_masks = self.crop_and_resize(output['per_vis_cmask'], output['rois'][i])
+                mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(vis_pred_masks), vis_gt_masks)
+                vis_mask_losses +=mask_loss.mean()   
+            mask_losses = mask_losses / len(output['mask_preds'])
+            vis_mask_losses = vis_mask_losses / len(output['vis_mask_preds'])
+            scalar_stats.update({'box_mask_loss': mask_losses})
+            scalar_stats.update({'vis_mask_loss': vis_mask_losses})
+            loss += mask_losses
+            loss += vis_mask_losses
         scalar_stats.update({'loss': loss})
         image_stats = {}
 

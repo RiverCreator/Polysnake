@@ -5,6 +5,7 @@ import numpy as np
 import torch.nn.functional
 from collections import OrderedDict
 from termcolor import colored
+from lib.config import cfg
 
 import shutil
 def del_file(filepath):
@@ -378,7 +379,8 @@ def load_network(net, model_dir, resume=True, epoch=-1, strict=True):
     # else:
     #     pth = epoch
     #print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(pth))))
-    pretrained_model=torch.load(os.path.join(model_dir,'188.pth'))
+    print(cfg.eval_model_name)
+    pretrained_model=torch.load(os.path.join(model_dir,cfg.eval_model_name))
     #pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(pth)))
     net.load_state_dict(pretrained_model['net'], strict=strict)
     return pretrained_model['epoch'] + 1

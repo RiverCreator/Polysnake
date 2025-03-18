@@ -36,5 +36,5 @@ MODEL:
         
 heads: {'ct_hm': 60, 'wh': 256, 'mask': 1}
 segm_or_bbox: 'segm'
-eval_ep: 10
+eval_ep: 300
 save_ep: 5

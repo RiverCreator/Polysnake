@@ -7,8 +7,7 @@ iter_num: 6
 score_thresh: 0.05
 num_classes: 60
 use_gat: true
-use_box: true
-eval_model_name: '184.pth'
+use_box: false
 train:
     optim: 'adam'
     lr: 1e-4
@@ -38,5 +37,5 @@ MODEL:
         
 heads: {'ct_hm': 60, 'wh': 256, 'mask': 1}
 segm_or_bbox: 'segm'
-eval_ep: 10
+eval_ep: 300
 save_ep: 5
