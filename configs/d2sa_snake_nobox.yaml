@@ -1,20 +1,20 @@
-model: 'd2sa_snake'
+model: 'd2sa_snake_gat'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [3]
+gpus: [0]
 iter_num: 6
 score_thresh: 0.05
 num_classes: 60
+eval_model_name: '104.pth'
 use_gat: true
-use_box: true
-eval_model_name: '184.pth'
+use_box: false
 train:
     optim: 'adam'
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 8
+    batch_size: 4
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300

@@ -3,3 +3,6 @@ visual_pic
 *.out
 *.pth
 *.txt
+log
+visb
+vispy

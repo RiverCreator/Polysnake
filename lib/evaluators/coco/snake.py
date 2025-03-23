@@ -36,6 +36,56 @@ class Evaluator:
             v: k for k, v in self.json_category_id_to_contiguous_id.items()
         }
         self.threshold = 0.3
+    def vis_data(self, mask, imgid, img_name):
+        import numpy as np
+        from PIL import Image
+        
+        # 假设您的掩码张量存储在变量 mask 中，形状为 (1, 1, 168, 128)
+        # 这里我们使用随机数据作为示例
+        #mask = np.random.randn(1, 1, 168, 128)
+
+        # 去除多余的维度，得到形状为 (168, 128) 的二维数组
+        mask = np.squeeze(mask)
+
+        #mask_normalized = torch.sigmoid(mask)
+
+        # 将归一化后的张量值缩放到 0-255 范围，并转换为无符号8位整数类型
+        mask_scaled = (mask * 255).byte()
+
+        # 将张量转换为 NumPy 数组
+        mask_np = mask_scaled.cpu().numpy()
+
+        # 将 NumPy 数组转换为 PIL 图像
+        mask_image = Image.fromarray(mask_np)
+
+        # 保存为 JPEG 格式的图像
+        mask_image.save('visb/mask{}_{}.jpg'.format(imgid,img_name), format='JPEG')
+        self.i += 1
+    
+    def vis_poly(self, py, label, batch, img):
+        #visualize_contour(dir,output,batch)
+        image = Image.open("/data0/river/Polysnake/data/d2sa/images/{}".format(img['file_name'])).convert('RGBA')
+        #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
+        dir="vispy/{}".format(self.i)
+        if os.path.exists(dir):
+            shutil.rmtree(dir)
+        os.mkdir(dir)
+        shutil.copy(batch['meta']['path'][0],dir)
+        for i in range(len(py)):
+            image2 = Image.new("RGBA", (img['width'], img['height']))
+            draw = ImageDraw.Draw(image2)
+            tmp=[]
+            for j in range(len(py[i])):
+                tmp.append((py[i][j][0],py[i][j][1]))
+            
+            polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255), 128)
+            draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
+            blend = Image.alpha_composite(image, image2)
+            try:
+                blend.save(dir+"/poly_test_{}_{}_{}.png".format(i,int(batch['meta']['img_id'][0]),self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
+            except:
+                print('wrong')
+        self.i+=1
         
     def evaluate(self, output, batch):
         detection = output['detection']
@@ -48,11 +98,16 @@ class Evaluator:
         #py=py_init
         if len(py) == 0:
             return
-
+        
         img_id = int(batch['meta']['img_id'][0])
+        # self.vis_data(output['amodal_preds'][-1][0][label[0]],img_id)
+        # self.vis_data(output['per_ins_cmask'][0][0],img_id,)
+        # if(img_id  == 1104):
+        #     for i in range(batch['per_ins_cmask'].shape[1]):
+        #         self.vis_data(batch['per_ins_cmask'][0][i],img_id,"amodal{}".format(i))
+        #         self.vis_data(batch['per_vis_cmask'][0][i],img_id,"vis{}".format(i))
         center = batch['meta']['center'][0].detach().cpu().numpy()
         scale = batch['meta']['scale'][0].detach().cpu().numpy() #d2sa:(1952,1504)
-        
         
         h, w = batch['inp'].size(2), batch['inp'].size(3)
         # py[:,:,0]=py[:,:,0]*w
@@ -60,10 +115,13 @@ class Evaluator:
         trans_output_inv = data_utils.get_affine_transform(center, scale, 0, [w, h], inv=1)
         
         img = self.coco.loadImgs(img_id)[0]
+        #self.vis_poly(py,label,batch,img['file_name'])
         ori_h, ori_w = img['height'], img['width']
         py = [data_utils.affine_transform(py_, trans_output_inv) for py_ in py]
         rles = snake_eval_utils.coco_poly_to_rle(py, ori_h, ori_w)
-        
+        if('001119' in img['file_name'] or '68024' in img['file_name']):
+            self.vis_poly(py,label,batch,img)
+        #self.vis_poly(py,label,batch)
         # cond_pred = []
         # for m in cond_ins_mask_t:
         #     t = cv2.resize(m, (ori_w, ori_h), interpolation=cv2.INTER_LINEAR)
@@ -72,39 +130,6 @@ class Evaluator:
         
         # #rles_cond = snake_eval_utils.binary_mask_to_rle(cond_pred)
         # image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
-        
-        # dir="visual_pic/{}".format(self.i)
-        # #visualize_contour(dir,output,batch)
-
-        # image=Image.open(batch['meta']['path'][0])
-        # dir="visual_pic/{}".format(self.i)
-        # if os.path.exists(dir):
-        #     shutil.rmtree(dir)
-        # os.mkdir(dir)
-        # shutil.copy(batch['meta']['path'][0],dir)
-        # for i in range(len(py)):
-        #     draw = ImageDraw.Draw(image)
-        #     tmp=[]
-        #     for j in range(len(py[i])):
-        #         tmp.append((py[i][j][0],py[i][j][1]))
-            
-        #     polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        #     draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
-        #     try:
-        #         image.save(dir+"/poly_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
-        #     except:
-        #         print('wrong')
-        # for i in range(len(cond_pred)):
-        #     #image=Image.open(batch['meta']['path'][0])
-        #     src = cv2.imread(batch['meta']['path'][0])
-        #     cond_pred[i] = np.uint8(cond_pred[i] * 255)
-        #     mask_image = cv2.applyColorMap(cond_pred[i], cv2.COLORMAP_JET)
-        #     #mask_image = Image.fromarray(cond_pred[i] * 255)
-        #     #image.paste(mask_image, (0, 0),mask_image)
-        #     superimposed_img = mask_image * 0.5 + src
-        #     cv2.imwrite((dir+"/cond_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory'])),superimposed_img)
-        #     #image.save(dir+"/cond_test{}_{}_{}.jpg".format(i,score[i],self.coco.cats[self.contiguous_category_id_to_json_id[label[i]]]['supercategory']))
-        self.i+=1
 
         coco_dets = []
         

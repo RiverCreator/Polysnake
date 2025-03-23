@@ -19,9 +19,9 @@ class RAFT(nn.Module):
         #这里的state_dim表示128个点的特征向量
         #self.evolve_gcn = Snake(state_dim=128, feature_dim=64 + 2 + 1, conv_type='dgrid', need_fea=True) #即文章中用来进行特征聚合，然后输出g_{k-1}的模块
         if(cfg.use_box):
-            self.evolve_gcn = GAT(in_features=64 + 2 + 1, n_hidden= 256, out_features= 64, n_heads=4,concat=True)
+            self.evolve_gcn = GAT(in_features=64 + 2 + 1, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
         else:
-            self.evolve_gcn = GAT(in_features=64 + 2, n_hidden= 256, out_features= 64, n_heads=4,concat=True)
+            self.evolve_gcn = GAT(in_features=64 + 2, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
         self.update_block = BasicUpdateBlock() ## 即文章中使用gru的模块
         self.box_mask_head = AmodalBranch(cfg.num_classes)
         self.vis_mask_head = AmodalBranch(cfg.num_classes)
@@ -159,7 +159,7 @@ class RAFT(nn.Module):
             if cfg.use_box:
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
             else:
-                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])
+                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
             i_poly_fea = F.leaky_relu(i_poly_fea)
             py_preds = []
@@ -196,11 +196,13 @@ class RAFT(nn.Module):
             with torch.no_grad():
                 test_box_mask_preds = []
                 test_vis_mask_preds = []
+                py_preds = []
                 poly_init, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3),self.score_thresh)
                 # poly_init_loss = self.use_gt_detection(output, batch)
                 # init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
                 # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
                 ind = torch.zeros((poly_init.size(0)))
+                py_preds.append(poly_init)
                 py_pred = poly_init * snake_config.ro
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init)
                 ct_01 = torch.ones([1, detection.size(0)])
@@ -222,8 +224,8 @@ class RAFT(nn.Module):
                         net, offset = self.update_block(net, i_poly_fea)
                         #cls_score= self.classify_block(net)
                         py_pred = py_pred + snake_config.ro * offset
-                        #py_preds.append(py_pred)
                         py_pred_sm = py_pred / snake_config.ro
+                        py_preds.append(py_pred_sm)
                         if cfg.use_box:
                             box_mask_pred, roi = self.box_mask_head(cnn_feature, py_pred_sm, ct_01.byte())
                             vis_mask_pred, _ = self.vis_mask_head(cnn_feature, py_pred_sm, ct_01.byte())
@@ -238,8 +240,11 @@ class RAFT(nn.Module):
                             i_poly_fea = F.leaky_relu(i_poly_fea)
                             #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, ind)
                     final_py_preds = [py_pred_sm]
+                    py_preds.append(py_pred_sm)
+                    ret.update({'py': py_preds})
+                    #ret.update({'amodal_preds': test_box_mask_preds,'vis_mask_preds': test_vis_mask_preds})
                 else:
                     final_py_preds = [i_poly_fea]
-                ret.update({'py': final_py_preds})
+                    ret.update({'py': final_py_preds})
         return output
 
