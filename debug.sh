@@ -14,7 +14,7 @@ elif [ "$1" = "d2sa_train" ]; then
     nohup python train_net.py --cfg_file configs/d2sa_snake.yaml model d2sa_snake >> train_d2sa_result.txt &
 elif [ "$1" = "d2sa_eval" ]; then
     python -m debugpy --listen 9279 --wait-for-client run.py --type evaluate --cfg_file configs/d2sa_snake_melt_gat.yaml test.dataset D2saVal
-    #python run.py --type evaluate --cfg_file configs/d2sa_snake_melt_gat.yaml test.dataset D2SAVal
+    #python run.py --type evaluate --cfg_file configs/d2sa_snake_melt_gat.yaml test.dataset D2saVal
 
 elif [ "$1" = "d2sa_debug" ]; then
     python -m debugpy --listen 9291 --wait-for-client train_net.py --cfg_file configs/d2sa_snake.yaml model d2sa_snake
