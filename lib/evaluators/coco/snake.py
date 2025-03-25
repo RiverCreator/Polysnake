@@ -62,14 +62,17 @@ class Evaluator:
         mask_image.save('visb/mask{}_{}.jpg'.format(imgid,img_name), format='JPEG')
         self.i += 1
     
-    def vis_poly(self, py, label, batch, img):
+    def vis_poly(self, py, label, batch, img, type = "d2sa"):
         #visualize_contour(dir,output,batch)
-        image = Image.open("/data0/river/Polysnake/data/d2sa/images/{}".format(img['file_name'])).convert('RGBA')
+        if(type == "d2sa"):
+            image = Image.open("/data0/river/Polysnake/data/d2sa/images/{}".format(img['file_name'])).convert('RGBA')
+        elif(type == "kins"):
+            image = Image.open("/data0/river/Polysnake/data/kitti/testing/image_2/{}".format(img['file_name'])).convert('RGBA')
         #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
-        dir="vispy/{}".format(self.i)
+        dir="vis_{}/{}".format(type,self.i)
         if os.path.exists(dir):
             shutil.rmtree(dir)
-        os.mkdir(dir)
+        os.makedirs(dir)
         shutil.copy(batch['meta']['path'][0],dir)
         for i in range(len(py)):
             image2 = Image.new("RGBA", (img['width'], img['height']))
@@ -119,17 +122,14 @@ class Evaluator:
         ori_h, ori_w = img['height'], img['width']
         py = [data_utils.affine_transform(py_, trans_output_inv) for py_ in py]
         rles = snake_eval_utils.coco_poly_to_rle(py, ori_h, ori_w)
-        if('001119' in img['file_name'] or '68024' in img['file_name']):
-            self.vis_poly(py,label,batch,img)
+        if(cfg.need_vis):
+            if("d2sa" in cfg.model):
+                self.vis_poly(py,label,batch,img,type="d2sa")
+            elif("kins" in cfg.model):
+                self.vis_poly(py,label,batch,img,type="kins")
+        # if('001119' in img['file_name'] or '68024' in img['file_name']):
+        #     self.vis_poly(py,label,batch,img)
         #self.vis_poly(py,label,batch)
-        # cond_pred = []
-        # for m in cond_ins_mask_t:
-        #     t = cv2.resize(m, (ori_w, ori_h), interpolation=cv2.INTER_LINEAR)
-        #     #t = (t > self.threshold).astype(np.uint8)
-        #     cond_pred.append(t)
-        
-        # #rles_cond = snake_eval_utils.binary_mask_to_rle(cond_pred)
-        # image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
 
         coco_dets = []
         

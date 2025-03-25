@@ -8,10 +8,9 @@ cfg = CN()
 cfg.model = 'hello'
 cfg.model_dir = 'data/model'
 pretrained_model = ''
-cfg.eval_model_name = ''
 # network
 cfg.network = 'dla_34'
-
+cfg.need_vis = False
 # network heads
 cfg.heads = CN()
 
@@ -84,7 +83,9 @@ def parse_cfg(cfg, args):
     os.environ['CUDA_VISIBLE_DEVICES'] = ', '.join([str(gpu) for gpu in cfg.gpus])
 
     cfg.det_dir = os.path.join(cfg.model_dir, cfg.task, args.det)
-
+    if(not cfg.__contains__("eval_model_name")):
+        cfg.eval_model_name = args.eval_model_name
+    
     # assign the network head conv
     cfg.head_conv = 64 if 'res' in cfg.network else 256
 
@@ -106,6 +107,7 @@ parser.add_argument('--test', action='store_true', dest='test', default=False)
 parser.add_argument("--type", type=str, default="")
 parser.add_argument('--det', type=str, default='')
 parser.add_argument('-f', type=str, default='')
+parser.add_argument('--eval_model_name', type=str, default='')
 parser.add_argument("opts", default=None, nargs=argparse.REMAINDER)
 args = parser.parse_args()
 if len(args.type) > 0:

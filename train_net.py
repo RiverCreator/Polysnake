@@ -25,7 +25,7 @@ def train(cfg, network):
     console.setLevel(logging.INFO)
     logger.addHandler(console)
 
-    manualSeed = 114514
+    manualSeed = 123
     logger.info("Random Seed: {}".format(manualSeed))
     random.seed(manualSeed)
     np.random.seed(manualSeed)
