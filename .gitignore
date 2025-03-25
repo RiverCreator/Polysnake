@@ -1,3 +1,6 @@
 data
 visual_pic
 *.out
+*.jpg
+*.png
+vis*
