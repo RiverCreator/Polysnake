@@ -2,3 +2,6 @@ data
 visual_pic
 *.out
 *.pth
+*.jpg
+*.png
+vis*

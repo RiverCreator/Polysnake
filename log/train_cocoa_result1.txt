@@ -1,0 +1,43 @@
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 114514
+train: Epoch: 0	
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+WARNING: NO MODEL LOADED !!!
+loading annotations into memory...
+Done (t=0.26s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+train: Epoch: 1	
+eta: 0:00:45  epoch: 0  step: 100  mask_loss: 1.1794  ct_loss: 101.1339  wh_loss: 3.6362  py_loss: 21.7997  shape_loss: 1.8045  box_mask_loss: 0.1790  vis_mask_loss: 0.2351  loss: 129.9678  data: 0.0635  batch: 0.9097  lr: 0.000033  max_mem: 8826
+eta: 0:00:00  epoch: 0  step: 142  mask_loss: 1.1733  ct_loss: 42.5919  wh_loss: 3.7581  py_loss: 22.0271  shape_loss: 2.0308  box_mask_loss: 0.1720  vis_mask_loss: 0.2291  loss: 71.9822  data: 0.0601  batch: 0.8459  lr: 0.000033  max_mem: 8826
+train: Epoch: 2	
+eta: 0:00:41  epoch: 1  step: 243  mask_loss: 1.1576  ct_loss: 10.6911  wh_loss: 2.7136  py_loss: 15.8531  shape_loss: 1.5950  box_mask_loss: 0.2465  vis_mask_loss: 0.2908  loss: 32.5477  data: 0.0598  batch: 0.8517  lr: 0.000047  max_mem: 8826
+eta: 0:00:00  epoch: 1  step: 285  mask_loss: 1.1156  ct_loss: 7.8255  wh_loss: 2.7896  py_loss: 15.6589  shape_loss: 1.4969  box_mask_loss: 0.2296  vis_mask_loss: 0.2800  loss: 29.3961  data: 0.0660  batch: 0.8797  lr: 0.000047  max_mem: 8826
+train: Epoch: 3	
+eta: 0:00:40  epoch: 2  step: 386  mask_loss: 1.0893  ct_loss: 5.3258  wh_loss: 2.4386  py_loss: 12.9109  shape_loss: 1.1430  box_mask_loss: 0.2343  vis_mask_loss: 0.2643  loss: 23.4063  data: 0.0567  batch: 0.8755  lr: 0.000060  max_mem: 8881
+eta: 0:00:00  epoch: 2  step: 428  mask_loss: 1.0709  ct_loss: 5.0195  wh_loss: 2.3157  py_loss: 11.9120  shape_loss: 1.0870  box_mask_loss: 0.2275  vis_mask_loss: 0.2439  loss: 21.8766  data: 0.0542  batch: 0.8144  lr: 0.000060  max_mem: 8881
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 114514
+train: Epoch:172	
+loading annotations into memory...
+Done (t=0.06s)
+creating index...
+index created!
+load model: data/model/snake/cocoa_snake/best_pretrained.pth
+loading annotations into memory...
+Done (t=0.31s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.06s)
+creating index...
+index created!

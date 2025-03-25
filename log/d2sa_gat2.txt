@@ -1,0 +1,857 @@
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 114514
+train: Epoch: 5	
+loading annotations into memory...
+Done (t=0.44s)
+creating index...
+index created!
+load model: data/model/snake/d2sa_snake/4.pth
+loading annotations into memory...
+Done (t=0.52s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.51s)
+creating index...
+index created!
+train: Epoch: 6	
+eta: 0:03:32  epoch: 5  step: 1350  mask_loss: 0.4240  ct_loss: 3.0461  wh_loss: 1.0667  py_loss: 3.6944  shape_loss: 0.3737  box_mask_loss: 0.1180  vis_mask_loss: 0.1466  loss: 8.8696  data: 0.6917  batch: 1.6100  lr: 0.000100  max_mem: 12098
+eta: 0:01:11  epoch: 5  step: 1450  mask_loss: 0.4344  ct_loss: 2.9583  wh_loss: 0.9764  py_loss: 3.2003  shape_loss: 0.3183  box_mask_loss: 0.1110  vis_mask_loss: 0.1244  loss: 8.1231  data: 0.3729  batch: 1.2432  lr: 0.000100  max_mem: 12098
+eta: 0:00:01  epoch: 5  step: 1499  mask_loss: 0.4203  ct_loss: 2.9167  wh_loss: 0.9352  py_loss: 3.0311  shape_loss: 0.3064  box_mask_loss: 0.1126  vis_mask_loss: 0.1358  loss: 7.8582  data: 0.3410  batch: 1.2191  lr: 0.000100  max_mem: 12098
+train: Epoch: 7	
+eta: 0:03:42  epoch: 6  step: 1600  mask_loss: 0.4132  ct_loss: 2.8762  wh_loss: 0.9785  py_loss: 3.3646  shape_loss: 0.3518  box_mask_loss: 0.1088  vis_mask_loss: 0.1340  loss: 8.2271  data: 0.3829  batch: 1.2572  lr: 0.000100  max_mem: 12517
+eta: 0:01:14  epoch: 6  step: 1700  mask_loss: 0.4035  ct_loss: 2.8042  wh_loss: 0.9061  py_loss: 3.0197  shape_loss: 0.3154  box_mask_loss: 0.1093  vis_mask_loss: 0.1194  loss: 7.6777  data: 0.7559  batch: 1.6063  lr: 0.000100  max_mem: 12517
+eta: 0:00:01  epoch: 6  step: 1749  mask_loss: 0.3951  ct_loss: 2.7685  wh_loss: 0.8500  py_loss: 2.8744  shape_loss: 0.2881  box_mask_loss: 0.1136  vis_mask_loss: 0.1364  loss: 7.4262  data: 0.6383  batch: 1.4377  lr: 0.000100  max_mem: 12517
+train: Epoch: 8	
+eta: 0:03:47  epoch: 7  step: 1850  mask_loss: 0.4043  ct_loss: 2.7462  wh_loss: 0.8754  py_loss: 2.9213  shape_loss: 0.3081  box_mask_loss: 0.1114  vis_mask_loss: 0.1289  loss: 7.4956  data: 0.5202  batch: 1.3660  lr: 0.000100  max_mem: 12843
+eta: 0:01:16  epoch: 7  step: 1950  mask_loss: 0.3898  ct_loss: 2.6742  wh_loss: 0.8423  py_loss: 2.8402  shape_loss: 0.2908  box_mask_loss: 0.1083  vis_mask_loss: 0.1174  loss: 7.2630  data: 0.7103  batch: 1.5595  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 7  step: 1999  mask_loss: 0.3976  ct_loss: 2.6514  wh_loss: 0.8214  py_loss: 2.7296  shape_loss: 0.2859  box_mask_loss: 0.1087  vis_mask_loss: 0.1310  loss: 7.1257  data: 1.3415  batch: 2.1216  lr: 0.000100  max_mem: 12843
+train: Epoch: 9	
+eta: 0:03:51  epoch: 8  step: 2100  mask_loss: 0.3732  ct_loss: 2.5686  wh_loss: 0.8124  py_loss: 2.8056  shape_loss: 0.3006  box_mask_loss: 0.1018  vis_mask_loss: 0.1199  loss: 7.0821  data: 0.6780  batch: 1.5798  lr: 0.000100  max_mem: 12843
+eta: 0:01:18  epoch: 8  step: 2200  mask_loss: 0.3860  ct_loss: 2.5477  wh_loss: 0.9248  py_loss: 3.2319  shape_loss: 0.3498  box_mask_loss: 0.1022  vis_mask_loss: 0.1281  loss: 7.6704  data: 0.9303  batch: 1.9046  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 8  step: 2249  mask_loss: 0.3693  ct_loss: 2.4101  wh_loss: 0.7728  py_loss: 2.4528  shape_loss: 0.2734  box_mask_loss: 0.0977  vis_mask_loss: 0.1133  loss: 6.4894  data: 0.9786  batch: 1.9378  lr: 0.000100  max_mem: 12843
+train: Epoch:10	
+eta: 0:04:05  epoch: 9  step: 2350  mask_loss: 0.3732  ct_loss: 2.3820  wh_loss: 0.7863  py_loss: 2.6087  shape_loss: 0.2771  box_mask_loss: 0.0969  vis_mask_loss: 0.1180  loss: 6.6421  data: 1.1902  batch: 2.2596  lr: 0.000100  max_mem: 12843
+eta: 0:01:23  epoch: 9  step: 2450  mask_loss: 0.3682  ct_loss: 2.2205  wh_loss: 0.7511  py_loss: 2.5632  shape_loss: 0.2815  box_mask_loss: 0.0939  vis_mask_loss: 0.1108  loss: 6.3891  data: 0.7842  batch: 1.8281  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 9  step: 2499  mask_loss: 0.3679  ct_loss: 2.2657  wh_loss: 0.7707  py_loss: 2.6758  shape_loss: 0.3017  box_mask_loss: 0.1003  vis_mask_loss: 0.1126  loss: 6.5946  data: 0.6683  batch: 1.6490  lr: 0.000100  max_mem: 12843
+train: Epoch:11	
+eta: 0:04:17  epoch: 10  step: 2600  mask_loss: 0.3728  ct_loss: 2.2631  wh_loss: 0.7477  py_loss: 2.8527  shape_loss: 0.3248  box_mask_loss: 0.0966  vis_mask_loss: 0.1168  loss: 6.7746  data: 0.9329  batch: 2.1021  lr: 0.000100  max_mem: 12843
+eta: 0:01:26  epoch: 10  step: 2700  mask_loss: 0.3614  ct_loss: 2.1647  wh_loss: 0.6801  py_loss: 2.3679  shape_loss: 0.2659  box_mask_loss: 0.0931  vis_mask_loss: 0.0984  loss: 6.0315  data: 0.6552  batch: 1.7429  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 10  step: 2749  mask_loss: 0.3601  ct_loss: 2.1280  wh_loss: 0.6614  py_loss: 2.4778  shape_loss: 0.2743  box_mask_loss: 0.0961  vis_mask_loss: 0.1144  loss: 6.1121  data: 0.6902  batch: 1.6586  lr: 0.000100  max_mem: 12843
+train: Epoch:12	
+eta: 0:04:25  epoch: 11  step: 2850  mask_loss: 0.3752  ct_loss: 2.1091  wh_loss: 0.6996  py_loss: 2.5839  shape_loss: 0.2920  box_mask_loss: 0.0930  vis_mask_loss: 0.1066  loss: 6.2593  data: 1.1369  batch: 2.1965  lr: 0.000100  max_mem: 12843
+eta: 0:01:29  epoch: 11  step: 2950  mask_loss: 0.3646  ct_loss: 2.1209  wh_loss: 0.6845  py_loss: 2.4223  shape_loss: 0.2616  box_mask_loss: 0.0997  vis_mask_loss: 0.1191  loss: 6.0728  data: 1.0339  batch: 2.1110  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 11  step: 2999  mask_loss: 0.3769  ct_loss: 2.0765  wh_loss: 0.6801  py_loss: 2.4344  shape_loss: 0.2728  box_mask_loss: 0.0956  vis_mask_loss: 0.1185  loss: 6.0547  data: 1.1309  batch: 2.1410  lr: 0.000100  max_mem: 12843
+train: Epoch:13	
+eta: 0:04:30  epoch: 12  step: 3100  mask_loss: 0.3696  ct_loss: 1.9731  wh_loss: 0.6825  py_loss: 2.4914  shape_loss: 0.2743  box_mask_loss: 0.0967  vis_mask_loss: 0.1178  loss: 6.0054  data: 1.3207  batch: 2.3731  lr: 0.000100  max_mem: 12843
+eta: 0:01:30  epoch: 12  step: 3200  mask_loss: 0.3678  ct_loss: 1.9299  wh_loss: 0.6908  py_loss: 2.4550  shape_loss: 0.2779  box_mask_loss: 0.0865  vis_mask_loss: 0.1084  loss: 5.9163  data: 1.0243  batch: 2.0776  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 12  step: 3249  mask_loss: 0.3717  ct_loss: 1.9454  wh_loss: 0.6664  py_loss: 2.5585  shape_loss: 0.2935  box_mask_loss: 0.0899  vis_mask_loss: 0.1155  loss: 6.0410  data: 0.5957  batch: 1.5325  lr: 0.000100  max_mem: 12843
+train: Epoch:14	
+eta: 0:04:33  epoch: 13  step: 3350  mask_loss: 0.3485  ct_loss: 1.7582  wh_loss: 0.6708  py_loss: 2.5628  shape_loss: 0.2925  box_mask_loss: 0.0875  vis_mask_loss: 0.1019  loss: 5.8222  data: 0.5747  batch: 1.4660  lr: 0.000100  max_mem: 12843
+eta: 0:01:29  epoch: 13  step: 3450  mask_loss: 0.3533  ct_loss: 1.7494  wh_loss: 0.6298  py_loss: 2.2800  shape_loss: 0.2622  box_mask_loss: 0.0881  vis_mask_loss: 0.1022  loss: 5.4650  data: 0.5329  batch: 1.3982  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 13  step: 3499  mask_loss: 0.3445  ct_loss: 1.8039  wh_loss: 0.6827  py_loss: 2.5620  shape_loss: 0.2890  box_mask_loss: 0.0872  vis_mask_loss: 0.1050  loss: 5.8744  data: 0.4150  batch: 1.2030  lr: 0.000100  max_mem: 12843
+train: Epoch:15	
+eta: 0:04:24  epoch: 14  step: 3600  mask_loss: 0.3449  ct_loss: 1.6464  wh_loss: 0.6165  py_loss: 2.2540  shape_loss: 0.2520  box_mask_loss: 0.0890  vis_mask_loss: 0.1050  loss: 5.3079  data: 0.3303  batch: 1.2180  lr: 0.000100  max_mem: 12843
+eta: 0:01:27  epoch: 14  step: 3700  mask_loss: 0.3614  ct_loss: 1.5905  wh_loss: 0.5948  py_loss: 2.0641  shape_loss: 0.2366  box_mask_loss: 0.0807  vis_mask_loss: 0.1013  loss: 5.0293  data: 0.4147  batch: 1.3009  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 14  step: 3749  mask_loss: 0.3593  ct_loss: 1.7026  wh_loss: 0.6363  py_loss: 2.2584  shape_loss: 0.2498  box_mask_loss: 0.0842  vis_mask_loss: 0.1080  loss: 5.3986  data: 0.3012  batch: 1.1110  lr: 0.000100  max_mem: 12843
+train: Epoch:16	
+eta: 0:04:18  epoch: 15  step: 3850  mask_loss: 0.3485  ct_loss: 1.4298  wh_loss: 0.5835  py_loss: 2.0293  shape_loss: 0.2396  box_mask_loss: 0.0806  vis_mask_loss: 0.0951  loss: 4.8065  data: 0.4462  batch: 1.3597  lr: 0.000100  max_mem: 12843
+eta: 0:01:25  epoch: 15  step: 3950  mask_loss: 0.3440  ct_loss: 1.4286  wh_loss: 0.5972  py_loss: 2.0014  shape_loss: 0.2450  box_mask_loss: 0.0768  vis_mask_loss: 0.0868  loss: 4.7797  data: 0.3688  batch: 1.2616  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 15  step: 3999  mask_loss: 0.3501  ct_loss: 1.5060  wh_loss: 0.6321  py_loss: 2.1972  shape_loss: 0.2527  box_mask_loss: 0.0839  vis_mask_loss: 0.1056  loss: 5.1276  data: 0.3663  batch: 1.1800  lr: 0.000100  max_mem: 12843
+train: Epoch:17	
+eta: 0:04:14  epoch: 16  step: 4100  mask_loss: 0.3503  ct_loss: 1.3161  wh_loss: 0.5729  py_loss: 1.9078  shape_loss: 0.2237  box_mask_loss: 0.0764  vis_mask_loss: 0.0947  loss: 4.5420  data: 0.5883  batch: 1.4666  lr: 0.000100  max_mem: 12843
+eta: 0:01:24  epoch: 16  step: 4200  mask_loss: 0.3489  ct_loss: 1.3551  wh_loss: 0.6498  py_loss: 2.3154  shape_loss: 0.2736  box_mask_loss: 0.0754  vis_mask_loss: 0.0945  loss: 5.1126  data: 0.0558  batch: 0.9268  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 16  step: 4249  mask_loss: 0.3460  ct_loss: 1.3944  wh_loss: 0.6301  py_loss: 2.2174  shape_loss: 0.2624  box_mask_loss: 0.0810  vis_mask_loss: 0.0993  loss: 5.0306  data: 0.3389  batch: 1.1307  lr: 0.000100  max_mem: 12843
+train: Epoch:18	
+eta: 0:04:10  epoch: 17  step: 4350  mask_loss: 0.3347  ct_loss: 1.2677  wh_loss: 0.6456  py_loss: 2.0885  shape_loss: 0.2447  box_mask_loss: 0.0738  vis_mask_loss: 0.0891  loss: 4.7441  data: 0.2768  batch: 1.1464  lr: 0.000100  max_mem: 12843
+eta: 0:01:22  epoch: 17  step: 4450  mask_loss: 0.3430  ct_loss: 1.2414  wh_loss: 0.6519  py_loss: 2.2026  shape_loss: 0.2576  box_mask_loss: 0.0752  vis_mask_loss: 0.0910  loss: 4.8627  data: 0.6377  batch: 1.5041  lr: 0.000100  max_mem: 12843
+eta: 0:00:01  epoch: 17  step: 4499  mask_loss: 0.3475  ct_loss: 1.3115  wh_loss: 0.6527  py_loss: 2.2412  shape_loss: 0.2615  box_mask_loss: 0.0748  vis_mask_loss: 0.1047  loss: 4.9940  data: 0.5001  batch: 1.2690  lr: 0.000100  max_mem: 12843
+train: Epoch:19	
+eta: 0:04:05  epoch: 18  step: 4600  mask_loss: 0.3473  ct_loss: 1.2661  wh_loss: 0.6559  py_loss: 2.4644  shape_loss: 0.2840  box_mask_loss: 0.0803  vis_mask_loss: 0.1008  loss: 5.1988  data: 0.3550  batch: 1.1067  lr: 0.000100  max_mem: 12843
+eta: 0:01:21  epoch: 18  step: 4700  mask_loss: 0.3475  ct_loss: 1.1939  wh_loss: 0.5589  py_loss: 1.7899  shape_loss: 0.2132  box_mask_loss: 0.0741  vis_mask_loss: 0.0895  loss: 4.2670  data: 0.2185  batch: 0.9660  lr: 0.000100  max_mem: 13003
+eta: 0:00:01  epoch: 18  step: 4749  mask_loss: 0.3437  ct_loss: 1.2264  wh_loss: 0.6498  py_loss: 2.2643  shape_loss: 0.2587  box_mask_loss: 0.0768  vis_mask_loss: 0.1021  loss: 4.9218  data: 0.3329  batch: 1.0514  lr: 0.000100  max_mem: 13003
+train: Epoch:20	
+eta: 0:04:00  epoch: 19  step: 4850  mask_loss: 0.3344  ct_loss: 1.0457  wh_loss: 0.6202  py_loss: 2.1785  shape_loss: 0.2568  box_mask_loss: 0.0747  vis_mask_loss: 0.0912  loss: 4.6016  data: 0.2634  batch: 0.9767  lr: 0.000100  max_mem: 13473
+eta: 0:01:19  epoch: 19  step: 4950  mask_loss: 0.3258  ct_loss: 1.0756  wh_loss: 0.5781  py_loss: 1.9324  shape_loss: 0.2277  box_mask_loss: 0.0700  vis_mask_loss: 0.0895  loss: 4.2992  data: 0.1145  batch: 0.8812  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 19  step: 4999  mask_loss: 0.3225  ct_loss: 1.1150  wh_loss: 0.5880  py_loss: 1.9119  shape_loss: 0.2178  box_mask_loss: 0.0728  vis_mask_loss: 0.0837  loss: 4.3116  data: 0.2855  batch: 1.0268  lr: 0.000100  max_mem: 13473
+train: Epoch:21	
+eta: 0:03:55  epoch: 20  step: 5100  mask_loss: 0.3375  ct_loss: 1.0248  wh_loss: 0.5780  py_loss: 1.9192  shape_loss: 0.2245  box_mask_loss: 0.0733  vis_mask_loss: 0.0938  loss: 4.2511  data: 0.4175  batch: 1.2213  lr: 0.000100  max_mem: 13473
+eta: 0:01:17  epoch: 20  step: 5200  mask_loss: 0.3320  ct_loss: 1.0383  wh_loss: 0.6387  py_loss: 2.1685  shape_loss: 0.2512  box_mask_loss: 0.0726  vis_mask_loss: 0.0916  loss: 4.5930  data: 0.4782  batch: 1.2118  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 20  step: 5249  mask_loss: 0.3442  ct_loss: 1.0958  wh_loss: 0.6079  py_loss: 2.0004  shape_loss: 0.2269  box_mask_loss: 0.0717  vis_mask_loss: 0.0985  loss: 4.4454  data: 0.2079  batch: 0.8682  lr: 0.000100  max_mem: 13473
+train: Epoch:22	
+eta: 0:03:51  epoch: 21  step: 5350  mask_loss: 0.3375  ct_loss: 1.0026  wh_loss: 0.5831  py_loss: 1.8923  shape_loss: 0.2144  box_mask_loss: 0.0731  vis_mask_loss: 0.0966  loss: 4.1996  data: 0.4909  batch: 1.2943  lr: 0.000100  max_mem: 13473
+eta: 0:01:16  epoch: 21  step: 5450  mask_loss: 0.3437  ct_loss: 1.0614  wh_loss: 0.6054  py_loss: 1.9884  shape_loss: 0.2278  box_mask_loss: 0.0731  vis_mask_loss: 0.0946  loss: 4.3945  data: 0.2888  batch: 1.0674  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 21  step: 5499  mask_loss: 0.3406  ct_loss: 1.0173  wh_loss: 0.5851  py_loss: 1.8142  shape_loss: 0.2108  box_mask_loss: 0.0693  vis_mask_loss: 0.0839  loss: 4.1212  data: 0.1104  batch: 0.7987  lr: 0.000100  max_mem: 13473
+train: Epoch:23	
+eta: 0:03:47  epoch: 22  step: 5600  mask_loss: 0.3148  ct_loss: 0.8415  wh_loss: 0.5551  py_loss: 1.8378  shape_loss: 0.2172  box_mask_loss: 0.0691  vis_mask_loss: 0.0830  loss: 3.9186  data: 0.2624  batch: 1.0419  lr: 0.000100  max_mem: 13473
+eta: 0:01:15  epoch: 22  step: 5700  mask_loss: 0.3366  ct_loss: 0.9303  wh_loss: 0.5821  py_loss: 1.8626  shape_loss: 0.2176  box_mask_loss: 0.0698  vis_mask_loss: 0.0868  loss: 4.0859  data: 0.5385  batch: 1.3006  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 22  step: 5749  mask_loss: 0.3361  ct_loss: 0.9096  wh_loss: 0.5503  py_loss: 1.8243  shape_loss: 0.2186  box_mask_loss: 0.0688  vis_mask_loss: 0.0886  loss: 3.9963  data: 0.2830  batch: 0.9619  lr: 0.000100  max_mem: 13473
+train: Epoch:24	
+eta: 0:03:43  epoch: 23  step: 5850  mask_loss: 0.3114  ct_loss: 0.8142  wh_loss: 0.5512  py_loss: 1.7353  shape_loss: 0.2040  box_mask_loss: 0.0664  vis_mask_loss: 0.0786  loss: 3.7610  data: 0.2514  batch: 1.0232  lr: 0.000100  max_mem: 13473
+eta: 0:01:14  epoch: 23  step: 5950  mask_loss: 0.3303  ct_loss: 0.8425  wh_loss: 0.5964  py_loss: 2.0833  shape_loss: 0.2425  box_mask_loss: 0.0708  vis_mask_loss: 0.0870  loss: 4.2529  data: 0.2358  batch: 0.9998  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 23  step: 5999  mask_loss: 0.3307  ct_loss: 0.8729  wh_loss: 0.5484  py_loss: 1.8459  shape_loss: 0.2126  box_mask_loss: 0.0716  vis_mask_loss: 0.0856  loss: 3.9677  data: 0.3904  batch: 1.0700  lr: 0.000100  max_mem: 13473
+train: Epoch:25	
+eta: 0:03:41  epoch: 24  step: 6100  mask_loss: 0.3206  ct_loss: 0.8449  wh_loss: 0.5410  py_loss: 1.7517  shape_loss: 0.1999  box_mask_loss: 0.0691  vis_mask_loss: 0.0875  loss: 3.8146  data: 0.3945  batch: 1.1619  lr: 0.000100  max_mem: 13473
+eta: 0:01:13  epoch: 24  step: 6200  mask_loss: 0.3429  ct_loss: 0.9340  wh_loss: 0.6118  py_loss: 2.1689  shape_loss: 0.2551  box_mask_loss: 0.0695  vis_mask_loss: 0.0914  loss: 4.4736  data: 0.1945  batch: 0.9402  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 24  step: 6249  mask_loss: 0.3228  ct_loss: 0.8947  wh_loss: 0.6133  py_loss: 2.1444  shape_loss: 0.2444  box_mask_loss: 0.0749  vis_mask_loss: 0.0881  loss: 4.3826  data: 0.2531  batch: 0.9435  lr: 0.000100  max_mem: 13473
+train: Epoch:26	
+eta: 0:03:39  epoch: 25  step: 6350  mask_loss: 0.3296  ct_loss: 0.8269  wh_loss: 0.5760  py_loss: 1.8812  shape_loss: 0.2357  box_mask_loss: 0.0673  vis_mask_loss: 0.0873  loss: 4.0040  data: 0.5030  batch: 1.2606  lr: 0.000100  max_mem: 13473
+eta: 0:01:12  epoch: 25  step: 6450  mask_loss: 0.3228  ct_loss: 0.7679  wh_loss: 0.5686  py_loss: 1.8597  shape_loss: 0.2247  box_mask_loss: 0.0662  vis_mask_loss: 0.0851  loss: 3.8950  data: 0.3373  batch: 1.1076  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 25  step: 6499  mask_loss: 0.3190  ct_loss: 0.8661  wh_loss: 0.5986  py_loss: 1.9737  shape_loss: 0.2294  box_mask_loss: 0.0688  vis_mask_loss: 0.0951  loss: 4.1507  data: 0.3495  batch: 1.0468  lr: 0.000100  max_mem: 13473
+train: Epoch:27	
+eta: 0:03:36  epoch: 26  step: 6600  mask_loss: 0.3207  ct_loss: 0.7943  wh_loss: 0.5587  py_loss: 1.7702  shape_loss: 0.2115  box_mask_loss: 0.0653  vis_mask_loss: 0.0875  loss: 3.8082  data: 0.3216  batch: 1.1179  lr: 0.000100  max_mem: 13473
+eta: 0:01:11  epoch: 26  step: 6700  mask_loss: 0.3233  ct_loss: 0.8112  wh_loss: 0.5867  py_loss: 1.8984  shape_loss: 0.2276  box_mask_loss: 0.0694  vis_mask_loss: 0.0913  loss: 4.0078  data: 0.1550  batch: 0.9315  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 26  step: 6749  mask_loss: 0.3233  ct_loss: 0.8397  wh_loss: 0.5688  py_loss: 1.7691  shape_loss: 0.2082  box_mask_loss: 0.0661  vis_mask_loss: 0.0888  loss: 3.8640  data: 0.3137  batch: 1.0638  lr: 0.000100  max_mem: 13473
+train: Epoch:28	
+eta: 0:03:34  epoch: 27  step: 6850  mask_loss: 0.3178  ct_loss: 0.7287  wh_loss: 0.5481  py_loss: 1.8212  shape_loss: 0.2134  box_mask_loss: 0.0689  vis_mask_loss: 0.0900  loss: 3.7881  data: 0.4293  batch: 1.2378  lr: 0.000100  max_mem: 13473
+eta: 0:01:11  epoch: 27  step: 6950  mask_loss: 0.3175  ct_loss: 0.7467  wh_loss: 0.5720  py_loss: 1.9262  shape_loss: 0.2352  box_mask_loss: 0.0639  vis_mask_loss: 0.0888  loss: 3.9503  data: 0.1047  batch: 0.8570  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 27  step: 6999  mask_loss: 0.3279  ct_loss: 0.8167  wh_loss: 0.5693  py_loss: 1.8928  shape_loss: 0.2286  box_mask_loss: 0.0663  vis_mask_loss: 0.0891  loss: 3.9905  data: 0.2158  batch: 0.9175  lr: 0.000100  max_mem: 13473
+train: Epoch:29	
+eta: 0:03:33  epoch: 28  step: 7100  mask_loss: 0.3107  ct_loss: 0.7798  wh_loss: 0.5221  py_loss: 1.5644  shape_loss: 0.1847  box_mask_loss: 0.0645  vis_mask_loss: 0.0867  loss: 3.5129  data: 0.3382  batch: 1.1068  lr: 0.000100  max_mem: 13473
+eta: 0:01:10  epoch: 28  step: 7200  mask_loss: 0.3208  ct_loss: 0.7759  wh_loss: 0.6007  py_loss: 1.9884  shape_loss: 0.2348  box_mask_loss: 0.0642  vis_mask_loss: 0.0891  loss: 4.0740  data: 0.2728  batch: 1.0476  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 28  step: 7249  mask_loss: 0.3093  ct_loss: 0.7311  wh_loss: 0.5912  py_loss: 2.0421  shape_loss: 0.2468  box_mask_loss: 0.0648  vis_mask_loss: 0.0873  loss: 4.0725  data: 0.1823  batch: 0.8915  lr: 0.000100  max_mem: 13473
+train: Epoch:30	
+eta: 0:03:31  epoch: 29  step: 7350  mask_loss: 0.3344  ct_loss: 0.7817  wh_loss: 0.5699  py_loss: 1.8332  shape_loss: 0.2223  box_mask_loss: 0.0672  vis_mask_loss: 0.0926  loss: 3.9014  data: 0.2931  batch: 1.0815  lr: 0.000100  max_mem: 13473
+eta: 0:01:10  epoch: 29  step: 7450  mask_loss: 0.3287  ct_loss: 0.6674  wh_loss: 0.6295  py_loss: 2.1791  shape_loss: 0.2676  box_mask_loss: 0.0669  vis_mask_loss: 0.0891  loss: 4.2283  data: 0.1864  batch: 0.9428  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 29  step: 7499  mask_loss: 0.3097  ct_loss: 0.7112  wh_loss: 0.5576  py_loss: 1.7949  shape_loss: 0.2127  box_mask_loss: 0.0625  vis_mask_loss: 0.0769  loss: 3.7256  data: 0.2591  batch: 0.9503  lr: 0.000100  max_mem: 13473
+train: Epoch:31	
+eta: 0:03:29  epoch: 30  step: 7600  mask_loss: 0.3492  ct_loss: 0.7543  wh_loss: 0.5757  py_loss: 1.9744  shape_loss: 0.2280  box_mask_loss: 0.0680  vis_mask_loss: 0.0955  loss: 4.0450  data: 0.0992  batch: 0.8836  lr: 0.000100  max_mem: 13473
+eta: 0:01:09  epoch: 30  step: 7700  mask_loss: 0.3209  ct_loss: 0.7660  wh_loss: 0.6001  py_loss: 2.0923  shape_loss: 0.2430  box_mask_loss: 0.0661  vis_mask_loss: 0.0935  loss: 4.1820  data: 0.4863  batch: 1.3175  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 30  step: 7749  mask_loss: 0.3057  ct_loss: 0.6414  wh_loss: 0.5440  py_loss: 1.7377  shape_loss: 0.2186  box_mask_loss: 0.0644  vis_mask_loss: 0.0839  loss: 3.5957  data: 0.4245  batch: 1.1115  lr: 0.000100  max_mem: 13473
+train: Epoch:32	
+eta: 0:03:28  epoch: 31  step: 7850  mask_loss: 0.3180  ct_loss: 0.6978  wh_loss: 0.5230  py_loss: 1.6326  shape_loss: 0.1919  box_mask_loss: 0.0625  vis_mask_loss: 0.0831  loss: 3.5090  data: 0.4190  batch: 1.1970  lr: 0.000100  max_mem: 13473
+eta: 0:01:09  epoch: 31  step: 7950  mask_loss: 0.3122  ct_loss: 0.6517  wh_loss: 0.5257  py_loss: 1.6992  shape_loss: 0.2042  box_mask_loss: 0.0646  vis_mask_loss: 0.0860  loss: 3.5437  data: 0.2673  batch: 1.0211  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 31  step: 7999  mask_loss: 0.3109  ct_loss: 0.6711  wh_loss: 0.5323  py_loss: 1.7226  shape_loss: 0.2011  box_mask_loss: 0.0618  vis_mask_loss: 0.0896  loss: 3.5894  data: 0.2611  batch: 0.9396  lr: 0.000100  max_mem: 13473
+train: Epoch:33	
+eta: 0:03:27  epoch: 32  step: 8100  mask_loss: 0.3005  ct_loss: 0.6455  wh_loss: 0.5444  py_loss: 1.7821  shape_loss: 0.2150  box_mask_loss: 0.0621  vis_mask_loss: 0.0812  loss: 3.6308  data: 0.1870  batch: 0.9251  lr: 0.000100  max_mem: 13473
+eta: 0:01:08  epoch: 32  step: 8200  mask_loss: 0.3151  ct_loss: 0.6994  wh_loss: 0.5507  py_loss: 1.8254  shape_loss: 0.2159  box_mask_loss: 0.0655  vis_mask_loss: 0.0824  loss: 3.7545  data: 0.2781  batch: 1.0574  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 32  step: 8249  mask_loss: 0.3080  ct_loss: 0.6012  wh_loss: 0.5814  py_loss: 1.9269  shape_loss: 0.2451  box_mask_loss: 0.0610  vis_mask_loss: 0.0802  loss: 3.8038  data: 0.1417  batch: 0.8405  lr: 0.000100  max_mem: 13473
+train: Epoch:34	
+eta: 0:03:25  epoch: 33  step: 8350  mask_loss: 0.3082  ct_loss: 0.6518  wh_loss: 0.5542  py_loss: 1.8037  shape_loss: 0.2155  box_mask_loss: 0.0625  vis_mask_loss: 0.0829  loss: 3.6788  data: 0.4704  batch: 1.2390  lr: 0.000100  max_mem: 13473
+eta: 0:01:08  epoch: 33  step: 8450  mask_loss: 0.3044  ct_loss: 0.6701  wh_loss: 0.5063  py_loss: 1.6273  shape_loss: 0.2026  box_mask_loss: 0.0598  vis_mask_loss: 0.0805  loss: 3.4511  data: 0.3195  batch: 1.0886  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 33  step: 8499  mask_loss: 0.3127  ct_loss: 0.6457  wh_loss: 0.5494  py_loss: 1.8261  shape_loss: 0.2210  box_mask_loss: 0.0654  vis_mask_loss: 0.0879  loss: 3.7082  data: 0.2692  batch: 1.0087  lr: 0.000100  max_mem: 13473
+train: Epoch:35	
+eta: 0:03:24  epoch: 34  step: 8600  mask_loss: 0.2980  ct_loss: 0.5729  wh_loss: 0.5379  py_loss: 1.7038  shape_loss: 0.2084  box_mask_loss: 0.0626  vis_mask_loss: 0.0872  loss: 3.4707  data: 0.1885  batch: 0.9536  lr: 0.000100  max_mem: 13473
+eta: 0:01:08  epoch: 34  step: 8700  mask_loss: 0.3075  ct_loss: 0.6773  wh_loss: 0.5685  py_loss: 1.8749  shape_loss: 0.2274  box_mask_loss: 0.0595  vis_mask_loss: 0.0847  loss: 3.7997  data: 0.2936  batch: 1.0612  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 34  step: 8749  mask_loss: 0.3088  ct_loss: 0.5853  wh_loss: 0.5541  py_loss: 1.8913  shape_loss: 0.2270  box_mask_loss: 0.0596  vis_mask_loss: 0.0824  loss: 3.7086  data: 0.3747  batch: 1.0932  lr: 0.000100  max_mem: 13473
+train: Epoch:36	
+eta: 0:03:23  epoch: 35  step: 8850  mask_loss: 0.3002  ct_loss: 0.5569  wh_loss: 0.5147  py_loss: 1.6046  shape_loss: 0.2003  box_mask_loss: 0.0574  vis_mask_loss: 0.0818  loss: 3.3160  data: 0.2888  batch: 1.0368  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 35  step: 8950  mask_loss: 0.3055  ct_loss: 0.5308  wh_loss: 0.4946  py_loss: 1.5533  shape_loss: 0.1889  box_mask_loss: 0.0595  vis_mask_loss: 0.0789  loss: 3.2115  data: 0.4169  batch: 1.1731  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 35  step: 8999  mask_loss: 0.3238  ct_loss: 0.6847  wh_loss: 0.5882  py_loss: 2.0737  shape_loss: 0.2433  box_mask_loss: 0.0612  vis_mask_loss: 0.0885  loss: 4.0634  data: 0.0319  batch: 0.7027  lr: 0.000100  max_mem: 13473
+train: Epoch:37	
+eta: 0:03:22  epoch: 36  step: 9100  mask_loss: 0.3131  ct_loss: 0.6738  wh_loss: 0.5699  py_loss: 1.8945  shape_loss: 0.2286  box_mask_loss: 0.0631  vis_mask_loss: 0.0891  loss: 3.8321  data: 0.5165  batch: 1.2854  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 36  step: 9200  mask_loss: 0.3067  ct_loss: 0.6454  wh_loss: 0.5477  py_loss: 1.8768  shape_loss: 0.2210  box_mask_loss: 0.0639  vis_mask_loss: 0.0834  loss: 3.7449  data: 0.3679  batch: 1.1273  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 36  step: 9249  mask_loss: 0.2966  ct_loss: 0.5971  wh_loss: 0.5295  py_loss: 1.5714  shape_loss: 0.1899  box_mask_loss: 0.0629  vis_mask_loss: 0.0889  loss: 3.3364  data: 0.4042  batch: 1.1068  lr: 0.000100  max_mem: 13473
+train: Epoch:38	
+eta: 0:03:20  epoch: 37  step: 9350  mask_loss: 0.3100  ct_loss: 0.6617  wh_loss: 0.5516  py_loss: 1.7541  shape_loss: 0.2102  box_mask_loss: 0.0647  vis_mask_loss: 0.0886  loss: 3.6410  data: 0.2241  batch: 0.9791  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 37  step: 9450  mask_loss: 0.3173  ct_loss: 0.6315  wh_loss: 0.5470  py_loss: 1.9312  shape_loss: 0.2274  box_mask_loss: 0.0644  vis_mask_loss: 0.0924  loss: 3.8112  data: 0.2006  batch: 0.9158  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 37  step: 9499  mask_loss: 0.3059  ct_loss: 0.5543  wh_loss: 0.5067  py_loss: 1.5812  shape_loss: 0.1864  box_mask_loss: 0.0609  vis_mask_loss: 0.0883  loss: 3.2837  data: 0.2756  batch: 0.9535  lr: 0.000100  max_mem: 13473
+train: Epoch:39	
+eta: 0:03:19  epoch: 38  step: 9600  mask_loss: 0.3006  ct_loss: 0.5808  wh_loss: 0.5282  py_loss: 1.6275  shape_loss: 0.1978  box_mask_loss: 0.0575  vis_mask_loss: 0.0793  loss: 3.3715  data: 0.3523  batch: 1.1304  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 38  step: 9700  mask_loss: 0.3030  ct_loss: 0.5694  wh_loss: 0.5454  py_loss: 1.8552  shape_loss: 0.2226  box_mask_loss: 0.0599  vis_mask_loss: 0.0815  loss: 3.6370  data: 0.3521  batch: 1.1229  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 38  step: 9749  mask_loss: 0.3018  ct_loss: 0.5084  wh_loss: 0.4766  py_loss: 1.4249  shape_loss: 0.1672  box_mask_loss: 0.0596  vis_mask_loss: 0.0858  loss: 3.0243  data: 0.4972  batch: 1.2184  lr: 0.000100  max_mem: 13473
+train: Epoch:40	
+eta: 0:03:19  epoch: 39  step: 9850  mask_loss: 0.3053  ct_loss: 0.5656  wh_loss: 0.5302  py_loss: 1.6904  shape_loss: 0.1970  box_mask_loss: 0.0600  vis_mask_loss: 0.0794  loss: 3.4278  data: 0.3797  batch: 1.1138  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 39  step: 9950  mask_loss: 0.3028  ct_loss: 0.5556  wh_loss: 0.5372  py_loss: 1.8407  shape_loss: 0.2219  box_mask_loss: 0.0607  vis_mask_loss: 0.0801  loss: 3.5990  data: 0.2319  batch: 0.9699  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 39  step: 9999  mask_loss: 0.3099  ct_loss: 0.5789  wh_loss: 0.5329  py_loss: 1.8334  shape_loss: 0.2199  box_mask_loss: 0.0600  vis_mask_loss: 0.0803  loss: 3.6153  data: 0.2641  batch: 1.0038  lr: 0.000100  max_mem: 13473
+train: Epoch:41	
+eta: 0:03:18  epoch: 40  step: 10100  mask_loss: 0.2937  ct_loss: 0.5717  wh_loss: 0.4976  py_loss: 1.5633  shape_loss: 0.1901  box_mask_loss: 0.0565  vis_mask_loss: 0.0800  loss: 3.2529  data: 0.5765  batch: 1.3369  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 40  step: 10200  mask_loss: 0.3020  ct_loss: 0.4751  wh_loss: 0.5156  py_loss: 1.6645  shape_loss: 0.2068  box_mask_loss: 0.0596  vis_mask_loss: 0.0774  loss: 3.3009  data: 0.5150  batch: 1.2792  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 40  step: 10249  mask_loss: 0.2944  ct_loss: 0.6110  wh_loss: 0.5068  py_loss: 1.5357  shape_loss: 0.1858  box_mask_loss: 0.0589  vis_mask_loss: 0.0825  loss: 3.2751  data: 0.1439  batch: 0.8028  lr: 0.000100  max_mem: 13473
+train: Epoch:42	
+eta: 0:03:17  epoch: 41  step: 10350  mask_loss: 0.3089  ct_loss: 0.5334  wh_loss: 0.5205  py_loss: 1.6852  shape_loss: 0.2035  box_mask_loss: 0.0564  vis_mask_loss: 0.0785  loss: 3.3864  data: 0.3320  batch: 1.0800  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 41  step: 10450  mask_loss: 0.3134  ct_loss: 0.5911  wh_loss: 0.5523  py_loss: 1.7700  shape_loss: 0.2115  box_mask_loss: 0.0597  vis_mask_loss: 0.0866  loss: 3.5847  data: 0.3780  batch: 1.1233  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 41  step: 10499  mask_loss: 0.2945  ct_loss: 0.5585  wh_loss: 0.5636  py_loss: 1.7930  shape_loss: 0.2194  box_mask_loss: 0.0597  vis_mask_loss: 0.0798  loss: 3.5685  data: 0.1570  batch: 0.8516  lr: 0.000100  max_mem: 13473
+train: Epoch:43	
+eta: 0:03:16  epoch: 42  step: 10600  mask_loss: 0.3051  ct_loss: 0.5134  wh_loss: 0.4643  py_loss: 1.3674  shape_loss: 0.1649  box_mask_loss: 0.0586  vis_mask_loss: 0.0757  loss: 2.9493  data: 0.5315  batch: 1.2832  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 42  step: 10700  mask_loss: 0.3100  ct_loss: 0.5907  wh_loss: 0.5353  py_loss: 1.7766  shape_loss: 0.2102  box_mask_loss: 0.0645  vis_mask_loss: 0.0837  loss: 3.5710  data: 0.2217  batch: 0.9910  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 42  step: 10749  mask_loss: 0.2960  ct_loss: 0.5070  wh_loss: 0.5363  py_loss: 1.8189  shape_loss: 0.2236  box_mask_loss: 0.0562  vis_mask_loss: 0.0709  loss: 3.5088  data: 0.2531  batch: 0.9388  lr: 0.000100  max_mem: 13473
+train: Epoch:44	
+eta: 0:03:15  epoch: 43  step: 10850  mask_loss: 0.3003  ct_loss: 0.5331  wh_loss: 0.4890  py_loss: 1.4107  shape_loss: 0.1744  box_mask_loss: 0.0570  vis_mask_loss: 0.0830  loss: 3.0476  data: 0.3464  batch: 1.0938  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 43  step: 10950  mask_loss: 0.2986  ct_loss: 0.5007  wh_loss: 0.5370  py_loss: 1.6463  shape_loss: 0.2020  box_mask_loss: 0.0564  vis_mask_loss: 0.0775  loss: 3.3184  data: 0.3008  batch: 1.0605  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 43  step: 10999  mask_loss: 0.3041  ct_loss: 0.5415  wh_loss: 0.5450  py_loss: 1.8134  shape_loss: 0.2208  box_mask_loss: 0.0577  vis_mask_loss: 0.0876  loss: 3.5702  data: 0.2256  batch: 0.8964  lr: 0.000100  max_mem: 13473
+train: Epoch:45	
+eta: 0:03:14  epoch: 44  step: 11100  mask_loss: 0.3047  ct_loss: 0.5592  wh_loss: 0.5435  py_loss: 1.7830  shape_loss: 0.2206  box_mask_loss: 0.0602  vis_mask_loss: 0.0819  loss: 3.5531  data: 0.3068  batch: 1.1065  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 44  step: 11200  mask_loss: 0.2887  ct_loss: 0.5097  wh_loss: 0.5293  py_loss: 1.5311  shape_loss: 0.1945  box_mask_loss: 0.0548  vis_mask_loss: 0.0792  loss: 3.1873  data: 0.3044  batch: 1.0544  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 44  step: 11249  mask_loss: 0.2947  ct_loss: 0.5111  wh_loss: 0.5510  py_loss: 1.7994  shape_loss: 0.2234  box_mask_loss: 0.0570  vis_mask_loss: 0.0789  loss: 3.5156  data: 0.2982  batch: 0.9753  lr: 0.000100  max_mem: 13473
+train: Epoch:46	
+eta: 0:03:14  epoch: 45  step: 11350  mask_loss: 0.3075  ct_loss: 0.5124  wh_loss: 0.5254  py_loss: 1.7032  shape_loss: 0.2095  box_mask_loss: 0.0572  vis_mask_loss: 0.0848  loss: 3.4000  data: 0.5040  batch: 1.2841  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 45  step: 11450  mask_loss: 0.2998  ct_loss: 0.5491  wh_loss: 0.5472  py_loss: 1.7143  shape_loss: 0.2083  box_mask_loss: 0.0587  vis_mask_loss: 0.0813  loss: 3.4586  data: 0.2516  batch: 1.0523  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 45  step: 11499  mask_loss: 0.2975  ct_loss: 0.5395  wh_loss: 0.5233  py_loss: 1.6657  shape_loss: 0.2003  box_mask_loss: 0.0584  vis_mask_loss: 0.0896  loss: 3.3744  data: 0.3037  batch: 0.9832  lr: 0.000100  max_mem: 13473
+train: Epoch:47	
+eta: 0:03:13  epoch: 46  step: 11600  mask_loss: 0.2861  ct_loss: 0.4446  wh_loss: 0.4822  py_loss: 1.4910  shape_loss: 0.1828  box_mask_loss: 0.0573  vis_mask_loss: 0.0766  loss: 3.0206  data: 0.3046  batch: 1.0575  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 46  step: 11700  mask_loss: 0.3059  ct_loss: 0.5301  wh_loss: 0.4949  py_loss: 1.5921  shape_loss: 0.1890  box_mask_loss: 0.0603  vis_mask_loss: 0.0830  loss: 3.2553  data: 0.3092  batch: 1.0661  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 46  step: 11749  mask_loss: 0.3057  ct_loss: 0.5207  wh_loss: 0.4553  py_loss: 1.3570  shape_loss: 0.1618  box_mask_loss: 0.0606  vis_mask_loss: 0.0894  loss: 2.9506  data: 0.1855  batch: 0.8896  lr: 0.000100  max_mem: 13473
+train: Epoch:48	
+eta: 0:03:13  epoch: 47  step: 11850  mask_loss: 0.2965  ct_loss: 0.5077  wh_loss: 0.4879  py_loss: 1.5295  shape_loss: 0.1838  box_mask_loss: 0.0587  vis_mask_loss: 0.0879  loss: 3.1520  data: 0.5505  batch: 1.3722  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 47  step: 11950  mask_loss: 0.3107  ct_loss: 0.4676  wh_loss: 0.4712  py_loss: 1.4255  shape_loss: 0.1777  box_mask_loss: 0.0585  vis_mask_loss: 0.0836  loss: 2.9948  data: 0.3552  batch: 1.1752  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 47  step: 11999  mask_loss: 0.3091  ct_loss: 0.5515  wh_loss: 0.5539  py_loss: 1.9582  shape_loss: 0.2372  box_mask_loss: 0.0628  vis_mask_loss: 0.0904  loss: 3.7632  data: 0.3880  batch: 1.0671  lr: 0.000100  max_mem: 13473
+train: Epoch:49	
+eta: 0:03:12  epoch: 48  step: 12100  mask_loss: 0.3095  ct_loss: 0.6363  wh_loss: 0.5662  py_loss: 1.8598  shape_loss: 0.2213  box_mask_loss: 0.0645  vis_mask_loss: 0.0942  loss: 3.7517  data: 0.3671  batch: 1.1665  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 48  step: 12200  mask_loss: 0.2960  ct_loss: 0.4472  wh_loss: 0.4691  py_loss: 1.3912  shape_loss: 0.1671  box_mask_loss: 0.0551  vis_mask_loss: 0.0761  loss: 2.9020  data: 0.3415  batch: 1.0884  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 48  step: 12249  mask_loss: 0.2887  ct_loss: 0.5837  wh_loss: 0.5485  py_loss: 1.7940  shape_loss: 0.2158  box_mask_loss: 0.0544  vis_mask_loss: 0.0818  loss: 3.5667  data: 0.2272  batch: 0.9252  lr: 0.000100  max_mem: 13473
+train: Epoch:50	
+eta: 0:03:12  epoch: 49  step: 12350  mask_loss: 0.2914  ct_loss: 0.4273  wh_loss: 0.4813  py_loss: 1.5001  shape_loss: 0.1789  box_mask_loss: 0.0578  vis_mask_loss: 0.0835  loss: 3.0203  data: 0.2787  batch: 1.0961  lr: 0.000100  max_mem: 13473
+eta: 0:01:03  epoch: 49  step: 12450  mask_loss: 0.2821  ct_loss: 0.4913  wh_loss: 0.5213  py_loss: 1.7673  shape_loss: 0.2153  box_mask_loss: 0.0541  vis_mask_loss: 0.0740  loss: 3.4054  data: 0.3459  batch: 1.1190  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 49  step: 12499  mask_loss: 0.3074  ct_loss: 0.5580  wh_loss: 0.5614  py_loss: 1.8592  shape_loss: 0.2222  box_mask_loss: 0.0568  vis_mask_loss: 0.0846  loss: 3.6495  data: 0.3770  batch: 1.1201  lr: 0.000100  max_mem: 13473
+train: Epoch:51	
+eta: 0:03:11  epoch: 50  step: 12600  mask_loss: 0.2875  ct_loss: 0.5018  wh_loss: 0.5337  py_loss: 1.7513  shape_loss: 0.2149  box_mask_loss: 0.0568  vis_mask_loss: 0.0746  loss: 3.4206  data: 0.3746  batch: 1.1394  lr: 0.000100  max_mem: 13473
+eta: 0:01:03  epoch: 50  step: 12700  mask_loss: 0.3041  ct_loss: 0.4850  wh_loss: 0.4815  py_loss: 1.4094  shape_loss: 0.1770  box_mask_loss: 0.0551  vis_mask_loss: 0.0715  loss: 2.9837  data: 0.4259  batch: 1.2066  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 50  step: 12749  mask_loss: 0.2967  ct_loss: 0.5060  wh_loss: 0.5530  py_loss: 1.8294  shape_loss: 0.2265  box_mask_loss: 0.0543  vis_mask_loss: 0.0830  loss: 3.5489  data: 0.2248  batch: 0.9420  lr: 0.000100  max_mem: 13473
+train: Epoch:52	
+eta: 0:03:11  epoch: 51  step: 12850  mask_loss: 0.2973  ct_loss: 0.4413  wh_loss: 0.5539  py_loss: 1.9219  shape_loss: 0.2328  box_mask_loss: 0.0552  vis_mask_loss: 0.0746  loss: 3.5770  data: 0.3903  batch: 1.2081  lr: 0.000100  max_mem: 13473
+eta: 0:01:03  epoch: 51  step: 12950  mask_loss: 0.2955  ct_loss: 0.5537  wh_loss: 0.5374  py_loss: 1.6049  shape_loss: 0.1981  box_mask_loss: 0.0601  vis_mask_loss: 0.0808  loss: 3.3305  data: 0.6570  batch: 1.4514  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 51  step: 12999  mask_loss: 0.2935  ct_loss: 0.4486  wh_loss: 0.4610  py_loss: 1.3613  shape_loss: 0.1641  box_mask_loss: 0.0561  vis_mask_loss: 0.0749  loss: 2.8596  data: 0.2369  batch: 0.9785  lr: 0.000100  max_mem: 13473
+train: Epoch:53	
+eta: 0:03:10  epoch: 52  step: 13100  mask_loss: 0.2852  ct_loss: 0.4028  wh_loss: 0.5019  py_loss: 1.5416  shape_loss: 0.1968  box_mask_loss: 0.0541  vis_mask_loss: 0.0691  loss: 3.0515  data: 0.4314  batch: 1.3750  lr: 0.000100  max_mem: 13473
+eta: 0:01:03  epoch: 52  step: 13200  mask_loss: 0.2986  ct_loss: 0.5070  wh_loss: 0.5526  py_loss: 1.8776  shape_loss: 0.2334  box_mask_loss: 0.0536  vis_mask_loss: 0.0770  loss: 3.5999  data: 0.4348  batch: 1.3710  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 52  step: 13249  mask_loss: 0.3027  ct_loss: 0.5215  wh_loss: 0.4691  py_loss: 1.4006  shape_loss: 0.1700  box_mask_loss: 0.0595  vis_mask_loss: 0.0844  loss: 3.0078  data: 0.3778  batch: 1.2510  lr: 0.000100  max_mem: 13473
+train: Epoch:54	
+eta: 0:03:11  epoch: 53  step: 13350  mask_loss: 0.2855  ct_loss: 0.3974  wh_loss: 0.5046  py_loss: 1.5645  shape_loss: 0.1960  box_mask_loss: 0.0519  vis_mask_loss: 0.0702  loss: 3.0700  data: 0.5789  batch: 1.4893  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 53  step: 13450  mask_loss: 0.3049  ct_loss: 0.4750  wh_loss: 0.5117  py_loss: 1.5706  shape_loss: 0.2018  box_mask_loss: 0.0538  vis_mask_loss: 0.0795  loss: 3.1973  data: 0.8521  batch: 1.8115  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 53  step: 13499  mask_loss: 0.2863  ct_loss: 0.4584  wh_loss: 0.4544  py_loss: 1.3687  shape_loss: 0.1645  box_mask_loss: 0.0533  vis_mask_loss: 0.0736  loss: 2.8592  data: 0.6281  batch: 1.5084  lr: 0.000100  max_mem: 13473
+train: Epoch:55	
+eta: 0:03:12  epoch: 54  step: 13600  mask_loss: 0.2900  ct_loss: 0.4502  wh_loss: 0.4458  py_loss: 1.3763  shape_loss: 0.1651  box_mask_loss: 0.0541  vis_mask_loss: 0.0749  loss: 2.8565  data: 0.7850  batch: 1.7085  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 54  step: 13700  mask_loss: 0.2992  ct_loss: 0.4186  wh_loss: 0.4918  py_loss: 1.5798  shape_loss: 0.1992  box_mask_loss: 0.0537  vis_mask_loss: 0.0789  loss: 3.1212  data: 0.5582  batch: 1.4806  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 54  step: 13749  mask_loss: 0.2992  ct_loss: 0.4602  wh_loss: 0.4850  py_loss: 1.6702  shape_loss: 0.1997  box_mask_loss: 0.0610  vis_mask_loss: 0.0789  loss: 3.2543  data: 0.6843  batch: 1.5687  lr: 0.000100  max_mem: 13473
+train: Epoch:56	
+eta: 0:03:13  epoch: 55  step: 13850  mask_loss: 0.2948  ct_loss: 0.4143  wh_loss: 0.4454  py_loss: 1.2813  shape_loss: 0.1595  box_mask_loss: 0.0537  vis_mask_loss: 0.0728  loss: 2.7217  data: 0.4413  batch: 1.3735  lr: 0.000100  max_mem: 13473
+eta: 0:01:04  epoch: 55  step: 13950  mask_loss: 0.2904  ct_loss: 0.4423  wh_loss: 0.4808  py_loss: 1.5416  shape_loss: 0.1881  box_mask_loss: 0.0552  vis_mask_loss: 0.0779  loss: 3.0764  data: 0.5992  batch: 1.5207  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 55  step: 13999  mask_loss: 0.2896  ct_loss: 0.3854  wh_loss: 0.5011  py_loss: 1.6048  shape_loss: 0.2008  box_mask_loss: 0.0578  vis_mask_loss: 0.0778  loss: 3.1173  data: 0.4863  batch: 1.4028  lr: 0.000100  max_mem: 13473
+train: Epoch:57	
+eta: 0:03:14  epoch: 56  step: 14100  mask_loss: 0.2996  ct_loss: 0.4579  wh_loss: 0.5088  py_loss: 1.5523  shape_loss: 0.1913  box_mask_loss: 0.0587  vis_mask_loss: 0.0809  loss: 3.1496  data: 0.6963  batch: 1.5703  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 56  step: 14200  mask_loss: 0.2994  ct_loss: 0.6414  wh_loss: 0.5148  py_loss: 1.6811  shape_loss: 0.2037  box_mask_loss: 0.0567  vis_mask_loss: 0.0740  loss: 3.4711  data: 0.5988  batch: 1.9123  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 56  step: 14249  mask_loss: 0.3020  ct_loss: 0.5655  wh_loss: 0.5147  py_loss: 1.5843  shape_loss: 0.1949  box_mask_loss: 0.0548  vis_mask_loss: 0.0770  loss: 3.2933  data: 0.7235  batch: 1.7932  lr: 0.000100  max_mem: 13473
+train: Epoch:58	
+eta: 0:03:15  epoch: 57  step: 14350  mask_loss: 0.2895  ct_loss: 0.3928  wh_loss: 0.5272  py_loss: 1.7304  shape_loss: 0.2123  box_mask_loss: 0.0527  vis_mask_loss: 0.0752  loss: 3.2800  data: 0.7480  batch: 1.7110  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 57  step: 14450  mask_loss: 0.2823  ct_loss: 0.5056  wh_loss: 0.5035  py_loss: 1.5574  shape_loss: 0.1895  box_mask_loss: 0.0543  vis_mask_loss: 0.0761  loss: 3.1686  data: 0.4764  batch: 1.4136  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 57  step: 14499  mask_loss: 0.2889  ct_loss: 0.4088  wh_loss: 0.4620  py_loss: 1.3994  shape_loss: 0.1647  box_mask_loss: 0.0521  vis_mask_loss: 0.0753  loss: 2.8511  data: 0.5050  batch: 1.3853  lr: 0.000100  max_mem: 13473
+train: Epoch:59	
+eta: 0:03:16  epoch: 58  step: 14600  mask_loss: 0.2810  ct_loss: 0.3593  wh_loss: 0.4206  py_loss: 1.2340  shape_loss: 0.1557  box_mask_loss: 0.0513  vis_mask_loss: 0.0689  loss: 2.5707  data: 0.5289  batch: 1.4911  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 58  step: 14700  mask_loss: 0.2900  ct_loss: 0.4443  wh_loss: 0.4786  py_loss: 1.4148  shape_loss: 0.1801  box_mask_loss: 0.0548  vis_mask_loss: 0.0731  loss: 2.9358  data: 0.4314  batch: 1.3624  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 58  step: 14749  mask_loss: 0.3051  ct_loss: 0.5348  wh_loss: 0.5517  py_loss: 2.0046  shape_loss: 0.2279  box_mask_loss: 0.0663  vis_mask_loss: 0.0788  loss: 3.7691  data: 0.3680  batch: 1.2341  lr: 0.000100  max_mem: 13473
+train: Epoch:60	
+eta: 0:03:17  epoch: 59  step: 14850  mask_loss: 0.3011  ct_loss: 0.4452  wh_loss: 0.4612  py_loss: 1.4440  shape_loss: 0.1709  box_mask_loss: 0.0597  vis_mask_loss: 0.0810  loss: 2.9631  data: 0.5233  batch: 1.4561  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 59  step: 14950  mask_loss: 0.3054  ct_loss: 0.4952  wh_loss: 0.5674  py_loss: 1.9445  shape_loss: 0.2375  box_mask_loss: 0.0620  vis_mask_loss: 0.0858  loss: 3.6977  data: 0.5365  batch: 1.4956  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 59  step: 14999  mask_loss: 0.3013  ct_loss: 0.4334  wh_loss: 0.4993  py_loss: 1.5867  shape_loss: 0.1964  box_mask_loss: 0.0562  vis_mask_loss: 0.0822  loss: 3.1554  data: 0.5858  batch: 1.4635  lr: 0.000100  max_mem: 13473
+train: Epoch:61	
+eta: 0:03:17  epoch: 60  step: 15100  mask_loss: 0.2992  ct_loss: 0.4650  wh_loss: 0.5101  py_loss: 1.6609  shape_loss: 0.2111  box_mask_loss: 0.0574  vis_mask_loss: 0.0851  loss: 3.2888  data: 0.8552  batch: 1.7605  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 60  step: 15200  mask_loss: 0.3009  ct_loss: 0.4032  wh_loss: 0.4871  py_loss: 1.6870  shape_loss: 0.2082  box_mask_loss: 0.0593  vis_mask_loss: 0.0803  loss: 3.2260  data: 0.4907  batch: 1.4425  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 60  step: 15249  mask_loss: 0.2747  ct_loss: 0.3952  wh_loss: 0.4546  py_loss: 1.3608  shape_loss: 0.1712  box_mask_loss: 0.0541  vis_mask_loss: 0.0734  loss: 2.7840  data: 0.6455  batch: 1.4958  lr: 0.000100  max_mem: 13473
+train: Epoch:62	
+eta: 0:03:18  epoch: 61  step: 15350  mask_loss: 0.2743  ct_loss: 0.3473  wh_loss: 0.4420  py_loss: 1.3327  shape_loss: 0.1734  box_mask_loss: 0.0514  vis_mask_loss: 0.0672  loss: 2.6884  data: 0.7791  batch: 1.7224  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 61  step: 15450  mask_loss: 0.2839  ct_loss: 0.4371  wh_loss: 0.4748  py_loss: 1.4421  shape_loss: 0.1825  box_mask_loss: 0.0552  vis_mask_loss: 0.0719  loss: 2.9475  data: 0.5214  batch: 1.5186  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 61  step: 15499  mask_loss: 0.2877  ct_loss: 0.3945  wh_loss: 0.4599  py_loss: 1.4460  shape_loss: 0.1817  box_mask_loss: 0.0557  vis_mask_loss: 0.0750  loss: 2.9005  data: 0.4925  batch: 1.3839  lr: 0.000100  max_mem: 13473
+train: Epoch:63	
+eta: 0:03:19  epoch: 62  step: 15600  mask_loss: 0.2797  ct_loss: 0.4409  wh_loss: 0.4860  py_loss: 1.5555  shape_loss: 0.1908  box_mask_loss: 0.0531  vis_mask_loss: 0.0679  loss: 3.0739  data: 0.8094  batch: 1.7541  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 62  step: 15700  mask_loss: 0.3041  ct_loss: 0.4340  wh_loss: 0.4674  py_loss: 1.4558  shape_loss: 0.1853  box_mask_loss: 0.0547  vis_mask_loss: 0.0826  loss: 2.9838  data: 0.5230  batch: 1.3074  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 62  step: 15749  mask_loss: 0.2840  ct_loss: 0.5166  wh_loss: 0.5006  py_loss: 1.5835  shape_loss: 0.1928  box_mask_loss: 0.0561  vis_mask_loss: 0.0790  loss: 3.2126  data: 0.3396  batch: 1.0870  lr: 0.000100  max_mem: 13473
+train: Epoch:64	
+eta: 0:03:18  epoch: 63  step: 15850  mask_loss: 0.2800  ct_loss: 0.3503  wh_loss: 0.4221  py_loss: 1.2446  shape_loss: 0.1552  box_mask_loss: 0.0560  vis_mask_loss: 0.0703  loss: 2.5786  data: 0.1989  batch: 0.9867  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 63  step: 15950  mask_loss: 0.2893  ct_loss: 0.4527  wh_loss: 0.4738  py_loss: 1.5488  shape_loss: 0.1856  box_mask_loss: 0.0543  vis_mask_loss: 0.0813  loss: 3.0859  data: 0.2964  batch: 1.0318  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 63  step: 15999  mask_loss: 0.2878  ct_loss: 0.3703  wh_loss: 0.4436  py_loss: 1.3851  shape_loss: 0.1727  box_mask_loss: 0.0521  vis_mask_loss: 0.0736  loss: 2.7851  data: 0.3500  batch: 1.0678  lr: 0.000100  max_mem: 13473
+train: Epoch:65	
+eta: 0:03:18  epoch: 64  step: 16100  mask_loss: 0.3016  ct_loss: 0.3920  wh_loss: 0.4624  py_loss: 1.4804  shape_loss: 0.1775  box_mask_loss: 0.0527  vis_mask_loss: 0.0711  loss: 2.9378  data: 0.3365  batch: 1.1377  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 64  step: 16200  mask_loss: 0.2811  ct_loss: 0.4195  wh_loss: 0.4566  py_loss: 1.3975  shape_loss: 0.1732  box_mask_loss: 0.0545  vis_mask_loss: 0.0755  loss: 2.8578  data: 0.1390  batch: 0.9009  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 64  step: 16249  mask_loss: 0.2807  ct_loss: 0.3730  wh_loss: 0.4165  py_loss: 1.2715  shape_loss: 0.1578  box_mask_loss: 0.0517  vis_mask_loss: 0.0654  loss: 2.6165  data: 0.3505  batch: 1.0866  lr: 0.000100  max_mem: 13473
+train: Epoch:66	
+eta: 0:03:18  epoch: 65  step: 16350  mask_loss: 0.2960  ct_loss: 0.4420  wh_loss: 0.4875  py_loss: 1.5127  shape_loss: 0.1957  box_mask_loss: 0.0535  vis_mask_loss: 0.0817  loss: 3.0692  data: 0.2751  batch: 1.1058  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 65  step: 16450  mask_loss: 0.2948  ct_loss: 0.4859  wh_loss: 0.4693  py_loss: 1.4120  shape_loss: 0.1715  box_mask_loss: 0.0568  vis_mask_loss: 0.0836  loss: 2.9739  data: 0.0360  batch: 0.8277  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 65  step: 16499  mask_loss: 0.2835  ct_loss: 0.3540  wh_loss: 0.4430  py_loss: 1.3559  shape_loss: 0.1688  box_mask_loss: 0.0551  vis_mask_loss: 0.0775  loss: 2.7379  data: 0.1835  batch: 0.9143  lr: 0.000100  max_mem: 13473
+train: Epoch:67	
+eta: 0:03:17  epoch: 66  step: 16600  mask_loss: 0.2916  ct_loss: 0.3998  wh_loss: 0.4823  py_loss: 1.5550  shape_loss: 0.2023  box_mask_loss: 0.0529  vis_mask_loss: 0.0697  loss: 3.0536  data: 0.2590  batch: 1.0128  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 66  step: 16700  mask_loss: 0.2770  ct_loss: 0.3790  wh_loss: 0.4763  py_loss: 1.4590  shape_loss: 0.1799  box_mask_loss: 0.0495  vis_mask_loss: 0.0688  loss: 2.8895  data: 0.3846  batch: 1.1804  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 66  step: 16749  mask_loss: 0.2826  ct_loss: 0.3121  wh_loss: 0.4341  py_loss: 1.3824  shape_loss: 0.1700  box_mask_loss: 0.0520  vis_mask_loss: 0.0687  loss: 2.7019  data: 0.5492  batch: 1.4586  lr: 0.000100  max_mem: 13473
+train: Epoch:68	
+eta: 0:03:17  epoch: 67  step: 16850  mask_loss: 0.2750  ct_loss: 0.3497  wh_loss: 0.4859  py_loss: 1.5970  shape_loss: 0.2004  box_mask_loss: 0.0543  vis_mask_loss: 0.0705  loss: 3.0328  data: 0.6336  batch: 1.5091  lr: 0.000100  max_mem: 13473
+eta: 0:01:05  epoch: 67  step: 16950  mask_loss: 0.2800  ct_loss: 0.3642  wh_loss: 0.4179  py_loss: 1.1912  shape_loss: 0.1486  box_mask_loss: 0.0522  vis_mask_loss: 0.0712  loss: 2.5253  data: 0.4806  batch: 1.3429  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 67  step: 16999  mask_loss: 0.2773  ct_loss: 0.4249  wh_loss: 0.4462  py_loss: 1.4005  shape_loss: 0.1654  box_mask_loss: 0.0540  vis_mask_loss: 0.0774  loss: 2.8456  data: 0.5734  batch: 1.5211  lr: 0.000100  max_mem: 13473
+train: Epoch:69	
+eta: 0:03:18  epoch: 68  step: 17100  mask_loss: 0.2747  ct_loss: 0.3153  wh_loss: 0.4171  py_loss: 1.3533  shape_loss: 0.1684  box_mask_loss: 0.0493  vis_mask_loss: 0.0616  loss: 2.6397  data: 0.6131  batch: 1.5241  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 68  step: 17200  mask_loss: 0.2867  ct_loss: 0.3678  wh_loss: 0.4377  py_loss: 1.2874  shape_loss: 0.1610  box_mask_loss: 0.0533  vis_mask_loss: 0.0690  loss: 2.6629  data: 0.3242  batch: 1.1789  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 68  step: 17249  mask_loss: 0.2901  ct_loss: 0.3548  wh_loss: 0.4594  py_loss: 1.5672  shape_loss: 0.1985  box_mask_loss: 0.0525  vis_mask_loss: 0.0739  loss: 2.9964  data: 0.6396  batch: 1.5861  lr: 0.000100  max_mem: 13473
+train: Epoch:70	
+eta: 0:03:19  epoch: 69  step: 17350  mask_loss: 0.2843  ct_loss: 0.3697  wh_loss: 0.4763  py_loss: 1.6225  shape_loss: 0.1988  box_mask_loss: 0.0555  vis_mask_loss: 0.0753  loss: 3.0823  data: 0.4462  batch: 1.4253  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 69  step: 17450  mask_loss: 0.2974  ct_loss: 0.4607  wh_loss: 0.4786  py_loss: 1.5357  shape_loss: 0.1847  box_mask_loss: 0.0573  vis_mask_loss: 0.0780  loss: 3.0924  data: 0.7601  batch: 1.5492  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 69  step: 17499  mask_loss: 0.2928  ct_loss: 0.3734  wh_loss: 0.4614  py_loss: 1.4951  shape_loss: 0.1831  box_mask_loss: 0.0545  vis_mask_loss: 0.0711  loss: 2.9314  data: 0.4546  batch: 1.2554  lr: 0.000100  max_mem: 13473
+train: Epoch:71	
+eta: 0:03:19  epoch: 70  step: 17600  mask_loss: 0.2770  ct_loss: 0.3564  wh_loss: 0.4382  py_loss: 1.3934  shape_loss: 0.1750  box_mask_loss: 0.0513  vis_mask_loss: 0.0653  loss: 2.7567  data: 0.5569  batch: 1.4656  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 70  step: 17700  mask_loss: 0.2829  ct_loss: 0.3399  wh_loss: 0.4739  py_loss: 1.5520  shape_loss: 0.1971  box_mask_loss: 0.0556  vis_mask_loss: 0.0734  loss: 2.9749  data: 0.4033  batch: 1.3371  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 70  step: 17749  mask_loss: 0.2833  ct_loss: 0.3263  wh_loss: 0.4418  py_loss: 1.3930  shape_loss: 0.1723  box_mask_loss: 0.0564  vis_mask_loss: 0.0718  loss: 2.7450  data: 0.7370  batch: 1.6753  lr: 0.000100  max_mem: 13473
+train: Epoch:72	
+eta: 0:03:19  epoch: 71  step: 17850  mask_loss: 0.2745  ct_loss: 0.3222  wh_loss: 0.4393  py_loss: 1.4181  shape_loss: 0.1781  box_mask_loss: 0.0532  vis_mask_loss: 0.0685  loss: 2.7539  data: 0.2780  batch: 1.1743  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 71  step: 17950  mask_loss: 0.2916  ct_loss: 0.3367  wh_loss: 0.4539  py_loss: 1.4943  shape_loss: 0.1861  box_mask_loss: 0.0544  vis_mask_loss: 0.0801  loss: 2.8971  data: 0.6018  batch: 1.5441  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 71  step: 17999  mask_loss: 0.2730  ct_loss: 0.4689  wh_loss: 0.4603  py_loss: 1.4481  shape_loss: 0.1732  box_mask_loss: 0.0530  vis_mask_loss: 0.0702  loss: 2.9467  data: 0.5161  batch: 1.3510  lr: 0.000100  max_mem: 13473
+train: Epoch:73	
+eta: 0:03:20  epoch: 72  step: 18100  mask_loss: 0.2843  ct_loss: 0.3319  wh_loss: 0.4328  py_loss: 1.3350  shape_loss: 0.1625  box_mask_loss: 0.0548  vis_mask_loss: 0.0724  loss: 2.6737  data: 0.7040  batch: 1.6420  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 72  step: 18200  mask_loss: 0.2853  ct_loss: 0.4278  wh_loss: 0.4544  py_loss: 1.4278  shape_loss: 0.1743  box_mask_loss: 0.0537  vis_mask_loss: 0.0731  loss: 2.8965  data: 0.7598  batch: 1.6568  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 72  step: 18249  mask_loss: 0.2784  ct_loss: 0.3638  wh_loss: 0.4410  py_loss: 1.4162  shape_loss: 0.1751  box_mask_loss: 0.0576  vis_mask_loss: 0.0717  loss: 2.8040  data: 0.3613  batch: 1.2252  lr: 0.000100  max_mem: 13473
+train: Epoch:74	
+eta: 0:03:20  epoch: 73  step: 18350  mask_loss: 0.2929  ct_loss: 0.4105  wh_loss: 0.4446  py_loss: 1.4708  shape_loss: 0.1800  box_mask_loss: 0.0576  vis_mask_loss: 0.0780  loss: 2.9344  data: 0.6318  batch: 1.5372  lr: 0.000100  max_mem: 13473
+eta: 0:01:06  epoch: 73  step: 18450  mask_loss: 0.2787  ct_loss: 0.3307  wh_loss: 0.4031  py_loss: 1.1169  shape_loss: 0.1394  box_mask_loss: 0.0541  vis_mask_loss: 0.0684  loss: 2.3912  data: 0.3527  batch: 1.1954  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 73  step: 18499  mask_loss: 0.2745  ct_loss: 0.3158  wh_loss: 0.4360  py_loss: 1.2911  shape_loss: 0.1641  box_mask_loss: 0.0522  vis_mask_loss: 0.0712  loss: 2.6048  data: 0.6437  batch: 1.5217  lr: 0.000100  max_mem: 13473
+train: Epoch:75	
+eta: 0:03:21  epoch: 74  step: 18600  mask_loss: 0.2822  ct_loss: 0.3012  wh_loss: 0.4549  py_loss: 1.4250  shape_loss: 0.1729  box_mask_loss: 0.0538  vis_mask_loss: 0.0743  loss: 2.7643  data: 0.2972  batch: 1.1898  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 74  step: 18700  mask_loss: 0.2823  ct_loss: 0.3906  wh_loss: 0.3978  py_loss: 1.0848  shape_loss: 0.1351  box_mask_loss: 0.0538  vis_mask_loss: 0.0684  loss: 2.4129  data: 0.8680  batch: 1.7848  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 74  step: 18749  mask_loss: 0.2810  ct_loss: 0.3692  wh_loss: 0.4507  py_loss: 1.4557  shape_loss: 0.1838  box_mask_loss: 0.0531  vis_mask_loss: 0.0732  loss: 2.8667  data: 0.6050  batch: 1.4131  lr: 0.000100  max_mem: 13473
+train: Epoch:76	
+eta: 0:03:21  epoch: 75  step: 18850  mask_loss: 0.2841  ct_loss: 0.3492  wh_loss: 0.4534  py_loss: 1.4481  shape_loss: 0.1777  box_mask_loss: 0.0529  vis_mask_loss: 0.0703  loss: 2.8357  data: 0.5964  batch: 1.5479  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 75  step: 18950  mask_loss: 0.2708  ct_loss: 0.3742  wh_loss: 0.4429  py_loss: 1.3726  shape_loss: 0.1693  box_mask_loss: 0.0500  vis_mask_loss: 0.0697  loss: 2.7495  data: 0.4197  batch: 1.2867  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 75  step: 18999  mask_loss: 0.2842  ct_loss: 0.3490  wh_loss: 0.4592  py_loss: 1.4940  shape_loss: 0.1906  box_mask_loss: 0.0551  vis_mask_loss: 0.0753  loss: 2.9074  data: 0.2328  batch: 1.0898  lr: 0.000100  max_mem: 13473
+train: Epoch:77	
+eta: 0:03:21  epoch: 76  step: 19100  mask_loss: 0.2662  ct_loss: 0.3142  wh_loss: 0.4293  py_loss: 1.3270  shape_loss: 0.1650  box_mask_loss: 0.0485  vis_mask_loss: 0.0670  loss: 2.6173  data: 0.7847  batch: 1.7187  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 76  step: 19200  mask_loss: 0.2867  ct_loss: 0.4179  wh_loss: 0.4715  py_loss: 1.4947  shape_loss: 0.1845  box_mask_loss: 0.0555  vis_mask_loss: 0.0745  loss: 2.9854  data: 0.6935  batch: 1.5579  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 76  step: 19249  mask_loss: 0.2716  ct_loss: 0.3252  wh_loss: 0.4392  py_loss: 1.3537  shape_loss: 0.1705  box_mask_loss: 0.0512  vis_mask_loss: 0.0699  loss: 2.6811  data: 0.4714  batch: 1.2267  lr: 0.000100  max_mem: 13473
+train: Epoch:78	
+eta: 0:03:22  epoch: 77  step: 19350  mask_loss: 0.2686  ct_loss: 0.3386  wh_loss: 0.4332  py_loss: 1.3675  shape_loss: 0.1714  box_mask_loss: 0.0486  vis_mask_loss: 0.0695  loss: 2.6973  data: 0.3225  batch: 1.1876  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 77  step: 19450  mask_loss: 0.2713  ct_loss: 0.3319  wh_loss: 0.4203  py_loss: 1.2796  shape_loss: 0.1583  box_mask_loss: 0.0504  vis_mask_loss: 0.0730  loss: 2.5848  data: 0.5092  batch: 1.4654  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 77  step: 19499  mask_loss: 0.2859  ct_loss: 0.3582  wh_loss: 0.4113  py_loss: 1.2250  shape_loss: 0.1541  box_mask_loss: 0.0517  vis_mask_loss: 0.0724  loss: 2.5586  data: 0.6724  batch: 1.4748  lr: 0.000100  max_mem: 13473
+train: Epoch:79	
+eta: 0:03:22  epoch: 78  step: 19600  mask_loss: 0.2798  ct_loss: 0.3354  wh_loss: 0.4660  py_loss: 1.5851  shape_loss: 0.2003  box_mask_loss: 0.0513  vis_mask_loss: 0.0686  loss: 2.9865  data: 0.5129  batch: 1.4491  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 78  step: 19700  mask_loss: 0.2686  ct_loss: 0.3118  wh_loss: 0.4180  py_loss: 1.3532  shape_loss: 0.1704  box_mask_loss: 0.0466  vis_mask_loss: 0.0654  loss: 2.6341  data: 0.5389  batch: 1.4825  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 78  step: 19749  mask_loss: 0.2720  ct_loss: 0.3491  wh_loss: 0.4499  py_loss: 1.5711  shape_loss: 0.1858  box_mask_loss: 0.0548  vis_mask_loss: 0.0678  loss: 2.9505  data: 0.2257  batch: 0.9920  lr: 0.000100  max_mem: 13473
+train: Epoch:80	
+eta: 0:03:22  epoch: 79  step: 19850  mask_loss: 0.2759  ct_loss: 0.3171  wh_loss: 0.4404  py_loss: 1.4710  shape_loss: 0.1826  box_mask_loss: 0.0519  vis_mask_loss: 0.0675  loss: 2.8063  data: 0.5081  batch: 1.3353  lr: 0.000100  max_mem: 13473
+eta: 0:01:07  epoch: 79  step: 19950  mask_loss: 0.2766  ct_loss: 0.2999  wh_loss: 0.4365  py_loss: 1.4442  shape_loss: 0.1847  box_mask_loss: 0.0508  vis_mask_loss: 0.0706  loss: 2.7633  data: 0.2492  batch: 1.1846  lr: 0.000100  max_mem: 13473
+eta: 0:00:01  epoch: 79  step: 19999  mask_loss: 0.2795  ct_loss: 0.3114  wh_loss: 0.4058  py_loss: 1.2814  shape_loss: 0.1630  box_mask_loss: 0.0503  vis_mask_loss: 0.0696  loss: 2.5609  data: 0.3816  batch: 1.2285  lr: 0.000100  max_mem: 13473
+train: Epoch:81	
+eta: 0:03:22  epoch: 80  step: 20100  mask_loss: 0.2563  ct_loss: 0.2258  wh_loss: 0.3788  py_loss: 1.0727  shape_loss: 0.1419  box_mask_loss: 0.0452  vis_mask_loss: 0.0576  loss: 2.1783  data: 0.5608  batch: 1.4620  lr: 0.000025  max_mem: 13473
+eta: 0:01:07  epoch: 80  step: 20200  mask_loss: 0.2608  ct_loss: 0.2219  wh_loss: 0.3792  py_loss: 1.1312  shape_loss: 0.1492  box_mask_loss: 0.0465  vis_mask_loss: 0.0599  loss: 2.2488  data: 0.5534  batch: 1.5303  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 80  step: 20249  mask_loss: 0.2660  ct_loss: 0.2258  wh_loss: 0.3909  py_loss: 1.1664  shape_loss: 0.1515  box_mask_loss: 0.0473  vis_mask_loss: 0.0621  loss: 2.3101  data: 0.3938  batch: 1.2491  lr: 0.000025  max_mem: 13473
+train: Epoch:82	
+eta: 0:03:23  epoch: 81  step: 20350  mask_loss: 0.2642  ct_loss: 0.2053  wh_loss: 0.4039  py_loss: 1.1728  shape_loss: 0.1557  box_mask_loss: 0.0482  vis_mask_loss: 0.0628  loss: 2.3130  data: 0.5787  batch: 1.4877  lr: 0.000025  max_mem: 13473
+eta: 0:01:07  epoch: 81  step: 20450  mask_loss: 0.2571  ct_loss: 0.2171  wh_loss: 0.3991  py_loss: 1.1763  shape_loss: 0.1596  box_mask_loss: 0.0464  vis_mask_loss: 0.0597  loss: 2.3152  data: 0.5862  batch: 1.4801  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 81  step: 20499  mask_loss: 0.2746  ct_loss: 0.2360  wh_loss: 0.4672  py_loss: 1.5736  shape_loss: 0.2113  box_mask_loss: 0.0488  vis_mask_loss: 0.0627  loss: 2.8741  data: 0.7448  batch: 1.5657  lr: 0.000025  max_mem: 13473
+train: Epoch:83	
+eta: 0:03:23  epoch: 82  step: 20600  mask_loss: 0.2485  ct_loss: 0.1854  wh_loss: 0.4133  py_loss: 1.3079  shape_loss: 0.1705  box_mask_loss: 0.0454  vis_mask_loss: 0.0565  loss: 2.4274  data: 0.6983  batch: 1.6209  lr: 0.000025  max_mem: 13473
+eta: 0:01:07  epoch: 82  step: 20700  mask_loss: 0.2638  ct_loss: 0.2029  wh_loss: 0.3909  py_loss: 1.1486  shape_loss: 0.1528  box_mask_loss: 0.0488  vis_mask_loss: 0.0626  loss: 2.2704  data: 0.3995  batch: 1.3146  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 82  step: 20749  mask_loss: 0.2589  ct_loss: 0.1888  wh_loss: 0.3738  py_loss: 1.0720  shape_loss: 0.1417  box_mask_loss: 0.0479  vis_mask_loss: 0.0598  loss: 2.1429  data: 0.5400  batch: 1.4073  lr: 0.000025  max_mem: 13473
+train: Epoch:84	
+eta: 0:03:23  epoch: 83  step: 20850  mask_loss: 0.2704  ct_loss: 0.2111  wh_loss: 0.4076  py_loss: 1.2436  shape_loss: 0.1647  box_mask_loss: 0.0490  vis_mask_loss: 0.0622  loss: 2.4087  data: 0.4021  batch: 1.3194  lr: 0.000025  max_mem: 13473
+eta: 0:01:07  epoch: 83  step: 20950  mask_loss: 0.2568  ct_loss: 0.1767  wh_loss: 0.3839  py_loss: 1.1319  shape_loss: 0.1520  box_mask_loss: 0.0455  vis_mask_loss: 0.0552  loss: 2.2021  data: 0.5164  batch: 1.4416  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 83  step: 20999  mask_loss: 0.2696  ct_loss: 0.2175  wh_loss: 0.3948  py_loss: 1.1895  shape_loss: 0.1605  box_mask_loss: 0.0498  vis_mask_loss: 0.0651  loss: 2.3468  data: 0.6431  batch: 1.5098  lr: 0.000025  max_mem: 13473
+train: Epoch:85	
+eta: 0:03:23  epoch: 84  step: 21100  mask_loss: 0.2663  ct_loss: 0.2097  wh_loss: 0.4297  py_loss: 1.3287  shape_loss: 0.1779  box_mask_loss: 0.0482  vis_mask_loss: 0.0638  loss: 2.5244  data: 0.7951  batch: 1.7328  lr: 0.000025  max_mem: 13473
+eta: 0:01:07  epoch: 84  step: 21200  mask_loss: 0.2537  ct_loss: 0.1936  wh_loss: 0.3973  py_loss: 1.3111  shape_loss: 0.1686  box_mask_loss: 0.0456  vis_mask_loss: 0.0591  loss: 2.4289  data: 0.6393  batch: 1.6285  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 84  step: 21249  mask_loss: 0.2604  ct_loss: 0.1682  wh_loss: 0.3852  py_loss: 1.1808  shape_loss: 0.1621  box_mask_loss: 0.0469  vis_mask_loss: 0.0583  loss: 2.2620  data: 0.3727  batch: 1.2649  lr: 0.000025  max_mem: 13473
+train: Epoch:86	
+eta: 0:03:24  epoch: 85  step: 21350  mask_loss: 0.2690  ct_loss: 0.2072  wh_loss: 0.4443  py_loss: 1.5253  shape_loss: 0.1946  box_mask_loss: 0.0464  vis_mask_loss: 0.0681  loss: 2.7548  data: 0.7057  batch: 1.5823  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 85  step: 21450  mask_loss: 0.2645  ct_loss: 0.2042  wh_loss: 0.4069  py_loss: 1.2244  shape_loss: 0.1623  box_mask_loss: 0.0494  vis_mask_loss: 0.0627  loss: 2.3744  data: 0.5102  batch: 1.3710  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 85  step: 21499  mask_loss: 0.2476  ct_loss: 0.2166  wh_loss: 0.4242  py_loss: 1.3562  shape_loss: 0.1843  box_mask_loss: 0.0442  vis_mask_loss: 0.0600  loss: 2.5331  data: 0.3843  batch: 1.1898  lr: 0.000025  max_mem: 13473
+train: Epoch:87	
+eta: 0:03:24  epoch: 86  step: 21600  mask_loss: 0.2708  ct_loss: 0.2678  wh_loss: 0.4548  py_loss: 1.5149  shape_loss: 0.2026  box_mask_loss: 0.0479  vis_mask_loss: 0.0661  loss: 2.8248  data: 0.6631  batch: 1.5545  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 86  step: 21700  mask_loss: 0.2443  ct_loss: 0.1725  wh_loss: 0.3526  py_loss: 0.9771  shape_loss: 0.1275  box_mask_loss: 0.0449  vis_mask_loss: 0.0531  loss: 1.9721  data: 0.4268  batch: 1.3143  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 86  step: 21749  mask_loss: 0.2627  ct_loss: 0.1938  wh_loss: 0.4137  py_loss: 1.2853  shape_loss: 0.1642  box_mask_loss: 0.0479  vis_mask_loss: 0.0643  loss: 2.4319  data: 0.5687  batch: 1.4198  lr: 0.000025  max_mem: 13473
+train: Epoch:88	
+eta: 0:03:24  epoch: 87  step: 21850  mask_loss: 0.2644  ct_loss: 0.1871  wh_loss: 0.3988  py_loss: 1.2700  shape_loss: 0.1725  box_mask_loss: 0.0465  vis_mask_loss: 0.0628  loss: 2.4020  data: 0.9361  batch: 1.8151  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 87  step: 21950  mask_loss: 0.2570  ct_loss: 0.1797  wh_loss: 0.3577  py_loss: 1.0306  shape_loss: 0.1395  box_mask_loss: 0.0441  vis_mask_loss: 0.0599  loss: 2.0685  data: 0.4433  batch: 1.3008  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 87  step: 21999  mask_loss: 0.2541  ct_loss: 0.1906  wh_loss: 0.3782  py_loss: 1.1038  shape_loss: 0.1458  box_mask_loss: 0.0453  vis_mask_loss: 0.0569  loss: 2.1747  data: 0.4369  batch: 1.2647  lr: 0.000025  max_mem: 13473
+train: Epoch:89	
+eta: 0:03:24  epoch: 88  step: 22100  mask_loss: 0.2551  ct_loss: 0.2223  wh_loss: 0.4575  py_loss: 1.4483  shape_loss: 0.1945  box_mask_loss: 0.0435  vis_mask_loss: 0.0560  loss: 2.6773  data: 0.2029  batch: 1.0650  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 88  step: 22200  mask_loss: 0.2437  ct_loss: 0.1835  wh_loss: 0.3587  py_loss: 1.0101  shape_loss: 0.1365  box_mask_loss: 0.0440  vis_mask_loss: 0.0522  loss: 2.0286  data: 0.6918  batch: 1.5453  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 88  step: 22249  mask_loss: 0.2580  ct_loss: 0.1948  wh_loss: 0.3787  py_loss: 1.1210  shape_loss: 0.1456  box_mask_loss: 0.0445  vis_mask_loss: 0.0618  loss: 2.2042  data: 0.4255  batch: 1.2427  lr: 0.000025  max_mem: 13473
+train: Epoch:90	
+eta: 0:03:25  epoch: 89  step: 22350  mask_loss: 0.2620  ct_loss: 0.1850  wh_loss: 0.4140  py_loss: 1.3504  shape_loss: 0.1759  box_mask_loss: 0.0494  vis_mask_loss: 0.0636  loss: 2.5002  data: 0.4626  batch: 1.3710  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 89  step: 22450  mask_loss: 0.2626  ct_loss: 0.1941  wh_loss: 0.4740  py_loss: 1.6869  shape_loss: 0.2241  box_mask_loss: 0.0467  vis_mask_loss: 0.0645  loss: 2.9528  data: 0.4548  batch: 1.3740  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 89  step: 22499  mask_loss: 0.2499  ct_loss: 0.1834  wh_loss: 0.3794  py_loss: 1.1691  shape_loss: 0.1535  box_mask_loss: 0.0454  vis_mask_loss: 0.0572  loss: 2.2380  data: 0.5228  batch: 1.3660  lr: 0.000025  max_mem: 13473
+train: Epoch:91	
+eta: 0:03:25  epoch: 90  step: 22600  mask_loss: 0.2470  ct_loss: 0.1968  wh_loss: 0.3934  py_loss: 1.1709  shape_loss: 0.1515  box_mask_loss: 0.0479  vis_mask_loss: 0.0626  loss: 2.2700  data: 0.4387  batch: 1.3726  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 90  step: 22700  mask_loss: 0.2578  ct_loss: 0.1677  wh_loss: 0.3849  py_loss: 1.1561  shape_loss: 0.1599  box_mask_loss: 0.0463  vis_mask_loss: 0.0614  loss: 2.2340  data: 0.4516  batch: 1.2645  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 90  step: 22749  mask_loss: 0.2484  ct_loss: 0.1400  wh_loss: 0.3573  py_loss: 1.0622  shape_loss: 0.1445  box_mask_loss: 0.0436  vis_mask_loss: 0.0589  loss: 2.0549  data: 0.5585  batch: 1.3646  lr: 0.000025  max_mem: 13473
+train: Epoch:92	
+eta: 0:03:25  epoch: 91  step: 22850  mask_loss: 0.2545  ct_loss: 0.1693  wh_loss: 0.3787  py_loss: 1.1658  shape_loss: 0.1526  box_mask_loss: 0.0459  vis_mask_loss: 0.0565  loss: 2.2234  data: 0.8233  batch: 1.7177  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 91  step: 22950  mask_loss: 0.2618  ct_loss: 0.2043  wh_loss: 0.4712  py_loss: 1.6063  shape_loss: 0.2075  box_mask_loss: 0.0473  vis_mask_loss: 0.0640  loss: 2.8622  data: 0.5089  batch: 1.3696  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 91  step: 22999  mask_loss: 0.2575  ct_loss: 0.1734  wh_loss: 0.4253  py_loss: 1.4084  shape_loss: 0.1893  box_mask_loss: 0.0440  vis_mask_loss: 0.0558  loss: 2.5538  data: 0.6577  batch: 1.4575  lr: 0.000025  max_mem: 13473
+train: Epoch:93	
+eta: 0:03:25  epoch: 92  step: 23100  mask_loss: 0.2523  ct_loss: 0.1646  wh_loss: 0.3818  py_loss: 1.1094  shape_loss: 0.1563  box_mask_loss: 0.0465  vis_mask_loss: 0.0573  loss: 2.1682  data: 1.1785  batch: 2.1615  lr: 0.000025  max_mem: 13473
+eta: 0:01:08  epoch: 92  step: 23200  mask_loss: 0.2551  ct_loss: 0.1682  wh_loss: 0.3837  py_loss: 1.1348  shape_loss: 0.1523  box_mask_loss: 0.0454  vis_mask_loss: 0.0597  loss: 2.1994  data: 0.6537  batch: 1.7350  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 92  step: 23249  mask_loss: 0.2553  ct_loss: 0.1942  wh_loss: 0.3905  py_loss: 1.1219  shape_loss: 0.1504  box_mask_loss: 0.0441  vis_mask_loss: 0.0616  loss: 2.2179  data: 1.3196  batch: 2.3341  lr: 0.000025  max_mem: 13473
+train: Epoch:94	
+eta: 0:03:26  epoch: 93  step: 23350  mask_loss: 0.2526  ct_loss: 0.1340  wh_loss: 0.3739  py_loss: 1.1615  shape_loss: 0.1634  box_mask_loss: 0.0413  vis_mask_loss: 0.0547  loss: 2.1813  data: 1.1152  batch: 2.4238  lr: 0.000025  max_mem: 13473
+eta: 0:01:09  epoch: 93  step: 23450  mask_loss: 0.2398  ct_loss: 0.1446  wh_loss: 0.3400  py_loss: 0.8910  shape_loss: 0.1259  box_mask_loss: 0.0426  vis_mask_loss: 0.0490  loss: 1.8329  data: 0.4742  batch: 1.6670  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 93  step: 23499  mask_loss: 0.2571  ct_loss: 0.1922  wh_loss: 0.3920  py_loss: 1.1877  shape_loss: 0.1565  box_mask_loss: 0.0461  vis_mask_loss: 0.0598  loss: 2.2913  data: 0.7616  batch: 1.7480  lr: 0.000025  max_mem: 13473
+train: Epoch:95	
+eta: 0:03:27  epoch: 94  step: 23600  mask_loss: 0.2581  ct_loss: 0.1568  wh_loss: 0.3925  py_loss: 1.2259  shape_loss: 0.1680  box_mask_loss: 0.0449  vis_mask_loss: 0.0602  loss: 2.3065  data: 0.5890  batch: 1.8359  lr: 0.000025  max_mem: 13473
+eta: 0:01:09  epoch: 94  step: 23700  mask_loss: 0.2530  ct_loss: 0.1503  wh_loss: 0.4101  py_loss: 1.2928  shape_loss: 0.1732  box_mask_loss: 0.0448  vis_mask_loss: 0.0547  loss: 2.3788  data: 0.4700  batch: 1.8389  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 94  step: 23749  mask_loss: 0.2478  ct_loss: 0.1194  wh_loss: 0.4163  py_loss: 1.3096  shape_loss: 0.1763  box_mask_loss: 0.0435  vis_mask_loss: 0.0535  loss: 2.3664  data: 0.5718  batch: 1.5909  lr: 0.000025  max_mem: 13473
+train: Epoch:96	
+eta: 0:03:28  epoch: 95  step: 23850  mask_loss: 0.2511  ct_loss: 0.1818  wh_loss: 0.3878  py_loss: 1.1820  shape_loss: 0.1620  box_mask_loss: 0.0409  vis_mask_loss: 0.0508  loss: 2.2564  data: 0.7090  batch: 1.7459  lr: 0.000025  max_mem: 13473
+eta: 0:01:09  epoch: 95  step: 23950  mask_loss: 0.2444  ct_loss: 0.1789  wh_loss: 0.3916  py_loss: 1.1960  shape_loss: 0.1612  box_mask_loss: 0.0428  vis_mask_loss: 0.0524  loss: 2.2674  data: 0.5683  batch: 1.5498  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 95  step: 23999  mask_loss: 0.2473  ct_loss: 0.1641  wh_loss: 0.3623  py_loss: 1.0239  shape_loss: 0.1406  box_mask_loss: 0.0472  vis_mask_loss: 0.0618  loss: 2.0472  data: 0.8127  batch: 1.8935  lr: 0.000025  max_mem: 13473
+train: Epoch:97	
+eta: 0:03:30  epoch: 96  step: 24100  mask_loss: 0.2453  ct_loss: 0.1907  wh_loss: 0.4378  py_loss: 1.5071  shape_loss: 0.1905  box_mask_loss: 0.0455  vis_mask_loss: 0.0599  loss: 2.6768  data: 1.1286  batch: 2.2933  lr: 0.000025  max_mem: 13473
+eta: 0:01:10  epoch: 96  step: 24200  mask_loss: 0.2532  ct_loss: 0.1870  wh_loss: 0.3897  py_loss: 1.1759  shape_loss: 0.1565  box_mask_loss: 0.0438  vis_mask_loss: 0.0615  loss: 2.2676  data: 1.1342  batch: 2.1790  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 96  step: 24249  mask_loss: 0.2558  ct_loss: 0.1972  wh_loss: 0.3995  py_loss: 1.1964  shape_loss: 0.1594  box_mask_loss: 0.0453  vis_mask_loss: 0.0575  loss: 2.3112  data: 1.1810  batch: 2.2021  lr: 0.000025  max_mem: 13473
+train: Epoch:98	
+eta: 0:03:31  epoch: 97  step: 24350  mask_loss: 0.2466  ct_loss: 0.1887  wh_loss: 0.3809  py_loss: 1.1917  shape_loss: 0.1572  box_mask_loss: 0.0429  vis_mask_loss: 0.0552  loss: 2.2632  data: 0.7543  batch: 1.8401  lr: 0.000025  max_mem: 13473
+eta: 0:01:10  epoch: 97  step: 24450  mask_loss: 0.2471  ct_loss: 0.1508  wh_loss: 0.3685  py_loss: 1.0611  shape_loss: 0.1500  box_mask_loss: 0.0435  vis_mask_loss: 0.0536  loss: 2.0746  data: 0.5964  batch: 1.6830  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 97  step: 24499  mask_loss: 0.2520  ct_loss: 0.1948  wh_loss: 0.3685  py_loss: 1.1156  shape_loss: 0.1471  box_mask_loss: 0.0451  vis_mask_loss: 0.0652  loss: 2.1882  data: 0.8086  batch: 1.9206  lr: 0.000025  max_mem: 13473
+train: Epoch:99	
+eta: 0:03:32  epoch: 98  step: 24600  mask_loss: 0.2465  ct_loss: 0.1632  wh_loss: 0.3717  py_loss: 1.1781  shape_loss: 0.1571  box_mask_loss: 0.0421  vis_mask_loss: 0.0512  loss: 2.2098  data: 0.7924  batch: 1.9630  lr: 0.000025  max_mem: 13473
+eta: 0:01:10  epoch: 98  step: 24700  mask_loss: 0.2518  ct_loss: 0.1426  wh_loss: 0.3928  py_loss: 1.2170  shape_loss: 0.1681  box_mask_loss: 0.0454  vis_mask_loss: 0.0595  loss: 2.2772  data: 0.8249  batch: 1.9817  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 98  step: 24749  mask_loss: 0.2409  ct_loss: 0.1295  wh_loss: 0.3406  py_loss: 0.9494  shape_loss: 0.1327  box_mask_loss: 0.0432  vis_mask_loss: 0.0519  loss: 1.8882  data: 0.6690  batch: 1.7374  lr: 0.000025  max_mem: 13473
+train: Epoch:100	
+eta: 0:03:33  epoch: 99  step: 24850  mask_loss: 0.2472  ct_loss: 0.1617  wh_loss: 0.4102  py_loss: 1.3923  shape_loss: 0.1833  box_mask_loss: 0.0441  vis_mask_loss: 0.0554  loss: 2.4942  data: 1.0961  batch: 2.2814  lr: 0.000025  max_mem: 13473
+eta: 0:01:11  epoch: 99  step: 24950  mask_loss: 0.2625  ct_loss: 0.1766  wh_loss: 0.3699  py_loss: 1.0844  shape_loss: 0.1554  box_mask_loss: 0.0436  vis_mask_loss: 0.0573  loss: 2.1498  data: 0.6996  batch: 1.9334  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 99  step: 24999  mask_loss: 0.2576  ct_loss: 0.2133  wh_loss: 0.3942  py_loss: 1.1807  shape_loss: 0.1564  box_mask_loss: 0.0477  vis_mask_loss: 0.0630  loss: 2.3129  data: 0.6887  batch: 1.6647  lr: 0.000025  max_mem: 13473
+train: Epoch:101	
+eta: 0:03:34  epoch: 100  step: 25100  mask_loss: 0.2594  ct_loss: 0.1767  wh_loss: 0.4112  py_loss: 1.2537  shape_loss: 0.1682  box_mask_loss: 0.0467  vis_mask_loss: 0.0609  loss: 2.3769  data: 0.9217  batch: 2.0556  lr: 0.000025  max_mem: 13473
+eta: 0:01:11  epoch: 100  step: 25200  mask_loss: 0.2513  ct_loss: 0.1720  wh_loss: 0.3678  py_loss: 1.0403  shape_loss: 0.1451  box_mask_loss: 0.0422  vis_mask_loss: 0.0538  loss: 2.0724  data: 0.8669  batch: 1.9945  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 100  step: 25249  mask_loss: 0.2542  ct_loss: 0.1917  wh_loss: 0.4170  py_loss: 1.4602  shape_loss: 0.1917  box_mask_loss: 0.0440  vis_mask_loss: 0.0602  loss: 2.6189  data: 0.4912  batch: 1.5023  lr: 0.000025  max_mem: 13473
+train: Epoch:102	
+eta: 0:03:35  epoch: 101  step: 25350  mask_loss: 0.2442  ct_loss: 0.1712  wh_loss: 0.4014  py_loss: 1.3537  shape_loss: 0.1766  box_mask_loss: 0.0459  vis_mask_loss: 0.0562  loss: 2.4491  data: 0.8780  batch: 2.0565  lr: 0.000025  max_mem: 13473
+eta: 0:01:11  epoch: 101  step: 25450  mask_loss: 0.2470  ct_loss: 0.1573  wh_loss: 0.3804  py_loss: 1.2081  shape_loss: 0.1602  box_mask_loss: 0.0421  vis_mask_loss: 0.0497  loss: 2.2448  data: 0.9769  batch: 2.0771  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 101  step: 25499  mask_loss: 0.2503  ct_loss: 0.1401  wh_loss: 0.3679  py_loss: 1.1265  shape_loss: 0.1537  box_mask_loss: 0.0435  vis_mask_loss: 0.0596  loss: 2.1417  data: 0.4254  batch: 1.2018  lr: 0.000025  max_mem: 13473
+train: Epoch:103	
+eta: 0:03:35  epoch: 102  step: 25600  mask_loss: 0.2497  ct_loss: 0.1471  wh_loss: 0.3385  py_loss: 0.9844  shape_loss: 0.1331  box_mask_loss: 0.0449  vis_mask_loss: 0.0612  loss: 1.9590  data: 0.5406  batch: 1.4961  lr: 0.000025  max_mem: 13473
+eta: 0:01:11  epoch: 102  step: 25700  mask_loss: 0.2526  ct_loss: 0.1285  wh_loss: 0.3500  py_loss: 1.0114  shape_loss: 0.1405  box_mask_loss: 0.0433  vis_mask_loss: 0.0529  loss: 1.9794  data: 0.7805  batch: 1.6682  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 102  step: 25749  mask_loss: 0.2380  ct_loss: 0.1447  wh_loss: 0.3398  py_loss: 1.0241  shape_loss: 0.1398  box_mask_loss: 0.0414  vis_mask_loss: 0.0474  loss: 1.9753  data: 0.4755  batch: 1.2925  lr: 0.000025  max_mem: 13473
+train: Epoch:104	
+eta: 0:03:36  epoch: 103  step: 25850  mask_loss: 0.2455  ct_loss: 0.1700  wh_loss: 0.3720  py_loss: 1.0828  shape_loss: 0.1502  box_mask_loss: 0.0430  vis_mask_loss: 0.0524  loss: 2.1159  data: 0.4520  batch: 1.3513  lr: 0.000025  max_mem: 13473
+eta: 0:01:12  epoch: 103  step: 25950  mask_loss: 0.2648  ct_loss: 0.1886  wh_loss: 0.4032  py_loss: 1.2219  shape_loss: 0.1698  box_mask_loss: 0.0450  vis_mask_loss: 0.0585  loss: 2.3520  data: 0.7694  batch: 1.6279  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 103  step: 25999  mask_loss: 0.2369  ct_loss: 0.1327  wh_loss: 0.3400  py_loss: 0.9767  shape_loss: 0.1341  box_mask_loss: 0.0440  vis_mask_loss: 0.0554  loss: 1.9198  data: 0.5955  batch: 1.3712  lr: 0.000025  max_mem: 13473
+train: Epoch:105	
+eta: 0:03:35  epoch: 104  step: 26100  mask_loss: 0.2470  ct_loss: 0.1675  wh_loss: 0.3948  py_loss: 1.2824  shape_loss: 0.1688  box_mask_loss: 0.0436  vis_mask_loss: 0.0590  loss: 2.3631  data: 0.3161  batch: 1.1515  lr: 0.000025  max_mem: 13473
+eta: 0:01:12  epoch: 104  step: 26200  mask_loss: 0.2439  ct_loss: 0.1395  wh_loss: 0.3645  py_loss: 1.1649  shape_loss: 0.1562  box_mask_loss: 0.0435  vis_mask_loss: 0.0545  loss: 2.1669  data: 1.4534  batch: 2.5898  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 104  step: 26249  mask_loss: 0.2433  ct_loss: 0.1228  wh_loss: 0.3932  py_loss: 1.2479  shape_loss: 0.1662  box_mask_loss: 0.0441  vis_mask_loss: 0.0545  loss: 2.2721  data: 1.3102  batch: 2.3260  lr: 0.000025  max_mem: 13473
+train: Epoch:106	
+eta: 0:03:36  epoch: 105  step: 26350  mask_loss: 0.2445  ct_loss: 0.1079  wh_loss: 0.3444  py_loss: 1.0153  shape_loss: 0.1391  box_mask_loss: 0.0446  vis_mask_loss: 0.0521  loss: 1.9479  data: 1.1004  batch: 2.2091  lr: 0.000025  max_mem: 13473
+eta: 0:01:12  epoch: 105  step: 26450  mask_loss: 0.2544  ct_loss: 0.1442  wh_loss: 0.3886  py_loss: 1.2592  shape_loss: 0.1730  box_mask_loss: 0.0435  vis_mask_loss: 0.0562  loss: 2.3190  data: 0.4188  batch: 1.4472  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 105  step: 26499  mask_loss: 0.2534  ct_loss: 0.1536  wh_loss: 0.3619  py_loss: 1.0474  shape_loss: 0.1377  box_mask_loss: 0.0444  vis_mask_loss: 0.0592  loss: 2.0576  data: 0.6179  batch: 1.5953  lr: 0.000025  max_mem: 13473
+train: Epoch:107	
+eta: 0:03:37  epoch: 106  step: 26600  mask_loss: 0.2497  ct_loss: 0.1366  wh_loss: 0.3388  py_loss: 0.9270  shape_loss: 0.1290  box_mask_loss: 0.0417  vis_mask_loss: 0.0498  loss: 1.8726  data: 0.7559  batch: 1.8142  lr: 0.000025  max_mem: 13473
+eta: 0:01:12  epoch: 106  step: 26700  mask_loss: 0.2402  ct_loss: 0.0997  wh_loss: 0.3358  py_loss: 0.9015  shape_loss: 0.1331  box_mask_loss: 0.0430  vis_mask_loss: 0.0456  loss: 1.7988  data: 1.3452  batch: 2.5172  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 106  step: 26749  mask_loss: 0.2529  ct_loss: 0.1488  wh_loss: 0.3488  py_loss: 1.1341  shape_loss: 0.1550  box_mask_loss: 0.0450  vis_mask_loss: 0.0568  loss: 2.1414  data: 0.9235  batch: 1.9761  lr: 0.000025  max_mem: 13473
+train: Epoch:108	
+eta: 0:03:38  epoch: 107  step: 26850  mask_loss: 0.2593  ct_loss: 0.1529  wh_loss: 0.3625  py_loss: 1.0369  shape_loss: 0.1435  box_mask_loss: 0.0468  vis_mask_loss: 0.0634  loss: 2.0653  data: 0.9466  batch: 2.1803  lr: 0.000025  max_mem: 13473
+eta: 0:01:12  epoch: 107  step: 26950  mask_loss: 0.2450  ct_loss: 0.1339  wh_loss: 0.3568  py_loss: 1.0901  shape_loss: 0.1518  box_mask_loss: 0.0441  vis_mask_loss: 0.0552  loss: 2.0769  data: 1.0790  batch: 2.2973  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 107  step: 26999  mask_loss: 0.2472  ct_loss: 0.1377  wh_loss: 0.4213  py_loss: 1.4345  shape_loss: 0.2022  box_mask_loss: 0.0414  vis_mask_loss: 0.0518  loss: 2.5361  data: 0.6848  batch: 1.7762  lr: 0.000025  max_mem: 13473
+train: Epoch:109	
+eta: 0:03:39  epoch: 108  step: 27100  mask_loss: 0.2401  ct_loss: 0.1263  wh_loss: 0.3666  py_loss: 1.2090  shape_loss: 0.1676  box_mask_loss: 0.0416  vis_mask_loss: 0.0526  loss: 2.2039  data: 0.9090  batch: 2.0318  lr: 0.000025  max_mem: 13473
+eta: 0:01:13  epoch: 108  step: 27200  mask_loss: 0.2573  ct_loss: 0.1656  wh_loss: 0.3758  py_loss: 1.1149  shape_loss: 0.1528  box_mask_loss: 0.0465  vis_mask_loss: 0.0659  loss: 2.1789  data: 1.2556  batch: 2.4387  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 108  step: 27249  mask_loss: 0.2512  ct_loss: 0.1323  wh_loss: 0.3900  py_loss: 1.2182  shape_loss: 0.1684  box_mask_loss: 0.0452  vis_mask_loss: 0.0568  loss: 2.2621  data: 1.1148  batch: 2.0909  lr: 0.000025  max_mem: 13473
+train: Epoch:110	
+eta: 0:03:40  epoch: 109  step: 27350  mask_loss: 0.2455  ct_loss: 0.1816  wh_loss: 0.4387  py_loss: 1.5845  shape_loss: 0.2127  box_mask_loss: 0.0421  vis_mask_loss: 0.0542  loss: 2.7592  data: 0.7667  batch: 1.9942  lr: 0.000025  max_mem: 13473
+eta: 0:01:13  epoch: 109  step: 27450  mask_loss: 0.2541  ct_loss: 0.1553  wh_loss: 0.3712  py_loss: 1.1445  shape_loss: 0.1605  box_mask_loss: 0.0449  vis_mask_loss: 0.0604  loss: 2.1908  data: 1.2517  batch: 2.4844  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 109  step: 27499  mask_loss: 0.2430  ct_loss: 0.1765  wh_loss: 0.3490  py_loss: 1.0797  shape_loss: 0.1463  box_mask_loss: 0.0423  vis_mask_loss: 0.0532  loss: 2.0900  data: 0.8865  batch: 1.9372  lr: 0.000025  max_mem: 13473
+train: Epoch:111	
+eta: 0:03:41  epoch: 110  step: 27600  mask_loss: 0.2545  ct_loss: 0.1735  wh_loss: 0.4130  py_loss: 1.4325  shape_loss: 0.1908  box_mask_loss: 0.0428  vis_mask_loss: 0.0605  loss: 2.5675  data: 0.9037  batch: 1.9642  lr: 0.000025  max_mem: 13473
+eta: 0:01:13  epoch: 110  step: 27700  mask_loss: 0.2549  ct_loss: 0.1319  wh_loss: 0.3780  py_loss: 1.1866  shape_loss: 0.1637  box_mask_loss: 0.0464  vis_mask_loss: 0.0620  loss: 2.2236  data: 0.7490  batch: 1.9928  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 110  step: 27749  mask_loss: 0.2490  ct_loss: 0.1649  wh_loss: 0.3318  py_loss: 0.8509  shape_loss: 0.1219  box_mask_loss: 0.0423  vis_mask_loss: 0.0527  loss: 1.8135  data: 0.6241  batch: 1.6842  lr: 0.000025  max_mem: 13473
+train: Epoch:112	
+eta: 0:03:42  epoch: 111  step: 27850  mask_loss: 0.2369  ct_loss: 0.1217  wh_loss: 0.3397  py_loss: 0.8832  shape_loss: 0.1246  box_mask_loss: 0.0391  vis_mask_loss: 0.0455  loss: 1.7907  data: 0.3086  batch: 1.2978  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 111  step: 27950  mask_loss: 0.2466  ct_loss: 0.1559  wh_loss: 0.3805  py_loss: 1.2161  shape_loss: 0.1689  box_mask_loss: 0.0432  vis_mask_loss: 0.0566  loss: 2.2677  data: 0.9831  batch: 2.1492  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 111  step: 27999  mask_loss: 0.2536  ct_loss: 0.1628  wh_loss: 0.4133  py_loss: 1.3779  shape_loss: 0.1867  box_mask_loss: 0.0444  vis_mask_loss: 0.0554  loss: 2.4941  data: 0.7465  batch: 1.8209  lr: 0.000025  max_mem: 13473
+train: Epoch:113	
+eta: 0:03:42  epoch: 112  step: 28100  mask_loss: 0.2396  ct_loss: 0.1524  wh_loss: 0.3689  py_loss: 1.1080  shape_loss: 0.1499  box_mask_loss: 0.0425  vis_mask_loss: 0.0520  loss: 2.1132  data: 0.7122  batch: 1.7035  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 112  step: 28200  mask_loss: 0.2577  ct_loss: 0.1736  wh_loss: 0.3655  py_loss: 1.1742  shape_loss: 0.1549  box_mask_loss: 0.0467  vis_mask_loss: 0.0663  loss: 2.2390  data: 1.4086  batch: 2.6009  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 112  step: 28249  mask_loss: 0.2477  ct_loss: 0.1422  wh_loss: 0.3263  py_loss: 0.9229  shape_loss: 0.1312  box_mask_loss: 0.0437  vis_mask_loss: 0.0579  loss: 1.8720  data: 0.8230  batch: 1.9294  lr: 0.000025  max_mem: 13473
+train: Epoch:114	
+eta: 0:03:43  epoch: 113  step: 28350  mask_loss: 0.2441  ct_loss: 0.1484  wh_loss: 0.3633  py_loss: 1.1361  shape_loss: 0.1530  box_mask_loss: 0.0443  vis_mask_loss: 0.0597  loss: 2.1489  data: 0.9611  batch: 2.0830  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 113  step: 28450  mask_loss: 0.2422  ct_loss: 0.1572  wh_loss: 0.3554  py_loss: 1.1093  shape_loss: 0.1524  box_mask_loss: 0.0431  vis_mask_loss: 0.0548  loss: 2.1145  data: 0.5535  batch: 1.8102  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 113  step: 28499  mask_loss: 0.2458  ct_loss: 0.1423  wh_loss: 0.3599  py_loss: 1.0351  shape_loss: 0.1438  box_mask_loss: 0.0428  vis_mask_loss: 0.0498  loss: 2.0195  data: 0.4994  batch: 1.4570  lr: 0.000025  max_mem: 13473
+train: Epoch:115	
+eta: 0:03:44  epoch: 114  step: 28600  mask_loss: 0.2460  ct_loss: 0.1689  wh_loss: 0.3525  py_loss: 1.0288  shape_loss: 0.1423  box_mask_loss: 0.0437  vis_mask_loss: 0.0563  loss: 2.0385  data: 0.7083  batch: 1.7752  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 114  step: 28700  mask_loss: 0.2520  ct_loss: 0.1377  wh_loss: 0.3372  py_loss: 1.0022  shape_loss: 0.1422  box_mask_loss: 0.0446  vis_mask_loss: 0.0567  loss: 1.9725  data: 0.7495  batch: 1.6276  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 114  step: 28749  mask_loss: 0.2407  ct_loss: 0.1363  wh_loss: 0.3343  py_loss: 0.9197  shape_loss: 0.1297  box_mask_loss: 0.0392  vis_mask_loss: 0.0455  loss: 1.8455  data: 0.8354  batch: 1.6808  lr: 0.000025  max_mem: 13473
+train: Epoch:116	
+eta: 0:03:44  epoch: 115  step: 28850  mask_loss: 0.2453  ct_loss: 0.1082  wh_loss: 0.3294  py_loss: 0.9724  shape_loss: 0.1352  box_mask_loss: 0.0415  vis_mask_loss: 0.0514  loss: 1.8833  data: 0.4552  batch: 1.2876  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 115  step: 28950  mask_loss: 0.2487  ct_loss: 0.1482  wh_loss: 0.3557  py_loss: 1.0634  shape_loss: 0.1468  box_mask_loss: 0.0422  vis_mask_loss: 0.0569  loss: 2.0620  data: 0.4121  batch: 1.3848  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 115  step: 28999  mask_loss: 0.2459  ct_loss: 0.1269  wh_loss: 0.3651  py_loss: 1.1688  shape_loss: 0.1595  box_mask_loss: 0.0437  vis_mask_loss: 0.0549  loss: 2.1648  data: 0.3774  batch: 1.1825  lr: 0.000025  max_mem: 13473
+train: Epoch:117	
+eta: 0:03:44  epoch: 116  step: 29100  mask_loss: 0.2365  ct_loss: 0.1066  wh_loss: 0.3360  py_loss: 0.9933  shape_loss: 0.1358  box_mask_loss: 0.0412  vis_mask_loss: 0.0488  loss: 1.8982  data: 0.5666  batch: 1.4382  lr: 0.000025  max_mem: 13473
+eta: 0:01:14  epoch: 116  step: 29200  mask_loss: 0.2486  ct_loss: 0.1327  wh_loss: 0.3756  py_loss: 1.2350  shape_loss: 0.1683  box_mask_loss: 0.0441  vis_mask_loss: 0.0557  loss: 2.2601  data: 0.3761  batch: 1.3046  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 116  step: 29249  mask_loss: 0.2292  ct_loss: 0.1061  wh_loss: 0.3127  py_loss: 0.8520  shape_loss: 0.1227  box_mask_loss: 0.0411  vis_mask_loss: 0.0505  loss: 1.7143  data: 0.3227  batch: 1.1883  lr: 0.000025  max_mem: 13473
+train: Epoch:118	
+eta: 0:03:44  epoch: 117  step: 29350  mask_loss: 0.2495  ct_loss: 0.1507  wh_loss: 0.3822  py_loss: 1.2716  shape_loss: 0.1733  box_mask_loss: 0.0443  vis_mask_loss: 0.0608  loss: 2.3325  data: 0.7614  batch: 1.9560  lr: 0.000025  max_mem: 13473
+eta: 0:01:15  epoch: 117  step: 29450  mask_loss: 0.2427  ct_loss: 0.1427  wh_loss: 0.3711  py_loss: 1.1731  shape_loss: 0.1573  box_mask_loss: 0.0443  vis_mask_loss: 0.0598  loss: 2.1909  data: 1.1175  batch: 2.2609  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 117  step: 29499  mask_loss: 0.2462  ct_loss: 0.1237  wh_loss: 0.3793  py_loss: 1.2258  shape_loss: 0.1655  box_mask_loss: 0.0428  vis_mask_loss: 0.0582  loss: 2.2417  data: 0.7804  batch: 1.8109  lr: 0.000025  max_mem: 13473
+train: Epoch:119	
+eta: 0:03:45  epoch: 118  step: 29600  mask_loss: 0.2535  ct_loss: 0.1549  wh_loss: 0.3562  py_loss: 1.0526  shape_loss: 0.1454  box_mask_loss: 0.0460  vis_mask_loss: 0.0572  loss: 2.0658  data: 1.9815  batch: 3.0664  lr: 0.000025  max_mem: 13473
+eta: 0:01:15  epoch: 118  step: 29700  mask_loss: 0.2527  ct_loss: 0.1501  wh_loss: 0.3373  py_loss: 0.9581  shape_loss: 0.1311  box_mask_loss: 0.0439  vis_mask_loss: 0.0573  loss: 1.9306  data: 0.8781  batch: 1.9614  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 118  step: 29749  mask_loss: 0.2429  ct_loss: 0.0922  wh_loss: 0.3542  py_loss: 1.1361  shape_loss: 0.1584  box_mask_loss: 0.0419  vis_mask_loss: 0.0528  loss: 2.0784  data: 0.8435  batch: 1.7554  lr: 0.000025  max_mem: 13473
+train: Epoch:120	
+eta: 0:03:46  epoch: 119  step: 29850  mask_loss: 0.2453  ct_loss: 0.1270  wh_loss: 0.3270  py_loss: 0.9765  shape_loss: 0.1379  box_mask_loss: 0.0436  vis_mask_loss: 0.0559  loss: 1.9133  data: 1.0516  batch: 2.0789  lr: 0.000025  max_mem: 13473
+eta: 0:01:15  epoch: 119  step: 29950  mask_loss: 0.2415  ct_loss: 0.1330  wh_loss: 0.3321  py_loss: 0.9693  shape_loss: 0.1329  box_mask_loss: 0.0436  vis_mask_loss: 0.0554  loss: 1.9079  data: 0.7934  batch: 1.8823  lr: 0.000025  max_mem: 13473
+eta: 0:00:01  epoch: 119  step: 29999  mask_loss: 0.2512  ct_loss: 0.1658  wh_loss: 0.3523  py_loss: 1.0293  shape_loss: 0.1393  box_mask_loss: 0.0436  vis_mask_loss: 0.0576  loss: 2.0391  data: 0.8652  batch: 1.9395  lr: 0.000025  max_mem: 13473
+train: Epoch:121	
+eta: 0:03:46  epoch: 120  step: 30100  mask_loss: 0.2489  ct_loss: 0.1278  wh_loss: 0.3713  py_loss: 1.1465  shape_loss: 0.1617  box_mask_loss: 0.0430  vis_mask_loss: 0.0512  loss: 2.1504  data: 1.2920  batch: 2.4654  lr: 0.000006  max_mem: 13473
+eta: 0:01:15  epoch: 120  step: 30200  mask_loss: 0.2490  ct_loss: 0.1344  wh_loss: 0.3809  py_loss: 1.1960  shape_loss: 0.1694  box_mask_loss: 0.0420  vis_mask_loss: 0.0511  loss: 2.2227  data: 1.0721  batch: 2.2175  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 120  step: 30249  mask_loss: 0.2486  ct_loss: 0.1498  wh_loss: 0.3944  py_loss: 1.2606  shape_loss: 0.1719  box_mask_loss: 0.0461  vis_mask_loss: 0.0634  loss: 2.3349  data: 0.9721  batch: 1.9790  lr: 0.000006  max_mem: 13473
+train: Epoch:122	
+eta: 0:03:47  epoch: 121  step: 30350  mask_loss: 0.2387  ct_loss: 0.1032  wh_loss: 0.3227  py_loss: 1.0107  shape_loss: 0.1430  box_mask_loss: 0.0416  vis_mask_loss: 0.0514  loss: 1.9114  data: 1.6199  batch: 2.7783  lr: 0.000006  max_mem: 13473
+eta: 0:01:15  epoch: 121  step: 30450  mask_loss: 0.2382  ct_loss: 0.1077  wh_loss: 0.3650  py_loss: 1.1804  shape_loss: 0.1685  box_mask_loss: 0.0417  vis_mask_loss: 0.0504  loss: 2.1519  data: 0.5353  batch: 1.6097  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 121  step: 30499  mask_loss: 0.2379  ct_loss: 0.1246  wh_loss: 0.3171  py_loss: 0.8239  shape_loss: 0.1120  box_mask_loss: 0.0418  vis_mask_loss: 0.0510  loss: 1.7083  data: 0.8366  batch: 1.9502  lr: 0.000006  max_mem: 13473
+train: Epoch:123	
+eta: 0:03:48  epoch: 122  step: 30600  mask_loss: 0.2317  ct_loss: 0.1265  wh_loss: 0.3496  py_loss: 0.9887  shape_loss: 0.1392  box_mask_loss: 0.0396  vis_mask_loss: 0.0491  loss: 1.9244  data: 1.0491  batch: 2.1188  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 122  step: 30700  mask_loss: 0.2359  ct_loss: 0.1122  wh_loss: 0.3414  py_loss: 1.0304  shape_loss: 0.1449  box_mask_loss: 0.0415  vis_mask_loss: 0.0461  loss: 1.9525  data: 0.8238  batch: 1.8993  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 122  step: 30749  mask_loss: 0.2467  ct_loss: 0.1183  wh_loss: 0.3386  py_loss: 1.0239  shape_loss: 0.1474  box_mask_loss: 0.0435  vis_mask_loss: 0.0548  loss: 1.9732  data: 0.7553  batch: 1.6837  lr: 0.000006  max_mem: 13473
+train: Epoch:124	
+eta: 0:03:48  epoch: 123  step: 30850  mask_loss: 0.2466  ct_loss: 0.1201  wh_loss: 0.3442  py_loss: 1.0862  shape_loss: 0.1560  box_mask_loss: 0.0410  vis_mask_loss: 0.0559  loss: 2.0500  data: 0.8196  batch: 2.0115  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 123  step: 30950  mask_loss: 0.2427  ct_loss: 0.1272  wh_loss: 0.3683  py_loss: 1.2032  shape_loss: 0.1712  box_mask_loss: 0.0409  vis_mask_loss: 0.0486  loss: 2.2021  data: 0.8591  batch: 1.9977  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 123  step: 30999  mask_loss: 0.2348  ct_loss: 0.1277  wh_loss: 0.2885  py_loss: 0.7812  shape_loss: 0.1121  box_mask_loss: 0.0399  vis_mask_loss: 0.0495  loss: 1.6336  data: 0.5125  batch: 1.4824  lr: 0.000006  max_mem: 13473
+train: Epoch:125	
+eta: 0:03:49  epoch: 124  step: 31100  mask_loss: 0.2366  ct_loss: 0.1225  wh_loss: 0.3212  py_loss: 0.9817  shape_loss: 0.1391  box_mask_loss: 0.0402  vis_mask_loss: 0.0543  loss: 1.8956  data: 0.9708  batch: 2.1967  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 124  step: 31200  mask_loss: 0.2375  ct_loss: 0.1216  wh_loss: 0.3793  py_loss: 1.2102  shape_loss: 0.1660  box_mask_loss: 0.0423  vis_mask_loss: 0.0493  loss: 2.2062  data: 0.8141  batch: 1.9627  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 124  step: 31249  mask_loss: 0.2372  ct_loss: 0.1102  wh_loss: 0.3396  py_loss: 0.9637  shape_loss: 0.1374  box_mask_loss: 0.0427  vis_mask_loss: 0.0528  loss: 1.8835  data: 0.7234  batch: 1.7225  lr: 0.000006  max_mem: 13473
+train: Epoch:126	
+eta: 0:03:49  epoch: 125  step: 31350  mask_loss: 0.2425  ct_loss: 0.1594  wh_loss: 0.3936  py_loss: 1.3204  shape_loss: 0.1797  box_mask_loss: 0.0426  vis_mask_loss: 0.0537  loss: 2.3919  data: 0.4855  batch: 1.5855  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 125  step: 31450  mask_loss: 0.2437  ct_loss: 0.1062  wh_loss: 0.3185  py_loss: 0.8827  shape_loss: 0.1275  box_mask_loss: 0.0427  vis_mask_loss: 0.0521  loss: 1.7733  data: 0.9233  batch: 2.1158  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 125  step: 31499  mask_loss: 0.2440  ct_loss: 0.1064  wh_loss: 0.3457  py_loss: 1.0478  shape_loss: 0.1469  box_mask_loss: 0.0420  vis_mask_loss: 0.0520  loss: 1.9849  data: 0.7544  batch: 1.7980  lr: 0.000006  max_mem: 13473
+train: Epoch:127	
+eta: 0:03:50  epoch: 126  step: 31600  mask_loss: 0.2441  ct_loss: 0.0982  wh_loss: 0.3348  py_loss: 1.0397  shape_loss: 0.1496  box_mask_loss: 0.0407  vis_mask_loss: 0.0542  loss: 1.9611  data: 0.4925  batch: 1.5306  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 126  step: 31700  mask_loss: 0.2392  ct_loss: 0.1082  wh_loss: 0.3658  py_loss: 1.1370  shape_loss: 0.1625  box_mask_loss: 0.0414  vis_mask_loss: 0.0475  loss: 2.1016  data: 0.7161  batch: 1.7977  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 126  step: 31749  mask_loss: 0.2457  ct_loss: 0.1228  wh_loss: 0.3447  py_loss: 1.0865  shape_loss: 0.1449  box_mask_loss: 0.0439  vis_mask_loss: 0.0562  loss: 2.0447  data: 0.6288  batch: 1.6548  lr: 0.000006  max_mem: 13473
+train: Epoch:128	
+eta: 0:03:51  epoch: 127  step: 31850  mask_loss: 0.2360  ct_loss: 0.0891  wh_loss: 0.3519  py_loss: 1.1484  shape_loss: 0.1651  box_mask_loss: 0.0442  vis_mask_loss: 0.0472  loss: 2.0818  data: 0.6051  batch: 1.6159  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 127  step: 31950  mask_loss: 0.2395  ct_loss: 0.1148  wh_loss: 0.3409  py_loss: 1.0749  shape_loss: 0.1470  box_mask_loss: 0.0419  vis_mask_loss: 0.0506  loss: 2.0096  data: 1.6726  batch: 2.8864  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 127  step: 31999  mask_loss: 0.2442  ct_loss: 0.0983  wh_loss: 0.3295  py_loss: 0.9568  shape_loss: 0.1352  box_mask_loss: 0.0416  vis_mask_loss: 0.0500  loss: 1.8556  data: 0.6819  batch: 1.7587  lr: 0.000006  max_mem: 13473
+train: Epoch:129	
+eta: 0:03:51  epoch: 128  step: 32100  mask_loss: 0.2366  ct_loss: 0.0902  wh_loss: 0.3774  py_loss: 1.1725  shape_loss: 0.1690  box_mask_loss: 0.0417  vis_mask_loss: 0.0478  loss: 2.1352  data: 0.9860  batch: 2.0716  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 128  step: 32200  mask_loss: 0.2464  ct_loss: 0.1227  wh_loss: 0.3662  py_loss: 1.1895  shape_loss: 0.1638  box_mask_loss: 0.0398  vis_mask_loss: 0.0528  loss: 2.1812  data: 0.6384  batch: 1.7456  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 128  step: 32249  mask_loss: 0.2278  ct_loss: 0.1176  wh_loss: 0.3762  py_loss: 1.3337  shape_loss: 0.1789  box_mask_loss: 0.0398  vis_mask_loss: 0.0474  loss: 2.3213  data: 0.6831  batch: 1.7291  lr: 0.000006  max_mem: 13473
+train: Epoch:130	
+eta: 0:03:52  epoch: 129  step: 32350  mask_loss: 0.2406  ct_loss: 0.1266  wh_loss: 0.3483  py_loss: 1.0596  shape_loss: 0.1562  box_mask_loss: 0.0407  vis_mask_loss: 0.0490  loss: 2.0211  data: 0.9267  batch: 1.9602  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 129  step: 32450  mask_loss: 0.2435  ct_loss: 0.1017  wh_loss: 0.4048  py_loss: 1.4935  shape_loss: 0.2014  box_mask_loss: 0.0424  vis_mask_loss: 0.0485  loss: 2.5358  data: 1.0606  batch: 2.2056  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 129  step: 32499  mask_loss: 0.2299  ct_loss: 0.0847  wh_loss: 0.3287  py_loss: 1.0484  shape_loss: 0.1432  box_mask_loss: 0.0396  vis_mask_loss: 0.0444  loss: 1.9190  data: 0.7010  batch: 1.7529  lr: 0.000006  max_mem: 13473
+train: Epoch:131	
+eta: 0:03:52  epoch: 130  step: 32600  mask_loss: 0.2455  ct_loss: 0.1082  wh_loss: 0.3101  py_loss: 0.8846  shape_loss: 0.1231  box_mask_loss: 0.0414  vis_mask_loss: 0.0524  loss: 1.7654  data: 0.9157  batch: 1.9333  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 130  step: 32700  mask_loss: 0.2446  ct_loss: 0.1187  wh_loss: 0.3322  py_loss: 0.9437  shape_loss: 0.1339  box_mask_loss: 0.0421  vis_mask_loss: 0.0520  loss: 1.8671  data: 0.7162  batch: 1.5938  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 130  step: 32749  mask_loss: 0.2436  ct_loss: 0.1160  wh_loss: 0.3454  py_loss: 1.0251  shape_loss: 0.1463  box_mask_loss: 0.0439  vis_mask_loss: 0.0515  loss: 1.9719  data: 0.5403  batch: 1.3833  lr: 0.000006  max_mem: 13473
+train: Epoch:132	
+eta: 0:03:53  epoch: 131  step: 32850  mask_loss: 0.2466  ct_loss: 0.1230  wh_loss: 0.3058  py_loss: 0.8169  shape_loss: 0.1209  box_mask_loss: 0.0418  vis_mask_loss: 0.0523  loss: 1.7074  data: 0.7663  batch: 1.6622  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 131  step: 32950  mask_loss: 0.2429  ct_loss: 0.1090  wh_loss: 0.3675  py_loss: 1.1481  shape_loss: 0.1623  box_mask_loss: 0.0408  vis_mask_loss: 0.0535  loss: 2.1241  data: 0.2365  batch: 1.0935  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 131  step: 32999  mask_loss: 0.2316  ct_loss: 0.1261  wh_loss: 0.3556  py_loss: 1.1791  shape_loss: 0.1636  box_mask_loss: 0.0417  vis_mask_loss: 0.0494  loss: 2.1472  data: 0.5026  batch: 1.3772  lr: 0.000006  max_mem: 13473
+train: Epoch:133	
+eta: 0:03:53  epoch: 132  step: 33100  mask_loss: 0.2429  ct_loss: 0.1348  wh_loss: 0.3239  py_loss: 0.9186  shape_loss: 0.1312  box_mask_loss: 0.0439  vis_mask_loss: 0.0576  loss: 1.8529  data: 0.6863  batch: 1.5981  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 132  step: 33200  mask_loss: 0.2385  ct_loss: 0.1002  wh_loss: 0.3250  py_loss: 0.9572  shape_loss: 0.1384  box_mask_loss: 0.0407  vis_mask_loss: 0.0506  loss: 1.8506  data: 0.6406  batch: 1.5569  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 132  step: 33249  mask_loss: 0.2394  ct_loss: 0.1074  wh_loss: 0.3274  py_loss: 0.8975  shape_loss: 0.1282  box_mask_loss: 0.0398  vis_mask_loss: 0.0462  loss: 1.7859  data: 0.4401  batch: 1.2439  lr: 0.000006  max_mem: 13473
+train: Epoch:134	
+eta: 0:03:53  epoch: 133  step: 33350  mask_loss: 0.2430  ct_loss: 0.1243  wh_loss: 0.3671  py_loss: 1.1540  shape_loss: 0.1639  box_mask_loss: 0.0428  vis_mask_loss: 0.0507  loss: 2.1458  data: 0.6785  batch: 1.5887  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 133  step: 33450  mask_loss: 0.2338  ct_loss: 0.0763  wh_loss: 0.3468  py_loss: 1.0839  shape_loss: 0.1522  box_mask_loss: 0.0399  vis_mask_loss: 0.0441  loss: 1.9769  data: 0.4965  batch: 1.3503  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 133  step: 33499  mask_loss: 0.2367  ct_loss: 0.1251  wh_loss: 0.3491  py_loss: 1.0765  shape_loss: 0.1539  box_mask_loss: 0.0406  vis_mask_loss: 0.0524  loss: 2.0343  data: 0.6571  batch: 1.4896  lr: 0.000006  max_mem: 13473
+train: Epoch:135	
+eta: 0:03:52  epoch: 134  step: 33600  mask_loss: 0.2381  ct_loss: 0.1245  wh_loss: 0.3203  py_loss: 0.9572  shape_loss: 0.1316  box_mask_loss: 0.0416  vis_mask_loss: 0.0539  loss: 1.8672  data: 0.3231  batch: 1.2202  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 134  step: 33700  mask_loss: 0.2409  ct_loss: 0.1065  wh_loss: 0.3543  py_loss: 1.0692  shape_loss: 0.1529  box_mask_loss: 0.0426  vis_mask_loss: 0.0519  loss: 2.0182  data: 0.4973  batch: 1.3805  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 134  step: 33749  mask_loss: 0.2411  ct_loss: 0.1407  wh_loss: 0.3319  py_loss: 0.9521  shape_loss: 0.1316  box_mask_loss: 0.0416  vis_mask_loss: 0.0580  loss: 1.8969  data: 0.6770  batch: 1.5471  lr: 0.000006  max_mem: 13473
+train: Epoch:136	
+eta: 0:03:52  epoch: 135  step: 33850  mask_loss: 0.2393  ct_loss: 0.1327  wh_loss: 0.3582  py_loss: 1.0889  shape_loss: 0.1547  box_mask_loss: 0.0439  vis_mask_loss: 0.0559  loss: 2.0737  data: 0.7317  batch: 1.5885  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 135  step: 33950  mask_loss: 0.2437  ct_loss: 0.1350  wh_loss: 0.3567  py_loss: 1.1041  shape_loss: 0.1522  box_mask_loss: 0.0403  vis_mask_loss: 0.0493  loss: 2.0812  data: 0.5235  batch: 1.4399  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 135  step: 33999  mask_loss: 0.2396  ct_loss: 0.1467  wh_loss: 0.3822  py_loss: 1.2248  shape_loss: 0.1696  box_mask_loss: 0.0397  vis_mask_loss: 0.0457  loss: 2.2483  data: 0.4163  batch: 1.2609  lr: 0.000006  max_mem: 13473
+train: Epoch:137	
+eta: 0:03:52  epoch: 136  step: 34100  mask_loss: 0.2413  ct_loss: 0.1002  wh_loss: 0.3314  py_loss: 0.9876  shape_loss: 0.1397  box_mask_loss: 0.0410  vis_mask_loss: 0.0525  loss: 1.8936  data: 0.5769  batch: 1.4882  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 136  step: 34200  mask_loss: 0.2375  ct_loss: 0.0913  wh_loss: 0.3420  py_loss: 1.0684  shape_loss: 0.1515  box_mask_loss: 0.0410  vis_mask_loss: 0.0495  loss: 1.9812  data: 0.4132  batch: 1.2709  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 136  step: 34249  mask_loss: 0.2314  ct_loss: 0.0980  wh_loss: 0.3422  py_loss: 1.0370  shape_loss: 0.1461  box_mask_loss: 0.0404  vis_mask_loss: 0.0435  loss: 1.9386  data: 0.5850  batch: 1.4055  lr: 0.000006  max_mem: 13473
+train: Epoch:138	
+eta: 0:03:52  epoch: 137  step: 34350  mask_loss: 0.2405  ct_loss: 0.1188  wh_loss: 0.3431  py_loss: 1.0711  shape_loss: 0.1487  box_mask_loss: 0.0405  vis_mask_loss: 0.0525  loss: 2.0153  data: 0.7193  batch: 1.6444  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 137  step: 34450  mask_loss: 0.2457  ct_loss: 0.1373  wh_loss: 0.3655  py_loss: 1.1650  shape_loss: 0.1673  box_mask_loss: 0.0435  vis_mask_loss: 0.0505  loss: 2.1747  data: 0.4420  batch: 1.3556  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 137  step: 34499  mask_loss: 0.2378  ct_loss: 0.0975  wh_loss: 0.2998  py_loss: 0.7216  shape_loss: 0.1056  box_mask_loss: 0.0430  vis_mask_loss: 0.0533  loss: 1.5586  data: 0.7495  batch: 1.5107  lr: 0.000006  max_mem: 13473
+train: Epoch:139	
+eta: 0:03:52  epoch: 138  step: 34600  mask_loss: 0.2356  ct_loss: 0.0903  wh_loss: 0.3422  py_loss: 1.0342  shape_loss: 0.1497  box_mask_loss: 0.0420  vis_mask_loss: 0.0455  loss: 1.9397  data: 0.2455  batch: 1.1654  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 138  step: 34700  mask_loss: 0.2424  ct_loss: 0.1057  wh_loss: 0.3283  py_loss: 1.0160  shape_loss: 0.1446  box_mask_loss: 0.0432  vis_mask_loss: 0.0496  loss: 1.9298  data: 1.0465  batch: 1.9498  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 138  step: 34749  mask_loss: 0.2315  ct_loss: 0.1092  wh_loss: 0.3594  py_loss: 1.2514  shape_loss: 0.1759  box_mask_loss: 0.0389  vis_mask_loss: 0.0432  loss: 2.2094  data: 0.4765  batch: 1.3557  lr: 0.000006  max_mem: 13473
+train: Epoch:140	
+eta: 0:03:52  epoch: 139  step: 34850  mask_loss: 0.2343  ct_loss: 0.1061  wh_loss: 0.3204  py_loss: 0.8845  shape_loss: 0.1275  box_mask_loss: 0.0396  vis_mask_loss: 0.0433  loss: 1.7558  data: 0.4941  batch: 1.3610  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 139  step: 34950  mask_loss: 0.2390  ct_loss: 0.1214  wh_loss: 0.3972  py_loss: 1.3810  shape_loss: 0.1925  box_mask_loss: 0.0403  vis_mask_loss: 0.0498  loss: 2.4213  data: 0.6494  batch: 1.5150  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 139  step: 34999  mask_loss: 0.2356  ct_loss: 0.1029  wh_loss: 0.3273  py_loss: 0.9235  shape_loss: 0.1332  box_mask_loss: 0.0400  vis_mask_loss: 0.0483  loss: 1.8107  data: 0.5792  batch: 1.3953  lr: 0.000006  max_mem: 13473
+train: Epoch:141	
+eta: 0:03:52  epoch: 140  step: 35100  mask_loss: 0.2423  ct_loss: 0.1340  wh_loss: 0.3779  py_loss: 1.1963  shape_loss: 0.1641  box_mask_loss: 0.0436  vis_mask_loss: 0.0515  loss: 2.2096  data: 0.4292  batch: 1.3349  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 140  step: 35200  mask_loss: 0.2238  ct_loss: 0.0783  wh_loss: 0.3025  py_loss: 0.8600  shape_loss: 0.1225  box_mask_loss: 0.0391  vis_mask_loss: 0.0407  loss: 1.6670  data: 0.5145  batch: 1.4236  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 140  step: 35249  mask_loss: 0.2363  ct_loss: 0.1312  wh_loss: 0.3087  py_loss: 0.8422  shape_loss: 0.1211  box_mask_loss: 0.0404  vis_mask_loss: 0.0516  loss: 1.7314  data: 0.4937  batch: 1.3241  lr: 0.000006  max_mem: 13473
+train: Epoch:142	
+eta: 0:03:52  epoch: 141  step: 35350  mask_loss: 0.2460  ct_loss: 0.1431  wh_loss: 0.3797  py_loss: 1.1893  shape_loss: 0.1642  box_mask_loss: 0.0422  vis_mask_loss: 0.0541  loss: 2.2185  data: 0.5838  batch: 1.5123  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 141  step: 35450  mask_loss: 0.2335  ct_loss: 0.0986  wh_loss: 0.2912  py_loss: 0.7677  shape_loss: 0.1146  box_mask_loss: 0.0383  vis_mask_loss: 0.0414  loss: 1.5854  data: 0.4175  batch: 1.3228  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 141  step: 35499  mask_loss: 0.2338  ct_loss: 0.1025  wh_loss: 0.3215  py_loss: 0.9992  shape_loss: 0.1352  box_mask_loss: 0.0400  vis_mask_loss: 0.0523  loss: 1.8845  data: 0.6379  batch: 1.4667  lr: 0.000006  max_mem: 13473
+train: Epoch:143	
+eta: 0:03:52  epoch: 142  step: 35600  mask_loss: 0.2315  ct_loss: 0.0882  wh_loss: 0.3396  py_loss: 1.0343  shape_loss: 0.1422  box_mask_loss: 0.0399  vis_mask_loss: 0.0471  loss: 1.9227  data: 0.6464  batch: 1.5202  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 142  step: 35700  mask_loss: 0.2529  ct_loss: 0.1177  wh_loss: 0.3710  py_loss: 1.1902  shape_loss: 0.1634  box_mask_loss: 0.0450  vis_mask_loss: 0.0554  loss: 2.1956  data: 0.6856  batch: 1.5433  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 142  step: 35749  mask_loss: 0.2273  ct_loss: 0.0776  wh_loss: 0.2971  py_loss: 0.8485  shape_loss: 0.1208  box_mask_loss: 0.0400  vis_mask_loss: 0.0468  loss: 1.6580  data: 0.6099  batch: 1.4486  lr: 0.000006  max_mem: 13473
+train: Epoch:144	
+eta: 0:03:52  epoch: 143  step: 35850  mask_loss: 0.2226  ct_loss: 0.0642  wh_loss: 0.2662  py_loss: 0.6743  shape_loss: 0.0952  box_mask_loss: 0.0385  vis_mask_loss: 0.0435  loss: 1.4045  data: 0.5855  batch: 1.4827  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 143  step: 35950  mask_loss: 0.2451  ct_loss: 0.1469  wh_loss: 0.3445  py_loss: 1.0234  shape_loss: 0.1467  box_mask_loss: 0.0408  vis_mask_loss: 0.0550  loss: 2.0024  data: 0.5007  batch: 1.3689  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 143  step: 35999  mask_loss: 0.2294  ct_loss: 0.0939  wh_loss: 0.3342  py_loss: 1.0489  shape_loss: 0.1482  box_mask_loss: 0.0383  vis_mask_loss: 0.0427  loss: 1.9356  data: 0.3593  batch: 1.2266  lr: 0.000006  max_mem: 13473
+train: Epoch:145	
+eta: 0:03:52  epoch: 144  step: 36100  mask_loss: 0.2287  ct_loss: 0.0887  wh_loss: 0.3620  py_loss: 1.2472  shape_loss: 0.1766  box_mask_loss: 0.0382  vis_mask_loss: 0.0483  loss: 2.1897  data: 0.4964  batch: 1.3938  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 144  step: 36200  mask_loss: 0.2466  ct_loss: 0.1058  wh_loss: 0.3171  py_loss: 0.8617  shape_loss: 0.1282  box_mask_loss: 0.0414  vis_mask_loss: 0.0507  loss: 1.7515  data: 0.5516  batch: 1.4354  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 144  step: 36249  mask_loss: 0.2337  ct_loss: 0.0965  wh_loss: 0.3243  py_loss: 1.0093  shape_loss: 0.1409  box_mask_loss: 0.0405  vis_mask_loss: 0.0463  loss: 1.8915  data: 0.5485  batch: 1.4150  lr: 0.000006  max_mem: 13473
+train: Epoch:146	
+eta: 0:03:52  epoch: 145  step: 36350  mask_loss: 0.2312  ct_loss: 0.1253  wh_loss: 0.4243  py_loss: 1.5246  shape_loss: 0.2127  box_mask_loss: 0.0389  vis_mask_loss: 0.0490  loss: 2.6060  data: 0.4865  batch: 1.3362  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 145  step: 36450  mask_loss: 0.2486  ct_loss: 0.1280  wh_loss: 0.3798  py_loss: 1.1941  shape_loss: 0.1657  box_mask_loss: 0.0434  vis_mask_loss: 0.0557  loss: 2.2154  data: 0.7920  batch: 1.6821  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 145  step: 36499  mask_loss: 0.2394  ct_loss: 0.0709  wh_loss: 0.3262  py_loss: 0.9948  shape_loss: 0.1400  box_mask_loss: 0.0413  vis_mask_loss: 0.0465  loss: 1.8591  data: 0.3527  batch: 1.1928  lr: 0.000006  max_mem: 13473
+train: Epoch:147	
+eta: 0:03:52  epoch: 146  step: 36600  mask_loss: 0.2316  ct_loss: 0.1004  wh_loss: 0.3250  py_loss: 1.0083  shape_loss: 0.1389  box_mask_loss: 0.0408  vis_mask_loss: 0.0485  loss: 1.8935  data: 0.4987  batch: 1.4245  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 146  step: 36700  mask_loss: 0.2365  ct_loss: 0.0782  wh_loss: 0.3101  py_loss: 0.9001  shape_loss: 0.1303  box_mask_loss: 0.0402  vis_mask_loss: 0.0443  loss: 1.7398  data: 0.5516  batch: 1.4266  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 146  step: 36749  mask_loss: 0.2442  ct_loss: 0.0949  wh_loss: 0.3174  py_loss: 0.9527  shape_loss: 0.1352  box_mask_loss: 0.0408  vis_mask_loss: 0.0486  loss: 1.8339  data: 0.2100  batch: 1.0685  lr: 0.000006  max_mem: 13473
+train: Epoch:148	
+eta: 0:03:52  epoch: 147  step: 36850  mask_loss: 0.2445  ct_loss: 0.1253  wh_loss: 0.3614  py_loss: 1.1363  shape_loss: 0.1572  box_mask_loss: 0.0413  vis_mask_loss: 0.0493  loss: 2.1151  data: 0.5969  batch: 1.5037  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 147  step: 36950  mask_loss: 0.2353  ct_loss: 0.1025  wh_loss: 0.3208  py_loss: 0.8983  shape_loss: 0.1231  box_mask_loss: 0.0405  vis_mask_loss: 0.0500  loss: 1.7703  data: 0.6497  batch: 1.5127  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 147  step: 36999  mask_loss: 0.2465  ct_loss: 0.0903  wh_loss: 0.3379  py_loss: 1.0484  shape_loss: 0.1483  box_mask_loss: 0.0425  vis_mask_loss: 0.0537  loss: 1.9674  data: 0.6004  batch: 1.4941  lr: 0.000006  max_mem: 13473
+train: Epoch:149	
+eta: 0:03:51  epoch: 148  step: 37100  mask_loss: 0.2393  ct_loss: 0.0939  wh_loss: 0.3392  py_loss: 1.0763  shape_loss: 0.1556  box_mask_loss: 0.0399  vis_mask_loss: 0.0513  loss: 1.9956  data: 0.6486  batch: 1.5837  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 148  step: 37200  mask_loss: 0.2486  ct_loss: 0.1335  wh_loss: 0.3676  py_loss: 1.1945  shape_loss: 0.1624  box_mask_loss: 0.0427  vis_mask_loss: 0.0491  loss: 2.1984  data: 0.5089  batch: 1.3957  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 148  step: 37249  mask_loss: 0.2308  ct_loss: 0.0987  wh_loss: 0.3161  py_loss: 0.9432  shape_loss: 0.1298  box_mask_loss: 0.0398  vis_mask_loss: 0.0480  loss: 1.8063  data: 0.5481  batch: 1.3705  lr: 0.000006  max_mem: 13473
+train: Epoch:150	
+eta: 0:03:51  epoch: 149  step: 37350  mask_loss: 0.2325  ct_loss: 0.0803  wh_loss: 0.3360  py_loss: 1.1052  shape_loss: 0.1552  box_mask_loss: 0.0385  vis_mask_loss: 0.0478  loss: 1.9955  data: 0.3084  batch: 1.1999  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 149  step: 37450  mask_loss: 0.2324  ct_loss: 0.1021  wh_loss: 0.3401  py_loss: 1.0594  shape_loss: 0.1482  box_mask_loss: 0.0405  vis_mask_loss: 0.0502  loss: 1.9729  data: 0.4828  batch: 1.3562  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 149  step: 37499  mask_loss: 0.2377  ct_loss: 0.1177  wh_loss: 0.3859  py_loss: 1.2749  shape_loss: 0.1792  box_mask_loss: 0.0408  vis_mask_loss: 0.0529  loss: 2.2890  data: 0.4740  batch: 1.2745  lr: 0.000006  max_mem: 13473
+train: Epoch:151	
+eta: 0:03:51  epoch: 150  step: 37600  mask_loss: 0.2325  ct_loss: 0.1046  wh_loss: 0.3221  py_loss: 1.0382  shape_loss: 0.1462  box_mask_loss: 0.0407  vis_mask_loss: 0.0516  loss: 1.9359  data: 0.5871  batch: 1.5022  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 150  step: 37700  mask_loss: 0.2409  ct_loss: 0.0891  wh_loss: 0.3386  py_loss: 1.0303  shape_loss: 0.1475  box_mask_loss: 0.0393  vis_mask_loss: 0.0466  loss: 1.9324  data: 0.6126  batch: 1.5140  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 150  step: 37749  mask_loss: 0.2347  ct_loss: 0.0942  wh_loss: 0.3006  py_loss: 0.8396  shape_loss: 0.1212  box_mask_loss: 0.0386  vis_mask_loss: 0.0468  loss: 1.6756  data: 0.2733  batch: 1.0697  lr: 0.000006  max_mem: 13473
+train: Epoch:152	
+eta: 0:03:51  epoch: 151  step: 37850  mask_loss: 0.2367  ct_loss: 0.1313  wh_loss: 0.3350  py_loss: 0.9389  shape_loss: 0.1343  box_mask_loss: 0.0405  vis_mask_loss: 0.0474  loss: 1.8641  data: 0.5600  batch: 1.4747  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 151  step: 37950  mask_loss: 0.2388  ct_loss: 0.1179  wh_loss: 0.3406  py_loss: 0.9770  shape_loss: 0.1402  box_mask_loss: 0.0402  vis_mask_loss: 0.0486  loss: 1.9034  data: 0.5266  batch: 1.4008  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 151  step: 37999  mask_loss: 0.2394  ct_loss: 0.0992  wh_loss: 0.3904  py_loss: 1.3723  shape_loss: 0.1943  box_mask_loss: 0.0384  vis_mask_loss: 0.0507  loss: 2.3847  data: 0.2469  batch: 0.9806  lr: 0.000006  max_mem: 13473
+train: Epoch:153	
+eta: 0:03:51  epoch: 152  step: 38100  mask_loss: 0.2339  ct_loss: 0.0873  wh_loss: 0.3358  py_loss: 1.0241  shape_loss: 0.1476  box_mask_loss: 0.0402  vis_mask_loss: 0.0459  loss: 1.9148  data: 0.6204  batch: 1.5158  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 152  step: 38200  mask_loss: 0.2420  ct_loss: 0.1597  wh_loss: 0.3539  py_loss: 1.0785  shape_loss: 0.1519  box_mask_loss: 0.0413  vis_mask_loss: 0.0546  loss: 2.0819  data: 0.5925  batch: 1.5170  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 152  step: 38249  mask_loss: 0.2298  ct_loss: 0.1025  wh_loss: 0.3121  py_loss: 0.9075  shape_loss: 0.1291  box_mask_loss: 0.0393  vis_mask_loss: 0.0458  loss: 1.7660  data: 0.7736  batch: 1.5264  lr: 0.000006  max_mem: 13473
+train: Epoch:154	
+eta: 0:03:51  epoch: 153  step: 38350  mask_loss: 0.2257  ct_loss: 0.0926  wh_loss: 0.3206  py_loss: 0.9666  shape_loss: 0.1399  box_mask_loss: 0.0383  vis_mask_loss: 0.0434  loss: 1.8270  data: 0.4932  batch: 1.3942  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 153  step: 38450  mask_loss: 0.2424  ct_loss: 0.1093  wh_loss: 0.3652  py_loss: 1.1590  shape_loss: 0.1591  box_mask_loss: 0.0421  vis_mask_loss: 0.0508  loss: 2.1279  data: 0.6096  batch: 1.5173  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 153  step: 38499  mask_loss: 0.2334  ct_loss: 0.1013  wh_loss: 0.3194  py_loss: 0.8757  shape_loss: 0.1324  box_mask_loss: 0.0390  vis_mask_loss: 0.0492  loss: 1.7503  data: 0.4704  batch: 1.2281  lr: 0.000006  max_mem: 13473
+train: Epoch:155	
+eta: 0:03:51  epoch: 154  step: 38600  mask_loss: 0.2408  ct_loss: 0.0888  wh_loss: 0.3246  py_loss: 0.9830  shape_loss: 0.1430  box_mask_loss: 0.0418  vis_mask_loss: 0.0524  loss: 1.8743  data: 0.7866  batch: 1.6644  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 154  step: 38700  mask_loss: 0.2365  ct_loss: 0.1047  wh_loss: 0.3351  py_loss: 1.0774  shape_loss: 0.1523  box_mask_loss: 0.0417  vis_mask_loss: 0.0552  loss: 2.0028  data: 0.4800  batch: 1.3939  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 154  step: 38749  mask_loss: 0.2339  ct_loss: 0.0846  wh_loss: 0.3196  py_loss: 0.9016  shape_loss: 0.1286  box_mask_loss: 0.0401  vis_mask_loss: 0.0515  loss: 1.7600  data: 0.3357  batch: 1.1158  lr: 0.000006  max_mem: 13473
+train: Epoch:156	
+eta: 0:03:51  epoch: 155  step: 38850  mask_loss: 0.2284  ct_loss: 0.1295  wh_loss: 0.3656  py_loss: 1.0524  shape_loss: 0.1508  box_mask_loss: 0.0411  vis_mask_loss: 0.0488  loss: 2.0167  data: 0.5506  batch: 1.4618  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 155  step: 38950  mask_loss: 0.2311  ct_loss: 0.1110  wh_loss: 0.3120  py_loss: 0.9355  shape_loss: 0.1295  box_mask_loss: 0.0399  vis_mask_loss: 0.0489  loss: 1.8079  data: 0.5009  batch: 1.4188  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 155  step: 38999  mask_loss: 0.2366  ct_loss: 0.0755  wh_loss: 0.3188  py_loss: 0.9521  shape_loss: 0.1408  box_mask_loss: 0.0411  vis_mask_loss: 0.0474  loss: 1.8123  data: 0.5923  batch: 1.4238  lr: 0.000006  max_mem: 13473
+train: Epoch:157	
+eta: 0:03:51  epoch: 156  step: 39100  mask_loss: 0.2456  ct_loss: 0.1218  wh_loss: 0.3499  py_loss: 1.0734  shape_loss: 0.1509  box_mask_loss: 0.0405  vis_mask_loss: 0.0481  loss: 2.0301  data: 0.4894  batch: 1.4175  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 156  step: 39200  mask_loss: 0.2366  ct_loss: 0.1206  wh_loss: 0.3510  py_loss: 1.0691  shape_loss: 0.1557  box_mask_loss: 0.0404  vis_mask_loss: 0.0518  loss: 2.0252  data: 0.5122  batch: 1.4891  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 156  step: 39249  mask_loss: 0.2493  ct_loss: 0.1214  wh_loss: 0.2961  py_loss: 0.8788  shape_loss: 0.1271  box_mask_loss: 0.0415  vis_mask_loss: 0.0543  loss: 1.7686  data: 0.7620  batch: 1.5860  lr: 0.000006  max_mem: 13473
+train: Epoch:158	
+eta: 0:03:51  epoch: 157  step: 39350  mask_loss: 0.2363  ct_loss: 0.1022  wh_loss: 0.3222  py_loss: 0.8978  shape_loss: 0.1329  box_mask_loss: 0.0407  vis_mask_loss: 0.0504  loss: 1.7825  data: 0.6773  batch: 1.5901  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 157  step: 39450  mask_loss: 0.2373  ct_loss: 0.1033  wh_loss: 0.3527  py_loss: 1.0558  shape_loss: 0.1544  box_mask_loss: 0.0411  vis_mask_loss: 0.0489  loss: 1.9934  data: 0.8395  batch: 1.7636  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 157  step: 39499  mask_loss: 0.2162  ct_loss: 0.0845  wh_loss: 0.3276  py_loss: 1.0137  shape_loss: 0.1448  box_mask_loss: 0.0355  vis_mask_loss: 0.0415  loss: 1.8639  data: 0.3887  batch: 1.2371  lr: 0.000006  max_mem: 13473
+train: Epoch:159	
+eta: 0:03:51  epoch: 158  step: 39600  mask_loss: 0.2392  ct_loss: 0.0917  wh_loss: 0.3507  py_loss: 1.1113  shape_loss: 0.1564  box_mask_loss: 0.0386  vis_mask_loss: 0.0439  loss: 2.0319  data: 0.6468  batch: 1.5788  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 158  step: 39700  mask_loss: 0.2425  ct_loss: 0.0990  wh_loss: 0.3433  py_loss: 1.0686  shape_loss: 0.1552  box_mask_loss: 0.0408  vis_mask_loss: 0.0517  loss: 2.0010  data: 0.3318  batch: 1.2658  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 158  step: 39749  mask_loss: 0.2272  ct_loss: 0.0999  wh_loss: 0.3256  py_loss: 0.9826  shape_loss: 0.1404  box_mask_loss: 0.0393  vis_mask_loss: 0.0491  loss: 1.8641  data: 0.5601  batch: 1.3963  lr: 0.000006  max_mem: 13473
+train: Epoch:160	
+eta: 0:03:51  epoch: 159  step: 39850  mask_loss: 0.2392  ct_loss: 0.0945  wh_loss: 0.3674  py_loss: 1.3326  shape_loss: 0.1783  box_mask_loss: 0.0397  vis_mask_loss: 0.0509  loss: 2.3027  data: 0.7598  batch: 1.6494  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 159  step: 39950  mask_loss: 0.2448  ct_loss: 0.1116  wh_loss: 0.3825  py_loss: 1.3440  shape_loss: 0.1831  box_mask_loss: 0.0409  vis_mask_loss: 0.0517  loss: 2.3586  data: 0.6145  batch: 1.5350  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 159  step: 39999  mask_loss: 0.2308  ct_loss: 0.1073  wh_loss: 0.3121  py_loss: 0.8866  shape_loss: 0.1265  box_mask_loss: 0.0409  vis_mask_loss: 0.0498  loss: 1.7541  data: 0.4999  batch: 1.3716  lr: 0.000006  max_mem: 13473
+train: Epoch:161	
+eta: 0:03:51  epoch: 160  step: 40100  mask_loss: 0.2435  ct_loss: 0.0785  wh_loss: 0.3109  py_loss: 0.8618  shape_loss: 0.1270  box_mask_loss: 0.0423  vis_mask_loss: 0.0499  loss: 1.7139  data: 0.5192  batch: 1.4135  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 160  step: 40200  mask_loss: 0.2380  ct_loss: 0.0955  wh_loss: 0.3138  py_loss: 0.9097  shape_loss: 0.1279  box_mask_loss: 0.0411  vis_mask_loss: 0.0509  loss: 1.7769  data: 0.5729  batch: 1.4085  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 160  step: 40249  mask_loss: 0.2421  ct_loss: 0.1263  wh_loss: 0.3744  py_loss: 1.0934  shape_loss: 0.1579  box_mask_loss: 0.0417  vis_mask_loss: 0.0511  loss: 2.0868  data: 0.2632  batch: 1.0792  lr: 0.000006  max_mem: 13473
+train: Epoch:162	
+eta: 0:03:51  epoch: 161  step: 40350  mask_loss: 0.2370  ct_loss: 0.1375  wh_loss: 0.3419  py_loss: 1.0226  shape_loss: 0.1427  box_mask_loss: 0.0410  vis_mask_loss: 0.0524  loss: 1.9750  data: 0.7511  batch: 1.6230  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 161  step: 40450  mask_loss: 0.2465  ct_loss: 0.1219  wh_loss: 0.3742  py_loss: 1.3083  shape_loss: 0.1789  box_mask_loss: 0.0420  vis_mask_loss: 0.0515  loss: 2.3233  data: 0.2532  batch: 1.1838  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 161  step: 40499  mask_loss: 0.2347  ct_loss: 0.1086  wh_loss: 0.3491  py_loss: 1.0985  shape_loss: 0.1531  box_mask_loss: 0.0404  vis_mask_loss: 0.0471  loss: 2.0315  data: 0.4294  batch: 1.2611  lr: 0.000006  max_mem: 13473
+train: Epoch:163	
+eta: 0:03:51  epoch: 162  step: 40600  mask_loss: 0.2392  ct_loss: 0.1032  wh_loss: 0.3595  py_loss: 1.1365  shape_loss: 0.1627  box_mask_loss: 0.0407  vis_mask_loss: 0.0461  loss: 2.0879  data: 0.6226  batch: 1.5715  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 162  step: 40700  mask_loss: 0.2293  ct_loss: 0.1185  wh_loss: 0.3451  py_loss: 1.0804  shape_loss: 0.1578  box_mask_loss: 0.0405  vis_mask_loss: 0.0511  loss: 2.0228  data: 0.4477  batch: 1.3450  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 162  step: 40749  mask_loss: 0.2272  ct_loss: 0.1144  wh_loss: 0.3833  py_loss: 1.3364  shape_loss: 0.1826  box_mask_loss: 0.0399  vis_mask_loss: 0.0455  loss: 2.3293  data: 0.5819  batch: 1.4354  lr: 0.000006  max_mem: 13473
+train: Epoch:164	
+eta: 0:03:51  epoch: 163  step: 40850  mask_loss: 0.2213  ct_loss: 0.0782  wh_loss: 0.3759  py_loss: 1.1971  shape_loss: 0.1667  box_mask_loss: 0.0399  vis_mask_loss: 0.0483  loss: 2.1275  data: 0.5017  batch: 1.3946  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 163  step: 40950  mask_loss: 0.2444  ct_loss: 0.0734  wh_loss: 0.3664  py_loss: 1.3070  shape_loss: 0.1756  box_mask_loss: 0.0414  vis_mask_loss: 0.0475  loss: 2.2556  data: 0.4481  batch: 1.3643  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 163  step: 40999  mask_loss: 0.2237  ct_loss: 0.0845  wh_loss: 0.3321  py_loss: 1.0880  shape_loss: 0.1574  box_mask_loss: 0.0398  vis_mask_loss: 0.0496  loss: 1.9751  data: 0.3246  batch: 1.1474  lr: 0.000006  max_mem: 13473
+train: Epoch:165	
+eta: 0:03:51  epoch: 164  step: 41100  mask_loss: 0.2418  ct_loss: 0.1104  wh_loss: 0.3528  py_loss: 1.0239  shape_loss: 0.1488  box_mask_loss: 0.0401  vis_mask_loss: 0.0509  loss: 1.9687  data: 0.4470  batch: 1.3127  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 164  step: 41200  mask_loss: 0.2347  ct_loss: 0.1008  wh_loss: 0.3634  py_loss: 1.1454  shape_loss: 0.1618  box_mask_loss: 0.0397  vis_mask_loss: 0.0518  loss: 2.0975  data: 0.4470  batch: 1.3196  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 164  step: 41249  mask_loss: 0.2371  ct_loss: 0.0906  wh_loss: 0.3173  py_loss: 0.9042  shape_loss: 0.1276  box_mask_loss: 0.0415  vis_mask_loss: 0.0487  loss: 1.7669  data: 0.4522  batch: 1.3079  lr: 0.000006  max_mem: 13473
+train: Epoch:166	
+eta: 0:03:51  epoch: 165  step: 41350  mask_loss: 0.2358  ct_loss: 0.0973  wh_loss: 0.3317  py_loss: 0.8810  shape_loss: 0.1305  box_mask_loss: 0.0397  vis_mask_loss: 0.0467  loss: 1.7626  data: 0.4828  batch: 1.3967  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 165  step: 41450  mask_loss: 0.2398  ct_loss: 0.0880  wh_loss: 0.3306  py_loss: 1.0389  shape_loss: 0.1511  box_mask_loss: 0.0387  vis_mask_loss: 0.0466  loss: 1.9338  data: 0.6824  batch: 1.5500  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 165  step: 41499  mask_loss: 0.2360  ct_loss: 0.1079  wh_loss: 0.3068  py_loss: 0.8931  shape_loss: 0.1269  box_mask_loss: 0.0409  vis_mask_loss: 0.0511  loss: 1.7627  data: 0.5158  batch: 1.3583  lr: 0.000006  max_mem: 13473
+train: Epoch:167	
+eta: 0:03:51  epoch: 166  step: 41600  mask_loss: 0.2458  ct_loss: 0.1154  wh_loss: 0.3285  py_loss: 0.9624  shape_loss: 0.1459  box_mask_loss: 0.0421  vis_mask_loss: 0.0570  loss: 1.8971  data: 0.4504  batch: 1.3093  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 166  step: 41700  mask_loss: 0.2414  ct_loss: 0.1123  wh_loss: 0.3253  py_loss: 0.9941  shape_loss: 0.1397  box_mask_loss: 0.0417  vis_mask_loss: 0.0508  loss: 1.9053  data: 0.5361  batch: 1.4945  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 166  step: 41749  mask_loss: 0.2350  ct_loss: 0.0900  wh_loss: 0.3189  py_loss: 0.9520  shape_loss: 0.1352  box_mask_loss: 0.0393  vis_mask_loss: 0.0436  loss: 1.8139  data: 0.5109  batch: 1.3515  lr: 0.000006  max_mem: 13473
+train: Epoch:168	
+eta: 0:03:51  epoch: 167  step: 41850  mask_loss: 0.2349  ct_loss: 0.1064  wh_loss: 0.2742  py_loss: 0.7143  shape_loss: 0.1039  box_mask_loss: 0.0394  vis_mask_loss: 0.0460  loss: 1.5191  data: 0.2466  batch: 1.0467  lr: 0.000006  max_mem: 13473
+eta: 0:01:17  epoch: 167  step: 41950  mask_loss: 0.2364  ct_loss: 0.0946  wh_loss: 0.3195  py_loss: 0.9778  shape_loss: 0.1416  box_mask_loss: 0.0390  vis_mask_loss: 0.0469  loss: 1.8557  data: 0.5386  batch: 1.4601  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 167  step: 41999  mask_loss: 0.2320  ct_loss: 0.1137  wh_loss: 0.3566  py_loss: 1.2005  shape_loss: 0.1637  box_mask_loss: 0.0393  vis_mask_loss: 0.0437  loss: 2.1494  data: 0.5722  batch: 1.4248  lr: 0.000006  max_mem: 13473
+train: Epoch:169	
+eta: 0:03:50  epoch: 168  step: 42100  mask_loss: 0.2508  ct_loss: 0.1734  wh_loss: 0.3733  py_loss: 1.1654  shape_loss: 0.1641  box_mask_loss: 0.0428  vis_mask_loss: 0.0539  loss: 2.2238  data: 0.2587  batch: 1.0520  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 168  step: 42200  mask_loss: 0.2093  ct_loss: 0.1033  wh_loss: 0.3830  py_loss: 1.3204  shape_loss: 0.1838  box_mask_loss: 0.0369  vis_mask_loss: 0.0372  loss: 2.2739  data: 0.3830  batch: 1.2442  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 168  step: 42249  mask_loss: 0.2305  ct_loss: 0.1002  wh_loss: 0.3123  py_loss: 0.8905  shape_loss: 0.1320  box_mask_loss: 0.0372  vis_mask_loss: 0.0482  loss: 1.7510  data: 0.3864  batch: 1.2194  lr: 0.000006  max_mem: 13473
+train: Epoch:170	
+eta: 0:03:50  epoch: 169  step: 42350  mask_loss: 0.2305  ct_loss: 0.0938  wh_loss: 0.3531  py_loss: 1.1935  shape_loss: 0.1659  box_mask_loss: 0.0393  vis_mask_loss: 0.0470  loss: 2.1231  data: 0.6350  batch: 1.4873  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 169  step: 42450  mask_loss: 0.2378  ct_loss: 0.1259  wh_loss: 0.3572  py_loss: 1.1157  shape_loss: 0.1573  box_mask_loss: 0.0401  vis_mask_loss: 0.0528  loss: 2.0867  data: 0.6978  batch: 1.5850  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 169  step: 42499  mask_loss: 0.2384  ct_loss: 0.0884  wh_loss: 0.3350  py_loss: 0.9831  shape_loss: 0.1449  box_mask_loss: 0.0408  vis_mask_loss: 0.0529  loss: 1.8834  data: 0.5832  batch: 1.3761  lr: 0.000006  max_mem: 13473
+train: Epoch:171	
+eta: 0:03:50  epoch: 170  step: 42600  mask_loss: 0.2386  ct_loss: 0.1081  wh_loss: 0.3463  py_loss: 1.0564  shape_loss: 0.1503  box_mask_loss: 0.0400  vis_mask_loss: 0.0531  loss: 1.9928  data: 0.4814  batch: 1.3880  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 170  step: 42700  mask_loss: 0.2385  ct_loss: 0.1125  wh_loss: 0.3074  py_loss: 0.9008  shape_loss: 0.1342  box_mask_loss: 0.0392  vis_mask_loss: 0.0501  loss: 1.7827  data: 0.7377  batch: 1.6751  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 170  step: 42749  mask_loss: 0.2391  ct_loss: 0.1104  wh_loss: 0.3624  py_loss: 1.1005  shape_loss: 0.1592  box_mask_loss: 0.0419  vis_mask_loss: 0.0545  loss: 2.0681  data: 0.5414  batch: 1.3518  lr: 0.000006  max_mem: 13473
+train: Epoch:172	
+eta: 0:03:50  epoch: 171  step: 42850  mask_loss: 0.2380  ct_loss: 0.1238  wh_loss: 0.3734  py_loss: 1.2478  shape_loss: 0.1720  box_mask_loss: 0.0392  vis_mask_loss: 0.0505  loss: 2.2447  data: 1.0440  batch: 1.8847  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 171  step: 42950  mask_loss: 0.2468  ct_loss: 0.1440  wh_loss: 0.3728  py_loss: 1.2185  shape_loss: 0.1694  box_mask_loss: 0.0419  vis_mask_loss: 0.0547  loss: 2.2482  data: 0.4876  batch: 1.4044  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 171  step: 42999  mask_loss: 0.2368  ct_loss: 0.1030  wh_loss: 0.3019  py_loss: 0.7672  shape_loss: 0.1160  box_mask_loss: 0.0414  vis_mask_loss: 0.0482  loss: 1.6146  data: 0.7956  batch: 1.6582  lr: 0.000006  max_mem: 13473
+train: Epoch:173	
+eta: 0:03:50  epoch: 172  step: 43100  mask_loss: 0.2396  ct_loss: 0.0893  wh_loss: 0.3204  py_loss: 0.9252  shape_loss: 0.1361  box_mask_loss: 0.0419  vis_mask_loss: 0.0546  loss: 1.8070  data: 0.5630  batch: 1.5103  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 172  step: 43200  mask_loss: 0.2250  ct_loss: 0.0693  wh_loss: 0.3122  py_loss: 0.9548  shape_loss: 0.1351  box_mask_loss: 0.0397  vis_mask_loss: 0.0432  loss: 1.7794  data: 0.4790  batch: 1.3605  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 172  step: 43249  mask_loss: 0.2325  ct_loss: 0.1001  wh_loss: 0.3674  py_loss: 1.2374  shape_loss: 0.1747  box_mask_loss: 0.0388  vis_mask_loss: 0.0457  loss: 2.1964  data: 0.4718  batch: 1.3427  lr: 0.000006  max_mem: 13473
+train: Epoch:174	
+eta: 0:03:50  epoch: 173  step: 43350  mask_loss: 0.2445  ct_loss: 0.1029  wh_loss: 0.3833  py_loss: 1.2779  shape_loss: 0.1797  box_mask_loss: 0.0413  vis_mask_loss: 0.0505  loss: 2.2801  data: 0.6057  batch: 1.4975  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 173  step: 43450  mask_loss: 0.2422  ct_loss: 0.1439  wh_loss: 0.3353  py_loss: 0.9809  shape_loss: 0.1393  box_mask_loss: 0.0420  vis_mask_loss: 0.0608  loss: 1.9443  data: 0.4629  batch: 1.4256  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 173  step: 43499  mask_loss: 0.2422  ct_loss: 0.1246  wh_loss: 0.3709  py_loss: 1.2581  shape_loss: 0.1749  box_mask_loss: 0.0407  vis_mask_loss: 0.0470  loss: 2.2585  data: 0.5562  batch: 1.3933  lr: 0.000006  max_mem: 13473
+train: Epoch:175	
+eta: 0:03:50  epoch: 174  step: 43600  mask_loss: 0.2318  ct_loss: 0.0818  wh_loss: 0.3626  py_loss: 1.2958  shape_loss: 0.1768  box_mask_loss: 0.0398  vis_mask_loss: 0.0505  loss: 2.2390  data: 0.3601  batch: 1.3056  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 174  step: 43700  mask_loss: 0.2305  ct_loss: 0.0930  wh_loss: 0.3280  py_loss: 1.0507  shape_loss: 0.1493  box_mask_loss: 0.0393  vis_mask_loss: 0.0445  loss: 1.9353  data: 0.5255  batch: 1.4279  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 174  step: 43749  mask_loss: 0.2329  ct_loss: 0.0657  wh_loss: 0.3398  py_loss: 1.0453  shape_loss: 0.1562  box_mask_loss: 0.0389  vis_mask_loss: 0.0398  loss: 1.9186  data: 0.4661  batch: 1.2733  lr: 0.000006  max_mem: 13473
+train: Epoch:176	
+eta: 0:03:50  epoch: 175  step: 43850  mask_loss: 0.2290  ct_loss: 0.0867  wh_loss: 0.3324  py_loss: 0.9819  shape_loss: 0.1356  box_mask_loss: 0.0412  vis_mask_loss: 0.0478  loss: 1.8546  data: 0.6596  batch: 1.5452  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 175  step: 43950  mask_loss: 0.2181  ct_loss: 0.0643  wh_loss: 0.3120  py_loss: 0.9278  shape_loss: 0.1361  box_mask_loss: 0.0359  vis_mask_loss: 0.0392  loss: 1.7332  data: 0.5974  batch: 1.5215  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 175  step: 43999  mask_loss: 0.2481  ct_loss: 0.1121  wh_loss: 0.3448  py_loss: 1.1143  shape_loss: 0.1589  box_mask_loss: 0.0433  vis_mask_loss: 0.0588  loss: 2.0802  data: 0.7940  batch: 1.6192  lr: 0.000006  max_mem: 13473
+train: Epoch:177	
+eta: 0:03:50  epoch: 176  step: 44100  mask_loss: 0.2227  ct_loss: 0.0826  wh_loss: 0.2908  py_loss: 0.7907  shape_loss: 0.1141  box_mask_loss: 0.0391  vis_mask_loss: 0.0455  loss: 1.5855  data: 0.5033  batch: 1.4581  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 176  step: 44200  mask_loss: 0.2341  ct_loss: 0.0899  wh_loss: 0.2986  py_loss: 0.7760  shape_loss: 0.1194  box_mask_loss: 0.0401  vis_mask_loss: 0.0486  loss: 1.6067  data: 0.5291  batch: 1.3882  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 176  step: 44249  mask_loss: 0.2355  ct_loss: 0.0965  wh_loss: 0.3172  py_loss: 0.9645  shape_loss: 0.1379  box_mask_loss: 0.0378  vis_mask_loss: 0.0466  loss: 1.8359  data: 0.7425  batch: 1.5619  lr: 0.000006  max_mem: 13473
+train: Epoch:178	
+eta: 0:03:50  epoch: 177  step: 44350  mask_loss: 0.2288  ct_loss: 0.0985  wh_loss: 0.3084  py_loss: 0.8928  shape_loss: 0.1239  box_mask_loss: 0.0403  vis_mask_loss: 0.0474  loss: 1.7400  data: 0.6595  batch: 1.5361  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 177  step: 44450  mask_loss: 0.2290  ct_loss: 0.1104  wh_loss: 0.3530  py_loss: 1.1605  shape_loss: 0.1602  box_mask_loss: 0.0406  vis_mask_loss: 0.0511  loss: 2.1047  data: 0.6989  batch: 1.6210  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 177  step: 44499  mask_loss: 0.2296  ct_loss: 0.0953  wh_loss: 0.3454  py_loss: 1.0950  shape_loss: 0.1556  box_mask_loss: 0.0408  vis_mask_loss: 0.0530  loss: 2.0146  data: 0.5545  batch: 1.4079  lr: 0.000006  max_mem: 13473
+train: Epoch:179	
+eta: 0:03:50  epoch: 178  step: 44600  mask_loss: 0.2280  ct_loss: 0.0749  wh_loss: 0.3380  py_loss: 1.0685  shape_loss: 0.1518  box_mask_loss: 0.0394  vis_mask_loss: 0.0443  loss: 1.9450  data: 0.6807  batch: 1.5461  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 178  step: 44700  mask_loss: 0.2401  ct_loss: 0.1128  wh_loss: 0.3352  py_loss: 1.0683  shape_loss: 0.1483  box_mask_loss: 0.0415  vis_mask_loss: 0.0513  loss: 1.9977  data: 0.3393  batch: 1.2280  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 178  step: 44749  mask_loss: 0.2385  ct_loss: 0.0909  wh_loss: 0.3308  py_loss: 1.0618  shape_loss: 0.1530  box_mask_loss: 0.0401  vis_mask_loss: 0.0462  loss: 1.9612  data: 0.3442  batch: 1.1054  lr: 0.000006  max_mem: 13473
+train: Epoch:180	
+eta: 0:03:50  epoch: 179  step: 44850  mask_loss: 0.2247  ct_loss: 0.0659  wh_loss: 0.2984  py_loss: 0.9234  shape_loss: 0.1310  box_mask_loss: 0.0384  vis_mask_loss: 0.0409  loss: 1.7226  data: 0.3444  batch: 1.2165  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 179  step: 44950  mask_loss: 0.2275  ct_loss: 0.0915  wh_loss: 0.3316  py_loss: 0.9436  shape_loss: 0.1404  box_mask_loss: 0.0390  vis_mask_loss: 0.0447  loss: 1.8182  data: 0.4022  batch: 1.3090  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 179  step: 44999  mask_loss: 0.2341  ct_loss: 0.0654  wh_loss: 0.2813  py_loss: 0.8133  shape_loss: 0.1207  box_mask_loss: 0.0399  vis_mask_loss: 0.0481  loss: 1.6029  data: 0.5644  batch: 1.4270  lr: 0.000006  max_mem: 13473
+train: Epoch:181	
+eta: 0:03:50  epoch: 180  step: 45100  mask_loss: 0.2372  ct_loss: 0.0725  wh_loss: 0.3068  py_loss: 0.9044  shape_loss: 0.1331  box_mask_loss: 0.0405  vis_mask_loss: 0.0489  loss: 1.7434  data: 0.5406  batch: 1.4570  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 180  step: 45200  mask_loss: 0.2393  ct_loss: 0.1141  wh_loss: 0.3817  py_loss: 1.1883  shape_loss: 0.1706  box_mask_loss: 0.0409  vis_mask_loss: 0.0508  loss: 2.1857  data: 0.4337  batch: 1.3335  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 180  step: 45249  mask_loss: 0.2275  ct_loss: 0.1135  wh_loss: 0.2989  py_loss: 0.8311  shape_loss: 0.1179  box_mask_loss: 0.0404  vis_mask_loss: 0.0528  loss: 1.6820  data: 0.5327  batch: 1.3769  lr: 0.000006  max_mem: 13473
+train: Epoch:182	
+eta: 0:03:50  epoch: 181  step: 45350  mask_loss: 0.2295  ct_loss: 0.1436  wh_loss: 0.3394  py_loss: 0.9964  shape_loss: 0.1390  box_mask_loss: 0.0405  vis_mask_loss: 0.0511  loss: 1.9395  data: 0.5920  batch: 1.5211  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 181  step: 45450  mask_loss: 0.2317  ct_loss: 0.0928  wh_loss: 0.3124  py_loss: 0.8896  shape_loss: 0.1319  box_mask_loss: 0.0383  vis_mask_loss: 0.0442  loss: 1.7408  data: 0.5082  batch: 1.4360  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 181  step: 45499  mask_loss: 0.2255  ct_loss: 0.1106  wh_loss: 0.3112  py_loss: 0.8732  shape_loss: 0.1327  box_mask_loss: 0.0387  vis_mask_loss: 0.0454  loss: 1.7373  data: 0.3912  batch: 1.1639  lr: 0.000006  max_mem: 13473
+train: Epoch:183	
+eta: 0:03:50  epoch: 182  step: 45600  mask_loss: 0.2459  ct_loss: 0.1190  wh_loss: 0.3740  py_loss: 1.2467  shape_loss: 0.1707  box_mask_loss: 0.0395  vis_mask_loss: 0.0500  loss: 2.2458  data: 0.5396  batch: 1.4474  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 182  step: 45700  mask_loss: 0.2380  ct_loss: 0.0969  wh_loss: 0.3453  py_loss: 1.0576  shape_loss: 0.1522  box_mask_loss: 0.0399  vis_mask_loss: 0.0463  loss: 1.9761  data: 0.2968  batch: 1.1625  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 182  step: 45749  mask_loss: 0.2379  ct_loss: 0.1264  wh_loss: 0.3492  py_loss: 1.0604  shape_loss: 0.1475  box_mask_loss: 0.0412  vis_mask_loss: 0.0534  loss: 2.0159  data: 0.5197  batch: 1.3484  lr: 0.000006  max_mem: 13473
+train: Epoch:184	
+eta: 0:03:50  epoch: 183  step: 45850  mask_loss: 0.2373  ct_loss: 0.0936  wh_loss: 0.3357  py_loss: 1.0657  shape_loss: 0.1518  box_mask_loss: 0.0403  vis_mask_loss: 0.0485  loss: 1.9728  data: 0.6080  batch: 1.5528  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 183  step: 45950  mask_loss: 0.2367  ct_loss: 0.1300  wh_loss: 0.3056  py_loss: 0.8662  shape_loss: 0.1284  box_mask_loss: 0.0399  vis_mask_loss: 0.0472  loss: 1.7540  data: 0.5071  batch: 1.3891  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 183  step: 45999  mask_loss: 0.2454  ct_loss: 0.0945  wh_loss: 0.3408  py_loss: 1.0719  shape_loss: 0.1542  box_mask_loss: 0.0420  vis_mask_loss: 0.0537  loss: 2.0024  data: 0.5433  batch: 1.3537  lr: 0.000006  max_mem: 13473
+train: Epoch:185	
+eta: 0:03:50  epoch: 184  step: 46100  mask_loss: 0.2344  ct_loss: 0.0994  wh_loss: 0.3643  py_loss: 1.2208  shape_loss: 0.1703  box_mask_loss: 0.0390  vis_mask_loss: 0.0497  loss: 2.1780  data: 0.6993  batch: 1.5960  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 184  step: 46200  mask_loss: 0.2420  ct_loss: 0.0996  wh_loss: 0.3315  py_loss: 0.9988  shape_loss: 0.1480  box_mask_loss: 0.0394  vis_mask_loss: 0.0484  loss: 1.9078  data: 0.8213  batch: 1.6581  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 184  step: 46249  mask_loss: 0.2419  ct_loss: 0.0865  wh_loss: 0.3392  py_loss: 1.0674  shape_loss: 0.1522  box_mask_loss: 0.0421  vis_mask_loss: 0.0547  loss: 1.9840  data: 0.4800  batch: 1.3441  lr: 0.000006  max_mem: 13473
+train: Epoch:186	
+eta: 0:03:50  epoch: 185  step: 46350  mask_loss: 0.2309  ct_loss: 0.0970  wh_loss: 0.3029  py_loss: 0.8132  shape_loss: 0.1241  box_mask_loss: 0.0400  vis_mask_loss: 0.0425  loss: 1.6506  data: 0.9115  batch: 1.8220  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 185  step: 46450  mask_loss: 0.2319  ct_loss: 0.0820  wh_loss: 0.3302  py_loss: 1.0638  shape_loss: 0.1538  box_mask_loss: 0.0363  vis_mask_loss: 0.0439  loss: 1.9420  data: 0.3743  batch: 1.2636  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 185  step: 46499  mask_loss: 0.2263  ct_loss: 0.1112  wh_loss: 0.3282  py_loss: 0.9650  shape_loss: 0.1325  box_mask_loss: 0.0395  vis_mask_loss: 0.0505  loss: 1.8533  data: 0.6849  batch: 1.4815  lr: 0.000006  max_mem: 13473
+train: Epoch:187	
+eta: 0:03:50  epoch: 186  step: 46600  mask_loss: 0.2324  ct_loss: 0.0824  wh_loss: 0.3313  py_loss: 1.0720  shape_loss: 0.1492  box_mask_loss: 0.0407  vis_mask_loss: 0.0500  loss: 1.9580  data: 0.5660  batch: 1.4675  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 186  step: 46700  mask_loss: 0.2298  ct_loss: 0.1193  wh_loss: 0.3305  py_loss: 1.0181  shape_loss: 0.1497  box_mask_loss: 0.0389  vis_mask_loss: 0.0477  loss: 1.9339  data: 0.6793  batch: 1.4790  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 186  step: 46749  mask_loss: 0.2350  ct_loss: 0.1139  wh_loss: 0.3258  py_loss: 0.9597  shape_loss: 0.1368  box_mask_loss: 0.0386  vis_mask_loss: 0.0471  loss: 1.8571  data: 0.4000  batch: 1.2659  lr: 0.000006  max_mem: 13473
+train: Epoch:188	
+eta: 0:03:50  epoch: 187  step: 46850  mask_loss: 0.2337  ct_loss: 0.0642  wh_loss: 0.3301  py_loss: 1.0523  shape_loss: 0.1526  box_mask_loss: 0.0397  vis_mask_loss: 0.0444  loss: 1.9170  data: 0.8585  batch: 1.6782  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 187  step: 46950  mask_loss: 0.2389  ct_loss: 0.1066  wh_loss: 0.3308  py_loss: 0.9640  shape_loss: 0.1385  box_mask_loss: 0.0411  vis_mask_loss: 0.0465  loss: 1.8663  data: 0.4716  batch: 1.2738  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 187  step: 46999  mask_loss: 0.2344  ct_loss: 0.0893  wh_loss: 0.3274  py_loss: 0.9873  shape_loss: 0.1423  box_mask_loss: 0.0402  vis_mask_loss: 0.0502  loss: 1.8711  data: 0.9896  batch: 1.8770  lr: 0.000006  max_mem: 13473
+train: Epoch:189	
+eta: 0:03:50  epoch: 188  step: 47100  mask_loss: 0.2366  ct_loss: 0.0859  wh_loss: 0.3212  py_loss: 0.9164  shape_loss: 0.1386  box_mask_loss: 0.0398  vis_mask_loss: 0.0497  loss: 1.7883  data: 0.8606  batch: 1.7104  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 188  step: 47200  mask_loss: 0.2355  ct_loss: 0.0877  wh_loss: 0.3058  py_loss: 0.8801  shape_loss: 0.1309  box_mask_loss: 0.0421  vis_mask_loss: 0.0514  loss: 1.7336  data: 0.5623  batch: 1.3992  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 188  step: 47249  mask_loss: 0.2364  ct_loss: 0.1071  wh_loss: 0.3604  py_loss: 1.1077  shape_loss: 0.1525  box_mask_loss: 0.0412  vis_mask_loss: 0.0495  loss: 2.0548  data: 0.4723  batch: 1.2653  lr: 0.000006  max_mem: 13473
+train: Epoch:190	
+eta: 0:03:50  epoch: 189  step: 47350  mask_loss: 0.2287  ct_loss: 0.0866  wh_loss: 0.3615  py_loss: 1.1798  shape_loss: 0.1597  box_mask_loss: 0.0395  vis_mask_loss: 0.0466  loss: 2.1024  data: 0.6488  batch: 1.5425  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 189  step: 47450  mask_loss: 0.2343  ct_loss: 0.0956  wh_loss: 0.3577  py_loss: 1.2094  shape_loss: 0.1724  box_mask_loss: 0.0382  vis_mask_loss: 0.0448  loss: 2.1523  data: 0.4631  batch: 1.2389  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 189  step: 47499  mask_loss: 0.2291  ct_loss: 0.0802  wh_loss: 0.3127  py_loss: 0.9454  shape_loss: 0.1388  box_mask_loss: 0.0405  vis_mask_loss: 0.0495  loss: 1.7961  data: 0.6293  batch: 1.4123  lr: 0.000006  max_mem: 13473
+train: Epoch:191	
+eta: 0:03:50  epoch: 190  step: 47600  mask_loss: 0.2390  ct_loss: 0.0919  wh_loss: 0.3507  py_loss: 1.1448  shape_loss: 0.1623  box_mask_loss: 0.0381  vis_mask_loss: 0.0455  loss: 2.0722  data: 0.7326  batch: 1.6212  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 190  step: 47700  mask_loss: 0.2453  ct_loss: 0.1436  wh_loss: 0.3625  py_loss: 1.0711  shape_loss: 0.1588  box_mask_loss: 0.0408  vis_mask_loss: 0.0553  loss: 2.0775  data: 1.0100  batch: 1.8162  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 190  step: 47749  mask_loss: 0.2412  ct_loss: 0.0677  wh_loss: 0.3282  py_loss: 0.9936  shape_loss: 0.1446  box_mask_loss: 0.0430  vis_mask_loss: 0.0549  loss: 1.8731  data: 0.4198  batch: 1.2555  lr: 0.000006  max_mem: 13473
+train: Epoch:192	
+eta: 0:03:50  epoch: 191  step: 47850  mask_loss: 0.2360  ct_loss: 0.0948  wh_loss: 0.3543  py_loss: 1.1800  shape_loss: 0.1687  box_mask_loss: 0.0408  vis_mask_loss: 0.0512  loss: 2.1259  data: 0.4061  batch: 1.2969  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 191  step: 47950  mask_loss: 0.2408  ct_loss: 0.1019  wh_loss: 0.3679  py_loss: 1.1734  shape_loss: 0.1703  box_mask_loss: 0.0423  vis_mask_loss: 0.0507  loss: 2.1473  data: 0.8218  batch: 1.6885  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 191  step: 47999  mask_loss: 0.2283  ct_loss: 0.0954  wh_loss: 0.3658  py_loss: 1.2556  shape_loss: 0.1723  box_mask_loss: 0.0388  vis_mask_loss: 0.0473  loss: 2.2034  data: 0.6483  batch: 1.5160  lr: 0.000006  max_mem: 13473
+train: Epoch:193	
+eta: 0:03:50  epoch: 192  step: 48100  mask_loss: 0.2295  ct_loss: 0.1139  wh_loss: 0.3129  py_loss: 0.9323  shape_loss: 0.1337  box_mask_loss: 0.0402  vis_mask_loss: 0.0508  loss: 1.8133  data: 0.8336  batch: 1.6966  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 192  step: 48200  mask_loss: 0.2297  ct_loss: 0.0841  wh_loss: 0.3460  py_loss: 1.0635  shape_loss: 0.1550  box_mask_loss: 0.0392  vis_mask_loss: 0.0440  loss: 1.9616  data: 0.7551  batch: 1.5848  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 192  step: 48249  mask_loss: 0.2336  ct_loss: 0.1048  wh_loss: 0.3471  py_loss: 1.0521  shape_loss: 0.1505  box_mask_loss: 0.0392  vis_mask_loss: 0.0491  loss: 1.9763  data: 0.4127  batch: 1.2395  lr: 0.000006  max_mem: 13473
+train: Epoch:194	
+eta: 0:03:50  epoch: 193  step: 48350  mask_loss: 0.2371  ct_loss: 0.0986  wh_loss: 0.3153  py_loss: 0.8980  shape_loss: 0.1368  box_mask_loss: 0.0388  vis_mask_loss: 0.0511  loss: 1.7757  data: 0.3231  batch: 1.2083  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 193  step: 48450  mask_loss: 0.2421  ct_loss: 0.0842  wh_loss: 0.3238  py_loss: 0.9752  shape_loss: 0.1395  box_mask_loss: 0.0406  vis_mask_loss: 0.0488  loss: 1.8541  data: 0.3313  batch: 1.2317  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 193  step: 48499  mask_loss: 0.2226  ct_loss: 0.0850  wh_loss: 0.2788  py_loss: 0.6831  shape_loss: 0.0991  box_mask_loss: 0.0378  vis_mask_loss: 0.0404  loss: 1.4468  data: 0.6406  batch: 1.4423  lr: 0.000006  max_mem: 13473
+train: Epoch:195	
+eta: 0:03:50  epoch: 194  step: 48600  mask_loss: 0.2324  ct_loss: 0.0790  wh_loss: 0.2856  py_loss: 0.7514  shape_loss: 0.1136  box_mask_loss: 0.0387  vis_mask_loss: 0.0425  loss: 1.5431  data: 0.4429  batch: 1.3107  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 194  step: 48700  mask_loss: 0.2353  ct_loss: 0.1054  wh_loss: 0.3499  py_loss: 1.0476  shape_loss: 0.1550  box_mask_loss: 0.0391  vis_mask_loss: 0.0520  loss: 1.9843  data: 0.6102  batch: 1.5045  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 194  step: 48749  mask_loss: 0.2287  ct_loss: 0.0873  wh_loss: 0.3162  py_loss: 0.9509  shape_loss: 0.1351  box_mask_loss: 0.0387  vis_mask_loss: 0.0465  loss: 1.8033  data: 0.3571  batch: 1.1786  lr: 0.000006  max_mem: 13473
+train: Epoch:196	
+eta: 0:03:50  epoch: 195  step: 48850  mask_loss: 0.2271  ct_loss: 0.0845  wh_loss: 0.3208  py_loss: 1.0395  shape_loss: 0.1491  box_mask_loss: 0.0374  vis_mask_loss: 0.0422  loss: 1.9006  data: 0.4187  batch: 1.3602  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 195  step: 48950  mask_loss: 0.2258  ct_loss: 0.0814  wh_loss: 0.3243  py_loss: 1.0429  shape_loss: 0.1519  box_mask_loss: 0.0382  vis_mask_loss: 0.0493  loss: 1.9137  data: 0.5353  batch: 1.4183  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 195  step: 48999  mask_loss: 0.2312  ct_loss: 0.0712  wh_loss: 0.2993  py_loss: 0.8413  shape_loss: 0.1231  box_mask_loss: 0.0382  vis_mask_loss: 0.0464  loss: 1.6508  data: 0.2875  batch: 1.0184  lr: 0.000006  max_mem: 13473
+train: Epoch:197	
+eta: 0:03:50  epoch: 196  step: 49100  mask_loss: 0.2294  ct_loss: 0.0807  wh_loss: 0.3091  py_loss: 0.9111  shape_loss: 0.1311  box_mask_loss: 0.0388  vis_mask_loss: 0.0451  loss: 1.7452  data: 0.6529  batch: 1.5795  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 196  step: 49200  mask_loss: 0.2322  ct_loss: 0.1008  wh_loss: 0.3153  py_loss: 0.9558  shape_loss: 0.1392  box_mask_loss: 0.0391  vis_mask_loss: 0.0482  loss: 1.8306  data: 1.0754  batch: 1.9281  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 196  step: 49249  mask_loss: 0.2425  ct_loss: 0.0962  wh_loss: 0.3442  py_loss: 1.1812  shape_loss: 0.1663  box_mask_loss: 0.0421  vis_mask_loss: 0.0528  loss: 2.1252  data: 0.8392  batch: 1.6605  lr: 0.000006  max_mem: 13473
+train: Epoch:198	
+eta: 0:03:50  epoch: 197  step: 49350  mask_loss: 0.2326  ct_loss: 0.1246  wh_loss: 0.3306  py_loss: 1.0175  shape_loss: 0.1488  box_mask_loss: 0.0393  vis_mask_loss: 0.0486  loss: 1.9421  data: 0.7559  batch: 1.6691  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 197  step: 49450  mask_loss: 0.2286  ct_loss: 0.1087  wh_loss: 0.2956  py_loss: 0.8432  shape_loss: 0.1212  box_mask_loss: 0.0384  vis_mask_loss: 0.0415  loss: 1.6772  data: 0.5554  batch: 1.3957  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 197  step: 49499  mask_loss: 0.2292  ct_loss: 0.0625  wh_loss: 0.2839  py_loss: 0.7528  shape_loss: 0.1163  box_mask_loss: 0.0391  vis_mask_loss: 0.0457  loss: 1.5296  data: 0.4386  batch: 1.2653  lr: 0.000006  max_mem: 13473
+train: Epoch:199	
+eta: 0:03:50  epoch: 198  step: 49600  mask_loss: 0.2380  ct_loss: 0.1162  wh_loss: 0.3177  py_loss: 0.9212  shape_loss: 0.1334  box_mask_loss: 0.0395  vis_mask_loss: 0.0470  loss: 1.8130  data: 0.5943  batch: 1.5343  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 198  step: 49700  mask_loss: 0.2320  ct_loss: 0.0861  wh_loss: 0.3193  py_loss: 0.8768  shape_loss: 0.1327  box_mask_loss: 0.0385  vis_mask_loss: 0.0444  loss: 1.7299  data: 0.6680  batch: 1.5253  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 198  step: 49749  mask_loss: 0.2298  ct_loss: 0.0871  wh_loss: 0.2945  py_loss: 0.7978  shape_loss: 0.1216  box_mask_loss: 0.0418  vis_mask_loss: 0.0496  loss: 1.6223  data: 0.8412  batch: 1.6997  lr: 0.000006  max_mem: 13473
+train: Epoch:200	
+eta: 0:03:50  epoch: 199  step: 49850  mask_loss: 0.2211  ct_loss: 0.0924  wh_loss: 0.3081  py_loss: 0.9107  shape_loss: 0.1289  box_mask_loss: 0.0358  vis_mask_loss: 0.0443  loss: 1.7413  data: 0.4630  batch: 1.3727  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 199  step: 49950  mask_loss: 0.2333  ct_loss: 0.1370  wh_loss: 0.3432  py_loss: 1.1049  shape_loss: 0.1565  box_mask_loss: 0.0371  vis_mask_loss: 0.0509  loss: 2.0630  data: 0.6631  batch: 1.5771  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 199  step: 49999  mask_loss: 0.2348  ct_loss: 0.0785  wh_loss: 0.3286  py_loss: 0.9560  shape_loss: 0.1372  box_mask_loss: 0.0388  vis_mask_loss: 0.0460  loss: 1.8199  data: 0.6761  batch: 1.5016  lr: 0.000006  max_mem: 13473
+train: Epoch:201	
+eta: 0:03:50  epoch: 200  step: 50100  mask_loss: 0.2275  ct_loss: 0.0644  wh_loss: 0.3240  py_loss: 1.0359  shape_loss: 0.1488  box_mask_loss: 0.0375  vis_mask_loss: 0.0459  loss: 1.8839  data: 0.5485  batch: 1.4508  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 200  step: 50200  mask_loss: 0.2339  ct_loss: 0.0986  wh_loss: 0.3217  py_loss: 1.0166  shape_loss: 0.1413  box_mask_loss: 0.0387  vis_mask_loss: 0.0468  loss: 1.8976  data: 0.4878  batch: 1.3737  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 200  step: 50249  mask_loss: 0.2380  ct_loss: 0.0958  wh_loss: 0.3145  py_loss: 0.9675  shape_loss: 0.1376  box_mask_loss: 0.0409  vis_mask_loss: 0.0500  loss: 1.8443  data: 0.5570  batch: 1.4503  lr: 0.000006  max_mem: 13473
+train: Epoch:202	
+eta: 0:03:50  epoch: 201  step: 50350  mask_loss: 0.2307  ct_loss: 0.0963  wh_loss: 0.3168  py_loss: 0.8786  shape_loss: 0.1305  box_mask_loss: 0.0415  vis_mask_loss: 0.0498  loss: 1.7442  data: 0.6702  batch: 1.6276  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 201  step: 50450  mask_loss: 0.2278  ct_loss: 0.0987  wh_loss: 0.3637  py_loss: 1.1623  shape_loss: 0.1623  box_mask_loss: 0.0384  vis_mask_loss: 0.0493  loss: 2.1024  data: 0.2695  batch: 1.1865  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 201  step: 50499  mask_loss: 0.2353  ct_loss: 0.1095  wh_loss: 0.3249  py_loss: 0.9507  shape_loss: 0.1382  box_mask_loss: 0.0381  vis_mask_loss: 0.0474  loss: 1.8443  data: 0.3929  batch: 1.2805  lr: 0.000006  max_mem: 13473
+train: Epoch:203	
+eta: 0:03:50  epoch: 202  step: 50600  mask_loss: 0.2365  ct_loss: 0.1202  wh_loss: 0.3429  py_loss: 1.0461  shape_loss: 0.1473  box_mask_loss: 0.0397  vis_mask_loss: 0.0487  loss: 1.9816  data: 0.9740  batch: 1.9062  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 202  step: 50700  mask_loss: 0.2143  ct_loss: 0.0807  wh_loss: 0.2971  py_loss: 0.7911  shape_loss: 0.1225  box_mask_loss: 0.0349  vis_mask_loss: 0.0426  loss: 1.5831  data: 0.3400  batch: 1.1397  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 202  step: 50749  mask_loss: 0.2317  ct_loss: 0.1325  wh_loss: 0.4023  py_loss: 1.3380  shape_loss: 0.1892  box_mask_loss: 0.0391  vis_mask_loss: 0.0485  loss: 2.3814  data: 0.5479  batch: 1.4052  lr: 0.000006  max_mem: 13473
+train: Epoch:204	
+eta: 0:03:50  epoch: 203  step: 50850  mask_loss: 0.2422  ct_loss: 0.1051  wh_loss: 0.3548  py_loss: 1.1494  shape_loss: 0.1661  box_mask_loss: 0.0433  vis_mask_loss: 0.0524  loss: 2.1133  data: 0.6459  batch: 1.5653  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 203  step: 50950  mask_loss: 0.2363  ct_loss: 0.0838  wh_loss: 0.3108  py_loss: 0.8762  shape_loss: 0.1312  box_mask_loss: 0.0417  vis_mask_loss: 0.0526  loss: 1.7325  data: 0.4287  batch: 1.3079  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 203  step: 50999  mask_loss: 0.2227  ct_loss: 0.0965  wh_loss: 0.3464  py_loss: 1.1945  shape_loss: 0.1685  box_mask_loss: 0.0393  vis_mask_loss: 0.0466  loss: 2.1145  data: 0.3153  batch: 1.1572  lr: 0.000006  max_mem: 13473
+train: Epoch:205	
+eta: 0:03:50  epoch: 204  step: 51100  mask_loss: 0.2307  ct_loss: 0.1002  wh_loss: 0.3104  py_loss: 0.9732  shape_loss: 0.1360  box_mask_loss: 0.0418  vis_mask_loss: 0.0533  loss: 1.8458  data: 0.7549  batch: 1.7352  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 204  step: 51200  mask_loss: 0.2273  ct_loss: 0.0892  wh_loss: 0.3569  py_loss: 1.1922  shape_loss: 0.1698  box_mask_loss: 0.0377  vis_mask_loss: 0.0462  loss: 2.1194  data: 0.4542  batch: 1.2818  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 204  step: 51249  mask_loss: 0.2273  ct_loss: 0.0835  wh_loss: 0.2983  py_loss: 0.8460  shape_loss: 0.1255  box_mask_loss: 0.0377  vis_mask_loss: 0.0436  loss: 1.6620  data: 0.3876  batch: 1.1280  lr: 0.000006  max_mem: 13473
+train: Epoch:206	
+eta: 0:03:50  epoch: 205  step: 51350  mask_loss: 0.2381  ct_loss: 0.0904  wh_loss: 0.3344  py_loss: 1.0222  shape_loss: 0.1462  box_mask_loss: 0.0390  vis_mask_loss: 0.0458  loss: 1.9161  data: 0.4973  batch: 1.3925  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 205  step: 51450  mask_loss: 0.2246  ct_loss: 0.0794  wh_loss: 0.2926  py_loss: 0.8442  shape_loss: 0.1249  box_mask_loss: 0.0390  vis_mask_loss: 0.0440  loss: 1.6487  data: 0.6664  batch: 1.5666  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 205  step: 51499  mask_loss: 0.2386  ct_loss: 0.0997  wh_loss: 0.3186  py_loss: 0.8993  shape_loss: 0.1313  box_mask_loss: 0.0410  vis_mask_loss: 0.0516  loss: 1.7801  data: 0.6674  batch: 1.5083  lr: 0.000006  max_mem: 13473
+train: Epoch:207	
+eta: 0:03:50  epoch: 206  step: 51600  mask_loss: 0.2212  ct_loss: 0.0759  wh_loss: 0.3227  py_loss: 1.0484  shape_loss: 0.1493  box_mask_loss: 0.0345  vis_mask_loss: 0.0427  loss: 1.8947  data: 0.4670  batch: 1.3762  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 206  step: 51700  mask_loss: 0.2355  ct_loss: 0.0959  wh_loss: 0.3407  py_loss: 1.0520  shape_loss: 0.1578  box_mask_loss: 0.0392  vis_mask_loss: 0.0464  loss: 1.9675  data: 0.4629  batch: 1.3468  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 206  step: 51749  mask_loss: 0.2322  ct_loss: 0.0557  wh_loss: 0.3149  py_loss: 0.9033  shape_loss: 0.1317  box_mask_loss: 0.0400  vis_mask_loss: 0.0455  loss: 1.7233  data: 0.3456  batch: 1.1177  lr: 0.000006  max_mem: 13473
+train: Epoch:208	
+eta: 0:03:50  epoch: 207  step: 51850  mask_loss: 0.2299  ct_loss: 0.0894  wh_loss: 0.2954  py_loss: 0.8440  shape_loss: 0.1219  box_mask_loss: 0.0395  vis_mask_loss: 0.0534  loss: 1.6735  data: 0.5963  batch: 1.5105  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 207  step: 51950  mask_loss: 0.2245  ct_loss: 0.0874  wh_loss: 0.3097  py_loss: 0.9226  shape_loss: 0.1329  box_mask_loss: 0.0376  vis_mask_loss: 0.0424  loss: 1.7570  data: 0.6110  batch: 1.4961  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 207  step: 51999  mask_loss: 0.2340  ct_loss: 0.1275  wh_loss: 0.3263  py_loss: 0.9833  shape_loss: 0.1453  box_mask_loss: 0.0379  vis_mask_loss: 0.0502  loss: 1.9045  data: 0.5613  batch: 1.4263  lr: 0.000006  max_mem: 13473
+train: Epoch:209	
+eta: 0:03:50  epoch: 208  step: 52100  mask_loss: 0.2225  ct_loss: 0.0912  wh_loss: 0.3113  py_loss: 0.9192  shape_loss: 0.1367  box_mask_loss: 0.0386  vis_mask_loss: 0.0476  loss: 1.7671  data: 0.4048  batch: 1.3461  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 208  step: 52200  mask_loss: 0.2392  ct_loss: 0.0664  wh_loss: 0.2952  py_loss: 0.8627  shape_loss: 0.1252  box_mask_loss: 0.0410  vis_mask_loss: 0.0486  loss: 1.6782  data: 0.5624  batch: 1.4917  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 208  step: 52249  mask_loss: 0.2214  ct_loss: 0.0689  wh_loss: 0.3052  py_loss: 0.9983  shape_loss: 0.1362  box_mask_loss: 0.0370  vis_mask_loss: 0.0412  loss: 1.8083  data: 0.3717  batch: 1.2635  lr: 0.000006  max_mem: 13473
+train: Epoch:210	
+eta: 0:03:49  epoch: 209  step: 52350  mask_loss: 0.2366  ct_loss: 0.1111  wh_loss: 0.3319  py_loss: 1.0184  shape_loss: 0.1469  box_mask_loss: 0.0403  vis_mask_loss: 0.0478  loss: 1.9329  data: 0.7569  batch: 1.6335  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 209  step: 52450  mask_loss: 0.2465  ct_loss: 0.0860  wh_loss: 0.3010  py_loss: 0.8379  shape_loss: 0.1307  box_mask_loss: 0.0404  vis_mask_loss: 0.0461  loss: 1.6886  data: 0.5451  batch: 1.4188  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 209  step: 52499  mask_loss: 0.2164  ct_loss: 0.0731  wh_loss: 0.3109  py_loss: 1.0254  shape_loss: 0.1458  box_mask_loss: 0.0375  vis_mask_loss: 0.0445  loss: 1.8537  data: 0.4810  batch: 1.2404  lr: 0.000006  max_mem: 13473
+train: Epoch:211	
+eta: 0:03:49  epoch: 210  step: 52600  mask_loss: 0.2277  ct_loss: 0.1011  wh_loss: 0.3089  py_loss: 0.8892  shape_loss: 0.1379  box_mask_loss: 0.0387  vis_mask_loss: 0.0442  loss: 1.7478  data: 0.4959  batch: 1.4171  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 210  step: 52700  mask_loss: 0.2405  ct_loss: 0.0944  wh_loss: 0.3302  py_loss: 0.9469  shape_loss: 0.1367  box_mask_loss: 0.0409  vis_mask_loss: 0.0507  loss: 1.8404  data: 0.7789  batch: 1.6470  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 210  step: 52749  mask_loss: 0.2305  ct_loss: 0.1180  wh_loss: 0.3221  py_loss: 0.9723  shape_loss: 0.1382  box_mask_loss: 0.0416  vis_mask_loss: 0.0512  loss: 1.8738  data: 0.7922  batch: 1.6552  lr: 0.000006  max_mem: 13473
+train: Epoch:212	
+eta: 0:03:50  epoch: 211  step: 52850  mask_loss: 0.2472  ct_loss: 0.1156  wh_loss: 0.3840  py_loss: 1.2663  shape_loss: 0.1792  box_mask_loss: 0.0428  vis_mask_loss: 0.0592  loss: 2.2942  data: 0.6144  batch: 1.4891  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 211  step: 52950  mask_loss: 0.2225  ct_loss: 0.0818  wh_loss: 0.2917  py_loss: 0.8056  shape_loss: 0.1212  box_mask_loss: 0.0366  vis_mask_loss: 0.0411  loss: 1.6005  data: 0.3673  batch: 1.2152  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 211  step: 52999  mask_loss: 0.2397  ct_loss: 0.1113  wh_loss: 0.3739  py_loss: 1.2474  shape_loss: 0.1734  box_mask_loss: 0.0387  vis_mask_loss: 0.0475  loss: 2.2320  data: 0.4638  batch: 1.2743  lr: 0.000006  max_mem: 13473
+train: Epoch:213	
+eta: 0:03:50  epoch: 212  step: 53100  mask_loss: 0.2305  ct_loss: 0.0994  wh_loss: 0.3830  py_loss: 1.3691  shape_loss: 0.1944  box_mask_loss: 0.0389  vis_mask_loss: 0.0524  loss: 2.3677  data: 0.9473  batch: 1.8509  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 212  step: 53200  mask_loss: 0.2119  ct_loss: 0.0762  wh_loss: 0.3056  py_loss: 0.8693  shape_loss: 0.1295  box_mask_loss: 0.0381  vis_mask_loss: 0.0411  loss: 1.6717  data: 0.5185  batch: 1.3728  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 212  step: 53249  mask_loss: 0.2300  ct_loss: 0.0838  wh_loss: 0.3032  py_loss: 0.8815  shape_loss: 0.1284  box_mask_loss: 0.0391  vis_mask_loss: 0.0470  loss: 1.7130  data: 0.7357  batch: 1.5567  lr: 0.000006  max_mem: 13473
+train: Epoch:214	
+eta: 0:03:50  epoch: 213  step: 53350  mask_loss: 0.2367  ct_loss: 0.0832  wh_loss: 0.3145  py_loss: 0.9571  shape_loss: 0.1378  box_mask_loss: 0.0399  vis_mask_loss: 0.0491  loss: 1.8183  data: 0.7764  batch: 1.6516  lr: 0.000006  max_mem: 13473
+eta: 0:01:16  epoch: 213  step: 53450  mask_loss: 0.2252  ct_loss: 0.0948  wh_loss: 0.3207  py_loss: 0.9292  shape_loss: 0.1359  box_mask_loss: 0.0388  vis_mask_loss: 0.0455  loss: 1.7901  data: 0.5458  batch: 1.4290  lr: 0.000006  max_mem: 13473
+eta: 0:00:01  epoch: 213  step: 53499  mask_loss: 0.2308  ct_loss: 0.0749  wh_loss: 0.3348  py_loss: 1.0528  shape_loss: 0.1545  box_mask_loss: 0.0386  vis_mask_loss: 0.0451  loss: 1.9316  data: 0.1808  batch: 0.9332  lr: 0.000006  max_mem: 13473

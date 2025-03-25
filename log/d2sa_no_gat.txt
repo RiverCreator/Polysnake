@@ -1,0 +1,33 @@
+/home/river/anaconda3/envs/e2ec/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/apex/__init__.py:68: DeprecatedFeatureWarning: apex.amp is deprecated and will be removed by the end of February 2023. Use [PyTorch AMP](https://pytorch.org/docs/stable/amp.html)
+  warnings.warn(msg, DeprecatedFeatureWarning)
+Random Seed: 114514
+train: Epoch: 0	
+loading annotations into memory...
+Done (t=0.44s)
+creating index...
+index created!
+WARNING: NO MODEL LOADED !!!
+loading annotations into memory...
+Done (t=0.65s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.52s)
+creating index...
+index created!
+train: Epoch: 1	
+eta: 0:03:05  epoch: 0  step: 100  mask_loss: 0.9921  ct_loss: 54.1190  wh_loss: 3.2781  py_loss: 19.6609  shape_loss: 1.4990  box_mask_loss: 0.1852  vis_mask_loss: 0.3013  loss: 80.0356  data: 0.3557  batch: 1.1676  lr: 0.000033  max_mem: 12097
+eta: 0:01:00  epoch: 0  step: 200  mask_loss: 0.9175  ct_loss: 11.5346  wh_loss: 2.4110  py_loss: 13.2027  shape_loss: 1.4984  box_mask_loss: 0.1025  vis_mask_loss: 0.2039  loss: 29.8705  data: 0.3328  batch: 1.1302  lr: 0.000033  max_mem: 12097
+eta: 0:00:01  epoch: 0  step: 249  mask_loss: 0.8700  ct_loss: 7.9923  wh_loss: 1.9794  py_loss: 10.5202  shape_loss: 1.2786  box_mask_loss: 0.0979  vis_mask_loss: 0.2151  loss: 22.9535  data: 0.3433  batch: 1.0717  lr: 0.000033  max_mem: 12097
+train: Epoch: 2	
+eta: 0:03:05  epoch: 1  step: 350  mask_loss: 0.7861  ct_loss: 5.2613  wh_loss: 1.4705  py_loss: 7.4615  shape_loss: 0.8215  box_mask_loss: 0.1196  vis_mask_loss: 0.2187  loss: 16.1392  data: 0.4755  batch: 1.5089  lr: 0.000047  max_mem: 12523
+eta: 0:01:06  epoch: 1  step: 450  mask_loss: 0.6799  ct_loss: 4.4290  wh_loss: 1.2517  py_loss: 5.7884  shape_loss: 0.5463  box_mask_loss: 0.1325  vis_mask_loss: 0.2055  loss: 13.0333  data: 0.4884  batch: 1.5238  lr: 0.000047  max_mem: 12523
+eta: 0:00:01  epoch: 1  step: 499  mask_loss: 0.6338  ct_loss: 4.1856  wh_loss: 1.1901  py_loss: 5.2150  shape_loss: 0.4545  box_mask_loss: 0.1372  vis_mask_loss: 0.2150  loss: 12.0312  data: 0.7074  batch: 1.6550  lr: 0.000047  max_mem: 12523
+train: Epoch: 3	
+eta: 0:03:35  epoch: 2  step: 600  mask_loss: 0.5785  ct_loss: 3.9100  wh_loss: 1.1904  py_loss: 5.0757  shape_loss: 0.4274  box_mask_loss: 0.1353  vis_mask_loss: 0.2091  loss: 11.5263  data: 0.5650  batch: 1.5978  lr: 0.000060  max_mem: 12843
+eta: 0:01:13  epoch: 2  step: 700  mask_loss: 0.5256  ct_loss: 3.7271  wh_loss: 1.1273  py_loss: 4.3806  shape_loss: 0.3822  box_mask_loss: 0.1289  vis_mask_loss: 0.1885  loss: 10.4603  data: 0.5615  batch: 1.5393  lr: 0.000060  max_mem: 12843
+eta: 0:00:01  epoch: 2  step: 749  mask_loss: 0.5210  ct_loss: 3.6386  wh_loss: 1.0911  py_loss: 4.2891  shape_loss: 0.3756  box_mask_loss: 0.1334  vis_mask_loss: 0.2048  loss: 10.2536  data: 0.7499  batch: 1.6468  lr: 0.000060  max_mem: 12843
