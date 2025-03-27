@@ -58,9 +58,9 @@ class Snake(nn.Module):
 
         self.head = BasicBlock(feature_dim, state_dim, conv_type) 
 
-        self.res_layer_num = 5 # 这里加上head，共有八层循环卷积，这里使用的dgrid为dilated circular conv，一定程度增加了感受野，卷积核大小为9
-        #dilation = [1, 1, 1, 2, 2, 4, 4]
-        dilation = [1, 2, 2, 4, 4]
+        self.res_layer_num = 7 # 这里加上head，共有八层循环卷积，这里使用的dgrid为dilated circular conv，一定程度增加了感受野，卷积核大小为9
+        dilation = [1, 1, 1, 2, 2, 4, 4]
+        #dilation = [1, 2, 2, 4, 4]
         for i in range(self.res_layer_num):
             conv = BasicBlock(state_dim, state_dim, conv_type, n_adj=4, dilation=dilation[i]) #这里让输入输出维度保持不变，这样来方便进行残差链接
             self.__setattr__('res'+str(i), conv)
@@ -218,10 +218,10 @@ class GAT(nn.Module):
                 concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
                 )
             
-            self.gat2 = GraphAttentionLayer(
-                in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
-                concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-                )
+            # self.gat2 = GraphAttentionLayer(
+            #     in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
+            #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+            #     )
 
             self.gat3 =  GraphAttentionLayer(
                 in_features=n_hidden, out_features=out_features, n_heads=1,
@@ -236,8 +236,8 @@ class GAT(nn.Module):
             x = F.elu(x) # Apply ELU activation function to the output of the first layer
 
             #Apply the second Graph Attention layer
-            x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
-            x = F.elu(x)
+            # x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
+            # x = F.elu(x)
             
             x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
         return F.elu(x) # Apply softmax activation function

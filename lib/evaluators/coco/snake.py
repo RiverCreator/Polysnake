@@ -36,31 +36,63 @@ class Evaluator:
             v: k for k, v in self.json_category_id_to_contiguous_id.items()
         }
         self.threshold = 0.3
-    def vis_data(self, mask, imgid, img_name):
+        self.vis_imgid = {3204,25912,28114,28123,43203,68012}
+        
+    def vis_data(self, mask, batch, imgid, img_name):
         import numpy as np
         from PIL import Image
-        
-        # 假设您的掩码张量存储在变量 mask 中，形状为 (1, 1, 168, 128)
-        # 这里我们使用随机数据作为示例
-        #mask = np.random.randn(1, 1, 168, 128)
+        image_path = batch['meta']['path'][0]  # 读取原图路径
+        H, W = mask.shape[1], mask.shape[2]
+        # 加载原图
+        original_img = Image.open(image_path).convert("RGBA")
+        N = mask.shape[0]
+        # 遍历每个实例
+        orig_w, orig_h = original_img.size  # 获取原图尺寸
 
-        # 去除多余的维度，得到形状为 (168, 128) 的二维数组
-        mask = np.squeeze(mask)
+        # 遍历每个实例
+        for i in range(N):
+            # 获取当前实例的 mask
+            mask_np = mask[i].numpy().astype(np.uint8) * 255  # 转换为 uint8 格式 (0, 255)
 
-        #mask_normalized = torch.sigmoid(mask)
+            # 创建一个空的 RGBA mask 图层
+            mask_img = Image.new("L", (W, H), 0)  # 纯黑色 (L模式：单通道灰度)
+            mask_img.paste(Image.fromarray(mask_np, mode="L"))  # 只在 mask 位置填充白色 (255)
 
-        # 将归一化后的张量值缩放到 0-255 范围，并转换为无符号8位整数类型
-        mask_scaled = (mask * 255).byte()
+            # 调整 mask 大小，使其匹配原图
+            mask_img = mask_img.resize((orig_w, orig_h))
 
-        # 将张量转换为 NumPy 数组
-        mask_np = mask_scaled.cpu().numpy()
+            # 创建带透明度的颜色层
+            mask_colored = Image.new("RGBA", original_img.size, (255, 0, 0, 100))  # 半透明红色
+            mask_colored.putalpha(mask_img)  # 透明度由 mask 控制
 
-        # 将 NumPy 数组转换为 PIL 图像
-        mask_image = Image.fromarray(mask_np)
+            # 叠加 mask 到原图
+            blended_img = Image.alpha_composite(original_img, mask_colored)
+            img_name = img_name + str(i)
+            # 保存结果
+            blended_img.save('visb/mask{}_{}.png'.format(imgid,img_name), format='PNG')
+            
+        # # 假设您的掩码张量存储在变量 mask 中，形状为 (1, 1, 168, 128)
+        # # 这里我们使用随机数据作为示例
+        # #mask = np.random.randn(1, 1, 168, 128)
 
-        # 保存为 JPEG 格式的图像
-        mask_image.save('visb/mask{}_{}.jpg'.format(imgid,img_name), format='JPEG')
+        # # 去除多余的维度，得到形状为 (168, 128) 的二维数组
+        # mask = np.squeeze(mask)
+
+        # #mask_normalized = torch.sigmoid(mask)
+
+        # # 将归一化后的张量值缩放到 0-255 范围，并转换为无符号8位整数类型
+        # mask_scaled = (mask * 255).byte()
+
+        # # 将张量转换为 NumPy 数组
+        # mask_np = mask_scaled.cpu().numpy()
+
+        # # 将 NumPy 数组转换为 PIL 图像
+        # mask_image = Image.fromarray(mask_np)
+
+        # # 保存为 JPEG 格式的图像
+        # mask_image.save('visb/mask{}_{}.jpg'.format(imgid,img_name), format='JPEG')
         self.i += 1
+    
     
     def vis_poly(self, py, label, batch, img, type = "d2sa"):
         #visualize_contour(dir,output,batch)
@@ -69,7 +101,7 @@ class Evaluator:
         elif(type == "kins"):
             image = Image.open("/data0/river/Polysnake/data/kitti/testing/image_2/{}".format(img['file_name'])).convert('RGBA')
         #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
-        dir="vis_{}/{}".format(type,self.i)
+        dir="vis_{}717/{}".format(type,self.i)
         if os.path.exists(dir):
             shutil.rmtree(dir)
         os.makedirs(dir)
@@ -89,12 +121,13 @@ class Evaluator:
             except:
                 print('wrong')
         self.i+=1
-        
+    
     def evaluate(self, output, batch):
         detection = output['detection']
         score = detection[:, 2].detach().cpu().numpy()
         label = detection[:, 3].detach().cpu().numpy().astype(int)
         py = output['py'][-1].detach().cpu().numpy() * snake_config.down_ratio
+        i_gt_py = batch['i_gt_py'][0].detach().cpu().numpy() * snake_config.down_ratio
         # cond_ins_mask=output['cond_predict_val'].sigmoid()
         # cond_ins_mask_t = np.asarray(cond_ins_mask.cpu())
         #py_init=output['poly_init_infer'][output['idx']][output['nms_keep']].cpu().numpy()
@@ -105,10 +138,8 @@ class Evaluator:
         img_id = int(batch['meta']['img_id'][0])
         # self.vis_data(output['amodal_preds'][-1][0][label[0]],img_id)
         # self.vis_data(output['per_ins_cmask'][0][0],img_id,)
-        # if(img_id  == 1104):
-        #     for i in range(batch['per_ins_cmask'].shape[1]):
-        #         self.vis_data(batch['per_ins_cmask'][0][i],img_id,"amodal{}".format(i))
-        #         self.vis_data(batch['per_vis_cmask'][0][i],img_id,"vis{}".format(i))
+            # self.vis_data(batch['per_ins_cmask'][0], batch, img_id, "amodal")
+            # self.vis_data(batch['per_vis_cmask'][0], batch, img_id,"vis")
         center = batch['meta']['center'][0].detach().cpu().numpy()
         scale = batch['meta']['scale'][0].detach().cpu().numpy() #d2sa:(1952,1504)
         
@@ -124,8 +155,10 @@ class Evaluator:
         rles = snake_eval_utils.coco_poly_to_rle(py, ori_h, ori_w)
         if(cfg.need_vis):
             if("d2sa" in cfg.model):
-                self.vis_poly(py,label,batch,img,type="d2sa")
+                if(img_id in self.vis_imgid):
+                    self.vis_poly(py,label,batch,img,type="d2sa")
             elif("kins" in cfg.model):
+                
                 self.vis_poly(py,label,batch,img,type="kins")
         # if('001119' in img['file_name'] or '68024' in img['file_name']):
         #     self.vis_poly(py,label,batch,img)

@@ -485,4 +485,4 @@ class DLASeg(nn.Module):
         z = {}
         for head in self.heads:
             z[head] = self.__getattr__(head)(y[-1])
-        return z, y[-1]
+        return z, y[-1], y[0]

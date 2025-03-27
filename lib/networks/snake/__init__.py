@@ -1,7 +1,6 @@
 from lib.utils.snake import snake_config
 from .ct_snake import get_network as get_ro
 
-
 _network_factory = {
     'ro': get_ro
 }

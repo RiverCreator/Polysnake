@@ -9,7 +9,8 @@ from pycocotools.coco import COCO
 import pycocotools.mask as mask_util
 from lib.config import cfg
 import random
-
+import shutil
+from PIL import Image, ImageDraw
 
 class Dataset(data.Dataset):
     def __init__(self, ann_file, data_root, split, istrain):
@@ -31,7 +32,32 @@ class Dataset(data.Dataset):
         self.anns = self.anns[:500] if split == 'mini' else self.anns
         self.json_category_id_to_contiguous_id = {v: i for i, v in enumerate(self.coco.getCatIds())}
         self.num_classes = cfg.num_classes
-
+        self.i = 0
+        self.vis_imgid = {3204,25912,28114,28123,43203,68012}
+    def vis_poly(self, py, img_path, img_id):
+        #visualize_contour(dir,output,batch)
+        image = Image.open("/data0/river/Polysnake/{}".format(img_path)).convert('RGBA')
+        #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
+        dir="vis_d2sa/{}".format(img_id)
+        if os.path.exists(dir):
+            shutil.rmtree(dir)
+        os.makedirs(dir)
+        shutil.copy(img_path, dir)
+        for i in range(len(py)):
+            image2 = Image.new("RGBA", (image.width, image.height))
+            draw = ImageDraw.Draw(image2)
+            tmp=[]
+            for j in range(len(py[i][0])):
+                tmp.append((py[i][0][j][0],py[i][0][j][1]))
+            
+            polygon_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255), 128)
+            draw.polygon(tmp, fill= polygon_color, outline=polygon_color)
+            blend = Image.alpha_composite(image, image2)
+            try:
+                blend.save(dir+"/poly_test_{}.png".format(i))
+            except:
+                print('wrong')
+        self.i+=1
     def process_info(self, img_id):
         if(len(self.coco.getAnnIds(imgIds=img_id, iscrowd=0))):
             ann_ids = self.coco.getAnnIds(imgIds=img_id, iscrowd=0)
@@ -80,6 +106,8 @@ class Dataset(data.Dataset):
                 vis_polys = [[np.array(poly).reshape(-1, 2) for poly in obj['visible_mask']] for obj in anno]
         except:
             print("debug point")
+        if(int(anno[0]['image_id']) in self.vis_imgid):
+            self.vis_poly(instance_polys, path, int(anno[0]['image_id']))
         cls_ids = [self.json_category_id_to_contiguous_id[obj['category_id']] for obj in anno]
         return img, instance_polys, cls_ids, vis_polys
 

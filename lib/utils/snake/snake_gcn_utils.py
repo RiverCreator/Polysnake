@@ -166,8 +166,8 @@ def get_gcn_feature(cnn_feature, img_poly, ind, h, w):
     img_poly = img_poly.clone()
     img_poly[..., 0] = img_poly[..., 0] / (w / 2.) - 1 ## x坐标
     img_poly[..., 1] = img_poly[..., 1] / (h / 2.) - 1 ## y坐标 为什么要w/2和h/2? 这里是为了配合后面grid_sample函数，其第二个参数即采样坐标，但坐标需要norm到（-1,1）之间 这里除以w/2和h/2，将其norm到(0,2) 减一norm到(-1,1)
-    batch_size = cnn_feature.size(0)
     gcn_feature = torch.zeros([img_poly.size(0), cnn_feature.size(1), img_poly.size(1)]).to(img_poly.device)  ## ct_num cnn_feature_channel poly_points_num 
+    batch_size = cnn_feature.size(0)
     for i in range(batch_size):
         poly = img_poly[ind == i].unsqueeze(0) ## 选出第i张图片的center的init points 转为（1，ct_num,128,2）
         feature = torch.nn.functional.grid_sample(cnn_feature[i:i+1], poly)[0].permute(1, 0, 2) ## cnn_feature[i:i+1]对应第i张图片的cnn_feature，如果坐标超出范围则直接取0，因为该函数padding默认参数为zeros，如果为border，则用边缘元素填充

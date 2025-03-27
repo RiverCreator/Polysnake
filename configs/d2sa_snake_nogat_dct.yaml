@@ -1,21 +1,21 @@
-model: 'd2sa_snake_nogat'
+model: 'd2sa_snake_nogat_dct'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [2]
-iter_num: 6
+gpus: [1]
+iter_num: 7
 score_thresh: 0.05
 num_classes: 60
 eval_model_name: 'best_nogat73.4.pth'
 use_gat: false
 use_box: true
-use_dct: false
+use_dct: true
 train:
     optim: 'adam'
     lr: 1e-4
     milestones: (80, 120)
     gamma: 0.25
-    batch_size: 4
+    batch_size: 8
     dataset: 'D2saTrain'
     num_workers: 8
     epoch: 300

@@ -2,14 +2,15 @@ model: 'd2sa_snake_all'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [0]
+gpus: [3]
 iter_num: 7
 score_thresh: 0.05
 num_classes: 60
-use_gat: false
+use_gat: true
 use_box: true
-eval_model_name: 'base74.1.pth'
-need_vis: false
+use_dct: false
+eval_model_name: 'best71.7.pth'
+need_vis: true
 train:
     optim: 'adam'
     lr: 1e-4

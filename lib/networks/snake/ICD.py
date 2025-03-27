@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from lib.config import cfg
-from .ABranch import AmodalBranch
+from .ABranch import AmodalBranch,DCTMaskBranch
 
 class RAFT(nn.Module):
     def __init__(self):
@@ -23,8 +23,12 @@ class RAFT(nn.Module):
         else:
             self.evolve_gcn = GAT(in_features=64 + 2, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
         self.update_block = BasicUpdateBlock() ## 即文章中使用gru的模块
-        self.box_mask_head = AmodalBranch(cfg.num_classes)
-        self.vis_mask_head = AmodalBranch(cfg.num_classes)
+        if(cfg.use_dct):
+            self.box_mask_head = DCTMaskBranch(cfg.num_classes)
+            self.vis_mask_head = DCTMaskBranch(cfg.num_classes)
+        else:
+            self.box_mask_head = AmodalBranch(cfg.num_classes)
+            self.vis_mask_head = AmodalBranch(cfg.num_classes)
         #self.classify_block= ClassifyBlock(1024, cfg.num_classes)
         #self.mcr=Snake(state_dim=128, feature_dim=64 + 2, conv_type='dgrid', need_fea=False)
         for m in self.modules():
@@ -38,7 +42,32 @@ class RAFT(nn.Module):
         output.update({'i_gt_py': init['i_gt_py'], 'per_ins_cmask': init['per_ins_cmask'], 'per_vis_cmask': init['per_vis_cmask']}) # 将gt加到output中保存
         return init
 
-    def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred=None, vis_pred=None):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
+    def vis_mask(self, mask):
+        import numpy as np
+        from PIL import Image
+        
+        # 假设您的掩码张量存储在变量 mask 中，形状为 (1, 1, 168, 128)
+        # 这里我们使用随机数据作为示例
+        #mask = np.random.randn(1, 1, 168, 128)
+
+        # 去除多余的维度，得到形状为 (168, 128) 的二维数组
+        mask = np.squeeze(mask)
+
+        #mask_normalized = torch.sigmoid(mask)
+
+        # 将归一化后的张量值缩放到 0-255 范围，并转换为无符号8位整数类型
+        mask_scaled = (mask * 255).byte()
+
+        # 将张量转换为 NumPy 数组
+        mask_np = mask_scaled.cpu().numpy()
+
+        # 将 NumPy 数组转换为 PIL 图像
+        mask_image = Image.fromarray(mask_np)
+
+        # 保存为 JPEG 格式的图像
+        mask_image.save('vis_test.jpg', format='JPEG')
+    
+    def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred=None, vis_pred=None, type="training"):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
         if len(i_it_poly) == 0:
             return torch.empty(0, 128, 2)
             return torch.zeros_like(i_it_poly)
@@ -50,13 +79,20 @@ class RAFT(nn.Module):
         y_max = torch.max(i_it_poly[..., 1], dim=-1)[0]
         ins_h = y_max - y_min
         ins_w = x_max - x_min
-        tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w)
-        ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h)
+        if(cfg.use_dct):
+            tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w)
+            ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h)
+        else:
+            tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w* 4)
+            ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h* 4)
         relative_box_poly = torch.stack((tx,ty),dim=2)
         if(cfg.use_box):
             probs = snake_gcn_utils.get_mask_probility(box_pred, relative_box_poly)
-            vis_probs = snake_gcn_utils.get_mask_probility(vis_pred, relative_box_poly)
-            init_feature = init_feature * (1 + 0.1* vis_probs)
+            if(type == "training"):
+                vis_probs = snake_gcn_utils.get_mask_probility(vis_pred, i_it_poly)
+            else:
+                vis_probs = snake_gcn_utils.get_mask_probility(vis_pred, relative_box_poly)
+            init_feature = init_feature * (1 + 0.1* vis_probs.sigmoid())
             init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1), probs.sigmoid()], dim=1)  ## 论文中提到的将相对坐标信息与之concat，提供一个相对坐标信息 c_it_poly为（n，128，2），为了能够匹配上将其转换为n 2 128 这样最终feature 大小为n c+2 128
         else:
             init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1)], dim=1)
@@ -127,8 +163,148 @@ class RAFT(nn.Module):
             pred_masks[i] = F.interpolate(pred_masks[i],size=(output_height, output_width),mode="bilinear", align_corners=False)
         return pred_masks
     
+    def forward_with_dct(self, output, cnn_feature, fine_feature, batch):
+        box_mask_preds = []
+        vis_mask_preds = []
+        rois = [] 
+        vis_dct_pred_x = []
+        vis_dct_pred_bfg = []
+        vis_dct_pred_patch_vector = []
+        amodal_dct_pred_x = []
+        amodal_dct_pred_bfg = []
+        amodal_dct_pred_patch_vector = []
+        ret = output
+        if batch is not None and 'test' not in batch['meta']:
+            with torch.no_grad():
+                init = self.prepare_training(output, batch)  # init中为gt和py_ind(标记ct属于batch中的第几张图片)，output中也加入了gt的信息
+            #### modify: poly init为是对应于四倍降采样特征图上
+            # 
+            # 的坐标的，这里全部预测的坐标和偏移量都假定归一化了，因此都需要乘上对应的w和h
+            poly_init = self.use_gt_detection(output, batch) #训练的时候，这里直接使用的gt center来对点进行初始化 ，获得dla模块中推理得到的偏移量
+            poly_init = poly_init.detach()
+            
+            #init_mask_pred = self.box_mask_head(cnn_feature, poly_init, batch['ct_01'].byte())
+            if cfg.use_box:
+                box_mask_pred, roi, amodal_dct_mask_logits, amodal_bfg, amodal_patch_vectors = self.box_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
+                vis_mask_pred, roi, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
+                
+                box_mask_preds.append(box_mask_pred)
+                vis_mask_preds.append(vis_mask_pred)
+                rois.append(roi)
+                amodal_dct_pred_x.append(amodal_dct_mask_logits)
+                amodal_dct_pred_bfg.append(amodal_bfg)
+                amodal_dct_pred_patch_vector.append(amodal_patch_vectors)
+                vis_dct_pred_x.append(vis_dct_mask_logits)
+                vis_dct_pred_bfg.append(vis_bfg)
+                vis_dct_pred_patch_vector.append(vis_patch_vectors)
+                
+            py_pred = poly_init * snake_config.ro  #乘了个4，对应到原图的尺寸，而他这里使用的feature map是经过4倍降采样的
+            c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
+            #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+            if cfg.use_box:
+                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
+            else:
+                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])
+            net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
+            i_poly_fea = F.leaky_relu(i_poly_fea)
+            py_preds = []
+            cls_scores= []
+            for i in range(self.iter):  ## 因为初始点需要单独通过中心点来获得，因此先进行处理后，再进行迭代 ####不过他这里代码执行还是总共只执行了self.iter次迭代，因为他这里是在循环开头用gru计算偏移量的
+                net, offset = self.update_block(net, i_poly_fea) # gru模块，输出net(论文中的hk)和偏移量  net送入下一轮迭代中
+                #cls_score= self.classify_block(net)
+                #cls_scores.append(cls_score)
+                #### offset
+                # offset[:,:,0]*inp_w offset[:,:,1]*=inp_h
+                py_pred = py_pred + snake_config.ro * offset# * attn_score
+                py_preds.append(py_pred)
+
+                py_pred_sm = py_pred / snake_config.ro
+                if cfg.use_box:
+                    box_mask_pred, roi, amodal_dct_mask_logits, amodal_bfg, amodal_patch_vectors = self.box_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
+                    vis_mask_pred, roi, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
+                    
+                    box_mask_preds.append(box_mask_pred)
+                    vis_mask_preds.append(vis_mask_pred)
+                    rois.append(roi)
+                    amodal_dct_pred_x.append(amodal_dct_mask_logits)
+                    amodal_dct_pred_bfg.append(amodal_bfg)
+                    amodal_dct_pred_patch_vector.append(amodal_patch_vectors)
+                    vis_dct_pred_x.append(vis_dct_mask_logits)
+                    vis_dct_pred_bfg.append(vis_bfg)
+                    vis_dct_pred_patch_vector.append(vis_patch_vectors)
+
+                c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
+                
+                #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])
+                if cfg.use_box:
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
+                else:
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'])
+                #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
+                i_poly_fea = F.leaky_relu(i_poly_fea)
+            # ret.update({'py_pred': py_preds, 'vis_py_pred': vis_py_preds,'i_gt_py': output['i_gt_py'] * snake_config.ro,'vis_i_gt_py': output['vis_i_gt_py'] * snake_config.ro, 'mask_preds': box_mask_preds, 'vis_mask_preds' : vis_mask_preds,'rois': rois,'vis_rois': vis_rois,
+            #             'dct_x': dct_stage_pred_x, 'dct_bfg':dct_stage_pred_bfg, 'dct_patch_vector':dct_stage_pred_patch_vector, 'ind':init['py_ind']})
+            ret.update({'vis_dct_x': vis_dct_pred_x, 'vis_dct_bfg':vis_dct_pred_bfg, 'vis_dct_patch_vector':vis_dct_pred_patch_vector,
+                        'amodal_dct_x': amodal_dct_pred_x, 'amodal_dct_bfg':amodal_dct_pred_bfg, 'amodal_dct_patch_vector':amodal_dct_pred_patch_vector})
+            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores, 'mask_preds': box_mask_preds,'vis_mask_preds': vis_mask_preds,'rois': rois})
+
+        if not self.training:
+            with torch.no_grad():
+                test_box_mask_preds = []
+                test_vis_mask_preds = []
+                py_preds = []
+                poly_init, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3),self.score_thresh)
+                # poly_init_loss = self.use_gt_detection(output, batch)
+                # init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
+                # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
+                ind = torch.zeros((poly_init.size(0)))
+                py_preds.append(poly_init)
+                py_pred = poly_init * snake_config.ro
+                c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init)
+                ct_01 = torch.ones([1, detection.size(0)])
+                if cfg.use_box:
+                    box_mask_pred, roi, _, _, _  = self.box_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
+                    vis_mask_pred, roi, _, _, _  = self.vis_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
+                    test_box_mask_preds.append(box_mask_pred)
+                    test_vis_mask_preds.append(vis_mask_pred)
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                              ind, test_box_mask_preds[-1],test_vis_mask_preds[-1])
+                else:
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                              ind)
+                #py_preds=[]
+                if len(py_pred) != 0:
+                    net = torch.tanh(i_poly_fea)
+                    i_poly_fea = F.leaky_relu(i_poly_fea)
+                    for i in range(self.iter):
+                        net, offset = self.update_block(net, i_poly_fea)
+                        
+                        py_pred = py_pred + snake_config.ro * offset
+                        py_pred_sm = py_pred / snake_config.ro
+                        py_preds.append(py_pred_sm)
+                        if cfg.use_box:
+                            box_mask_pred, roi, _, _, _  = self.box_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
+                            vis_mask_pred, roi, _, _, _  = self.vis_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
+                            test_box_mask_preds.append(box_mask_pred)
+                            test_vis_mask_preds.append(vis_mask_pred)
+                        if i != (self.iter - 1):                     
+                            c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
+                            if cfg.use_box:
+                                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1],test_vis_mask_preds[-1]) #init['ind'])
+                            else:
+                                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind) #init['ind'])
+                            i_poly_fea = F.leaky_relu(i_poly_fea)
+
+                    final_py_preds = [py_pred_sm]
+                    py_preds.append(py_pred_sm)
+                    ret.update({'py': py_preds})
+                    #ret.update({'amodal_preds': test_box_mask_preds,'vis_mask_preds': test_vis_mask_preds})
+                else:
+                    final_py_preds = [i_poly_fea]
+                    ret.update({'py': final_py_preds})
+        return output
     
-    def forward(self, output, cnn_feature, batch):
+    def forward_with_box(self, output, cnn_feature, batch):
         #boundary_score=output['mask'].sigmoid()
         #attention_feature = self.occlusionatte(1-boundary_score)
         box_mask_preds = []
@@ -248,3 +424,8 @@ class RAFT(nn.Module):
                     ret.update({'py': final_py_preds})
         return output
 
+    def forward(self, output, cnn_feature, batch, fine_feature):
+        if(cfg.use_dct):
+            return self.forward_with_dct(output, cnn_feature, fine_feature, batch)
+        else:
+            return self.forward_with_box(output, cnn_feature, batch)
