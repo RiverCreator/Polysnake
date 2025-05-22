@@ -36,7 +36,8 @@ class Evaluator:
             v: k for k, v in self.json_category_id_to_contiguous_id.items()
         }
         self.threshold = 0.3
-        self.vis_imgid = {3204,25912,28114,28123,43203,68012}
+        self.vis_imgid = {3204,25912,28114,28123,43203,66204,68101,68012}
+        self.kins_vis_imgid = {4245,4246,4247,4248,4249,4250,4251,4252,4253,4254,4255,4256,4257,4258,4259,4260,4275,4276,4277,4278,4279,4280,4281,4282,4283,4284,4284,4285,4286,4289}
         
     def vis_data(self, mask, batch, imgid, img_name):
         import numpy as np
@@ -100,6 +101,8 @@ class Evaluator:
             image = Image.open("/data0/river/Polysnake/data/d2sa/images/{}".format(img['file_name'])).convert('RGBA')
         elif(type == "kins"):
             image = Image.open("/data0/river/Polysnake/data/kitti/testing/image_2/{}".format(img['file_name'])).convert('RGBA')
+        elif(type == "cocoa"):
+            image = Image.open("/data0/river/Polysnake/data/cocoa/val2014/{}".format(img['file_name'])).convert('RGBA')
         #image=Image.fromarray(batch['meta']['orig_img'].detach().cpu().numpy()[0])
         dir="vis_{}717/{}".format(type,self.i)
         if os.path.exists(dir):
@@ -158,8 +161,10 @@ class Evaluator:
                 if(img_id in self.vis_imgid):
                     self.vis_poly(py,label,batch,img,type="d2sa")
             elif("kins" in cfg.model):
-                
-                self.vis_poly(py,label,batch,img,type="kins")
+                if(img_id in self.kins_vis_imgid):
+                    self.vis_poly(py,label,batch,img,type="kins")
+            elif("cocoa" in cfg.model):
+                self.vis_poly(py,label,batch,img,type="cocoa")
         # if('001119' in img['file_name'] or '68024' in img['file_name']):
         #     self.vis_poly(py,label,batch,img)
         #self.vis_poly(py,label,batch)

@@ -218,10 +218,10 @@ class GAT(nn.Module):
                 concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
                 )
             
-            # self.gat2 = GraphAttentionLayer(
-            #     in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
-            #     concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
-            #     )
+            self.gat2 = GraphAttentionLayer(
+                in_features=n_hidden, out_features=n_hidden, n_heads=n_heads,
+                concat=concat, dropout=dropout, leaky_relu_slope=leaky_relu_slope
+                )
 
             self.gat3 =  GraphAttentionLayer(
                 in_features=n_hidden, out_features=out_features, n_heads=1,
@@ -236,8 +236,8 @@ class GAT(nn.Module):
             x = F.elu(x) # Apply ELU activation function to the output of the first layer
 
             #Apply the second Graph Attention layer
-            # x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
-            # x = F.elu(x)
+            x = self.gat2(x, self.adj_mat).permute(0, 2, 1)
+            x = F.elu(x)
             
             x = self.gat3(x, self.adj_mat).squeeze(1).permute(0, 2, 1)
         return F.elu(x) # Apply softmax activation function

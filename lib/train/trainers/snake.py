@@ -7,6 +7,7 @@ from lib.utils.snake.snake_gcn_utils import paste_masks_in_image
 from lib.csrc.roi_align_layer.roi_align import ROIAlign
 from lib.config import cfg
 from lib.networks.snake.mask_encoding import DctMaskEncoding
+from lib.utils.snake import snake_gcn_utils, snake_config
 
 class NetworkWrapper(nn.Module):
     def __init__(self, net,isTrain=True):
@@ -84,15 +85,12 @@ class NetworkWrapper(nn.Module):
         patches_per_image = masks_per_image.reshape(-1,patch_size, patch_size) #reshape 为 n*196 8 8
         return patches_per_image
     
-    def vis_mask(self, binary_tensor, box_roi):
+    def vis_mask(self, binary_tensor, box_roi, index):
         import numpy as np
         from PIL import Image,ImageDraw
 
         # 假设你的二值化图像是一个 numpy 数组，形状是 (33, H, W)
-
-        # 选择一个实例，例如选择第一个实例（索引为 0）
-        instance_index = 0
-        mask = binary_tensor[instance_index]  # 选择指定实例的掩码
+        mask = binary_tensor[index]  # 选择指定实例的掩码
 
         # 将掩码乘以 255，转为可以显示的图像
         mask = mask * 255
@@ -140,8 +138,32 @@ class NetworkWrapper(nn.Module):
         gt_masks = gt_masks[gt_bfg == 1, :]
         return gt_masks, gt_bfg
     
+    def masked_log_click_loss(self, points, heatmap, threshold=1e-3):
+        """
+        仅对热力图有响应值的区域计算损失
+        """
+        # 采样热力图响应值 (N, 128)
+        heat_values = snake_gcn_utils.get_mask_probility(heatmap, points)
+        
+        # 生成响应掩码 (N, 128)
+        mask = (heat_values > threshold).float()
+        
+        # 避免log(0)，仅对有效区域计算
+        valid_heat = torch.clamp(heat_values, min=1e-6) * mask
+        loss = -torch.log(valid_heat + 1e-6) * mask  # (N, 128)
+        
+        # 归一化（仅计算有效点的平均损失）
+        if mask.sum() > 0:
+            loss = loss.sum() / mask.sum()
+        else:
+            loss = torch.tensor(0.0, device=heatmap.device)
+        return loss
+    
     def forward(self, batch):
-        output = self.net(batch['inp'], batch)
+        if(cfg.use_interactive):
+            output = self.net(batch['inp'], batch, more_info = batch)
+        else:
+            output = self.net(batch['inp'], batch)
         ct_01=batch['ct_01'].byte()
         scalar_stats = {}
         loss = 0
@@ -181,10 +203,17 @@ class NetworkWrapper(nn.Module):
         vis_mask_losses = 0
         amodal_dct_loss = 0
         vis_dct_loss = 0
+        click_loss = 0
         # if not self.training:
         #     print('debug')
         #pred_masks = self.postprocess(output['mask_preds'], output['per_ins_cmask'].shape[1], output['per_ins_cmask'].shape[2])
-        
+        if cfg.use_interactive:
+            for i in range(len(output['point_guassian_heatmaps'])):
+                masked_log_click_loss = self.masked_log_click_loss(output['py_pred'][i]/snake_config.ro,output['point_guassian_heatmaps'][i].unsqueeze(1))
+                click_loss += masked_log_click_loss
+            click_loss /= len(output['point_guassian_heatmaps'])
+            loss += 0.1* click_loss
+            scalar_stats.update({'click_loss': click_loss})
         if cfg.use_box:
             if cfg.use_dct:
                 amodal_gt_masks_coarse_loss = 0
@@ -208,6 +237,9 @@ class NetworkWrapper(nn.Module):
                     gt_masks = self.crop_and_resize(output['per_ins_cmask'], output['rois'][i], type = "assemble") 
                     mask_loss = net_utils.dice_coefficient(net_utils.sigmoid(pred_masks), gt_masks)
                     mask_losses +=mask_loss.mean()
+                
+                #self.vis_mask(gt_masks.cpu(), [],1)
+                #self.vis_mask(output['mask_preds'][i].squeeze(1).detach().cpu(), [],1)
                 
                 for i in range(len(output['vis_mask_preds'])):
                     pred_masks = output['vis_mask_preds'][i]

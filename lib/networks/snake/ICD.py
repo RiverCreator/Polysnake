@@ -1,6 +1,6 @@
 from matplotlib.pyplot import box
 from .snake import Snake,GAT
-from .update import BasicUpdateBlock, ClassifyBlock,OcclusionAtte
+from .update import BasicUpdateBlock
 from lib.utils import data_utils
 from lib.utils.snake import snake_gcn_utils, snake_config, snake_decode
 
@@ -9,8 +9,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from lib.config import cfg
-from .ABranch import AmodalBranch,DCTMaskBranch
-
+from .ABranch import AmodalBranch,DCTMaskBranch,PositionEmbeddingRandom,RandomSampler
+from . import get_gt_info 
+from typing import Tuple
+import cv2
 class RAFT(nn.Module):
     def __init__(self):
         super(RAFT, self).__init__()
@@ -19,9 +21,12 @@ class RAFT(nn.Module):
         #这里的state_dim表示128个点的特征向量
         #self.evolve_gcn = Snake(state_dim=128, feature_dim=64 + 2 + 1, conv_type='dgrid', need_fea=True) #即文章中用来进行特征聚合，然后输出g_{k-1}的模块
         if(cfg.use_box):
-            self.evolve_gcn = GAT(in_features=64 + 2 + 1, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
+            if(cfg.use_interactive):
+                self.evolve_gcn = GAT(in_features=64 + 2 + 1 + 2, n_hidden= 256, out_features= 64, n_heads=2,concat=True, use_gat = cfg.use_gat)
+            else:
+                self.evolve_gcn = GAT(in_features=64 + 2 + 1, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
         else:
-            self.evolve_gcn = GAT(in_features=64 + 2, n_hidden= 256, out_features= 64, n_heads=4,concat=True, use_gat = cfg.use_gat)
+            self.evolve_gcn = GAT(in_features=64 + 2, n_hidden= 256, out_features= 64, n_heads=2,concat=True, use_gat = cfg.use_gat)
         self.update_block = BasicUpdateBlock() ## 即文章中使用gru的模块
         if(cfg.use_dct):
             self.box_mask_head = DCTMaskBranch(cfg.num_classes)
@@ -29,6 +34,9 @@ class RAFT(nn.Module):
         else:
             self.box_mask_head = AmodalBranch(cfg.num_classes)
             self.vis_mask_head = AmodalBranch(cfg.num_classes)
+        if(cfg.use_interactive):
+            self.iterative_sampler = RandomSampler()
+            self.pe_random = PositionEmbeddingRandom()
         #self.classify_block= ClassifyBlock(1024, cfg.num_classes)
         #self.mcr=Snake(state_dim=128, feature_dim=64 + 2, conv_type='dgrid', need_fea=False)
         for m in self.modules():
@@ -66,8 +74,44 @@ class RAFT(nn.Module):
 
         # 保存为 JPEG 格式的图像
         mask_image.save('vis_test.jpg', format='JPEG')
+        
+    def visualize_instance_points(self,
+        points: torch.Tensor,  # (N, 128, 2) 轮廓点数据
+        index: int,            # 要可视化的实例索引
+        image_size: Tuple[int, int] = (168, 128),  # 图像尺寸 (H, W)
+        save_path: str = "vis_point.jpg",  # 保存路径
+        point_color: Tuple[int, int, int] = (0, 0, 255),  # 点颜色 (BGR)
+        line_color: Tuple[int, int, int] = (0, 255, 0),   # 连线颜色
+        point_radius: int = 3,  # 点半径
+        line_thickness: int = 2  # 连线粗细
+    ):
+        """
+        可视化指定索引的实例轮廓点
+        """
+        # 检查索引是否有效
+        if index < 0 or index >= points.shape[0]:
+            raise ValueError(f"Index {index} out of range [0, {points.shape[0]-1}]")
+        
+        # 创建空白图像 (H, W, 3)
+        H, W = image_size
+        image = np.zeros((H, W, 3), dtype=np.uint8)
+        
+        # 获取指定实例的点并转为numpy数组
+        instance_points = points[index].cpu().numpy()  # (128, 2)
+        
+        # 绘制连线 (闭合多边形)
+        pts = instance_points.reshape(-1, 1, 2).astype(np.int32)
+        cv2.polylines(image, [pts], isClosed=True, color=line_color, thickness=line_thickness)
+        
+        # 绘制每个点
+        for (x, y) in instance_points:
+            cv2.circle(image, (int(x), int(y)), point_radius, point_color, -1)
+        
+        # 保存图像
+        cv2.imwrite(save_path, image)
+        #print(f"Visualization saved to {save_path}")
     
-    def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred=None, vis_pred=None, type="training"):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
+    def evolve_poly(self, snake, cnn_feature, i_it_poly, c_it_poly, ind, box_pred=None, vis_pred=None, simulate_points = None, simulate_boxes = None, type="training"):  # i_it_poly为init point，c_it_poly为相对init point，ind为标注ct为batch中哪个图片的
         if len(i_it_poly) == 0:
             return torch.empty(0, 128, 2)
             return torch.zeros_like(i_it_poly)
@@ -79,12 +123,15 @@ class RAFT(nn.Module):
         y_max = torch.max(i_it_poly[..., 1], dim=-1)[0]
         ins_h = y_max - y_min
         ins_w = x_max - x_min
+        if(cfg.use_interactive):
+            point_prompt = snake_gcn_utils.get_mask_probility(simulate_points.to(i_it_poly.device), i_it_poly)
+            box_prompt = snake_gcn_utils.get_mask_probility(simulate_boxes.to(i_it_poly.device), i_it_poly)
         if(cfg.use_dct):
-            tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w)
-            ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h)
-        else:
             tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w* 4)
             ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h* 4)
+        else:
+            tx = (c_it_poly[..., 0]/ins_w[:, None]* cfg.roi_w)
+            ty = (c_it_poly[..., 1]/ins_h[:, None]* cfg.roi_h)
         relative_box_poly = torch.stack((tx,ty),dim=2)
         if(cfg.use_box):
             probs = snake_gcn_utils.get_mask_probility(box_pred, relative_box_poly)
@@ -93,7 +140,10 @@ class RAFT(nn.Module):
             else:
                 vis_probs = snake_gcn_utils.get_mask_probility(vis_pred, relative_box_poly)
             init_feature = init_feature * (1 + 0.1* vis_probs.sigmoid())
-            init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1), probs.sigmoid()], dim=1)  ## 论文中提到的将相对坐标信息与之concat，提供一个相对坐标信息 c_it_poly为（n，128，2），为了能够匹配上将其转换为n 2 128 这样最终feature 大小为n c+2 128
+            if(cfg.use_interactive):
+                init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1), probs.sigmoid(), point_prompt, box_prompt], dim=1)
+            else:
+                init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1), probs.sigmoid()], dim=1)  ## 论文中提到的将相对坐标信息与之concat，提供一个相对坐标信息 c_it_poly为（n，128，2），为了能够匹配上将其转换为n 2 128 这样最终feature 大小为n c+2 128
         else:
             init_input = torch.cat([init_feature, c_it_poly.permute(0, 2, 1)], dim=1)
         i_poly_fea = snake(init_input)  ## snake中进行信息聚合 并预测偏移，对应于文章中的feature aggregation模块
@@ -162,8 +212,15 @@ class RAFT(nn.Module):
             # pred_masks[i] = pred_masks[i].expand(1,-1,-1,-1)
             pred_masks[i] = F.interpolate(pred_masks[i],size=(output_height, output_width),mode="bilinear", align_corners=False)
         return pred_masks
-    
-    def forward_with_dct(self, output, cnn_feature, fine_feature, batch):
+    def get_box(self, py):
+        xmax, _ = torch.max(py[:,:,0], dim = 1)
+        xmin, _ = torch.min(py[:,:,0], dim = 1)
+        ymax, _ = torch.max(py[:,:,1], dim = 1)
+        ymin, _ = torch.min(py[:,:,1], dim = 1)
+        box_roi = torch.cat([xmin[:, None], ymin[:, None], xmax[:, None], ymax[:, None]],dim = 1)
+        return box_roi
+        
+    def forward_with_dct(self, output, cnn_feature, fine_feature, batch, more_info = None):
         box_mask_preds = []
         vis_mask_preds = []
         rois = [] 
@@ -173,6 +230,7 @@ class RAFT(nn.Module):
         amodal_dct_pred_x = []
         amodal_dct_pred_bfg = []
         amodal_dct_pred_patch_vector = []
+        point_guassian_heatmaps = []
         ret = output
         if batch is not None and 'test' not in batch['meta']:
             with torch.no_grad():
@@ -182,11 +240,12 @@ class RAFT(nn.Module):
             # 的坐标的，这里全部预测的坐标和偏移量都假定归一化了，因此都需要乘上对应的w和h
             poly_init = self.use_gt_detection(output, batch) #训练的时候，这里直接使用的gt center来对点进行初始化 ，获得dla模块中推理得到的偏移量
             poly_init = poly_init.detach()
-            
-            #init_mask_pred = self.box_mask_head(cnn_feature, poly_init, batch['ct_01'].byte())
+            #get_gt_info.match_masks_multiple(pred_masks.to("cuda"),detection[:,3],gt_masks.to("cuda"),more_info['ct_cls'].squeeze(0).to("cuda"))
+            #gt_masks=get_gt_info.points_to_mask(more_info['i_gt_py'].squeeze(0),(cnn_feature.shape[2],cnn_feature.shape[3]))
+            #pred_masks=get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3]))
             if cfg.use_box:
+                vis_mask_pred, _, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
                 box_mask_pred, roi, amodal_dct_mask_logits, amodal_bfg, amodal_patch_vectors = self.box_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
-                vis_mask_pred, roi, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
                 
                 box_mask_preds.append(box_mask_pred)
                 vis_mask_preds.append(vis_mask_pred)
@@ -201,8 +260,17 @@ class RAFT(nn.Module):
             py_pred = poly_init * snake_config.ro  #乘了个4，对应到原图的尺寸，而他这里使用的feature map是经过4倍降采样的
             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+                
             if cfg.use_box:
-                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
+                if(cfg.use_interactive):
+                    simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points(init['per_ins_cmask'],get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3])).to(init['per_ins_cmask'].device))
+                    point_guassian_heatmaps.append(simulate_points_heatmaps)
+                    gt_boxes = self.get_box(batch['i_gt_py'][torch.arange(batch['i_gt_py'].shape[0])][batch['ct_01'].byte()])
+                    scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                    simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps(scaled_boxes,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1),simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                else:
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
             else:
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
@@ -220,8 +288,8 @@ class RAFT(nn.Module):
 
                 py_pred_sm = py_pred / snake_config.ro
                 if cfg.use_box:
-                    box_mask_pred, roi, amodal_dct_mask_logits, amodal_bfg, amodal_patch_vectors = self.box_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
-                    vis_mask_pred, roi, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, poly_init, batch=batch)
+                    box_mask_pred, roi, amodal_dct_mask_logits, amodal_bfg, amodal_patch_vectors = self.box_mask_head(cnn_feature, fine_feature, py_pred_sm, batch=batch)
+                    vis_mask_pred, _, vis_dct_mask_logits, vis_bfg, vis_patch_vectors = self.vis_mask_head(cnn_feature, fine_feature, py_pred_sm, batch=batch)
                     
                     box_mask_preds.append(box_mask_pred)
                     vis_mask_preds.append(vis_mask_pred)
@@ -237,7 +305,11 @@ class RAFT(nn.Module):
                 
                 #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])
                 if cfg.use_box:
-                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
+                    if(cfg.use_interactive):
+                        simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points(init['per_ins_cmask'],get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3])).to(init['per_ins_cmask'].device))
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1),simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                    else:
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1],init['per_vis_cmask'].unsqueeze(1))
                 else:
                     i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
@@ -252,8 +324,10 @@ class RAFT(nn.Module):
             with torch.no_grad():
                 test_box_mask_preds = []
                 test_vis_mask_preds = []
+                init = self.prepare_training(output, more_info)
                 py_preds = []
                 poly_init, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3),self.score_thresh)
+                device = detection.device
                 # poly_init_loss = self.use_gt_detection(output, batch)
                 # init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
                 # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
@@ -262,13 +336,25 @@ class RAFT(nn.Module):
                 py_pred = poly_init * snake_config.ro
                 c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init)
                 ct_01 = torch.ones([1, detection.size(0)])
+                
                 if cfg.use_box:
                     box_mask_pred, roi, _, _, _  = self.box_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
                     vis_mask_pred, roi, _, _, _  = self.vis_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
                     test_box_mask_preds.append(box_mask_pred)
                     test_vis_mask_preds.append(vis_mask_pred)
-                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
-                                              ind, test_box_mask_preds[-1],test_vis_mask_preds[-1])
+                    if(cfg.use_interactive):
+                        pred_masks=get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3]),device)
+                        pred_to_gt = get_gt_info.match_masks_multiple(pred_masks.to(device), detection[:,3], more_info['per_ins_cmask'].squeeze(0).to(device),more_info['ct_cls'].squeeze(0).to(device))
+                        simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points_test(more_info['per_ins_cmask'].squeeze(0).to(device),pred_masks, pred_to_gt)
+                        gt_boxes = self.get_box(more_info['i_gt_py'][torch.arange(more_info['i_gt_py'].shape[0])][more_info['ct_01'].byte()])
+                        scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                        simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps_test(scaled_boxes,pred_to_gt,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                                ind, test_box_mask_preds[-1],test_vis_mask_preds[-1],simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                    else:
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                                ind, test_box_mask_preds[-1],test_vis_mask_preds[-1])
                 else:
                     i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
                                               ind)
@@ -283,14 +369,22 @@ class RAFT(nn.Module):
                         py_pred_sm = py_pred / snake_config.ro
                         py_preds.append(py_pred_sm)
                         if cfg.use_box:
-                            box_mask_pred, roi, _, _, _  = self.box_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
-                            vis_mask_pred, roi, _, _, _  = self.vis_mask_head(cnn_feature, fine_feature, poly_init, detection=detection)
+                            box_mask_pred, roi, _, _, _  = self.box_mask_head(cnn_feature, fine_feature, py_pred_sm, detection=detection)
+                            vis_mask_pred, _, _, _, _  = self.vis_mask_head(cnn_feature, fine_feature, py_pred_sm, detection=detection)
                             test_box_mask_preds.append(box_mask_pred)
                             test_vis_mask_preds.append(vis_mask_pred)
                         if i != (self.iter - 1):                     
                             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                             if cfg.use_box:
-                                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1],test_vis_mask_preds[-1]) #init['ind'])
+                                if(cfg.use_interacive):
+                                    pred_masks=get_gt_info.points_to_mask(py_pred_sm,(cnn_feature.shape[2],cnn_feature.shape[3]),device)
+                                    pred_to_gt = get_gt_info.match_masks_multiple(pred_masks.to(device), detection[:,3], more_info['per_ins_cmask'].squeeze(0).to(device),more_info['ct_cls'].squeeze(0).to(device))
+                                    simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points_test(more_info['per_ins_cmask'].squeeze(0).to(device),pred_masks, pred_to_gt)
+                                    scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                                    simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps_test(scaled_boxes,pred_to_gt,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1],test_vis_mask_preds[-1],simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1)) #init['ind'])
+                                else:
+                                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1],test_vis_mask_preds[-1]) #init['ind'])
                             else:
                                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind) #init['ind'])
                             i_poly_fea = F.leaky_relu(i_poly_fea)
@@ -304,11 +398,12 @@ class RAFT(nn.Module):
                     ret.update({'py': final_py_preds})
         return output
     
-    def forward_with_box(self, output, cnn_feature, batch):
+    def forward_with_box(self, output, cnn_feature, batch, more_info = None):
         #boundary_score=output['mask'].sigmoid()
         #attention_feature = self.occlusionatte(1-boundary_score)
         box_mask_preds = []
         vis_mask_preds = []
+        point_guassian_heatmaps = []
         rois = [] 
         ret = output
         #inp_h,inp_w=batch['meta']['inp_out_hw'][:2]
@@ -332,13 +427,23 @@ class RAFT(nn.Module):
             py_pred = poly_init * snake_config.ro  #乘了个4，对应到原图的尺寸，而他这里使用的feature map是经过4倍降采样的
             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(poly_init) #将坐标转换为相对于最左以及最上的相对坐标
             #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])  # n*64*128
+                
             if cfg.use_box:
-                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
+                if(cfg.use_interactive):
+                    simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points(init['per_ins_cmask'],get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3])).to(init['per_ins_cmask'].device),cfg.guassian_sigma)
+                    gt_boxes = self.get_box(batch['i_gt_py'][torch.arange(batch['i_gt_py'].shape[0])][batch['ct_01'].byte()])
+                    scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                    simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps(scaled_boxes,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1),simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                    point_guassian_heatmaps.append(simulate_points_heatmaps)
+                else:
+                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
             else:
                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred, init['py_ind'])
             net = torch.tanh(i_poly_fea)  ## 初始h0，就是feature aggregation得到的mid feature经过一个tanh计算
             i_poly_fea = F.leaky_relu(i_poly_fea)
             py_preds = []
+            py_preds.append(py_pred)
             cls_scores= []
             for i in range(self.iter):  ## 因为初始点需要单独通过中心点来获得，因此先进行处理后，再进行迭代 ####不过他这里代码执行还是总共只执行了self.iter次迭代，因为他这里是在循环开头用gru计算偏移量的
                 net, offset = self.update_block(net, i_poly_fea) # gru模块，输出net(论文中的hk)和偏移量  net送入下一轮迭代中
@@ -361,19 +466,27 @@ class RAFT(nn.Module):
                 
                 #i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],vis_mask_preds[-1][torch.arange(vis_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:])
                 if cfg.use_box:
-                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
+                    if(cfg.use_interactive):
+                        simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points(init['per_ins_cmask'],get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3])).to(init['per_ins_cmask'].device), cfg.guassian_sigma)
+                        point_guassian_heatmaps.append(simulate_points_heatmaps)
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1),simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                    else:
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'], box_mask_preds[-1][torch.arange(box_mask_preds[-1].shape[0]),batch['ct_cls'][batch['ct_01'].byte()]][:,None,:,:],init['per_vis_cmask'].unsqueeze(1))
                 else:
                     i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 #attn_score = self.get_attn_score(self.boundary_coefficient, attention_feature, py_pred_sm, c_py_pred, init['py_ind'])
                 i_poly_fea = F.leaky_relu(i_poly_fea)
-            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores, 'mask_preds': box_mask_preds,'vis_mask_preds': vis_mask_preds,'rois': rois})
+            ret.update({'py_pred': py_preds, 'i_gt_py': output['i_gt_py'] * snake_config.ro, 'cls_scores': cls_scores, 'mask_preds': box_mask_preds,'vis_mask_preds': vis_mask_preds,'rois': rois,'point_guassian_heatmaps':point_guassian_heatmaps})
 
         if not self.training:
             with torch.no_grad():
                 test_box_mask_preds = []
                 test_vis_mask_preds = []
                 py_preds = []
+                if(cfg.use_interactive):
+                    init = self.prepare_training(output, more_info)
                 poly_init, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3),self.score_thresh)
+                device = detection.device
                 # poly_init_loss = self.use_gt_detection(output, batch)
                 # init = snake_gcn_utils.prepare_training(output, batch) # init中存放gt和ct对应的在batch中的图片编号
                 # ret.update({'i_gt_py': init['i_gt_py']* snake_config.ro}) # 将gt加到output中保存
@@ -387,8 +500,18 @@ class RAFT(nn.Module):
                     vis_mask_pred, _ = self.vis_mask_head(cnn_feature, poly_init, ct_01.byte())
                     test_box_mask_preds.append(box_mask_pred)
                     test_vis_mask_preds.append(vis_mask_pred)
-                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
-                                              ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
+                    if(cfg.use_interactive):
+                        pred_masks=get_gt_info.points_to_mask(poly_init,(cnn_feature.shape[2],cnn_feature.shape[3]),device)
+                        pred_to_gt = get_gt_info.match_masks_multiple(pred_masks.to(device), detection[:,3], more_info['per_ins_cmask'].squeeze(0).to(device),more_info['ct_cls'].squeeze(0).to(device))
+                        simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points_test(more_info['per_ins_cmask'].squeeze(0).to(device),pred_masks, pred_to_gt,cfg.guassian_sigma)
+                        gt_boxes = self.get_box(more_info['i_gt_py'][torch.arange(more_info['i_gt_py'].shape[0])][more_info['ct_01'].byte()])
+                        scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                        simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps_test(scaled_boxes,pred_to_gt,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                              ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1))
+                    else:
+                        i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
+                                                ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:])
                 else:
                     i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, poly_init, c_py_pred,
                                               ind)
@@ -410,7 +533,15 @@ class RAFT(nn.Module):
                         if i != (self.iter - 1):                     
                             c_py_pred = snake_gcn_utils.img_poly_to_can_poly(py_pred_sm)
                             if cfg.use_box:
-                                i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:]) #init['ind'])
+                                if(cfg.use_interactive):
+                                    pred_masks=get_gt_info.points_to_mask(py_pred_sm,(cnn_feature.shape[2],cnn_feature.shape[3]),device)
+                                    pred_to_gt = get_gt_info.match_masks_multiple(pred_masks.to(device), detection[:,3], more_info['per_ins_cmask'].squeeze(0).to(device),more_info['ct_cls'].squeeze(0).to(device))
+                                    simulate_points_heatmaps = self.iterative_sampler.generate_gaussian_heatmaps_points_test(more_info['per_ins_cmask'].squeeze(0).to(device),pred_masks, pred_to_gt, cfg.guassian_sigma)
+                                    scaled_boxes = self.iterative_sampler.random_scale_boxes(gt_boxes)
+                                    simulate_box_heatmaps = self.iterative_sampler.generate_smooth_rectangular_heatmaps_test(scaled_boxes,pred_to_gt,(cnn_feature.shape[2],cnn_feature.shape[3]))
+                                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],simulate_points_heatmaps.unsqueeze(1),simulate_box_heatmaps.unsqueeze(1)) #init['ind'])
+                                else:
+                                    i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind, test_box_mask_preds[-1][torch.arange(test_box_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:],test_vis_mask_preds[-1][torch.arange(test_vis_mask_preds[-1].shape[0]),detection[:,3].long()][:,None,:,:]) #init['ind'])
                             else:
                                 i_poly_fea = self.evolve_poly(self.evolve_gcn, cnn_feature, py_pred_sm, c_py_pred, ind) #init['ind'])
                             i_poly_fea = F.leaky_relu(i_poly_fea)
@@ -424,8 +555,12 @@ class RAFT(nn.Module):
                     ret.update({'py': final_py_preds})
         return output
 
-    def forward(self, output, cnn_feature, batch, fine_feature):
+    def forward(self, output, cnn_feature, batch, fine_feature, more_info = None):
         if(cfg.use_dct):
-            return self.forward_with_dct(output, cnn_feature, fine_feature, batch)
+            return self.forward_with_dct(output, cnn_feature, fine_feature, batch, more_info)
+            if(cfg.use_interactive):
+                return self.forward_with_dct(output, cnn_feature, fine_feature, batch, more_info)
+            else:
+                return self.forward_with_dct(output, cnn_feature, fine_feature, batch)
         else:
-            return self.forward_with_box(output, cnn_feature, batch)
+            return self.forward_with_box(output, cnn_feature, batch, more_info)

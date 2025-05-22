@@ -1,17 +1,18 @@
-model: 'kins_snake_nogat'
+model: 'kins_snake_all_click'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [3]
+gpus: [0]
 iter_num: 6
 score_thresh: 0.05
 num_classes: 7
 use_gat: false
 use_box: true
 use_dct: false
-eval_model_name: 'best_nogat36.0.pth'
-need_vis: true
-use_interactive: false
+need_vis: false
+use_interactive: true
+eval_model_name: '149.pth'
+guassian_sigma: 1
 train:
     optim: 'adam'
     lr: 1e-4
@@ -20,10 +21,9 @@ train:
     batch_size: 4
     dataset: 'KinsTrain'
     num_workers: 12
-    epoch: 200
+    epoch: 300
     scheduler: 'manual'
     gammas: [0.5, 0.1]
-    
 test:
     dataset: 'KinsVal'
     batch_size: 1

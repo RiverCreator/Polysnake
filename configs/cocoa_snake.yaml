@@ -2,7 +2,7 @@ model: 'cocoa_snake'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [0]
+gpus: [2]
 iter_num: 3
 score_thresh: 0.01
 eval_ep : 100
@@ -11,6 +11,9 @@ pretrained_model_name: 'best_pretrained'
 eval_model_name: 'best40.6.pth'
 use_gat: true
 use_box: true
+use_dct: false
+use_interactive: false
+need_vis: true
 # model_dir: 'data/model/snake/cocoa_snake'
 train:
     optim: 'adam'

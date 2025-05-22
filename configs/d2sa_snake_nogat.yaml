@@ -3,12 +3,13 @@ network: 'ro_34'
 task: 'snake'
 resume: true
 gpus: [2]
-iter_num: 6
+iter_num: 7
 score_thresh: 0.05
 num_classes: 60
 eval_model_name: 'best_nogat73.4.pth'
 use_gat: false
 use_box: true
+use_interactive: false
 use_dct: false
 train:
     optim: 'adam'

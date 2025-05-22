@@ -2,6 +2,10 @@ import torch
 from .utils import masks2patch
 from detectron2.layers import cat
 from lib.csrc.roi_align_layer.roi_align import ROIAlign
+import torch
+import numpy as np
+import cv2
+from typing import List, Tuple
 
 class GT_infomation:
     def __init__(self,mask_size_assemble, mask_size, patch_size, scale, dct_encoding, patch_dct_encoding):
@@ -119,3 +123,123 @@ class GT_infomation:
             gt_classes.append(gt_classes_per_image)
         gt_classes = cat(gt_classes, dim=0)  # [N_instance]
         return gt_classes
+
+def points_to_mask(
+    points: torch.Tensor,  # (N, 2, 128), 坐标格式为 (x, y)
+    image_size: Tuple[int, int],  # (H, W)
+    device: str = "cpu"
+) -> torch.Tensor:
+    """
+    将点集转换为二值掩码（多边形填充）
+    Args:
+        points: (N, 2, 128) - 第1维是x坐标，第2维是y坐标
+        image_size: 输出掩码的尺寸 (H, W)
+        device: 输出掩码的设备
+    Returns:
+        masks: (N, H, W) - 二值掩码（1表示多边形内，0表示背景）
+    """
+    N, num_points, _ = points.shape
+    H, W = image_size
+    masks = torch.zeros((N, H, W), dtype=torch.float32, device=device)
+    
+    # 转换为CPU上的numpy数组（OpenCV处理需要）
+    points_np = points.cpu().numpy()
+    
+    for i in range(N):
+        # 提取第i个实例的128个点 (2, 128) -> (128, 2)
+        poly = points_np[i]  # (128, 2), 格式为 [[x0,y0], [x1,y1], ...]
+        
+        # 创建空白画布
+        mask = np.zeros((H, W), dtype=np.uint8)
+        
+        # 将多边形坐标转为OpenCV所需的int32格式
+        poly_int = poly.reshape(-1, 1, 2).astype(np.int32)
+        
+        # 填充多边形（注意OpenCV的x=列，y=行）
+        cv2.fillPoly(mask, [poly_int], color=1)
+        
+        # 转为Tensor并存入结果
+        masks[i] = torch.from_numpy(mask).to(device)
+    
+    return masks
+
+def compute_mask_iou(
+    pred_masks: torch.Tensor,  # (N_pred, H, W)
+    gt_masks: torch.Tensor     # (N_gt, H, W)
+) -> torch.Tensor:
+    """
+    计算预测掩码与 GT 掩码之间的 IoU 矩阵
+    Returns:
+        iou_matrix: (N_pred, N_gt)
+    """
+    # 交集 = pred AND gt
+    intersection = (pred_masks[:, None] * gt_masks).sum(dim=(-2, -1))  # (N_pred, N_gt)
+    
+    # 并集 = pred OR gt
+    union = (pred_masks[:, None] + gt_masks).clip(max=1).sum(dim=(-2, -1))  # (N_pred, N_gt)
+    
+    # 避免除以零
+    iou_matrix = intersection / (union + 1e-6)
+    return iou_matrix
+
+def match_masks_with_classes(
+    pred_masks: torch.Tensor,   # (N_pred, H, W)
+    pred_classes: torch.Tensor, # (N_pred,), 预测类别索引 (0~16)
+    gt_masks: torch.Tensor,     # (N_gt, H, W)
+    gt_classes: torch.Tensor,   # (N_gt,), GT类别索引 (0~2)
+    iou_threshold: float = 0.5
+) -> torch.Tensor:
+    """
+    匹配同类别的预测和GT掩码，允许多个预测匹配同一个GT。
+    返回一个长度为N_pred的张量，每个元素是对应的GT索引（未匹配则为-1）。
+    """
+    iou_matrix = compute_mask_iou(pred_masks, gt_masks)  # (N_pred, N_gt)
+    
+    # 仅保留同类别的IoU
+    class_mask = pred_classes[:, None] == gt_classes  # (N_pred, N_gt)
+    iou_matrix *= class_mask.float()
+    
+    # 初始化结果张量（未匹配的默认为-1）
+    matched_gt_indices = torch.full((pred_masks.shape[0],), -1, dtype=torch.long, device=pred_masks.device)
+    
+    # 遍历每个GT，允许其匹配多个预测
+    for gt_idx in range(gt_masks.shape[0]):
+        # 找到所有满足条件的预测（同类 + IoU ≥ 阈值）
+        valid_preds = (iou_matrix[:, gt_idx] >= iou_threshold).nonzero().squeeze(-1)
+        
+        # 将这些预测标记为匹配当前GT
+        matched_gt_indices[valid_preds] = gt_idx
+    
+    return matched_gt_indices  # (N_pred,)
+
+def match_masks_multiple(
+    pred_masks: torch.Tensor,   # (N_pred, H, W)
+    pred_classes: torch.Tensor, # (N_pred,), 预测类别索引 (0~16)
+    gt_masks: torch.Tensor,     # (N_gt, H, W)
+    gt_classes: torch.Tensor,   # (N_gt,), GT类别索引 (0~2)
+    iou_threshold: float = 0.5
+) -> torch.Tensor:
+    """
+    返回一个长度为 N_pred 的张量，每个元素是对应的 GT 索引（未匹配为 -1）
+    """
+    N_pred = pred_masks.shape[0]
+    device = pred_masks.device
+    
+    # 初始化输出：全 -1（表示未匹配）
+    pred_to_gt = torch.full((N_pred,), -1, dtype=torch.long, device=device)
+    
+    # 计算 IoU 矩阵并过滤不同类别
+    iou_matrix = compute_mask_iou(pred_masks, gt_masks)  # (N_pred, N_gt)
+    class_mask = pred_classes[:, None] == gt_classes     # (N_pred, N_gt)
+    iou_matrix *= class_mask.float()
+    
+    # 遍历所有 GT，为每个 GT 记录所有满足条件的预测
+    for gt_idx in range(gt_masks.shape[0]):
+        # 找到所有同类且 IoU >= 阈值的预测
+        matched_pred_mask = (iou_matrix[:, gt_idx] >= iou_threshold)
+        matched_pred_indices = matched_pred_mask.nonzero().squeeze(-1)  # (K,)
+        
+        # 将这些预测的对应 GT 索引设为当前 gt_idx
+        pred_to_gt[matched_pred_indices] = gt_idx
+    
+    return pred_to_gt  # (N_pred,)

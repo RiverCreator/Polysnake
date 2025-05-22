@@ -1,4 +1,4 @@
-model: 'd2sa_snake_nogat_dct'
+model: 'd2sa_snake_dct'
 network: 'ro_34'
 task: 'snake'
 resume: true
@@ -6,10 +6,11 @@ gpus: [1]
 iter_num: 7
 score_thresh: 0.05
 num_classes: 60
-eval_model_name: 'best_nogat73.4.pth'
+eval_model_name: 'best.pth'
 use_gat: false
 use_box: true
 use_dct: true
+use_interactive: false
 train:
     optim: 'adam'
     lr: 1e-4

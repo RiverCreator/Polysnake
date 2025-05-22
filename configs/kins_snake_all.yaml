@@ -2,14 +2,16 @@ model: 'kins_snake_all'
 network: 'ro_34'
 task: 'snake'
 resume: true
-gpus: [1]
+gpus: [2]
 iter_num: 6
 score_thresh: 0.05
 num_classes: 7
 use_gat: true
 use_box: true
-need_vis: false
-#eval_model_name: '129.pth'
+use_dct: false
+need_vis: true
+use_interactive: false
+eval_model_name: '74.pth'
 train:
     optim: 'adam'
     lr: 1e-4

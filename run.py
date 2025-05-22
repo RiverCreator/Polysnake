@@ -72,7 +72,7 @@ def run_evaluate():
     for batch in tqdm.tqdm(data_loader):
         inp = batch['inp'].cuda()
         with torch.no_grad():
-            output = network(inp)
+            output = network(inp, more_info=batch)
         if 1 and 'city' not in cfg.model:
             nms.post_process(output)
         evaluator.evaluate(output, batch)

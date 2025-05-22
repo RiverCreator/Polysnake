@@ -1,4 +1,4 @@
-model: 'd2sa_snake_gat'
+model: 'd2sa_snake_nobox'
 network: 'ro_34'
 task: 'snake'
 resume: true
@@ -9,6 +9,9 @@ num_classes: 60
 eval_model_name: '104.pth'
 use_gat: true
 use_box: false
+use_dct: true
+use_interactive: false
+need_vis: true
 train:
     optim: 'adam'
     lr: 1e-4
