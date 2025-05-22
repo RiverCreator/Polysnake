@@ -379,7 +379,7 @@ def load_network(net, model_dir, resume=True, epoch=-1, strict=True):
     # else:
     #     pth = epoch
     #print('load model: {}'.format(os.path.join(model_dir, '{}.pth'.format(pth))))
-    pretrained_model=torch.load(os.path.join(model_dir,'214.pth'))
+    pretrained_model=torch.load(os.path.join(model_dir,'best.pth'))
     #pretrained_model = torch.load(os.path.join(model_dir, '{}.pth'.format(pth)))
     net.load_state_dict(pretrained_model['net'], strict=strict)
     return pretrained_model['epoch'] + 1

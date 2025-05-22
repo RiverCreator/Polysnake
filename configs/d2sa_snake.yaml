@@ -1,4 +1,4 @@
-model: 'd2sa_snake'
+model: 'd2sa_snake_gat'
 network: 'ro_34'
 task: 'snake'
 resume: true

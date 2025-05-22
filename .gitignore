@@ -1,2 +1,14 @@
 data
 visual_pic
+*.out
+*.pth
+*.txt
+log
+vis*
+visb
+vispy
+vispy2
+vis_kins
+vis_d2sa
+vis_d2sa717
+*.jpg
